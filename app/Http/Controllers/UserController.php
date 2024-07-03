@@ -100,7 +100,7 @@ class UserController extends Controller
             'name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email|unique:users',
-            'number_documment' => 'required|digits_between:1,20',
+            'number_documment' => 'required|digits_between:1,20|unique:users',
             'typeDocumment' => 'required|in:TI,CC',
             'iphone' => 'required|numeric',
             'status' => 'required|in:Activo,Bloqueado',
@@ -120,13 +120,13 @@ class UserController extends Controller
         $user->iphone = $request->input('iphone');
         $user->status = $request->input('status');
         $user->degree = $request->input('degree', 0);
+        
+        $roles = Role::whereIn('id', $request->input('roles'))->get();
+        $user->assignRole($roles);
+
         $user->asignature = $request->input('asignature');
         $user->password = bcrypt($request->input('password'));
         $user->save();
-
-        $roles = Role::whereIn('id', $request->input('roles'))->get();
-
-        $user->assignRole($roles);
 
         return redirect()->back()->with('success', 'Usuario creado correctamente.');
     }
