@@ -76,6 +76,8 @@
                         </div>
                     </div>
                     @endif
+
+                    <!-- Esta parte del formulario es donde se agregan los campos a validar, osea N° documeto y contraseña -->
                     <div>
                         <div class="text-sm font-bold text-gray-700 tracking-wide">Número de documento</div>
                         <input id="number_documment" name="number_documment" value="{{ session('number_documment') }}"
