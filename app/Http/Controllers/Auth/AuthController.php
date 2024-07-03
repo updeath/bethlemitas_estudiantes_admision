@@ -18,6 +18,8 @@ class AuthController extends Controller
     public function login() {
         return view('auth.login');
     }
+
+    // Aca es donde se autentifica la credenciales del usuario para validar su ingreso a la pagina web
     public function authenticate(Request $request) {
 
         $request->validate([

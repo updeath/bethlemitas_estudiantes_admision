@@ -90,7 +90,7 @@
 
     </style>
 </head>
-//con esta sentencia de php guardamos la fecha actual en una variable y luego la llamamos donde la queremos imprimir
+<!-- con esta sentencia de php guardamos la fecha actual en una variable y luego la llamamos donde la queremos imprimir -->
 @php
     $data = [
         'current_date' => date('Y-m-d')
@@ -110,7 +110,7 @@
                 <br><br><br>
                 <span>Código: M1-FOR03</span> <br>
                 <span>Versión: 02</span> <br>
-                <span>Fecha: {{ $data['current_date'] }}</span> <br> //llamamos la variable donde quedo guardada la fecha actual 
+                <span>Fecha: {{ $data['current_date'] }}</span> <br> <!--llamamos la variable donde quedo guardada la fecha actual--> 
                 <span>Página 1 de 1</span>
             </td>
         </tr>
