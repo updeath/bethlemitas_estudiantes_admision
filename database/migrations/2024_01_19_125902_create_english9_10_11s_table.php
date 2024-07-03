@@ -1,0 +1,132 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('english9_10_11s', function (Blueprint $table) {
+            $table->id();
+            $table->integer('english9_10_11P1');
+            $table->integer('english9_10_11P2');
+            $table->integer('english9_10_11P3');
+            $table->integer('english9_10_11P4');
+            $table->integer('english9_10_11P5');
+            $table->integer('english9_10_11P6');
+            $table->integer('english9_10_11P7');
+            $table->integer('english9_10_11P8');
+            $table->integer('english9_10_11P9');
+            $table->integer('english9_10_11P10');
+            $table->integer('english9_10_11P11');
+            $table->integer('english9_10_11P12');
+            $table->integer('english9_10_11P13');
+            $table->integer('english9_10_11P14');
+            $table->integer('english9_10_11P15');
+            $table->integer('english9_10_11P16');
+            $table->integer('english9_10_11P17');
+            $table->integer('english9_10_11P18');
+            $table->integer('english9_10_11P19');
+            $table->integer('english9_10_11P20');
+            $table->integer('english9_10_11P21');
+            $table->integer('english9_10_11P22');
+            $table->integer('english9_10_11P23');
+            $table->integer('english9_10_11P24');
+            $table->integer('english9_10_11P25');
+            $table->integer('english9_10_11P26');
+            $table->integer('english9_10_11P27');
+            $table->integer('english9_10_11P28');
+            $table->integer('english9_10_11P29');
+            $table->integer('english9_10_11P30');
+            $table->integer('english9_10_11P31');
+            $table->integer('english9_10_11P32');
+            $table->integer('english9_10_11P33');
+            $table->integer('english9_10_11P34');
+            $table->integer('english9_10_11P35');
+            $table->integer('english9_10_11P36');
+            $table->integer('english9_10_11P37');
+            $table->integer('english9_10_11P38');
+            $table->integer('english9_10_11P39');
+            $table->integer('english9_10_11P40');
+            $table->integer('english9_10_11P41');
+            $table->integer('english9_10_11P42');
+            $table->integer('english9_10_11P43');
+            $table->integer('english9_10_11P44');
+            $table->integer('english9_10_11P45');
+            $table->integer('english9_10_11P46');
+            $table->integer('english9_10_11P47');
+            $table->integer('english9_10_11P48');
+            $table->integer('english9_10_11P49');
+            $table->integer('english9_10_11P50');
+            $table->integer('english9_10_11P51');
+            $table->integer('english9_10_11P52');
+            $table->integer('english9_10_11P53');
+            $table->integer('english9_10_11P54');
+            $table->integer('english9_10_11P55');
+            $table->integer('english9_10_11P56');
+            $table->integer('english9_10_11P57');
+            $table->integer('english9_10_11P58');
+            $table->integer('english9_10_11P59');
+            $table->integer('english9_10_11P60');
+            $table->integer('english9_10_11P61');
+            $table->integer('english9_10_11P62');
+            $table->integer('english9_10_11P63');
+            $table->integer('english9_10_11P64');
+            $table->integer('english9_10_11P65');
+            $table->integer('english9_10_11P66');
+            $table->integer('english9_10_11P67');
+            $table->integer('english9_10_11P68');
+            $table->integer('english9_10_11P69');
+            $table->integer('english9_10_11P70');
+            $table->integer('english9_10_11P71');
+            $table->integer('english9_10_11P72');
+            $table->integer('english9_10_11P73');
+            $table->integer('english9_10_11P74');
+            $table->integer('english9_10_11P75');
+            $table->integer('english9_10_11P76');
+            $table->integer('english9_10_11P77');
+            $table->integer('english9_10_11P78');
+            $table->integer('english9_10_11P79');
+            $table->integer('english9_10_11P80');
+            $table->integer('english9_10_11P81');
+            $table->integer('english9_10_11P82');
+            $table->integer('english9_10_11P83');
+            $table->integer('english9_10_11P84');
+            $table->integer('english9_10_11P85');
+            $table->integer('english9_10_11P86');
+            $table->integer('english9_10_11P87');
+            $table->integer('english9_10_11P88');
+            $table->integer('english9_10_11P89');
+            $table->integer('english9_10_11P90');
+            $table->integer('english9_10_11P91');
+            $table->integer('english9_10_11P92');
+            $table->integer('english9_10_11P93');
+            $table->integer('english9_10_11P94');
+            $table->integer('english9_10_11P95');
+            $table->integer('english9_10_11P96');
+            $table->integer('english9_10_11P97');
+            $table->integer('english9_10_11P98');
+            $table->integer('english9_10_11P99');
+            $table->integer('english9_10_11P100');
+            $table->decimal('average')->default(0);
+            $table->integer('attempts')->default(0);
+            $table->integer('correct')->default(0);
+            $table->integer('incorrect')->default(0);
+            $table->foreignId('user_id')->constrained();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('english9_10_11s');
+    }
+};

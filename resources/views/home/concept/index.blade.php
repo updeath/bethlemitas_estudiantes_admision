@@ -1,0 +1,1508 @@
+@extends('home.homePage')
+
+@section('title', 'Resultados')
+
+@section('sub_title', 'Conceptos y Observaciones')
+
+@section('content_dashboard')
+
+    <div class="flex flex-col lg:flex-row items-center justify-between m-2">
+        <div class="relative">
+            <form action="{{ route('mostrar_conceptos') }}" method="GET" class="flex items-center">
+                <input type="search" name="search" class="bg-purple-white shadow rounded-l border-0 p-2" placeholder="Buscar">
+                <button type="submit"
+                    class="bg-purple-white hover:bg-purple-200 text-purple-lighter font-bold py-2 px-4 rounded-r">
+                    <svg version="1.1" class="h-4 text-dark" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 52.966 52.966"
+                        style="enable-background:new 0 0 52.966 52.966;" xml:space="preserve">
+                        <path d="M51.704,51.273L36.845,35.82c3.79-3.801,6.138-9.041,6.138-14.82c0-11.58-9.42-21-21-21s-21,9.42-21,21s9.42,21,21,21
+                                                                                    c5.083,0,9.748-1.817,13.384-4.832l14.895,15.491c0.196,0.205,0.458,0.307,0.721,0.307c0.25,0,0.499-0.093,0.693-0.279
+                                                                                    C52.074,52.304,52.086,51.671,51.704,51.273z M21.983,40c-10.477,0-19-8.523-19-19s8.523-19,19-19s19,8.523,19,19
+                                                                                    S32.459,40,21.983,40z" />
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="flex flex-col mt-8">
+        <div class="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+            <div class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
+                <table class="min-w-full">
+                    <thead>
+                        <tr>
+                            <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                Nombre Completo</th>
+
+                            <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                Grado </th>
+
+                            <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                Promedio - Matematicas</th>
+
+                            <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                Promedio - Lengua Castellana</th>
+
+                            <th
+                                class="px-12 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                Concepto Docente Español</th>
+
+                            <th
+                                class="px-12 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                Concepto Docente Matemáticas</th>
+
+                            <th
+                                class="px-12 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                Concepto Docente Ingles</th>
+
+                            <th
+                                class="px-7 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                Concepto Psicoorientador(a)</th> 
+
+                            <th
+                                class="px-12 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                Concepto Coordinador(a) Academico</th>
+
+                            <th
+                                class="px-12 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                Concepto Coordinador(a) Convivencia</th>
+
+                            <th
+                                class="px-12 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                Concepto Rector(a)</th>
+
+                            <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                PDF</th>
+
+
+                        </tr>
+                    </thead>
+
+                    <tbody class="bg-white">
+                        @if (isset($promedios['admin_data']))
+                            @foreach ($promedios['admin_data'] as $user)
+                                <tr>
+                                    <!-- Nombre -->
+                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                        @if (isset($user['name']))
+                                            {{ $user['name'] }}
+                                        @endif
+                                    </td>
+
+                                    <!-- Grado -->
+                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-center">
+                                        @if (isset($user['degree']))
+                                            {{ $user['degree'] }}
+                                        @endif
+                                    </td>
+
+                                    <!-- Promedio Matematicas -->
+                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-center">
+                                        @if (isset($user['mathCuarto']))
+                                            {{ $user['mathCuarto'] }}
+                                        @elseif (isset($user['mathQuinto']))
+                                            {{ $user['mathQuinto'] }}
+                                        @elseif (isset($user['mathSexto']))
+                                            {{ $user['mathSexto'] }}
+                                        @elseif (isset($user['mathSeptimo']))
+                                            {{ $user['mathSeptimo'] }}
+                                        @elseif (isset($user['mathOctavo']))
+                                            {{ $user['mathOctavo'] }}
+                                        @elseif (isset($user['mathNoveno']))
+                                            {{ $user['mathNoveno'] }}
+                                        @elseif (isset($user['mathDecimo']))
+                                            {{ $user['mathDecimo'] }}
+                                        @endif
+                                    </td>
+
+                                    <!-- Promedio Lengua Castellana -->
+                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-center">
+                                        @if (isset($user['spanishCuarto']))
+                                            {{ $user['spanishCuarto'] }}
+                                        @elseif (isset($user['spanishQuinto']))
+                                            {{ $user['spanishQuinto'] }}
+                                        @elseif (isset($user['spanishSexto']))
+                                            {{ $user['spanishSexto'] }}
+                                        @elseif (isset($user['spanishSeptimo']))
+                                            {{ $user['spanishSeptimo'] }}
+                                        @elseif (isset($user['spanishOctavo']))
+                                            {{ $user['spanishOctavo'] }}
+                                        @elseif (isset($user['spanishNoveno']))
+                                            {{ $user['spanishNoveno'] }}
+                                        @elseif (isset($user['spanishDecimo']))
+                                            {{ $user['spanishDecimo'] }}
+                                        @endif
+                                    </td>
+
+                                
+
+
+
+                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                        @if ($user['observacionSpanish'])
+                                            @if ($user['observacionPredeterminadaPresenteSpanish'])
+
+                                                @if(auth()->check() && auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'spanish')
+                                                    @can('save.observationsDocenteSpanish')
+                                                    <button
+                                                        onclick="openObservationModalSpanish('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
+                                                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                                                        <i class="fas fa-plus mr-2"></i> Añadir Observación
+                                                    </button>
+                                                    @endcan
+                                                @endif
+
+
+                                            @else
+                                                @if(auth()->check() && auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'spanish')
+                                                    @can('save.observationsDocenteSpanish')
+                                                    <button
+                                                        onclick="openObservationModalSpanish('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
+                                                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                        <i class="fas fa-plus text-sm"></i>
+                                                    </button>
+                                                    @endcan
+                                                @endif
+
+                                                @php
+                                                    $observacionesConcatenadasSpanish = implode('<br> <br> - ', $user['observacionSpanish']);
+                                                @endphp
+                                                <button
+                                                    onclick="openObservationModalVisualizarSpanish('{{ $user['name'] }}', '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasSpanish }}')"
+                                                    class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                    <i class="fas fa-eye text-sm"></i>
+                                                </button>
+                                            @endif
+                                        @else
+                                                @if(auth()->check() && auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'spanish')
+                                                    @can('save.observationsDocenteSpanish')
+                                                    <button
+                                                        onclick="openObservationModalSpanish('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
+                                                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                                                        <i class="fas fa-plus mr-2"></i> Añadir Observación
+                                                    </button>
+                                                    @endcan
+                                                @endif
+                                        @endif
+                                    </td>
+                               
+
+                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                        @if ($user['observacionMath'])
+                                            @if ($user['observacionPredeterminadaPresenteMath'])
+                                                @if(auth()->check() && auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'math')
+                                                    @can('save.observationsDocenteMath')
+                                                    <button
+                                                        onclick="openObservationModalMath('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
+                                                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                                                        <i class="fas fa-plus mr-2"></i> Añadir Observación
+                                                    </button>
+                                                    @endcan
+                                                @endif
+                                            @else
+                                                @if(auth()->check() && auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'math')
+                                                    @can('save.observationsDocenteMath')
+                                                    <button
+                                                        onclick="openObservationModalMath('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
+                                                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                        <i class="fas fa-plus text-sm"></i>
+                                                    </button>
+                                                    @endcan
+                                                @endif
+
+                                                @php
+                                                    $observacionesConcatenadasMath = implode('<br> <br> - ', $user['observacionMath']);
+                                                @endphp
+                                                <button
+                                                    onclick="openObservationModalVisualizarMath('{{ $user['name'] }}', '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasMath }}')"
+                                                    class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                    <i class="fas fa-eye text-sm"></i>
+                                                </button>
+                                            @endif
+                                        @else
+                                            @if(auth()->check() && auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'math')
+                                                @can('save.observationsDocenteMath')
+                                                <button
+                                                    onclick="openObservationModalMath('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
+                                                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                                                    <i class="fas fa-plus mr-2"></i> Añadir Observación
+                                                </button>
+                                                @endcan
+                                            @endif
+                                        @endif
+                                    </td>
+                                    
+                                
+                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                        @if ($user['observacionEnglish'])
+                                            @if ($user['observacionPredeterminadaPresenteEnglish'])
+                                                @if(auth()->check() && auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'english')
+                                                    @can('save.observationsDocenteEnglish')
+                                                    <button
+                                                        onclick="openObservationModalEnglish('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
+                                                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                                                        <i class="fas fa-plus mr-2"></i> Añadir Observación
+                                                    </button>
+                                                    @endcan
+                                                @endif
+                                            @else
+
+                                                @if(auth()->check() && auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'english')
+                                                    @can('save.observationsDocenteEnglish')
+                                                    <button
+                                                        onclick="openObservationModalEnglish('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
+                                                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                        <i class="fas fa-plus text-sm"></i>
+                                                    </button>
+                                                    @endcan
+                                                @endif
+
+                                                @php
+                                                    $observacionesConcatenadasEnglish = implode('<br> <br> - ', $user['observacionEnglish']);
+                                                @endphp
+                                                <button
+                                                    onclick="openObservationModalVisualizarEnglish('{{ $user['name'] }}', '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasEnglish }}')"
+                                                    class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                    <i class="fas fa-eye text-sm"></i>
+                                                </button>
+                                            @endif
+                                        @else
+
+                                            @if(auth()->check() && auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'english')
+                                                @can('save.observationsDocenteEnglish')
+                                                <button
+                                                    onclick="openObservationModalEnglish('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
+                                                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                                                    <i class="fas fa-plus mr-2"></i> Añadir Observación
+                                                </button>
+                                                @endcan
+                                            @endif
+                                        @endif
+                                    </td>
+                                    
+                                
+
+
+
+                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                        @if ($user['observacionPsicoorientador'])
+                                            @if ($user['observacionPredeterminadaPresentePsicoorientador'])
+                                                @if(auth()->check() && auth()->user()->hasRole('Psicoorientador'))
+                                                    @can('save.observationsPsicoorientador')
+                                                    <button
+                                                        onclick="openObservationModalPsicoorientador('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
+                                                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                                                        <i class="fas fa-plus mr-2"></i> Añadir Observación
+                                                    </button>
+                                                    @endcan
+                                                @endif
+
+                                            @else
+                                                @if(auth()->check() && auth()->user()->hasRole('Psicoorientador'))
+                                                    @can('save.observationsPsicoorientador')
+                                                    <button
+                                                        onclick="openObservationModalPsicoorientador('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
+                                                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                        <i class="fas fa-plus text-sm"></i>
+                                                    </button>
+                                                    @endcan
+                                                @endif
+
+                                                @php
+                                                    $observacionesConcatenadasPsicoorientador = implode('<br> <br> - ', $user['observacionPsicoorientador']);
+                                                @endphp
+                                                <button
+                                                    onclick="openObservationModalVisualizarPsicoorientador('{{ $user['name'] }}', '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasPsicoorientador }}')"
+                                                    class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                    <i class="fas fa-eye text-sm"></i>
+                                                </button>
+                                            @endif
+                                        @else
+
+                                            @if(auth()->check() && auth()->user()->hasRole('Psicoorientador'))
+                                                @can('save.observationsPsicoorientador')
+                                                <button
+                                                    onclick="openObservationModalPsicoorientador('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
+                                                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                                                    <i class="fas fa-plus mr-2"></i> Añadir Observación
+                                                </button>
+                                                @endcan
+                                            @endif
+
+                                        @endif
+                                    </td>
+
+
+
+                                    
+                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                        @if ($user['observacionAcademico'])
+                                            @if ($user['observacionPredeterminadaPresenteAcademico'])
+                                                @if(auth()->check() && auth()->user()->hasRole('CoordinadorAcademico'))
+                                                    
+                                                    <button
+                                                        onclick="openObservationModalAcademico('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
+                                                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                                                        <i class="fas fa-plus mr-2"></i> Añadir Observación
+                                                    </button>
+                                                    
+                                                @endif
+                                            @else
+
+                                                @if(auth()->check() && auth()->user()->hasRole('CoordinadorAcademico'))
+                                                        
+                                                        <button
+                                                            onclick="openObservationModalAcademico('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
+                                                            class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                            <i class="fas fa-plus text-sm"></i>
+                                                        </button>
+                                                        
+                                                    @endif
+                                                @php
+                                                    $observacionesConcatenadasAcademico = implode('<br> <br> - ', $user['observacionAcademico']);
+                                                @endphp
+                                                <button
+                                                    onclick="openObservationModalVisualizarAcademico('{{ $user['name'] }}', '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasAcademico }}')"
+                                                    class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                    <i class="fas fa-eye text-sm"></i>
+                                                </button>
+                                            @endif
+                                        @else
+
+                                            @if(auth()->check() && auth()->user()->hasRole('CoordinadorAcademico'))
+                                                
+                                                <button
+                                                    onclick="openObservationModalAcademico('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
+                                                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                                                    <i class="fas fa-plus mr-2"></i> Añadir Observación
+                                                </button>
+                                                
+                                            @endif
+                                        @endif
+                                    </td>
+
+
+
+                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                        @if ($user['observacionConvivencia'])
+                                            @if ($user['observacionPredeterminadaPresenteConvivencia'])
+                                                @if(auth()->check() && auth()->user()->hasRole('CoordinadorConvivencia'))
+                                                    
+                                                    <button
+                                                        onclick="openObservationModalConvivencia('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
+                                                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                                                        <i class="fas fa-plus mr-2"></i> Añadir Observación
+                                                    </button>
+                                                    
+                                                @endif
+                                            @else
+
+                                                @if(auth()->check() && auth()->user()->hasRole('CoordinadorConvivencia'))
+                                                        
+                                                        <button
+                                                            onclick="openObservationModalConvivencia('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
+                                                            class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                            <i class="fas fa-plus text-sm"></i>
+                                                        </button>
+                                                        
+                                                    @endif
+                                                @php
+                                                    $observacionesConcatenadasConvivencia = implode('<br> <br> - ', $user['observacionConvivencia']);
+                                                @endphp
+                                                <button
+                                                    onclick="openObservationModalVisualizarConvivencia('{{ $user['name'] }}', '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasConvivencia }}')"
+                                                    class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                    <i class="fas fa-eye text-sm"></i>
+                                                </button>
+                                            @endif
+                                        @else
+
+                                            @if(auth()->check() && auth()->user()->hasRole('CoordinadorConvivencia'))
+                                                
+                                                <button
+                                                    onclick="openObservationModalConvivencia('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
+                                                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                                                    <i class="fas fa-plus mr-2"></i> Añadir Observación
+                                                </button>
+                                                
+                                            @endif
+                                        @endif
+                                    </td>
+
+                                    
+
+
+                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                        @if ($user['observacionRector'])
+                                            @if ($user['observacionPredeterminadaPresenteRector'])
+                                                @if(auth()->check() && auth()->user()->hasRole('Rector'))
+                                                    @can('save.observationsRector')
+                                                    <button
+                                                        onclick="openObservationModalRector('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
+                                                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                                                        <i class="fas fa-plus mr-2"></i> Añadir Observación
+                                                    </button>
+                                                    @endcan
+                                                @endif
+                                            @else
+
+                                                @if(auth()->check() && auth()->user()->hasRole('Rector'))
+                                                        @can('save.observationsRector')
+                                                        <button
+                                                            onclick="openObservationModalRector('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
+                                                            class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                            <i class="fas fa-plus text-sm"></i>
+                                                        </button>
+                                                        @endcan
+                                                    @endif
+                                                @php
+                                                    $observacionesConcatenadasRector = implode('<br> <br> - ', $user['observacionRector']);
+                                                @endphp
+                                                <button
+                                                    onclick="openObservationModalVisualizarRector('{{ $user['name'] }}', '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasRector }}')"
+                                                    class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                    <i class="fas fa-eye text-sm"></i>
+                                                </button>
+                                            @endif
+                                        @else
+
+                                            @if(auth()->check() && auth()->user()->hasRole('Rector'))
+                                                @can('save.observationsRector')
+                                                <button
+                                                    onclick="openObservationModalRector('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
+                                                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                                                    <i class="fas fa-plus mr-2"></i> Añadir Observación
+                                                </button>
+                                                @endcan
+                                            @endif
+                                        @endif
+                                    </td>
+
+                                    
+
+                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                        <a href="{{ route('generate.pdf.observations', ['userId' => $user['id']]) }}"
+                                            class="inline-flex items-center px-4 py-2 bg-red-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-600 active:bg-red-700 focus:outline-none focus:border-red-800 focus:ring focus:ring-red-300 disabled:opacity-25 transition duration-300">
+                                            <i class="fas fa-download mr-2"></i> Descargar PDF
+                                        </a>
+                                    </td>
+
+                                    
+
+                                </tr>
+                            @endforeach
+                        @elseif(isset($promedios['student_data']))
+                            @foreach ($promedios['student_data'] as $student)
+                                <tr>
+                                    <!-- Nombre -->
+                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                        @if (isset($student['name']))
+                                            {{ $student['name'] }}
+                                        @endif
+                                    </td>
+
+                                    <!-- Grado -->
+                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-center">
+                                        @if (isset($student['degree']))
+                                            {{ $student['degree'] }}
+                                        @endif
+                                    </td>
+
+                                    <!-- Promedio Matematicas -->
+                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-center">
+                                        @if (isset($student['mathCuarto']))
+                                            {{ $student['mathCuarto'] }}
+                                        @elseif (isset($student['mathQuinto']))
+                                            {{ $student['mathQuinto'] }}
+                                        @elseif (isset($student['mathSexto']))
+                                            {{ $student['mathSexto'] }}
+                                        @elseif (isset($student['mathSeptimo']))
+                                            {{ $student['mathSeptimo'] }}
+                                        @elseif (isset($student['mathOctavo']))
+                                            {{ $student['mathOctavo'] }}
+                                        @elseif (isset($student['mathNoveno']))
+                                            {{ $student['mathNoveno'] }}
+                                        @elseif (isset($student['mathDecimo']))
+                                            {{ $student['mathDecimo'] }}
+                                        @endif
+                                    </td>
+
+                                    <!-- Promedio Lengua Castellana -->
+                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-center">
+                                        @if (isset($student['spanishCuarto']))
+                                            {{ $student['spanishCuarto'] }}
+                                        @elseif (isset($student['spanishQuinto']))
+                                            {{ $student['spanishQuinto'] }}
+                                        @elseif (isset($student['spanishSexto']))
+                                            {{ $student['spanishSexto'] }}
+                                        @elseif (isset($student['spanishSeptimo']))
+                                            {{ $student['spanishSeptimo'] }}
+                                        @elseif (isset($student['spanishOctavo']))
+                                            {{ $student['spanishOctavo'] }}
+                                        @elseif (isset($student['spanishNoveno']))
+                                            {{ $student['spanishNoveno'] }}
+                                        @elseif (isset($student['spanishDecimo']))
+                                            {{ $student['spanishDecimo'] }}
+                                        @endif
+                                    </td>
+
+                                    <!-- Promedio Inglés -->
+                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 ">
+                                        @if (isset($student['englishCuarto']))
+                                            <span>Listening:</span> {{ $student['englishCuarto'] }} <br>
+                                            <span>Reading and Writing:</span> {{ $student['englishCuartoPart2'] }}
+                                        @elseif (isset($student['englishQuinto']))
+                                            <span>Listening:</span> {{ $student['englishQuinto'] }} <br>
+                                            <span>Reading and Writing:</span> {{ $student['englishQuintoPart2'] }}
+                                        @elseif (isset($student['englishSexto']))
+                                            <span>Listening:</span> {{ $student['englishSexto'] }} <br>
+                                            <span>Reading and Writing:</span> {{ $student['englishSextoPart2'] }}
+                                        @elseif (isset($student['englishSeptimo']))
+                                            <span>Listening:</span> {{ $student['englishSeptimo'] }} <br>
+                                            <span>Reading and Writing:</span> {{ $student['englishSeptimoPart2'] }}
+                                        @elseif (isset($student['englishOctavo']))
+                                            <span>Listening:</span> {{ $student['englishOctavo'] }} <br>
+                                            <span>Reading and Writing:</span> {{ $student['englishOctavoPart2'] }}
+                                        @elseif (isset($student['englishNoveno']))
+                                            <span>Grammar:</span> {{ $student['englishNoveno'] }} <br>
+                                            <span>Listening:</span> {{ $student['englishNoveno2'] }} <br>
+                                            <span>Reading:</span> {{ $student['englishNoveno3'] }}
+                                        @elseif (isset($student['englishDecimo']))
+                                            <span>Grammar:</span> {{ $student['englishDecimo'] }} <br>
+                                            <span>Listening:</span> {{ $student['englishDecimo2'] }} <br>
+                                            <span>Reading:</span> {{ $student['englishDecimo3'] }}
+                                        @elseif (isset($student['englishOnce']))
+                                            <span>Grammar:</span> {{ $student['englishOnce'] }} <br>
+                                            <span>Listening:</span> {{ $student['englishOnce2'] }} <br>
+                                            <span>Reading:</span> {{ $student['englishOnce3'] }}
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="observationModalSpanish" class="fixed inset-0 overflow-y-auto hidden">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Overlay semitransparente -->
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <!-- Contenido del modal -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div
+                class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full sm:max-w-lg">
+                <!-- Contenido del modal aquí -->
+                <div class="bg-gray-50 px-4 py-5 sm:p-6">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Añadir Observación</h3>
+
+                    @if (isset($user['name']))
+                        <p class="text-sm text-gray-500 mb-4">Nombre del aspirante: <span
+                                id="studentNameContainerSpanish">{{ $user['name'] }} {{ $user['last_name'] }}</span>
+                        </p>
+                    @else
+                        <p class="text-sm text-gray-500 mb-4">Usuario no encontrado</p>
+                    @endif
+
+                    <!-- Textarea para la observación -->
+                    @if (isset($user['name']))
+                        <form id="observationFormSpanish"
+                            action="{{ route('save.observationsDocenteSpanish', ['userId' => ':userId']) }}"
+                            method="POST">
+                            @csrf
+                            <input type="hidden" id="userIdInputSpanish" name="userId" value="">
+                            <div class="mb-4">
+                                <label for="observationTextarea"
+                                    class="block text-sm font-medium text-gray-700">Observación:</label>
+                                <textarea id="observationTextarea" name="observation" rows="3" maxlength="600"
+                                    class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition duration-300 block w-full h-[200px]"></textarea>
+                            </div>
+                            <button type="submit"
+                                class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-700 transition duration-300">
+                                Guardar Observación
+                            </button>
+                        </form>
+                    @endif
+
+                    <button onclick="closeObservationModalSpanish()"
+                        class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="observationModalVisualizarSpanish" class="fixed inset-0 overflow-y-auto hidden">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Overlay semitransparente -->
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <!-- Contenido del modal -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div
+                class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full sm:max-w-lg">
+                <!-- Contenido del modal aquí -->
+                <div class="bg-gray-50 px-4 py-5 sm:p-6">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Observaciones</h3>
+
+                    @if (isset($user['name']))
+                        <p class="text-sm text-gray-500 mb-4">Nombre del aspirante: <span
+                                id="visualizarObservationSpanish">{{ $user['name'] }} {{ $user['last_name'] }}</span>
+                        </p>
+                    @else
+                        <p class="text-sm text-gray-500 mb-4">Usuario no encontrado</p>
+                    @endif
+
+                    <div id="observationsContainerSpanish">
+
+                    </div>
+
+                    <button onclick="closeObservationModalVisualizarSpanish()"
+                        class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Comcepto de Docente de Matematicas --}}
+    <div id="observationModalMath" class="fixed inset-0 overflow-y-auto hidden">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Overlay semitransparente -->
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <!-- Contenido del modal -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div
+                class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full sm:max-w-lg">
+                <!-- Contenido del modal aquí -->
+                <div class="bg-gray-50 px-4 py-5 sm:p-6">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Añadir Observación</h3>
+
+                    @if (isset($user['name']))
+                        <p class="text-sm text-gray-500 mb-4">Nombre del aspirante: <span
+                                id="studentNameContainerMath">{{ $user['name'] }} {{ $user['last_name'] }}</span></p>
+                    @else
+                        <p class="text-sm text-gray-500 mb-4">Usuario no encontrado</p>
+                    @endif
+
+                    <!-- Textarea para la observación -->
+                    @if (isset($user['name']))
+                        <form id="observationFormMath"
+                            action="{{ route('save.observationsDocenteMath', ['userId' => ':userId']) }}"
+                            method="POST">
+                            @csrf
+                            <input type="hidden" id="userIdInputMath" name="userId" value="">
+                            <div class="mb-4">
+                                <label for="observationTextarea"
+                                    class="block text-sm font-medium text-gray-700">Observación:</label>
+                                    <textarea id="observationTextarea" name="observation" rows="3" maxlength="600"
+                                    class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition duration-300 block w-full h-[200px]"></textarea>
+                            </div>
+                            <button type="submit"
+                                class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-700 transition duration-300">
+                                Guardar Observación
+                            </button>
+                        </form>
+                    @endif
+
+                    <button onclick="closeObservationModalMath()"
+                        class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="observationModalVisualizarMath" class="fixed inset-0 overflow-y-auto hidden">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Overlay semitransparente -->
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <!-- Contenido del modal -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div
+                class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full sm:max-w-lg">
+                <!-- Contenido del modal aquí -->
+                <div class="bg-gray-50 px-4 py-5 sm:p-6">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Observaciones</h3>
+
+                    @if (isset($user['name']))
+                        <p class="text-sm text-gray-500 mb-4">Nombre del aspirante: <span
+                                id="visualizarObservationMath">{{ $user['name'] }} {{ $user['last_name'] }}</span></p>
+                    @else
+                        <p class="text-sm text-gray-500 mb-4">Usuario no encontrado</p>
+                    @endif
+
+                    <div id="observationsContainerMath">
+
+                    </div>
+
+                    <button onclick="closeObservationModalVisualizarMath()"
+                        class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {{-- Concepto de Docente de Ingles --}}
+    <div id="observationModalEnglish" class="fixed inset-0 overflow-y-auto hidden">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Overlay semitransparente -->
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <!-- Contenido del modal -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div
+                class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full sm:max-w-lg">
+                <!-- Contenido del modal aquí -->
+                <div class="bg-gray-50 px-4 py-5 sm:p-6">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Añadir Observación</h3>
+
+                    @if (isset($user['name']))
+                        <p class="text-sm text-gray-500 mb-4">Nombre del aspirante: <span
+                                id="studentNameContainerEnglish">{{ $user['name'] }} {{ $user['last_name'] }}</span>
+                        </p>
+                    @else
+                        <p class="text-sm text-gray-500 mb-4">Usuario no encontrado</p>
+                    @endif
+
+                    <!-- Textarea para la observación -->
+                    @if (isset($user['name']))
+                        <form id="observationFormEnglish"
+                            action="{{ route('save.observationsDocenteEnglish', ['userId' => ':userId']) }}"
+                            method="POST">
+                            @csrf
+                            <input type="hidden" id="userIdInputEnglish" name="userId" value="">
+                            <div class="mb-4">
+                                <label for="observationTextarea"
+                                    class="block text-sm font-medium text-gray-700">Observación:</label>
+                                    <textarea id="observationTextarea" name="observation" rows="3" maxlength="600"
+                                    class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition duration-300 block w-full h-[200px]"></textarea>
+                            </div>
+                            <button type="submit"
+                                class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-700 transition duration-300">
+                                Guardar Observación
+                            </button>
+                        </form>
+                    @endif
+
+                    <button onclick="closeObservationModalEnglish()"
+                        class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="observationModalVisualizarEnglish" class="fixed inset-0 overflow-y-auto hidden">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Overlay semitransparente -->
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <!-- Contenido del modal -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div
+                class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full sm:max-w-lg">
+                <!-- Contenido del modal aquí -->
+                <div class="bg-gray-50 px-4 py-5 sm:p-6">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Observaciones</h3>
+
+                    @if (isset($user['name']))
+                        <p class="text-sm text-gray-500 mb-4">Nombre del aspirante: <span
+                                id="visualizarObservationEnglish">{{ $user['name'] }} {{ $user['last_name'] }}</span>
+                        </p>
+                    @else
+                        <p class="text-sm text-gray-500 mb-4">Usuario no encontrado</p>
+                    @endif
+
+                    <div id="observationsContainerEnglish">
+
+                    </div>
+
+                    <button onclick="closeObservationModalVisualizarEnglish()"
+                        class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    {{-- Concepto de Psicoorientador --}}
+    <div id="observationModalPsicoorientador" class="fixed inset-0 overflow-y-auto hidden">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Overlay semitransparente -->
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <!-- Contenido del modal -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div
+                class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full sm:max-w-lg">
+                <!-- Contenido del modal aquí -->
+                <div class="bg-gray-50 px-4 py-5 sm:p-6">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Añadir Observación</h3>
+
+                    @if (isset($user['name']))
+                        <p class="text-sm text-gray-500 mb-4">Nombre del aspirante: <span
+                                id="studentNameContainerPsicoorientador">{{ $user['name'] }}
+                                {{ $user['last_name'] }}</span>
+                        </p>
+                    @else
+                        <p class="text-sm text-gray-500 mb-4">Usuario no encontrado</p>
+                    @endif
+
+                    <!-- Textarea para la observación -->
+                    @if (isset($user['name']))
+                        <form id="observationFormPsicoorientador"
+                            action="{{ route('save.observationsPsicoorientador', ['userId' => ':userId']) }}"
+                            method="POST">
+                            @csrf
+                            <input type="hidden" id="userIdInputPsicoorientador" name="userId" value="">
+                            <div class="mb-4">
+                                <label for="observationTextarea"
+                                    class="block text-sm font-medium text-gray-700">Observación:</label>
+                                    <textarea id="observationTextarea" name="observation" rows="3" maxlength="600"
+                                    class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition duration-300 block w-full h-[200px]"></textarea>
+                            </div>
+                            <button type="submit"
+                                class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-700 transition duration-300">
+                                Guardar Observación
+                            </button>
+                        </form>
+                    @endif
+
+                    <button onclick="closeObservationModalPsicoorientador()"
+                        class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="observationModalVisualizarPsicoorientador" class="fixed inset-0 overflow-y-auto hidden">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Overlay semitransparente -->
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <!-- Contenido del modal -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div
+                class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full sm:max-w-lg">
+                <!-- Contenido del modal aquí -->
+                <div class="bg-gray-50 px-4 py-5 sm:p-6">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Observaciones</h3>
+
+                    @if (isset($user['name']))
+                        <p class="text-sm text-gray-500 mb-4">Nombre del aspirante: <span
+                                id="visualizarObservationPsicoorientador">{{ $user['name'] }}
+                                {{ $user['last_name'] }}</span>
+                        </p>
+                    @else
+                        <p class="text-sm text-gray-500 mb-4">Usuario no encontrado</p>
+                    @endif
+
+                    <div id="observationsContainerPsicoorientador">
+
+                    </div>
+
+                    <button onclick="closeObservationModalVisualizarPsicoorientador()"
+                        class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Concepto del Academico --}}
+    <div id="observationModalAcademico" class="fixed inset-0 overflow-y-auto hidden">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Overlay semitransparente -->
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <!-- Contenido del modal -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div
+                class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full sm:max-w-lg">
+                <!-- Contenido del modal aquí -->
+                <div class="bg-gray-50 px-4 py-5 sm:p-6">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Añadir Observación</h3>
+
+                    @if (isset($user['name']))
+                        <p class="text-sm text-gray-500 mb-4">Nombre del aspirante: <span
+                                id="studentNameContainerAcademico">{{ $user['name'] }}
+                                {{ $user['last_name'] }}</span>
+                        </p>
+                    @else
+                        <p class="text-sm text-gray-500 mb-4">Usuario no encontrado</p>
+                    @endif
+
+                    <!-- Textarea para la observación -->
+                    @if (isset($user['name']))
+                        <form id="observationFormAcademico"
+                            action="{{ route('save.observationsAcademico', ['userId' => ':userId']) }}"
+                            method="POST">
+                            @csrf
+                            <input type="hidden" id="userIdInputAcademico" name="userId" value="">
+                            <div class="mb-4">
+                                <label for="observationTextarea"
+                                    class="block text-sm font-medium text-gray-700">Observación:</label>
+                                    <textarea id="observationTextarea" name="observation" rows="3" maxlength="600"
+                                    class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition duration-300 block w-full h-[200px]"></textarea>
+                            </div>
+                            <button type="submit"
+                                class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-700 transition duration-300">
+                                Guardar Observación
+                            </button>
+                        </form>
+                    @endif
+
+                    <button onclick="closeObservationModalAcademico()"
+                        class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="observationModalVisualizarAcademico" class="fixed inset-0 overflow-y-auto hidden">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Overlay semitransparente -->
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <!-- Contenido del modal -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div
+                class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full sm:max-w-lg">
+                <!-- Contenido del modal aquí -->
+                <div class="bg-gray-50 px-4 py-5 sm:p-6">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Observaciones</h3>
+
+                    @if (isset($user['name']))
+                        <p class="text-sm text-gray-500 mb-4">Nombre del aspirante: <span
+                                id="visualizarObservationAcademico">{{ $user['name'] }}
+                                {{ $user['last_name'] }}</span>
+                        </p>
+                    @else
+                        <p class="text-sm text-gray-500 mb-4">Usuario no encontrado</p>
+                    @endif
+
+                    <div id="observationsContainerAcademico">
+
+                    </div>
+
+                    <button onclick="closeObservationModalVisualizarAcademico()"
+                        class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {{-- Concepto del Convivencia --}}
+    <div id="observationModalConvivencia" class="fixed inset-0 overflow-y-auto hidden">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Overlay semitransparente -->
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <!-- Contenido del modal -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div
+                class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full sm:max-w-lg">
+                <!-- Contenido del modal aquí -->
+                <div class="bg-gray-50 px-4 py-5 sm:p-6">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Añadir Observación</h3>
+
+                    @if (isset($user['name']))
+                        <p class="text-sm text-gray-500 mb-4">Nombre del aspirante: <span
+                                id="studentNameContainerConvivencia">{{ $user['name'] }}
+                                {{ $user['last_name'] }}</span>
+                        </p>
+                    @else
+                        <p class="text-sm text-gray-500 mb-4">Usuario no encontrado</p>
+                    @endif
+
+                    <!-- Textarea para la observación -->
+                    @if (isset($user['name']))
+                        <form id="observationFormConvivencia"
+                            action="{{ route('save.observationsConvivencia', ['userId' => ':userId']) }}"
+                            method="POST">
+                            @csrf
+                            <input type="hidden" id="userIdInputConvivencia" name="userId" value="">
+                            <div class="mb-4">
+                                <label for="observationTextarea"
+                                    class="block text-sm font-medium text-gray-700">Observación:</label>
+                                    <textarea id="observationTextarea" name="observation" rows="3" maxlength="600"
+                                    class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition duration-300 block w-full h-[200px]"></textarea>
+                            </div>
+                            <button type="submit"
+                                class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-700 transition duration-300">
+                                Guardar Observación
+                            </button>
+                        </form>
+                    @endif
+
+                    <button onclick="closeObservationModalConvivencia()"
+                        class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="observationModalVisualizarConvivencia" class="fixed inset-0 overflow-y-auto hidden">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Overlay semitransparente -->
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <!-- Contenido del modal -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div
+                class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full sm:max-w-lg">
+                <!-- Contenido del modal aquí -->
+                <div class="bg-gray-50 px-4 py-5 sm:p-6">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Observaciones</h3>
+
+                    @if (isset($user['name']))
+                        <p class="text-sm text-gray-500 mb-4">Nombre del aspirante: <span
+                                id="visualizarObservationConvivencia">{{ $user['name'] }}
+                                {{ $user['last_name'] }}</span>
+                        </p>
+                    @else
+                        <p class="text-sm text-gray-500 mb-4">Usuario no encontrado</p>
+                    @endif
+
+                    <div id="observationsContainerConvivencia">
+
+                    </div>
+
+                    <button onclick="closeObservationModalVisualizarConvivencia()"
+                        class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    {{-- Concepto del Rector --}}
+    <div id="observationModalRector" class="fixed inset-0 overflow-y-auto hidden">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Overlay semitransparente -->
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <!-- Contenido del modal -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div
+                class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full sm:max-w-lg">
+                <!-- Contenido del modal aquí -->
+                <div class="bg-gray-50 px-4 py-5 sm:p-6">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Añadir Observación</h3>
+
+                    @if (isset($user['name']))
+                        <p class="text-sm text-gray-500 mb-4">Nombre del aspirante: <span
+                                id="studentNameContainerRector">{{ $user['name'] }}
+                                {{ $user['last_name'] }}</span>
+                        </p>
+                    @else
+                        <p class="text-sm text-gray-500 mb-4">Usuario no encontrado</p>
+                    @endif
+
+                    <!-- Textarea para la observación -->
+                    @if (isset($user['name']))
+                        <form id="observationFormRector"
+                            action="{{ route('save.observationsRector', ['userId' => ':userId']) }}"
+                            method="POST">
+                            @csrf
+                            <input type="hidden" id="userIdInputRector" name="userId" value="">
+                            <div class="mb-4">
+                                <label for="observationTextarea"
+                                    class="block text-sm font-medium text-gray-700">Observación:</label>
+                                    <textarea id="observationTextarea" name="observation" rows="3" maxlength="600"
+                                    class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition duration-300 block w-full h-[200px]"></textarea>
+                            </div>
+                            <button type="submit"
+                                class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-700 transition duration-300">
+                                Guardar Observación
+                            </button>
+                        </form>
+                    @endif
+
+                    <button onclick="closeObservationModalRector()"
+                        class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="observationModalVisualizarRector" class="fixed inset-0 overflow-y-auto hidden">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Overlay semitransparente -->
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <!-- Contenido del modal -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div
+                class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full sm:max-w-lg">
+                <!-- Contenido del modal aquí -->
+                <div class="bg-gray-50 px-4 py-5 sm:p-6">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Observaciones</h3>
+
+                    @if (isset($user['name']))
+                        <p class="text-sm text-gray-500 mb-4">Nombre del aspirante: <span
+                                id="visualizarObservationRector">{{ $user['name'] }}
+                                {{ $user['last_name'] }}</span>
+                        </p>
+                    @else
+                        <p class="text-sm text-gray-500 mb-4">Usuario no encontrado</p>
+                    @endif
+
+                    <div id="observationsContainerRector">
+
+                    </div>
+
+                    <button onclick="closeObservationModalVisualizarRector()"
+                        class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (session('info'))
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                iconColor: 'white',
+                customClass: {
+                    popup: 'colored-toast',
+                },
+                showConfirmButton: false,
+                timer: 2500,
+                timerProgressBar: true,
+            });
+            Toast.fire({
+                icon: 'info',
+                title: '{{ session('info') }}',
+            });
+        </script>
+    @endif
+    @if (session('success'))
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                iconColor: 'white',
+                customClass: {
+                    popup: 'colored-toast',
+                },
+                showConfirmButton: false,
+                timer: 2500,
+                timerProgressBar: true,
+            });
+            Toast.fire({
+                icon: 'success',
+                title: '{{ session('success') }}',
+            });
+        </script>
+    @endif
+    <script>
+        function openObservationModalSpanish(name, userId, last_name) {
+            // Resto del código para abrir el modal
+            document.getElementById('userIdInputSpanish').value = userId;
+            var formAction = document.getElementById('observationFormSpanish').action;
+            formAction = formAction.replace(':userId', userId);
+            document.getElementById('observationFormSpanish').action = formAction;
+
+            document.getElementById('studentNameContainerSpanish').innerText = name + ' ' + last_name;
+
+            // Mostrar el modal
+            document.getElementById('observationModalSpanish').classList.remove('hidden');
+        }
+
+        function closeObservationModalSpanish() {
+            document.getElementById('observationModalSpanish').classList.add('hidden');
+        }
+    </script>
+    <script>
+        function openObservationModalVisualizarSpanish(name, observations, last_name) {
+            document.getElementById('observationModalVisualizarSpanish').classList.remove('hidden');
+            document.getElementById('visualizarObservationSpanish').innerText = name + ' ' + observations;
+            document.getElementById('observationsContainerSpanish').innerHTML = last_name;
+
+
+        }
+
+        function closeObservationModalVisualizarSpanish() {
+            document.getElementById('observationModalVisualizarSpanish').classList.add('hidden');
+        }
+    </script>
+
+    {{-- Conceppto de Docente Matematicas --}}
+
+    <script>
+        function openObservationModalMath(name, userId, last_name) {
+            // Resto del código para abrir el modal
+            document.getElementById('userIdInputMath').value = userId;
+            var formAction = document.getElementById('observationFormMath').action;
+            formAction = formAction.replace(':userId', userId);
+            document.getElementById('observationFormMath').action = formAction;
+
+            document.getElementById('studentNameContainerMath').innerText = name + ' ' + last_name;
+
+            // Mostrar el modal
+            document.getElementById('observationModalMath').classList.remove('hidden');
+        }
+
+        function closeObservationModalMath() {
+            document.getElementById('observationModalMath').classList.add('hidden');
+        }
+    </script>
+
+    <script>
+        function openObservationModalVisualizarMath(name, observations, last_name) {
+            document.getElementById('observationModalVisualizarMath').classList.remove('hidden');
+            document.getElementById('visualizarObservationMath').innerText = name + ' ' + observations;
+            document.getElementById('observationsContainerMath').innerHTML = last_name;
+        }
+
+        function closeObservationModalVisualizarMath() {
+            document.getElementById('observationModalVisualizarMath').classList.add('hidden');
+        }
+    </script>
+    {{-- Concepto de Docente Ingles --}}
+    <script>
+        function openObservationModalEnglish(name, userId, last_name) {
+            // Resto del código para abrir el modal
+            document.getElementById('userIdInputEnglish').value = userId;
+            var formAction = document.getElementById('observationFormEnglish').action;
+            formAction = formAction.replace(':userId', userId);
+            document.getElementById('observationFormEnglish').action = formAction;
+
+            document.getElementById('studentNameContainerEnglish').innerText = name + ' ' + last_name;
+
+            // Mostrar el modal
+            document.getElementById('observationModalEnglish').classList.remove('hidden');
+        }
+
+        function closeObservationModalEnglish() {
+            document.getElementById('observationModalEnglish').classList.add('hidden');
+        }
+    </script>
+
+    <script>
+        function openObservationModalVisualizarEnglish(name, observations, last_name) {
+            document.getElementById('observationModalVisualizarEnglish').classList.remove('hidden');
+            document.getElementById('visualizarObservationEnglish').innerText = name + ' ' + observations;
+            document.getElementById('observationsContainerEnglish').innerHTML = last_name;
+        }
+
+        function closeObservationModalVisualizarEnglish() {
+            document.getElementById('observationModalVisualizarEnglish').classList.add('hidden');
+        }
+    </script>
+
+
+    {{-- Concepto del Psicoorientador --}}
+    <script>
+        function openObservationModalPsicoorientador(name, userId, last_name) {
+            // Resto del código para abrir el modal
+            document.getElementById('userIdInputPsicoorientador').value = userId;
+            var formAction = document.getElementById('observationFormPsicoorientador').action;
+            formAction = formAction.replace(':userId', userId);
+            document.getElementById('observationFormPsicoorientador').action = formAction;
+
+            document.getElementById('studentNameContainerPsicoorientador').innerText = name + ' ' + last_name;
+
+            // Mostrar el modal
+            document.getElementById('observationModalPsicoorientador').classList.remove('hidden');
+        }
+
+        function closeObservationModalPsicoorientador() {
+            document.getElementById('observationModalPsicoorientador').classList.add('hidden');
+        }
+    </script>
+
+    <script>
+        function openObservationModalVisualizarPsicoorientador(name, observations, last_name) {
+            document.getElementById('observationModalVisualizarPsicoorientador').classList.remove('hidden');
+            document.getElementById('visualizarObservationPsicoorientador').innerText = name + ' ' + observations;
+            document.getElementById('observationsContainerPsicoorientador').innerHTML = last_name;
+        }
+
+        function closeObservationModalVisualizarPsicoorientador() {
+            document.getElementById('observationModalVisualizarPsicoorientador').classList.add('hidden');
+        }
+    </script>
+
+
+    {{-- Concepto de Academico --}}
+    <script>
+        function openObservationModalAcademico(name, userId, last_name) {
+            // Resto del código para abrir el modal
+            document.getElementById('userIdInputAcademico').value = userId;
+            var formAction = document.getElementById('observationFormAcademico').action;
+            formAction = formAction.replace(':userId', userId);
+            document.getElementById('observationFormAcademico').action = formAction;
+
+            document.getElementById('studentNameContainerAcademico').innerText = name + ' ' + last_name;
+
+            // Mostrar el modal
+            document.getElementById('observationModalAcademico').classList.remove('hidden');
+        }
+
+        function closeObservationModalAcademico() {
+            document.getElementById('observationModalAcademico').classList.add('hidden');
+        }
+    </script>
+
+    <script>
+        function openObservationModalVisualizarAcademico(name, observations, last_name) {
+            document.getElementById('observationModalVisualizarAcademico').classList.remove('hidden');
+            document.getElementById('visualizarObservationAcademico').innerText = name + ' ' + observations;
+            document.getElementById('observationsContainerAcademico').innerHTML = last_name;
+        }
+
+        function closeObservationModalVisualizarAcademico() {
+            document.getElementById('observationModalVisualizarAcademico').classList.add('hidden');
+        }
+    </script>
+
+
+    {{-- Concepto de Convivencia --}}
+    <script>
+        function openObservationModalConvivencia(name, userId, last_name) {
+            // Resto del código para abrir el modal
+            document.getElementById('userIdInputConvivencia').value = userId;
+            var formAction = document.getElementById('observationFormConvivencia').action;
+            formAction = formAction.replace(':userId', userId);
+            document.getElementById('observationFormConvivencia').action = formAction;
+
+            document.getElementById('studentNameContainerConvivencia').innerText = name + ' ' + last_name;
+
+            // Mostrar el modal
+            document.getElementById('observationModalConvivencia').classList.remove('hidden');
+        }
+
+        function closeObservationModalConvivencia() {
+            document.getElementById('observationModalConvivencia').classList.add('hidden');
+        }
+    </script>
+
+    <script>
+        function openObservationModalVisualizarConvivencia(name, observations, last_name) {
+            document.getElementById('observationModalVisualizarConvivencia').classList.remove('hidden');
+            document.getElementById('visualizarObservationConvivencia').innerText = name + ' ' + observations;
+            document.getElementById('observationsContainerConvivencia').innerHTML = last_name;
+        }
+
+        function closeObservationModalVisualizarConvivencia() {
+            document.getElementById('observationModalVisualizarConvivencia').classList.add('hidden');
+        }
+    </script>
+
+
+    {{-- Concepto de Rector --}}
+    <script>
+        function openObservationModalRector(name, userId, last_name) {
+            // Resto del código para abrir el modal
+            document.getElementById('userIdInputRector').value = userId;
+            var formAction = document.getElementById('observationFormRector').action;
+            formAction = formAction.replace(':userId', userId);
+            document.getElementById('observationFormRector').action = formAction;
+
+            document.getElementById('studentNameContainerRector').innerText = name + ' ' + last_name;
+
+            // Mostrar el modal
+            document.getElementById('observationModalRector').classList.remove('hidden');
+        }
+
+        function closeObservationModalRector() {
+            document.getElementById('observationModalRector').classList.add('hidden');
+        }
+    </script>
+
+<script>
+    function openObservationModalVisualizarRector(name, observations, last_name) {
+        document.getElementById('observationModalVisualizarRector').classList.remove('hidden');
+        document.getElementById('visualizarObservationRector').innerText = name + ' ' + observations;
+        document.getElementById('observationsContainerRector').innerHTML = last_name;
+    }
+
+    function closeObservationModalVisualizarRector() {
+        document.getElementById('observationModalVisualizarRector').classList.add('hidden');
+    }
+</script>
+
+@endsection
+
