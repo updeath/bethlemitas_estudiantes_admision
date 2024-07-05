@@ -144,7 +144,7 @@
 
 
 
-                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200" style="display:flex">
                                         @if ($user['observacionSpanish'])
                                             @if ($user['observacionPredeterminadaPresenteSpanish'])
 
@@ -177,6 +177,12 @@
                                                     onclick="openObservationModalVisualizarSpanish('{{ $user['name'] }}', '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasSpanish }}')"
                                                     class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
                                                     <i class="fas fa-eye text-sm"></i>
+                                                </button>
+
+                                                <button
+                                                    onclick="openDigitalAsignature()"
+                                                    class="bg-green-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                    <i class="fas fa-pen text-sm"></i>
                                                 </button>
                                             @endif
                                         @else
@@ -1234,6 +1240,48 @@
         </div>
     </div>
 
+    <div id="section_signature" class="section_signature fixed inset-0 overflow-y-auto hidden">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Overlay semitransparente -->
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <!-- Contenido del modal -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div
+                class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full sm:max-w-lg">
+                <!-- Contenido del modal aquí -->
+                <div class="bg-gray-50 px-4 py-5 sm:p-6">
+                    <!-- Textarea para la observación -->
+                    @if (isset($user['name']))
+                        <form id="observationFormRector"
+                            action="{{ route('save.observationsRector', ['userId' => ':userId']) }}"
+                            method="POST">
+                            @csrf
+                            <input type="hidden" id="userIdInputRector" name="userId" value="">
+                            <div class="mb-4">
+                                <label for="observationTextarea"
+                                    class="block text-sm font-medium text-gray-700">Observación:</label>
+                                    <textarea id="observationTextarea" name="observation" rows="3" maxlength="600"
+                                    class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition duration-300 block w-full h-[200px]"></textarea>
+                            </div>
+                            <button type="submit"
+                                class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-700 transition duration-300">
+                                Guardar Observación
+                            </button>
+                        </form>
+                    @endif
+
+                    <button onclick="closeDigitalAsignature()"
+                        class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2">
+                        Cancelarrr
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -1294,6 +1342,7 @@
             document.getElementById('observationModalSpanish').classList.add('hidden');
         }
     </script>
+
     <script>
         function openObservationModalVisualizarSpanish(name, observations, last_name) {
             document.getElementById('observationModalVisualizarSpanish').classList.remove('hidden');
@@ -1490,6 +1539,19 @@
         function closeObservationModalRector() {
             document.getElementById('observationModalRector').classList.add('hidden');
         }
+    </script>
+
+    <!-- espacio apartado para realizar la firma digital-->
+    <script>
+        let section_signature = document.querySelector('.section_signature');
+        function openDigitalAsignature() {
+            section_signature.classList.remove('hidden')
+        }
+
+        function closeDigitalAsignature() {
+            section_signature.classList.add('hidden');
+        }
+
     </script>
 
 <script>
