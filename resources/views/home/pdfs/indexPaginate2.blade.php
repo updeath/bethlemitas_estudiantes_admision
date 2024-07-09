@@ -111,7 +111,7 @@
                 <span>Código: M1-FOR03</span> <br>
                 <span>Versión: 02</span> <br>
                 <span>Fecha: {{ $data['current_date'] }}</span> <br>
-                <span>Página 1 de 1</span>
+                <span>Página 2 de 2</span>
             </td>
         </tr>
     </table>
@@ -132,7 +132,7 @@
                 <td><p style="white-space: pre-line; ">{!! nl2br(implode("\n", $observation)) !!}</p></td>
             </tr>
             <tr class="fila2">
-                <td><br><br>Firma: </td>
+                <td><br><br>Firma:  </td>
             </tr>
         </table>
 

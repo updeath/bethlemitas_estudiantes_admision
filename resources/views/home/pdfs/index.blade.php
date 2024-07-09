@@ -111,7 +111,7 @@
                 <span>Código: M1-FOR03</span> <br>
                 <span>Versión: 02</span> <br>
                 <span>Fecha: {{ $data['current_date'] }}</span> <br> <!--llamamos la variable donde quedo guardada la fecha actual--> 
-                <span>Página 1 de 1</span>
+                <span>Página 1 de 2</span>
             </td>
         </tr>
     </table>

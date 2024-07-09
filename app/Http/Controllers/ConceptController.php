@@ -404,5 +404,6 @@ class ConceptController extends Controller
         }
         return redirect()->back()->with('error', 'Error al subir la firma');
     }
+    
 
 }
