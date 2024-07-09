@@ -235,7 +235,7 @@ class PDFController extends Controller
 
         $html = view('home.pdfs.index', $data)->render();
         $pdf = new TCPDF;
-        $pdf->SetTitle('Hello world');
+        $pdf->SetTitle('PDF');
 
         // Agregar la primera página
         $pdf->AddPage();
