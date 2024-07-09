@@ -199,6 +199,8 @@
                             </option>
                             <option value="TI" {{ old('type_document') == 'TI' ? 'selected' : '' }}>Tarjeta de identidad
                             </option>
+                            <option value="NUIP" {{ old('type_document') == 'NUIP' ? 'selected' : '' }}>Registro civil
+                            </option>
                         </select>
                     </div>
                     @error('typeDocumment')
@@ -235,6 +237,7 @@
                             class="w-full bg-gray-200 border border-gray-200 text-gray-600 text-xs py-2 px-3 pr-8 mb-3 rounded"
                             id="location">
                         <option> Seleccionar </option>
+                        
                         @foreach ($roles as $role)
                             <option value="{{ $role->id }}">{{ $role->name }}</option>
                         @endforeach
