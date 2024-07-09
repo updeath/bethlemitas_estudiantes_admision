@@ -16,7 +16,8 @@ class Concept extends Model
         'ObservationPsicoorientador',
         'ObservationAcademico',
         'ObservationConvivencia',
-        'ObservationRector'
+        'ObservationRector',
+        'signature_image'
     ];
 
     public function user()

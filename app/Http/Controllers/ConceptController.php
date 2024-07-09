@@ -376,4 +376,33 @@ class ConceptController extends Controller
         return redirect()->back()->with('success', 'Observación guardada correctamente.');
     }
 
+    public function saveDigitalAsignature(Request $request, $userId) {
+        $userId = intval($userId);
+        if (!is_int($userId)) {
+            return view('home.concept.user.profile');
+        }
+        
+        //validacion de la perticion
+        $request->validate([
+            'digital' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        //guardar la imagen en la base de datos
+        if ($request->hasFile('digital')) {
+            $image = $request->file('digital');
+            $imageName = time(). '.' .$image->getClientOriginalExtension();
+
+            //mover la imagen a la carpeta deseada (public/img/digital)
+            $image->move(public_path('img/digital'), $imageName);
+
+            //crear o actualizar el registro en la tabla concepts
+            $concept = Concept::updateOrCreate(
+                ['user_id' => $userId],
+                ['signature_image' => $imageName]
+            );
+            return redirect()->back()->with('success', 'Firma subida correctamente');
+        }
+        return redirect()->back()->with('error', 'Error al subir la firma');
+    }
+
 }
