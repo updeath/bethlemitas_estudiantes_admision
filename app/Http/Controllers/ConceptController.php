@@ -376,18 +376,4 @@ class ConceptController extends Controller
         return redirect()->back()->with('success', 'Observación guardada correctamente.');
     }
 
-    public function saveDigitalAsignatureSpanish(Request $request) {
-        $request->validate([
-            'digital' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
-        ]);
-
-        if ($request->hasFile('digital')) {
-            $photo = $request->file('digital');
-            $filename = $user->id . '.' . $photo->getClientOriginalExtension();
-            $destinationPath = 'img/digital';
-            $photo->move(public_path($destinationPath), $filename);
-            $user->image = $destinationPath . '/' . $filename;
-        };
-    }
-
 }
