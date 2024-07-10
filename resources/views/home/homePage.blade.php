@@ -59,12 +59,14 @@
                             <!-- Icono si es necesario -->
                             <span class="mx-3">• Crear Usuario</span>
                         </a>
-                        <a href="{{ route('listingUser') }}"
-                            class="flex items-center px-6 py-2  text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100"
-                            href="#">
-                            <!-- Icono si es necesario -->
-                            <span class="mx-3">• Listar Usuarios</span>
-                        </a>
+                        @if (Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Rector'))
+                            <a href="{{ route('listingUser') }}"
+                                class="flex items-center px-6 py-2  text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100"
+                                href="#">
+                                <!-- Icono si es necesario -->
+                                <span class="mx-3">• Listar Usuarios</span>
+                            </a>
+                        @endif
 
                         <a href="{{ route('user.tableStudents') }}"
                             class="flex items-center px-6 py-2 text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100"
@@ -166,7 +168,7 @@
                 <!-- ------------------------------------------------------------------ -->
 
                 <div x-data="{ isOpen: false, subMenu: false, selectedOption: '' }">
-                    @if(auth()->user()->hasRole(['Aspirante','Docente','Admin','CoordinadorAcademico', 'CoordinadorConvivencia','Rector']))
+                    @if(auth()->user()->hasRole(['Aspirante']))
                         <a @click="isOpen = !isOpen"
                             class="flex items-center px-6 py-1 mt-4 text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100"
                             href="#">
