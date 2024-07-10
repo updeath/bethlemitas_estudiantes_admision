@@ -101,7 +101,7 @@ class UserController extends Controller
             'last_name' => 'required',
             'email' => 'required|email|unique:users',
             'number_documment' => 'required|digits_between:1,20|unique:users',
-            'typeDocumment' => 'required|in:TI,CC',
+            'typeDocumment' => 'required|in:TI,CC,NUIP',
             'iphone' => 'required|numeric',
             'status' => 'required|in:Activo,Bloqueado',
             'degree' => 'nullable',

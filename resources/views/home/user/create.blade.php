@@ -237,10 +237,17 @@
                             class="w-full bg-gray-200 border border-gray-200 text-gray-600 text-xs py-2 px-3 pr-8 mb-3 rounded"
                             id="location">
                         <option> Seleccionar </option>
-                        
-                        @foreach ($roles as $role)
-                            <option value="{{ $role->id }}">{{ $role->name }}</option>
-                        @endforeach
+                        @if (Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Rector'))
+                            @foreach ($roles as $role)
+                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            @endforeach
+                        @else
+                            @foreach ($roles as $role)
+                                @if ($role->name == 'Aspirante')
+                                    <option value="{{ $role->id }} ">{{ $role->name }}</option>
+                                @endif
+                            @endforeach
+                        @endif
                     </select>
                 </div>
                 @error('roles')
