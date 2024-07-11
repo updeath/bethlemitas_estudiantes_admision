@@ -29,7 +29,7 @@ use App\Models\SpanishDecimo;
 use App\Models\User;
 use App\Models\Concept;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Log;
 class ConceptController extends Controller
 {
     public function index_concept(Request $request)
@@ -183,23 +183,27 @@ class ConceptController extends Controller
 
     public function saveObservationDocenteSpanish(Request $request, $userId)
     {
+        // // Registrar el valor de $userId para depuración
+        // Log::info('Valor de $userId: ' . $userId);
+        // // Mostrar temporalmente el valor de $userId en la interfaz de usuario
+        // return response()->json(['userId' => $userId]);
         $request->validate([
-            'observation' => 'required',
+            'observation' => 'required', //Asegura de que la observacion no este vacia
         ]);
-        $ConceptDocenteSpanish = Concept::where('user_id', $userId)->first();
+        $ConceptDocenteSpanish = Concept::where('user_id', $userId)->first(); //busca al los datos del estudiantes en la tabla concepts
 
         if ($ConceptDocenteSpanish) {
-            $existingObservation = $ConceptDocenteSpanish->ObservationDocenteSpanish;
+            $existingObservation = $ConceptDocenteSpanish->ObservationDocenteSpanish; //encuentra la observacion exitente
 
-            if ($existingObservation === 'Sin Observacion') {
+            if ($existingObservation === 'Sin Observacion') { //si la observacion es 'Sin observacion' la borra y deja el campo en blanco
                 $existingObservation = '';
             }
 
-            if (!empty($request->input('observation'))) {
-                $newObservation = $existingObservation ? $existingObservation . ' - ' . $request->input('observation') : $request->input('observation');
+            if (!empty($request->input('observation'))) { //en esta linea de codigo me aseguro de que el campo no este vacio
+                $newObservation = $existingObservation ? $existingObservation . ' - ' . $request->input('observation') : $request->input('observation'); //aca se crea la nueva observacion haciedo una condicional, si existe una observacion lo que hace es que concatena la observacion existente con la nueva que se añadio separadas por un '-', sino solo se añade la observacion nueva
 
-                $ConceptDocenteSpanish->ObservationDocenteSpanish = $newObservation;
-                $ConceptDocenteSpanish->save();
+                $ConceptDocenteSpanish->ObservationDocenteSpanish = $newObservation; //en el campo observationDocenteSpanish de la tabla concepts se esta agregando la nueva observacion
+                $ConceptDocenteSpanish->save(); //se gaurda la observacion en la BD
             } else {
                 return redirect()->back()->with('info', 'La observación no puede estar vacía.');
             }
@@ -208,6 +212,42 @@ class ConceptController extends Controller
         return redirect()->back()->with('success', 'Observación guardada correctamente.');
     }
 
+    //Crear el controlador para editar las observaciones
+    public function saveUpdateObservationsDocenteSpanish(Request $request, $userId)
+{
+    $request->validate([
+        'observationRector' => 'required',
+    ]);
+
+    // Busca el concepto del docente por id del usuario
+    $conceptEdit = Concept::where('user_id', $userId)->first();
+
+    // Si se encuentra el concepto del docente hace lo siguiente
+    if ($conceptEdit) {
+        // Actualiza la observación con la nueva observación del request
+        $conceptEdit->ObservationDocenteSpanish = $request->input('observationRector');
+        // Guarda los cambios en la base de datos
+        $conceptEdit->save();
+
+        // Establece encabezados para borrar la caché
+        return redirect()->back()
+            ->with('success', 'Observación editada correctamente')
+            ->withHeaders([
+                'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
+                'Pragma' => 'no-cache',
+                'Expires' => 'Wed, 11 Jan 1984 05:00:00 GMT',
+            ]);
+    } else {
+        // Si no se encuentra el concepto del docente, retornar un error
+        return redirect()->back()
+            ->with('error', 'Concepto no encontrado.')
+            ->withHeaders([
+                'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
+                'Pragma' => 'no-cache',
+                'Expires' => 'Wed, 11 Jan 1984 05:00:00 GMT',
+            ]);
+    }
+}
     public function saveObservationDocenteMath(Request $request, $userId)
     {
         $request->validate([

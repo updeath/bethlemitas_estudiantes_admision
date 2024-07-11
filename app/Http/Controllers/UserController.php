@@ -219,7 +219,7 @@ class UserController extends Controller
             'last_name' => 'required',
             'email' => 'required|email|unique:users,email,' . $user->id,
             'number_documment' => 'required|digits_between:1,20|unique:users,number_documment,' . $user->id,
-            'typeDocumment' => 'required|in:TI,CC',
+            'typeDocumment' => 'required|in:TI,CC,NUIP',
             'iphone' => 'required|numeric',
             'password' => 'required|min:6',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'

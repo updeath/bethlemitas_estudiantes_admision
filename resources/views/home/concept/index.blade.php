@@ -173,12 +173,20 @@
                                                 @php
                                                     $observacionesConcatenadasSpanish = implode('<br> <br> - ', $user['observacionSpanish']);
                                                 @endphp
+                                                <!-- Aca se esta haciendo una condicion pra que en caso tal de que el rol sea Rector pueda editar las observaciones-->
+                                                @if (Auth::user()->hasRole('Rector'))
                                                 <button
-                                                    onclick="openObservationModalVisualizarSpanish('{{ $user['name'] }}', '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasSpanish }}')"
-                                                    class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
-                                                    <i class="fas fa-eye text-sm"></i>
-                                                </button>
-
+                                                        onclick="openObservationModalVisualizarSpanish('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasSpanish }}', true)"
+                                                        class="bg-gray-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                        <i class="fas fa-eye text-sm"></i>
+                                                    </button>
+                                                @else 
+                                                    <button
+                                                        onclick="openObservationModalVisualizarSpanish('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasSpanish }}', false)"
+                                                        class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                        <i class="fas fa-eye text-sm"></i>
+                                                    </button>
+                                                @endif
                                                 <button
                                                     onclick="openDigitalAsignature()"
                                                     class="bg-green-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
@@ -599,7 +607,7 @@
     </div>
 
 
-
+    <!-- Aca esta la seccion para agregar las observaciones de la signatura de español-->
 
     <div id="observationModalSpanish" class="fixed inset-0 overflow-y-auto hidden">
         <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -652,6 +660,8 @@
             </div>
         </div>
     </div>
+    
+    <!-- Aca esta la seccion para visualizar las observaciones de la signatura de español-->
 
     <div id="observationModalVisualizarSpanish" class="fixed inset-0 overflow-y-auto hidden">
         <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -675,11 +685,22 @@
                     @else
                         <p class="text-sm text-gray-500 mb-4">Usuario no encontrado</p>
                     @endif
+                    @if (isset($user['name']))
+                        @if (Auth::user()->hasRole('Rector'))
+                            <form id="observationFormSpanishRector" action="{{ route('update.concepSpanishForRector', ['userId' => ':userId']) }}"
+                            method="POST">
+                                @method('PUT')
+                                @csrf
+                                <input type="hidden" id="userIdInputSpanish" name="userId" value="">
+                                <textarea id="observationsTextarea" name="observationRector" class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition duration-300 block w-full h-[200px]"></textarea>
 
-                    <div id="observationsContainerSpanish">
-
-                    </div>
-
+                                <button class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2" type="submit">Editar observacion</button>
+                            </form>
+                        @else
+                            <div id="observationsContainerSpanish">
+                            </div>
+                        @endif
+                    @endif
                     <button onclick="closeObservationModalVisualizarSpanish()"
                         class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2">
                         Cancelar
@@ -1338,13 +1359,25 @@
         }
     </script>
 
-    <script>
-        function openObservationModalVisualizarSpanish(name, observations, last_name) {
-            document.getElementById('observationModalVisualizarSpanish').classList.remove('hidden');
-            document.getElementById('visualizarObservationSpanish').innerText = name + ' ' + observations;
-            document.getElementById('observationsContainerSpanish').innerHTML = last_name;
+    <!-- Este script me muestra y oculta las observaciones, segun el rol me mostrara la observacion en un div o en un Textarea, el docente lo vea en un div y el recto en un textarea para poder editarlo-->
+    <script> 
+        function openObservationModalVisualizarSpanish(name, userId, last_name, observations, isRector) {
 
-
+            if (isRector) {
+                document.getElementById('observationModalVisualizarSpanish').classList.remove('hidden');
+                document.getElementById('userIdInputSpanish').value = userId;
+                let formAction = document.getElementById('observationFormSpanishRector').action;
+                formAction = formAction.replace(':userId', userId);
+                document.getElementById('observationFormSpanishRector').action = formAction;
+                document.getElementById('visualizarObservationSpanish').innerText = name + ' ' + last_name;
+                const formattedObservations = observations.replace(/<br\s*\/?>/gi, '\n');
+                document.getElementById('observationsTextarea').value = formattedObservations;
+            }else {
+                document.getElementById('observationModalVisualizarSpanish').classList.remove('hidden');
+                document.getElementById('visualizarObservationSpanish').innerText = name + ' ' + last_name;
+                document.getElementById('observationsContainerSpanish').innerHTML = observations;
+            }
+            
         }
 
         function closeObservationModalVisualizarSpanish() {

@@ -132,6 +132,8 @@
                                         de identidad</option>
                                     <option value="CC" {{ Auth::user()->typeDocumment == 'CC' ? 'selected' : '' }}>Cédula
                                         de ciudadanía</option>
+                                    <option value="NUIP" {{ Auth::user()->typeDocumment == 'NUIP' ? 'selected' : '' }}>Registro
+                                         civil</option>
                                 </select>
                             </div>
                         </div>
