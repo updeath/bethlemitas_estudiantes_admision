@@ -244,8 +244,9 @@ Route::middleware(['web', 'setLanguage', 'auth'])->group(function () {
     Route::post('/save/digital/assignature/{userId}', [ConceptController::class, 'saveDigitalAsignature'])->name('save.digitalAsignature');
 
     //---------------- Editar conceptos --------------
-    Route::put('/edit-concept/{userId}', [ConceptController::class, 'saveUpdateObservationsDocenteSpanish'])->name('update.concepSpanishForRector');
-    
+    Route::put('/edit-concept-spanish/{userId}', [ConceptController::class, 'saveUpdateObservationsDocenteSpanish'])->name('update.concepSpanishForRector');
+    Route::put('/edit-concept-math/{userId}', [ConceptController::class, 'saveUpdateObservationsDocenteMath'])->name('update.concepMathForRector');
+
     // pdf conceptos
     Route::get('/generate-pdf-observations/{userId}', [PDFController::class, 'generatePDFObservations'])->name('generate.pdf.observations');
 });

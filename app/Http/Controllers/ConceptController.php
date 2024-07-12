@@ -212,44 +212,50 @@ class ConceptController extends Controller
         return redirect()->back()->with('success', 'Observación guardada correctamente.');
     }
 
-    //Crear el controlador para editar las observaciones
+    //Crear el controlador para editar las observaciones de español
     public function saveUpdateObservationsDocenteSpanish(Request $request, $userId)
-{
-    $request->validate([
-        'observationRector' => 'required',
-    ]);
+    {
+        $request->validate([
+            'observationRector' => 'required',
+        ]);
 
-    // Busca el concepto del docente por id del usuario
-    $conceptEdit = Concept::where('user_id', $userId)->first();
+        // Busca el concepto del docente por id del usuario
+        $conceptEdit = Concept::where('user_id', $userId)->first();
 
-    // Si se encuentra el concepto del docente hace lo siguiente
-    if ($conceptEdit) {
-        // Actualiza la observación con la nueva observación del request
-        $conceptEdit->ObservationDocenteSpanish = $request->input('observationRector');
-        // Guarda los cambios en la base de datos
-        $conceptEdit->save();
+        // Si se encuentra el concepto del docente hace lo siguiente
+        if ($conceptEdit) {
+            // Actualiza la observación con la nueva observación del request
+            $conceptEdit->ObservationDocenteSpanish = $request->input('observationRector');
+            // Guarda los cambios en la base de datos
+            $conceptEdit->save();
 
-        // Establece encabezados para borrar la caché
-        return redirect()->back()
-            ->with('success', 'Observación editada correctamente')
-            ->withHeaders([
-                'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
-                'Pragma' => 'no-cache',
-                'Expires' => 'Wed, 11 Jan 1984 05:00:00 GMT',
-            ]);
-    } else {
-        // Si no se encuentra el concepto del docente, retornar un error
-        return redirect()->back()
-            ->with('error', 'Concepto no encontrado.')
-            ->withHeaders([
-                'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
-                'Pragma' => 'no-cache',
-                'Expires' => 'Wed, 11 Jan 1984 05:00:00 GMT',
-            ]);
+            // Establece encabezados para borrar la caché
+            return redirect()->back()
+                ->with('success', 'Observación editada correctamente')
+                ->withHeaders([
+                    'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
+                    'Pragma' => 'no-cache',
+                    'Expires' => 'Wed, 11 Jan 1984 05:00:00 GMT',
+                ]);
+        } else {
+            // Si no se encuentra el concepto del docente, retornar un error
+            return redirect()->back()
+                ->with('error', 'Concepto no encontrado.')
+                ->withHeaders([
+                    'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
+                    'Pragma' => 'no-cache',
+                    'Expires' => 'Wed, 11 Jan 1984 05:00:00 GMT',
+                ]);
+        }
     }
-}
     public function saveObservationDocenteMath(Request $request, $userId)
     {
+
+        // // Registrar el valor de $userId para depuración
+        // Log::info('Valor de $userId: ' . $userId);
+        // // Mostrar temporalmente el valor de $userId en la interfaz de usuario
+        // return response()->json(['userId' => $userId]);
+        
         $request->validate([
             'observation' => 'required',
         ]);
@@ -273,6 +279,48 @@ class ConceptController extends Controller
         }
 
         return redirect()->back()->with('success', 'Observación guardada correctamente.');
+    }
+
+    //Crear el controlador para editar las observaciones de matematicas
+    public function saveUpdateObservationsDocenteMath(Request $request, $userId)
+    {
+        // // Registrar el valor de $userId para depuración
+        // Log::info('Valor de $userId: ' . $userId);
+        // // Mostrar temporalmente el valor de $userId en la interfaz de usuario
+        // return response()->json(['userId' => $userId]);
+
+        $request->validate([
+            'observationRector' => 'required',
+        ]);
+
+        // Busca el concepto del docente por id del usuario
+        $conceptEdit = Concept::where('user_id', $userId)->first();
+
+        // Si se encuentra el concepto del docente hace lo siguiente
+        if ($conceptEdit) {
+            // Actualiza la observación con la nueva observación del request
+            $conceptEdit->ObservationDocenteMath = $request->input('observationRector');
+            // Guarda los cambios en la base de datos
+            $conceptEdit->save();
+
+            // Establece encabezados para borrar la caché
+            return redirect()->back()
+                ->with('success', 'Observación editada correctamente')
+                ->withHeaders([
+                    'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
+                    'Pragma' => 'no-cache',
+                    'Expires' => 'Wed, 11 Jan 1984 05:00:00 GMT',
+                ]);
+        } else {
+            // Si no se encuentra el concepto del docente, retornar un error
+            return redirect()->back()
+                ->with('error', 'Concepto no encontrado.')
+                ->withHeaders([
+                    'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
+                    'Pragma' => 'no-cache',
+                    'Expires' => 'Wed, 11 Jan 1984 05:00:00 GMT',
+                ]);
+        }
     }
 
     public function saveObservationDocenteEnglish(Request $request, $userId)

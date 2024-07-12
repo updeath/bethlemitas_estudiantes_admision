@@ -233,11 +233,20 @@
                                                 @php
                                                     $observacionesConcatenadasMath = implode('<br> <br> - ', $user['observacionMath']);
                                                 @endphp
+
+                                                @if (Auth::user()->hasRole('Rector'))
                                                 <button
-                                                    onclick="openObservationModalVisualizarMath('{{ $user['name'] }}', '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasMath }}')"
-                                                    class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
-                                                    <i class="fas fa-eye text-sm"></i>
-                                                </button>
+                                                        onclick="openObservationModalVisualizarMath('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasMath }}', true)"
+                                                        class="bg-gray-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                        <i class="fas fa-eye text-sm"></i>
+                                                    </button>
+                                                @else 
+                                                    <button
+                                                        onclick="openObservationModalVisualizarMath('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasMath }}', false)"
+                                                        class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                        <i class="fas fa-eye text-sm"></i>
+                                                    </button>
+                                                @endif
                                             @endif
                                         @else
                                             @if(auth()->check() && auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'math')
@@ -692,7 +701,7 @@
                                 @method('PUT')
                                 @csrf
                                 <input type="hidden" id="userIdInputSpanish" name="userId" value="">
-                                <textarea id="observationsTextarea" name="observationRector" class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition duration-300 block w-full h-[200px]"></textarea>
+                                <textarea id="observationsTextareaSpanish" name="observationRector" class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition duration-300 block w-full h-[200px]"></textarea>
 
                                 <button class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2" type="submit">Editar observacion</button>
                             </form>
@@ -784,9 +793,22 @@
                         <p class="text-sm text-gray-500 mb-4">Usuario no encontrado</p>
                     @endif
 
-                    <div id="observationsContainerMath">
+                    @if (isset($user['name']))
+                        @if (Auth::user()->hasRole('Rector'))
+                            <form id="observationFormMathRector" action="{{ route('update.concepMathForRector', ['userId' => ':userId']) }}"
+                            method="POST">
+                                @method('PUT')
+                                @csrf
+                                <input type="hidden" id="userIdInputMath" name="userId" value="">
+                                <textarea id="observationsTextareaMath" name="observationRector" class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition duration-300 block w-full h-[200px]"></textarea>
 
-                    </div>
+                                <button class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2" type="submit">Editar observacion</button>
+                            </form>
+                        @else
+                            <div id="observationsContainerMath">
+                            </div>
+                        @endif
+                    @endif
 
                     <button onclick="closeObservationModalVisualizarMath()"
                         class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2">
@@ -1359,7 +1381,7 @@
         }
     </script>
 
-    <!-- Este script me muestra y oculta las observaciones, segun el rol me mostrara la observacion en un div o en un Textarea, el docente lo vea en un div y el recto en un textarea para poder editarlo-->
+    <!-- Este script me muestra y oculta las observaciones, segun el rol me mostrara la observacion en un div o en un Textarea, el docente lo vea en un div y el recto en un textarea para poder editarlo******-->
     <script> 
         function openObservationModalVisualizarSpanish(name, userId, last_name, observations, isRector) {
 
@@ -1370,8 +1392,8 @@
                 formAction = formAction.replace(':userId', userId);
                 document.getElementById('observationFormSpanishRector').action = formAction;
                 document.getElementById('visualizarObservationSpanish').innerText = name + ' ' + last_name;
-                const formattedObservations = observations.replace(/<br\s*\/?>/gi, '\n');
-                document.getElementById('observationsTextarea').value = formattedObservations;
+                const formattedObservations = observations.replace(/<br\s*\/?>/gi, '');
+                document.getElementById('observationsTextareaSpanish').value = formattedObservations;
             }else {
                 document.getElementById('observationModalVisualizarSpanish').classList.remove('hidden');
                 document.getElementById('visualizarObservationSpanish').innerText = name + ' ' + last_name;
@@ -1382,6 +1404,7 @@
 
         function closeObservationModalVisualizarSpanish() {
             document.getElementById('observationModalVisualizarSpanish').classList.add('hidden');
+            window.location.reload();
         }
     </script>
 
@@ -1406,17 +1429,33 @@
         }
     </script>
 
-    <script>
-        function openObservationModalVisualizarMath(name, observations, last_name) {
-            document.getElementById('observationModalVisualizarMath').classList.remove('hidden');
-            document.getElementById('visualizarObservationMath').innerText = name + ' ' + observations;
-            document.getElementById('observationsContainerMath').innerHTML = last_name;
+    <script> 
+        function openObservationModalVisualizarMath(name, userId, last_name, observations, isRector) {
+
+            if (isRector) {
+                document.getElementById('observationModalVisualizarMath').classList.remove('hidden');
+                document.getElementById('userIdInputMath').value = userId;
+                let formAction = document.getElementById('observationFormMathRector').action;
+                formAction = formAction.replace(':userId', userId);
+                document.getElementById('observationFormMathRector').action = formAction;
+                document.getElementById('visualizarObservationMath').innerText = name + ' ' + last_name;
+                const formattedObservations = observations.replace(/<br\s*\/?>/gi, '');
+                document.getElementById('observationsTextareaMath').value = formattedObservations;
+            }else {
+                document.getElementById('observationModalVisualizarMath').classList.remove('hidden');
+                document.getElementById('visualizarObservationMath').innerText = name + ' ' + last_name;
+                document.getElementById('observationsContainerMath').innerHTML = observations;
+            }
+            
         }
 
         function closeObservationModalVisualizarMath() {
             document.getElementById('observationModalVisualizarMath').classList.add('hidden');
+            window.location.reload();
         }
     </script>
+
+    
     {{-- Concepto de Docente Ingles --}}
     <script>
         function openObservationModalEnglish(name, userId, last_name) {
