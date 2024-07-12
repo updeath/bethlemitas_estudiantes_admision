@@ -241,7 +241,7 @@ Route::middleware(['web', 'setLanguage', 'auth'])->group(function () {
     Route::post('/save-observationRector/{userId}', [ConceptController::class, 'saveObservationRector'])->name('save.observationsRector');
     Route::post('/save-observationAcademico/{userId}', [ConceptController::class, 'saveObservationAcademico'])->name('save.observationsAcademico');
     Route::post('/save-observationConvivencia/{userId}', [ConceptController::class, 'saveObservationConvivencia'])->name('save.observationsConvivencia');
-    Route::post('/save/digital/assignature/{userId}', [ConceptController::class, 'saveDigitalAsignature'])->name('save.digitalAsignature');
+    // Route::post('/save/digital/assignature/{userId}', [ConceptController::class, 'saveDigitalAsignature'])->name('save.digitalAsignature');
 
     //---------------- Editar conceptos --------------
     Route::put('/edit-concept-spanish/{userId}', [ConceptController::class, 'saveUpdateObservationsDocenteSpanish'])->name('update.concepSpanishForRector');
