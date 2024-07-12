@@ -247,6 +247,11 @@ Route::middleware(['web', 'setLanguage', 'auth'])->group(function () {
     Route::put('/edit-concept-spanish/{userId}', [ConceptController::class, 'saveUpdateObservationsDocenteSpanish'])->name('update.concepSpanishForRector');
     Route::put('/edit-concept-math/{userId}', [ConceptController::class, 'saveUpdateObservationsDocenteMath'])->name('update.concepMathForRector');
     Route::put('/edit-concept-english/{userId}', [ConceptController::class, 'saveUpdateObservationsDocenteEnglish'])->name('update.concepEnglishForRector');
+    Route::put('/edit-concept-psicoorientador/{userId}', [ConceptController::class, 'saveUpdateObservationsDocentePsicoorientador'])->name('update.concepPsicoorientadorForRector');
+    Route::put('/edit-concept-academico/{userId}', [ConceptController::class, 'saveUpdateObservationsDocenteAcademico'])->name('update.concepAcademicoForRector');
+    Route::put('/edit-concept-convivencia/{userId}', [ConceptController::class, 'saveUpdateObservationsDocenteConvivencia'])->name('update.concepConvivenciaForRector');
+    Route::put('/edit-concept-rector/{userId}', [ConceptController::class, 'saveUpdateObservationsDocenteRector'])->name('update.concepRForRector');
+    
     // pdf conceptos
     Route::get('/generate-pdf-observations/{userId}', [PDFController::class, 'generatePDFObservations'])->name('generate.pdf.observations');
 });

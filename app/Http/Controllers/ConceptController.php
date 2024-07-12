@@ -350,7 +350,7 @@ class ConceptController extends Controller
         return redirect()->back()->with('success', 'Observación guardada correctamente.');
     }
 
-    //Crear el controlador para editar las observaciones de matematicas
+    //Crear el controlador para editar las observaciones de ingles
     public function saveUpdateObservationsDocenteEnglish(Request $request, $userId)
     {
         // // Registrar el valor de $userId para depuración
@@ -419,10 +419,47 @@ class ConceptController extends Controller
         return redirect()->back()->with('success', 'Observación guardada correctamente.');
     }
 
+    //Crear el controlador para editar las observaciones de Psicoorientador
+    public function saveUpdateObservationsDocentePsicoorientador(Request $request, $userId)
+    {
+        // // Registrar el valor de $userId para depuración
+        // Log::info('Valor de $userId: ' . $userId);
+        // // Mostrar temporalmente el valor de $userId en la interfaz de usuario
+        // return response()->json(['userId' => $userId]);
 
+        $request->validate([
+            'observationRector' => 'required',
+        ]);
 
+        // Busca el concepto del docente por id del usuario
+        $conceptEdit = Concept::where('user_id', $userId)->first();
 
+        // Si se encuentra el concepto del docente hace lo siguiente
+        if ($conceptEdit) {
+            // Actualiza la observación con la nueva observación del request
+            $conceptEdit->ObservationPsicoorientador = $request->input('observationRector');
+            // Guarda los cambios en la base de datos
+            $conceptEdit->save();
 
+            // Establece encabezados para borrar la caché
+            return redirect()->back()
+                ->with('success', 'Observación editada correctamente')
+                ->withHeaders([
+                    'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
+                    'Pragma' => 'no-cache',
+                    'Expires' => 'Wed, 11 Jan 1984 05:00:00 GMT',
+                ]);
+        } else {
+            // Si no se encuentra el concepto del docente, retornar un error
+            return redirect()->back()
+                ->with('error', 'Concepto no encontrado.')
+                ->withHeaders([
+                    'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
+                    'Pragma' => 'no-cache',
+                    'Expires' => 'Wed, 11 Jan 1984 05:00:00 GMT',
+                ]);
+        }
+    }
 
     public function saveObservationRector(Request $request, $userId)
     {
@@ -449,6 +486,48 @@ class ConceptController extends Controller
         }
 
         return redirect()->back()->with('success', 'Observación guardada correctamente.');
+    }
+
+    //Crear el controlador para editar las observaciones de Psicoorientador
+    public function saveUpdateObservationsDocenteRector(Request $request, $userId)
+    {
+        // // Registrar el valor de $userId para depuración
+        // Log::info('Valor de $userId: ' . $userId);
+        // // Mostrar temporalmente el valor de $userId en la interfaz de usuario
+        // return response()->json(['userId' => $userId]);
+
+        $request->validate([
+            'observationRector' => 'required',
+        ]);
+
+        // Busca el concepto del docente por id del usuario
+        $conceptEdit = Concept::where('user_id', $userId)->first();
+
+        // Si se encuentra el concepto del docente hace lo siguiente
+        if ($conceptEdit) {
+            // Actualiza la observación con la nueva observación del request
+            $conceptEdit->ObservationRector = $request->input('observationRector');
+            // Guarda los cambios en la base de datos
+            $conceptEdit->save();
+
+            // Establece encabezados para borrar la caché
+            return redirect()->back()
+                ->with('success', 'Observación editada correctamente')
+                ->withHeaders([
+                    'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
+                    'Pragma' => 'no-cache',
+                    'Expires' => 'Wed, 11 Jan 1984 05:00:00 GMT',
+                ]);
+        } else {
+            // Si no se encuentra el concepto del docente, retornar un error
+            return redirect()->back()
+                ->with('error', 'Concepto no encontrado.')
+                ->withHeaders([
+                    'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
+                    'Pragma' => 'no-cache',
+                    'Expires' => 'Wed, 11 Jan 1984 05:00:00 GMT',
+                ]);
+        }
     }
 
     public function saveObservationAcademico(Request $request, $userId)
@@ -478,6 +557,48 @@ class ConceptController extends Controller
         return redirect()->back()->with('success', 'Observación guardada correctamente.');
     }
 
+    //Crear el controlador para editar las observaciones de Academico
+    public function saveUpdateObservationsDocenteAcademico(Request $request, $userId)
+    {
+        // // Registrar el valor de $userId para depuración
+        // Log::info('Valor de $userId: ' . $userId);
+        // // Mostrar temporalmente el valor de $userId en la interfaz de usuario
+        // return response()->json(['userId' => $userId]);
+
+        $request->validate([
+            'observationRector' => 'required',
+        ]);
+
+        // Busca el concepto del docente por id del usuario
+        $conceptEdit = Concept::where('user_id', $userId)->first();
+
+        // Si se encuentra el concepto del docente hace lo siguiente
+        if ($conceptEdit) {
+            // Actualiza la observación con la nueva observación del request
+            $conceptEdit->ObservationAcademico = $request->input('observationRector');
+            // Guarda los cambios en la base de datos
+            $conceptEdit->save();
+
+            // Establece encabezados para borrar la caché
+            return redirect()->back()
+                ->with('success', 'Observación editada correctamente')
+                ->withHeaders([
+                    'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
+                    'Pragma' => 'no-cache',
+                    'Expires' => 'Wed, 11 Jan 1984 05:00:00 GMT',
+                ]);
+        } else {
+            // Si no se encuentra el concepto del docente, retornar un error
+            return redirect()->back()
+                ->with('error', 'Concepto no encontrado.')
+                ->withHeaders([
+                    'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
+                    'Pragma' => 'no-cache',
+                    'Expires' => 'Wed, 11 Jan 1984 05:00:00 GMT',
+                ]);
+        }
+    }
+
 
     public function saveObservationConvivencia(Request $request, $userId)
     {
@@ -504,6 +625,48 @@ class ConceptController extends Controller
         }
 
         return redirect()->back()->with('success', 'Observación guardada correctamente.');
+    }
+
+    //Crear el controlador para editar las observaciones de Academico
+    public function saveUpdateObservationsDocenteConvivencia(Request $request, $userId)
+    {
+        // // Registrar el valor de $userId para depuración
+        // Log::info('Valor de $userId: ' . $userId);
+        // // Mostrar temporalmente el valor de $userId en la interfaz de usuario
+        // return response()->json(['userId' => $userId]);
+
+        $request->validate([
+            'observationRector' => 'required',
+        ]);
+
+        // Busca el concepto del docente por id del usuario
+        $conceptEdit = Concept::where('user_id', $userId)->first();
+
+        // Si se encuentra el concepto del docente hace lo siguiente
+        if ($conceptEdit) {
+            // Actualiza la observación con la nueva observación del request
+            $conceptEdit->ObservationConvivencia = $request->input('observationRector');
+            // Guarda los cambios en la base de datos
+            $conceptEdit->save();
+
+            // Establece encabezados para borrar la caché
+            return redirect()->back()
+                ->with('success', 'Observación editada correctamente')
+                ->withHeaders([
+                    'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
+                    'Pragma' => 'no-cache',
+                    'Expires' => 'Wed, 11 Jan 1984 05:00:00 GMT',
+                ]);
+        } else {
+            // Si no se encuentra el concepto del docente, retornar un error
+            return redirect()->back()
+                ->with('error', 'Concepto no encontrado.')
+                ->withHeaders([
+                    'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
+                    'Pragma' => 'no-cache',
+                    'Expires' => 'Wed, 11 Jan 1984 05:00:00 GMT',
+                ]);
+        }
     }
 
     public function saveDigitalAsignature(Request $request, $userId) {
