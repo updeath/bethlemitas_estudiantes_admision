@@ -194,6 +194,8 @@
                             </option>
                             <option value="TI" {{ $user->typeDocumment == 'TI' ? 'selected' : '' }}>Tarjeta de identidad
                             </option>
+                            <option value="NUIP" {{ $user->typeDocumment == 'NUIP' ? 'selected' : '' }}>Registro civil
+                            </option>
                         </select>
                     </div>
                     @error('typeDocumment')
