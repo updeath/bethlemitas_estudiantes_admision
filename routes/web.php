@@ -246,7 +246,7 @@ Route::middleware(['web', 'setLanguage', 'auth'])->group(function () {
     //---------------- Editar conceptos --------------
     Route::put('/edit-concept-spanish/{userId}', [ConceptController::class, 'saveUpdateObservationsDocenteSpanish'])->name('update.concepSpanishForRector');
     Route::put('/edit-concept-math/{userId}', [ConceptController::class, 'saveUpdateObservationsDocenteMath'])->name('update.concepMathForRector');
-
+    Route::put('/edit-concept-english/{userId}', [ConceptController::class, 'saveUpdateObservationsDocenteEnglish'])->name('update.concepEnglishForRector');
     // pdf conceptos
     Route::get('/generate-pdf-observations/{userId}', [PDFController::class, 'generatePDFObservations'])->name('generate.pdf.observations');
 });

@@ -289,11 +289,19 @@
                                                 @php
                                                     $observacionesConcatenadasEnglish = implode('<br> <br> - ', $user['observacionEnglish']);
                                                 @endphp
+                                                @if (Auth::user()->hasRole('Rector'))
                                                 <button
-                                                    onclick="openObservationModalVisualizarEnglish('{{ $user['name'] }}', '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasEnglish }}')"
-                                                    class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
-                                                    <i class="fas fa-eye text-sm"></i>
-                                                </button>
+                                                        onclick="openObservationModalVisualizarEnglish('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasEnglish }}', true)"
+                                                        class="bg-gray-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                        <i class="fas fa-eye text-sm"></i>
+                                                    </button>
+                                                @else 
+                                                    <button
+                                                        onclick="openObservationModalVisualizarEnglish('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasEnglish }}', false)"
+                                                        class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                        <i class="fas fa-eye text-sm"></i>
+                                                    </button>
+                                                @endif
                                             @endif
                                         @else
 
@@ -694,6 +702,7 @@
                     @else
                         <p class="text-sm text-gray-500 mb-4">Usuario no encontrado</p>
                     @endif
+                    <!-- modal para abrir formulario o div de español segun el rol -->
                     @if (isset($user['name']))
                         @if (Auth::user()->hasRole('Rector'))
                             <form id="observationFormSpanishRector" action="{{ route('update.concepSpanishForRector', ['userId' => ':userId']) }}"
@@ -710,6 +719,7 @@
                             </div>
                         @endif
                     @endif
+                    <!-- ************************************************************************************  -->
                     <button onclick="closeObservationModalVisualizarSpanish()"
                         class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2">
                         Cancelar
@@ -792,7 +802,7 @@
                     @else
                         <p class="text-sm text-gray-500 mb-4">Usuario no encontrado</p>
                     @endif
-
+                    <!-- modal para abrir formulario o div de matematicas segun el rol -->
                     @if (isset($user['name']))
                         @if (Auth::user()->hasRole('Rector'))
                             <form id="observationFormMathRector" action="{{ route('update.concepMathForRector', ['userId' => ':userId']) }}"
@@ -809,6 +819,7 @@
                             </div>
                         @endif
                     @endif
+                    <!-- **************************************************************************************** -->
 
                     <button onclick="closeObservationModalVisualizarMath()"
                         class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2">
@@ -897,9 +908,26 @@
                         <p class="text-sm text-gray-500 mb-4">Usuario no encontrado</p>
                     @endif
 
-                    <div id="observationsContainerEnglish">
+                    <!-- modal para abrir formulario o div de Ingles segun el rol -->
 
-                    </div>
+                    @if (isset($user['name']))
+                        @if (Auth::user()->hasRole('Rector'))
+                            <form id="observationFormEnglishRector" action="{{ route('update.concepEnglishForRector', ['userId' => ':userId']) }}"
+                            method="POST">
+                                @method('PUT')
+                                @csrf
+                                <input type="hidden" id="userIdInputEnglish" name="userId" value="">
+                                <textarea id="observationsTextareaEnglish" name="observationRector" class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition duration-300 block w-full h-[200px]"></textarea>
+
+                                <button class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2" type="submit">Editar observacion</button>
+                            </form>
+                        @else
+                            <div id="observationsContainerEnglish">
+                            </div>
+                        @endif
+                    @endif
+                    
+                    <!-- *************************************************************************************** -->
 
                     <button onclick="closeObservationModalVisualizarEnglish()"
                         class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2">
@@ -1428,7 +1456,7 @@
             document.getElementById('observationModalMath').classList.add('hidden');
         }
     </script>
-
+    <!-- Este script me muestra y oculta las observaciones, segun el rol me mostrara la observacion en un div o en un Textarea, el docente lo vea en un div y el recto en un textarea para poder editarlo******-->
     <script> 
         function openObservationModalVisualizarMath(name, userId, last_name, observations, isRector) {
 
@@ -1476,18 +1504,32 @@
         }
     </script>
 
-    <script>
-        function openObservationModalVisualizarEnglish(name, observations, last_name) {
-            document.getElementById('observationModalVisualizarEnglish').classList.remove('hidden');
-            document.getElementById('visualizarObservationEnglish').innerText = name + ' ' + observations;
-            document.getElementById('observationsContainerEnglish').innerHTML = last_name;
+    <!-- Este script me muestra y oculta las observaciones, segun el rol me mostrara la observacion en un div o en un Textarea, el docente lo vea en un div y el recto en un textarea para poder editarlo******-->
+    <script> 
+        function openObservationModalVisualizarEnglish(name, userId, last_name, observations, isRector) {
+
+            if (isRector) {
+                document.getElementById('observationModalVisualizarEnglish').classList.remove('hidden');
+                document.getElementById('userIdInputEnglish').value = userId;
+                let formAction = document.getElementById('observationFormEnglishRector').action;
+                formAction = formAction.replace(':userId', userId);
+                document.getElementById('observationFormEnglishRector').action = formAction;
+                document.getElementById('visualizarObservationEnglish').innerText = name + ' ' + last_name;
+                const formattedObservations = observations.replace(/<br\s*\/?>/gi, '');
+                document.getElementById('observationsTextareaEnglish').value = formattedObservations;
+            }else {
+                document.getElementById('observationModalVisualizarEnglish').classList.remove('hidden');
+                document.getElementById('visualizarObservationEnglish').innerText = name + ' ' + last_name;
+                document.getElementById('observationsContainerEnglish').innerHTML = observations;
+            }
+            
         }
 
         function closeObservationModalVisualizarEnglish() {
             document.getElementById('observationModalVisualizarEnglish').classList.add('hidden');
+            window.location.reload();
         }
     </script>
-
 
     {{-- Concepto del Psicoorientador --}}
     <script>
