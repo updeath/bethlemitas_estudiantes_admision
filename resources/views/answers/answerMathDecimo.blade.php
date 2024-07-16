@@ -1,42 +1,75 @@
 @extends('home.homePage')
 
-@section('title', 'Formulario de Matematicas grado 10°')
+@section('title', 'Resultados')
+
+@section('sub_title', 'Respuestas')
 
 @section('content_dashboard')
+<div class="container_table_answers">
+    <h1 style="margin-bottom: 1rem">Respuestas del Usuario: {{ $user->name }} {{ $user->last_name}}</h1>
 
-<div class="bg-white rounded-lg  p-7 mx-10">
-    <h1 class="text-2xl font-semibold text-center mb-4">Formulario de admisión de Matemáticas <br> para aspirantes a grado 10°</h1>
+    @if($mathDecimos->isEmpty())
+        <p>No hay respuestas disponibles para este usuario.</p>
+    @else
+        <div class="respuestas" style="overflow-x: scroll;">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="px-3.5 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">pregunta 1</th>
+                        <th class="px-3.5 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">pregunta 2</th>
+                        <th class="px-3.5 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">pregunta 3</th>
+                        <th class="px-3.5 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">pregunta 4</th>
+                        <th class="px-3.5 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">pregunta 5</th>
+                        <th class="px-3.5 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">pregunta 6</th>
+                        <th class="px-3.5 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">pregunta 7</th>
+                        <th class="px-3.5 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">pregunta 8</th>
+                        <th class="px-3.5 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">pregunta 9</th>
+                        <th class="px-3.5 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">pregunta 10</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($mathDecimos as $mathDecimo)
+                        <tr>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathDecimo->mathPD1 }}</td>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathDecimo->mathPD2 }}</td>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathDecimo->mathPD3 }}</td>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathDecimo->mathPD4 }}</td>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathDecimo->mathPD5 }}</td>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathDecimo->mathPD6 }}</td>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathDecimo->mathPD7 }}</td>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathDecimo->mathPD8 }}</td>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathDecimo->mathPD9 }}</td>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathDecimo->mathPD10 }}</td>
+                            <!-- Agrega más columnas según los preguntas de tu tabla -->
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    @endif
+</div>
 
-    <form class=" gap-8 max-w-4xl mx-auto bg-white p-10 rounded-md shadow-md" action="{{ route('store.math10') }}" method="POST">
-        @csrf
-
-            <!-- Pregunta 1 -->
+    <div class="form_question_decimo">
+        <!-- Pregunta 1 -->
             <div class="mb-10">
                 <label class="block text-sm font-medium text-gray-600">1. Andrés construye torres con cubitos de igual tamaño. La primera torre la construyó con dos cubitos, la segunda con el doble de cubitos de la primera y la tercera con el doble de cubitos de la segunda, como se muestra en la figura. Si se continúan armando torres según el mismo proceso, ¿Cuántos cubitos se requieren para construir la quinta torre?</label>
 
                 <div class="flex items-center mb-2">
                     <img src="{{ asset('img/math/ten/1.png') }}" alt="Imagen sin leyenda">
                 </div>
-
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD1" name="mathPD1" value="1">
                     <span class="ml-2">A. 2</span>
                 </div>
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD1" name="mathPD1" value="1">
                     <span class="ml-2">B. 8</span>
                 </div>
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD1" name="mathPD1" value="1">
                     <span class="ml-2">C. 16</span>
                 </div>
                 <div class="flex items-center">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD1" name="mathPD1" value="5">
                     <span class="ml-2">D. 32</span>
                 </div>
-                @error('mathPD1')
-                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-            @enderror
             </div>
 
             <!-- Pregunta 2 -->
@@ -46,32 +79,25 @@
                     <img src="{{ asset('img/math/ten/2.png') }}" alt="Imagen sin leyenda">
                 </div>
                 <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <input type="radio" class="form-radio text-indigo-600" id="mathPD2" name="mathPD2" value="1">
+                    <label class="inline-flex items-center"> 
                         <span class="ml-2">A. 125/2</span>
                     </label>
                 </div>
                 <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <input type="radio" class="form-radio text-indigo-600" id="mathPD2" name="mathPD2" value="5">
+                    <label class="inline-flex items-center">      
                         <span class="ml-2">B. 125/8</span>
                     </label>
                 </div>
                 <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <input type="radio" class="form-radio text-indigo-600" id="mathPD2" name="mathPD2" value="1">
+                    <label class="inline-flex items-center">   
                         <span class="ml-2">C. 8/125</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
-                        <input type="radio" class="form-radio text-indigo-600" id="mathPD2" name="mathPD2" value="1">
                         <span class="ml-2">D. -8/125</span>
                     </label>
                 </div>
-                @error('mathPD2')
-                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-            @enderror
             </div>
 
             <!-- Pregunta 3 -->
@@ -83,24 +109,17 @@
                 </div>
 
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD3" name="mathPD3" value="1">
                     <span class="ml-2">A. Numérica</span>
                 </div>
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD3" name="mathPD3" value="1">
                     <span class="ml-2">B. Cuantitativa</span>
                 </div>
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD3" name="mathPD3" value="5">
                     <span class="ml-2">C. Cualitativa</span>
                 </div>
                 <div class="flex items-center">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD3" name="mathPD3" value="1">
                     <span class="ml-2">D. Literal</span>
                 </div>
-                @error('mathPD3')
-                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-            @enderror
             </div>
 
             <!-- Pregunta 4 -->
@@ -110,24 +129,17 @@
                     <img src="{{ asset('img/math/ten/4.png') }}" alt="Imagen sin leyenda">
                 </div>
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD4" name="mathPD4" value="1">
                     <span class="ml-2">A. 1,28</span>
                 </div>
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD4" name="mathPD4" value="5">
                     <span class="ml-2">B. 5,66</span>
                 </div>
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD4" name="mathPD4" value="1">
                     <span class="ml-2">C. 4.33</span>
                 </div>
                 <div class="flex items-center">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD4" name="mathPD4" value="1">
                     <span class="ml-2">D. 9,87</span>
                 </div>
-                @error('mathPD4')
-                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-            @enderror
             </div>
 
             <!-- Pregunta 5 -->
@@ -139,24 +151,17 @@
                 </div>
 
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD5" name="mathPD5" value="1">
                     <span class="ml-2">A. El área</span>
                 </div>
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD5" name="mathPD5" value="1">
                     <span class="ml-2">B. La medida de su base</span>
                 </div>
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD5" name="mathPD5" value="5">
                     <span class="ml-2">C. La longitud</span>
                 </div>
                 <div class="flex items-center">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD5" name="mathPD5" value="1">
                     <span class="ml-2">D. Los centímetros de la altura</span>
                 </div>
-                @error('mathPD5')
-                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-            @enderror
             </div>
 
             <!-- Pregunta 6 -->
@@ -166,24 +171,17 @@
                     <img src="{{ asset('img/math/ten/6.png') }}" alt="Imagen sin leyenda">
                 </div>
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD6" name="mathPD6" value="1">
                     <span class="ml-2">A. Daniel aprobó matemáticas porque la suma de sus calificaciones da como resultado 16 y cuando la divido entre cinco me da como resultado 3.5.</span>
                 </div>
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD6" name="mathPD6" value="1">
                     <span class="ml-2">B. Daniel aprobó matemáticas porque la suma de sus calificaciones da como resultado 16.</span>
                 </div>
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD6" name="mathPD6" value="5">
                     <span class="ml-2">C. Daniel reprobó matemáticas porque la suma de sus calificaciones da como resultado 16 y si dividimos entre 5 da como resultado 3.2.</span>
                 </div>
                 <div class="flex items-center">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD6" name="mathPD6" value="1">
                     <span class="ml-2">D. Daniel reprobó matemáticas porque la suma de sus calificaciones da como resultado 18 y si lo divido entre 6 da como resultado 3.</span>
                 </div>
-                @error('mathPD6')
-                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-            @enderror
             </div>
 
             <!-- Pregunta 7 -->
@@ -191,24 +189,17 @@
                 <label class="block text-sm font-medium text-gray-600">7. Se embaldosará un cuarto, cuyas medidas son 3m de largo y 2m de ancho, la cantidad de baldosa que se necesita es:</label>
 
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD7" name="mathPD7" value="1">
                     <span class="ml-2">A. 5 metros cuadrados</span>
                 </div>
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD7" name="mathPD7" value="1">
                     <span class="ml-2">B. 6 metros cuadrados</span>
                 </div>
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD7" name="mathPD7" value="5">
                     <span class="ml-2">C. 12 metros cuadrados</span>
                 </div>
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD7" name="mathPD7" value="1">
                     <span class="ml-2">D. 10 metros cuadrados</span>
                 </div>
-                @error('mathPD7')
-                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-            @enderror
             </div>
 
             <!-- Pregunta 8 -->
@@ -218,24 +209,17 @@
                     <img src="{{ asset('img/math/ten/8.png') }}" alt="Imagen sin leyenda">
                 </div>
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD8" name="mathPD8" value="5">
                     <span class="ml-2">A. Chocolate</span>
                 </div>
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD8" name="mathPD8" value="1">
                     <span class="ml-2">B. Vainilla</span>
                 </div>
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD8" name="mathPD8" value="1">
                     <span class="ml-2">C. Fresas</span>
                 </div>
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD8" name="mathPD8" value="1">
                     <span class="ml-2">D. Chicle</span>
                 </div>
-                @error('mathPD8')
-                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-            @enderror
             </div>
 
             <!-- Pregunta 9 -->
@@ -243,24 +227,17 @@
                 <label class="block text-sm font-medium text-gray-600 mb-2">9. Martha compró 5 pares de zapatos, y Julia compró 8 pares de zapatos, entre las dos pagaron $650.000. La ecuación que representa esta situación es:</label>
 
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD9" name="mathPD9" value="5">
                     <span class="ml-2">A. 5x + 8x = 650.000</span>
                 </div>
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD9" name="mathPD9" value="1">
                     <span class="ml-2">B. 5x - 8x = 650.000</span>
                 </div>
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD9" name="mathPD9" value="1">
                     <span class="ml-2">C. x + 8x = 650.000</span>
                 </div>
                 <div class="flex items-center">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD9" name="mathPD9" value="5">
                     <span class="ml-2">D. 5x + 8x = 650.000</span>
                 </div>
-                @error('mathPD9')
-                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-            @enderror
             </div>
 
             <!-- Pregunta 10 -->
@@ -268,53 +245,17 @@
                 <label class="block text-sm font-medium text-gray-600 mb-3">10. Martha compró 5 pares de zapatos, y Julia compró 8 pares de zapatos. Entre las dos pagaron $650.000. ¿Cuál es el costo de cada par de zapatos?</label>
                 
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD10" name="mathPD10" value="5">
                     <span class="ml-2">A. $50.000</span>
                 </div>
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD10" name="mathPD10" value="1">
                     <span class="ml-2">B. $40.000</span>
                 </div>
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD10" name="mathPD10" value="1">
                     <span class="ml-2">C. $60.000</span>
                 </div>
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPD10" name="mathPD10" value="1">
                     <span class="ml-2">D. $25.000</span>
                 </div>
-                @error('mathPD10')
-                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-            @enderror
-            </div>
-            <div class="ml-[5%] mt-5">
-                <button type="submit"
-                    class="bg-[#3A8BC0] text-white py-2 px-4 rounded-md hover:bg-blue-500 focus:outline-none">Enviar
-                    Respuestas</button>
-            </div>
-
-    </form>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-@if (session('success'))
-    <script>
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            iconColor: 'white',
-            customClass: {
-                popup: 'colored-toast',
-            },
-            showConfirmButton: false,
-            timer: 2500,
-            timerProgressBar: true,
-        });
-        Toast.fire({
-            icon: 'success',
-            title: '{{ session('success') }}',
-        });
-    </script>
-@endif
+            
+    </div>
 @endsection

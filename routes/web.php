@@ -11,6 +11,7 @@ use App\Http\Controllers\SpanishController;
 use App\Http\Controllers\EnglishController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ConceptController;
+use App\Http\Controllers\AnswerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -251,7 +252,13 @@ Route::middleware(['web', 'setLanguage', 'auth'])->group(function () {
     Route::put('/edit-concept-academico/{userId}', [ConceptController::class, 'saveUpdateObservationsDocenteAcademico'])->name('update.concepAcademicoForRector');
     Route::put('/edit-concept-convivencia/{userId}', [ConceptController::class, 'saveUpdateObservationsDocenteConvivencia'])->name('update.concepConvivenciaForRector');
     Route::put('/edit-concept-rector/{userId}', [ConceptController::class, 'saveUpdateObservationsDocenteRector'])->name('update.concepRForRector');
-    
+
+    //---------------- Visualizar Repuestas -------------
+    Route::get('/answer-math-cuarto/{userId}', [AnswerController::class, 'answerMathCuarto'])->name('answer.mathCuarto');
+    Route::get('/answer-math-decimo/{userId}', [AnswerController::class, 'answerMathDecimo'])->name('answer.mathDecimo');
+    Route::get('/answer-math-sexto/{userId}', [AnswerController::class, 'answerMathSexto'])->name('answer.mathSexto');
+
+
     // pdf conceptos
     Route::get('/generate-pdf-observations/{userId}', [PDFController::class, 'generatePDFObservations'])->name('generate.pdf.observations');
 });

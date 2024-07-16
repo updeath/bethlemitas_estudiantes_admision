@@ -685,7 +685,7 @@
                             <div class="mb-4">
                                 <label for="observationTextarea"
                                     class="block text-sm font-medium text-gray-700">Observación:</label>
-                                <textarea id="observationTextarea" name="observation" rows="3" maxlength="600"
+                                <textarea id="observationTextarea" name="observation" rows="3" 
                                     class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition duration-300 block w-full h-[200px]"></textarea>
                             </div>
                             <button type="submit"
@@ -787,7 +787,7 @@
                             <div class="mb-4">
                                 <label for="observationTextarea"
                                     class="block text-sm font-medium text-gray-700">Observación:</label>
-                                    <textarea id="observationTextarea" name="observation" rows="3" maxlength="600"
+                                    <textarea id="observationTextarea" name="observation" rows="3" 
                                     class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition duration-300 block w-full h-[200px]"></textarea>
                             </div>
                             <button type="submit"
@@ -891,7 +891,7 @@
                             <div class="mb-4">
                                 <label for="observationTextarea"
                                     class="block text-sm font-medium text-gray-700">Observación:</label>
-                                    <textarea id="observationTextarea" name="observation" rows="3" maxlength="600"
+                                    <textarea id="observationTextarea" name="observation" rows="3" 
                                     class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition duration-300 block w-full h-[200px]"></textarea>
                             </div>
                             <button type="submit"
@@ -1003,7 +1003,7 @@
                             <div class="mb-4">
                                 <label for="observationTextarea"
                                     class="block text-sm font-medium text-gray-700">Observación:</label>
-                                    <textarea id="observationTextarea" name="observation" rows="3" maxlength="600"
+                                    <textarea id="observationTextarea" name="observation" rows="3" 
                                     class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition duration-300 block w-full h-[200px]"></textarea>
                             </div>
                             <button type="submit"
@@ -1110,7 +1110,7 @@
                             <div class="mb-4">
                                 <label for="observationTextarea"
                                     class="block text-sm font-medium text-gray-700">Observación:</label>
-                                    <textarea id="observationTextarea" name="observation" rows="3" maxlength="600"
+                                    <textarea id="observationTextarea" name="observation" rows="3" 
                                     class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition duration-300 block w-full h-[200px]"></textarea>
                             </div>
                             <button type="submit"
@@ -1220,7 +1220,7 @@
                             <div class="mb-4">
                                 <label for="observationTextarea"
                                     class="block text-sm font-medium text-gray-700">Observación:</label>
-                                    <textarea id="observationTextarea" name="observation" rows="3" maxlength="600"
+                                    <textarea id="observationTextarea" name="observation" rows="3" 
                                     class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition duration-300 block w-full h-[200px]"></textarea>
                             </div>
                             <button type="submit"
@@ -1331,7 +1331,7 @@
                             <div class="mb-4">
                                 <label for="observationTextarea"
                                     class="block text-sm font-medium text-gray-700">Observación:</label>
-                                    <textarea id="observationTextarea" name="observation" rows="3" maxlength="600"
+                                    <textarea id="observationTextarea" name="observation" rows="3" 
                                     class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition duration-300 block w-full h-[200px]"></textarea>
                             </div>
                             <button type="submit"

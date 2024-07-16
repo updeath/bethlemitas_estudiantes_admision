@@ -421,7 +421,7 @@
                 <div class="container px-6 py-8 mx-auto">
                     <h3 class="text-3xl font-medium text-gray-700"> @yield('sub_title') </h3>
                     @yield('content_dashboard')
-
+                        
                 </div>
         </div>
         </main>
