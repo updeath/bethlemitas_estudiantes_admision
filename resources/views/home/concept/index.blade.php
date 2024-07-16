@@ -174,7 +174,7 @@
                                                     $observacionesConcatenadasSpanish = implode('<br> <br> - ', $user['observacionSpanish']);
                                                 @endphp
                                                 <!-- Aca se esta haciendo una condicion pra que en caso tal de que el rol sea Rector pueda editar las observaciones-->
-                                                @if (Auth::user()->hasRole('Rector'))
+                                                @if (Auth::user()->hasRole('Rector') || (Auth::user()->hasRole('Docente') && auth()->user()->asignature == 'spanish') )
                                                     <button
                                                         onclick="openObservationModalVisualizarSpanish('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasSpanish }}', true)"
                                                         class="bg-gray-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
@@ -234,7 +234,7 @@
                                                     $observacionesConcatenadasMath = implode('<br> <br> - ', $user['observacionMath']);
                                                 @endphp
 
-                                                @if (Auth::user()->hasRole('Rector'))
+                                                @if (Auth::user()->hasRole('Rector') || (Auth::user()->hasRole('Docente') && auth()->user()->asignature == 'math'))
                                                     <button
                                                         onclick="openObservationModalVisualizarMath('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasMath }}', true)"
                                                         class="bg-gray-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
@@ -289,7 +289,7 @@
                                                 @php
                                                     $observacionesConcatenadasEnglish = implode('<br> <br> - ', $user['observacionEnglish']);
                                                 @endphp
-                                                @if (Auth::user()->hasRole('Rector'))
+                                                @if (Auth::user()->hasRole('Rector') || (Auth::user()->hasRole('Docente') && auth()->user()->asignature == 'english'))
                                                     <button
                                                         onclick="openObservationModalVisualizarEnglish('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasEnglish }}', true)"
                                                         class="bg-gray-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
@@ -348,7 +348,7 @@
                                                 @php
                                                     $observacionesConcatenadasPsicoorientador = implode('<br> <br> - ', $user['observacionPsicoorientador']);
                                                 @endphp
-                                                @if (Auth::user()->hasRole('Rector'))
+                                                @if (Auth::user()->hasRole('Rector') || Auth::user()->hasRole('Psicoorientador'))
                                                     <button
                                                         onclick="openObservationModalVisualizarPsicoorientador('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasPsicoorientador }}', true)"
                                                         class="bg-gray-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
@@ -406,7 +406,7 @@
                                                 @php
                                                     $observacionesConcatenadasAcademico = implode('<br> <br> - ', $user['observacionAcademico']);
                                                 @endphp
-                                                @if (Auth::user()->hasRole('Rector'))
+                                                @if (Auth::user()->hasRole('Rector') || Auth::user()->hasRole('CoordinadorAcademico'))
                                                     <button
                                                         onclick="openObservationModalVisualizarAcademico('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasAcademico }}', true)"
                                                         class="bg-gray-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
@@ -462,7 +462,7 @@
                                                 @php
                                                     $observacionesConcatenadasConvivencia = implode('<br> <br> - ', $user['observacionConvivencia']);
                                                 @endphp
-                                                @if (Auth::user()->hasRole('Rector'))
+                                                @if (Auth::user()->hasRole('Rector') || Auth::user()->hasRole('CoordinadorConvivencia'))
                                                     <button
                                                         onclick="openObservationModalVisualizarConvivencia('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasConvivencia }}', true)"
                                                         class="bg-gray-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
@@ -730,7 +730,7 @@
                     @endif
                     <!-- modal para abrir formulario o div de español segun el rol -->
                     @if (isset($user['name']))
-                        @if (Auth::user()->hasRole('Rector'))
+                        @if (Auth::user()->hasRole('Rector') || (Auth::user()->hasRole('Docente') && auth()->user()->asignature == 'spanish'))
                             <form id="observationFormSpanishRector" action="{{ route('update.concepSpanishForRector', ['userId' => ':userId']) }}"
                             method="POST">
                                 @method('PUT')
@@ -830,7 +830,7 @@
                     @endif
                     <!-- modal para abrir formulario o div de matematicas segun el rol -->
                     @if (isset($user['name']))
-                        @if (Auth::user()->hasRole('Rector'))
+                        @if (Auth::user()->hasRole('Rector') || (Auth::user()->hasRole('Docente') && auth()->user()->asignature == 'math'))
                             <form id="observationFormMathRector" action="{{ route('update.concepMathForRector', ['userId' => ':userId']) }}"
                             method="POST">
                                 @method('PUT')
@@ -937,7 +937,7 @@
                     <!-- modal para abrir formulario o div de Ingles segun el rol -->
 
                     @if (isset($user['name']))
-                        @if (Auth::user()->hasRole('Rector'))
+                        @if (Auth::user()->hasRole('Rector') || (Auth::user()->hasRole('Docente') && auth()->user()->asignature == 'english'))
                             <form id="observationFormEnglishRector" action="{{ route('update.concepEnglishForRector', ['userId' => ':userId']) }}"
                             method="POST">
                                 @method('PUT')
@@ -1048,7 +1048,7 @@
                     <!-- modal para abrir formulario o div de Psicoorientador segun el rol -->
 
                     @if (isset($user['name']))
-                        @if (Auth::user()->hasRole('Rector'))
+                        @if (Auth::user()->hasRole('Rector') || Auth::user()->hasRole('Psicoorientador'))
                             <form id="observationFormPsicoorientadorRector" action="{{ route('update.concepPsicoorientadorForRector', ['userId' => ':userId']) }}"
                             method="POST">
                                 @method('PUT')
@@ -1157,7 +1157,7 @@
                     <!-- modal para abrir formulario o div de Academico segun el rol -->
 
                     @if (isset($user['name']))
-                        @if (Auth::user()->hasRole('Rector'))
+                        @if (Auth::user()->hasRole('Rector') || Auth::user()->hasRole('CoordinadorAcademico'))
                             <form id="observationFormAcademicoRector" action="{{ route('update.concepAcademicoForRector', ['userId' => ':userId']) }}"
                             method="POST">
                                 @method('PUT')
@@ -1267,7 +1267,7 @@
                     <!-- modal para abrir formulario o div de Convivencia segun el rol -->
 
                     @if (isset($user['name']))
-                        @if (Auth::user()->hasRole('Rector'))
+                        @if (Auth::user()->hasRole('Rector') || Auth::user()->hasRole('CoordinadorConvivencia'))
                             <form id="observationFormConvivenciaRector" action="{{ route('update.concepConvivenciaForRector', ['userId' => ':userId']) }}"
                             method="POST">
                                 @method('PUT')
@@ -1375,7 +1375,7 @@
                         <p class="text-sm text-gray-500 mb-4">Usuario no encontrado</p>
                     @endif
 
-                    <!-- modal para abrir formulario o div de Convivencia segun el rol -->
+                    <!-- modal para abrir formulario o div de Rector segun el rol -->
 
                     @if (isset($user['name']))
                         @if (Auth::user()->hasRole('Rector'))
