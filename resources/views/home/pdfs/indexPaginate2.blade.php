@@ -90,13 +90,6 @@
 
     </style>
 </head>
-
-@php
-    $data = [
-        'current_date' => date('Y-m-d')
-    ];
-@endphp
-
 <body>
     <table>
         <tr>
@@ -110,7 +103,7 @@
                 <br><br><br>
                 <span>Código: M1-FOR03</span> <br>
                 <span>Versión: 02</span> <br>
-                <span>Fecha: {{ $data['current_date'] }}</span> <br>
+                <span>Fecha: 01/01/2022</span> <br>
                 <span>Página 2 de 2</span>
             </td>
         </tr>

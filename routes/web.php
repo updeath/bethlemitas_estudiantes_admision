@@ -255,8 +255,19 @@ Route::middleware(['web', 'setLanguage', 'auth'])->group(function () {
 
     //---------------- Visualizar Repuestas -------------
     Route::get('/answer-math-cuarto/{userId}', [AnswerController::class, 'answerMathCuarto'])->name('answer.mathCuarto');
-    Route::get('/answer-math-decimo/{userId}', [AnswerController::class, 'answerMathDecimo'])->name('answer.mathDecimo');
+    Route::get('/answer-math-quinto/{userId}', [AnswerController::class, 'answerMathQuinto'])->name('answer.mathQuinto');
     Route::get('/answer-math-sexto/{userId}', [AnswerController::class, 'answerMathSexto'])->name('answer.mathSexto');
+    Route::get('/answer-math-septimo/{userId}', [AnswerController::class, 'answerMathSeptimo'])->name('answer.mathSeptimo');
+    Route::get('/answer-math-octavo/{userId}', [AnswerController::class, 'answerMathOctavo'])->name('answer.mathOctavo');
+    Route::get('/answer-math-noveno/{userId}', [AnswerController::class, 'answerMathNoveno'])->name('answer.mathNoveno');
+    Route::get('/answer-math-decimo/{userId}', [AnswerController::class, 'answerMathDecimo'])->name('answer.mathDecimo');
+    Route::get('/answer-spanish-cuarto/{userId}', [AnswerController::class, 'answerSpanishCuarto'])->name('answer.SpanishCuarto');
+    Route::get('/answer-spanish-quinto/{userId}', [AnswerController::class, 'answerSpanishQuinto'])->name('answer.SpanishQuinto');
+    Route::get('/answer-spanish-sexto/{userId}', [AnswerController::class, 'answerSpanishSexto'])->name('answer.SpanishSexto');
+    Route::get('/answer-spanish-septimo/{userId}', [AnswerController::class, 'answerSpanishSeptimo'])->name('answer.SpanishSeptimo');
+    Route::get('/answer-spanish-octavo/{userId}', [AnswerController::class, 'answerSpanishOctavo'])->name('answer.SpanishOctavo');
+    Route::get('/answer-spanish-noveno/{userId}', [AnswerController::class, 'answerSpanishNoveno'])->name('answer.SpanishNoveno');
+    Route::get('/answer-spanish-decimo/{userId}', [AnswerController::class, 'answerSpanishDecimo'])->name('answer.SpanishDecimo');
 
 
     // pdf conceptos

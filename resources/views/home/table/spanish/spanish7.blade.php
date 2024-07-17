@@ -98,6 +98,10 @@
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                 Pregunta 7</th>
+
+                            <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                Ver Respuestas</th>
                         </tr>
                     </thead>
 
@@ -354,6 +358,13 @@
                                         <!-- Manejo si no existe spanishQuinto -->
                                         <p>No hay respuesta del aspirante</p>
                                     @endif
+                                </td>
+                                <td >
+                                    <button
+                                        onclick="window.location.href='{{ route('answer.SpanishSeptimo', ['userId' => $data['user']->id]) }}'"
+                                        class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                        <i class="fas fa-file text-sm"></i>
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach

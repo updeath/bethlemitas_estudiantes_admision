@@ -50,7 +50,7 @@
     @endif
 </div>
 
-    <div class="form_question_decimo">
+    <div class="grid grid-cols-2 gap-8 max-w-4xl" style="margin-top: 1rem">
         <!-- Pregunta 1 -->
             <div class="mb-10">
                 <label class="block text-sm font-medium text-gray-600">1. Andrés construye torres con cubitos de igual tamaño. La primera torre la construyó con dos cubitos, la segunda con el doble de cubitos de la primera y la tercera con el doble de cubitos de la segunda, como se muestra en la figura. Si se continúan armando torres según el mismo proceso, ¿Cuántos cubitos se requieren para construir la quinta torre?</label>
@@ -73,7 +73,7 @@
             </div>
 
             <!-- Pregunta 2 -->
-            <div class="mb-10 border-t p-2 border-gray-400">
+            <div class="mb-10 p-2 border-gray-400">
                 <label class="block text-sm font-medium text-gray-600">2. La Potenciación es una multiplicación repetida o una suma de potencias con algunas propiedades básicas. Si aplicamos dichas propiedades al siguiente término, se obtiene como resultado:</label>
                 <div class="mt-2">
                     <img src="{{ asset('img/math/ten/2.png') }}" alt="Imagen sin leyenda">

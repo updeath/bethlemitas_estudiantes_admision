@@ -62,9 +62,12 @@
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                 Respuestas Incorrectas</th>
+
+                            <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                Ver Respuestas</th>
                         </tr>
 
-                        </tr>
                     </thead>
 
                     <tbody class="bg-white">
@@ -84,6 +87,13 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                     {{ $data['cantidadRespuestasMalas'] }}
+                                </td>
+                                <td >
+                                    <button
+                                        onclick="window.location.href='{{ route('answer.mathQuinto', ['userId' => $data['user']->id]) }}'"
+                                        class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                        <i class="fas fa-file text-sm"></i>
+                                    </button>
                                 </td>
                                 
                             </tr>
