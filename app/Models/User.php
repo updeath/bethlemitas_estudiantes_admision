@@ -163,4 +163,25 @@ class User extends Authenticatable
     {
         return $this->hasOne(Concept::class, 'user_id')->withDefault();
     }
+
+    public function getObservations()
+{
+    return [
+        'spanish' => $this->getObservation('ObservationDocenteSpanish'),
+        'math' => $this->getObservation('ObservationDocenteMath'),
+        'english' => $this->getObservation('ObservationDocenteEnglish'),
+        'psicoorientador' => $this->getObservation('ObservationPsicoorientador'),
+        'rector' => $this->getObservation('ObservationRector'),
+        'academico' => $this->getObservation('ObservationAcademico'),
+        'convivencia' => $this->getObservation('ObservationConvivencia'),
+    ];
+}
+
+private function getObservation($field)
+{
+    $concept = $this->concept()->firstOrCreate(['user_id' => $this->id]);
+    $observation = $concept->$field;
+
+    return $observation !== 'Sin Observacion' ? explode(' - ', $observation) : null;
+}
 }

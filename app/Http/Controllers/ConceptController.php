@@ -66,72 +66,28 @@ class ConceptController extends Controller
                 $promedios['admin_data'][$user->id]['id'] = $user->id;
 
                 // Accede al concepto a través de la relación definida en el modelo User
+                $observaciones = $user->getObservations();
 
-                $ConceptObservationSpanish = $user->concept()->firstOrCreate(['user_id' => $user->id]);
-                $ConceptObservationMath = $user->concept()->firstOrCreate(['user_id' => $user->id]);
-                $ConceptObservationEnglish = $user->concept()->firstOrCreate(['user_id' => $user->id]);
-                $ConceptObservationPsicoorientador = $user->concept()->firstOrCreate(['user_id' => $user->id]);
-                $ConceptObservationRector = $user->concept()->firstOrCreate(['user_id' => $user->id]);
-                $ConceptObservationAcademico = $user->concept()->firstOrCreate(['user_id' => $user->id]);
-                $ConceptObservationConvivencia = $user->concept()->firstOrCreate(['user_id' => $user->id]);
+                $promedios['admin_data'][$user->id]['observacionSpanish'] = $observaciones['spanish'];
+                $promedios['admin_data'][$user->id]['observacionPredeterminadaPresenteSpanish'] = $observaciones['spanish'] === null;
 
+                $promedios['admin_data'][$user->id]['observacionMath'] = $observaciones['math'];
+                $promedios['admin_data'][$user->id]['observacionPredeterminadaPresenteMath'] = $observaciones['math'] === null;
 
-                $observacionSpanish = $ConceptObservationSpanish && $ConceptObservationSpanish->ObservationDocenteSpanish !== 'Sin Observacion'
-                    ? explode(' - ', $ConceptObservationSpanish->ObservationDocenteSpanish)
-                    : null;
+                $promedios['admin_data'][$user->id]['observacionEnglish'] = $observaciones['english'];
+                $promedios['admin_data'][$user->id]['observacionPredeterminadaPresenteEnglish'] = $observaciones['english'] === null;
 
-                $observacionMath = $ConceptObservationMath && $ConceptObservationMath->ObservationDocenteMath !== 'Sin Observacion'
-                    ? explode(' - ', $ConceptObservationMath->ObservationDocenteMath)
-                    : null;
+                $promedios['admin_data'][$user->id]['observacionPsicoorientador'] = $observaciones['psicoorientador'];
+                $promedios['admin_data'][$user->id]['observacionPredeterminadaPresentePsicoorientador'] = $observaciones['psicoorientador'] === null;
 
-                $observacionEnglish = $ConceptObservationEnglish && $ConceptObservationEnglish->ObservationDocenteEnglish !== 'Sin Observacion'
-                    ? explode(' - ', $ConceptObservationEnglish->ObservationDocenteEnglish)
-                    : null;
+                $promedios['admin_data'][$user->id]['observacionRector'] = $observaciones['rector'];
+                $promedios['admin_data'][$user->id]['observacionPredeterminadaPresenteRector'] = $observaciones['rector'] === null;
 
-                $observacionPsicoorientador = $ConceptObservationPsicoorientador && $ConceptObservationPsicoorientador->ObservationPsicoorientador !== 'Sin Observacion'
-                    ? explode(' - ', $ConceptObservationPsicoorientador->ObservationPsicoorientador)
-                    : null;
+                $promedios['admin_data'][$user->id]['observacionAcademico'] = $observaciones['academico'];
+                $promedios['admin_data'][$user->id]['observacionPredeterminadaPresenteAcademico'] = $observaciones['academico'] === null;
 
-                $observacionRector = $ConceptObservationRector && $ConceptObservationRector->ObservationRector !== 'Sin Observacion'
-                    ? explode(' - ', $ConceptObservationRector->ObservationRector)
-                    : null;
-                    
-                $observacionAcademico = $ConceptObservationAcademico && $ConceptObservationAcademico->ObservationAcademico !== 'Sin Observacion'
-                    ? explode(' - ', $ConceptObservationAcademico->ObservationAcademico)
-                    : null;
-
-                $observacionConvivencia = $ConceptObservationConvivencia && $ConceptObservationConvivencia->ObservationConvivencia !== 'Sin Observacion'
-                    ? explode(' - ', $ConceptObservationConvivencia->ObservationConvivencia)
-                    : null;
-
-                $observacionPredeterminadaPresenteSpanish = $observacionSpanish === null;
-                $observacionPredeterminadaPresenteMath = $observacionMath === null;
-                $observacionPredeterminadaPresenteEnglish = $observacionEnglish === null;
-                $observacionPredeterminadaPresentePsicoorientador = $observacionPsicoorientador === null;
-                $observacionPredeterminadaPresenteRector = $observacionRector === null;
-                $observacionPredeterminadaPresenteAcademico = $observacionAcademico === null;
-                $observacionPredeterminadaPresenteConvivencia = $observacionConvivencia === null;
-
-                $promedios['admin_data'][$user->id]['observacionSpanish'] = $observacionSpanish;
-                $promedios['admin_data'][$user->id]['observacionPredeterminadaPresenteSpanish'] = $observacionPredeterminadaPresenteSpanish;
-
-                $promedios['admin_data'][$user->id]['observacionMath'] = $observacionMath;
-                $promedios['admin_data'][$user->id]['observacionPredeterminadaPresenteMath'] = $observacionPredeterminadaPresenteMath;
-
-                $promedios['admin_data'][$user->id]['observacionEnglish'] = $observacionEnglish;
-                $promedios['admin_data'][$user->id]['observacionPredeterminadaPresenteEnglish'] = $observacionPredeterminadaPresenteEnglish;
-
-                $promedios['admin_data'][$user->id]['observacionPsicoorientador'] = $observacionPsicoorientador;
-                $promedios['admin_data'][$user->id]['observacionPredeterminadaPresentePsicoorientador'] = $observacionPredeterminadaPresentePsicoorientador;
-
-                $promedios['admin_data'][$user->id]['observacionRector'] = $observacionRector;
-                $promedios['admin_data'][$user->id]['observacionPredeterminadaPresenteRector'] = $observacionPredeterminadaPresenteRector;
-
-                $promedios['admin_data'][$user->id]['observacionAcademico'] = $observacionAcademico;
-                $promedios['admin_data'][$user->id]['observacionPredeterminadaPresenteAcademico'] = $observacionPredeterminadaPresenteAcademico;
-
-                $promedios['admin_data'][$user->id]['observacionConvivencia'] = $observacionConvivencia;
-                $promedios['admin_data'][$user->id]['observacionPredeterminadaPresenteConvivencia'] = $observacionPredeterminadaPresenteConvivencia;
+                $promedios['admin_data'][$user->id]['observacionConvivencia'] = $observaciones['convivencia'];
+                $promedios['admin_data'][$user->id]['observacionPredeterminadaPresenteConvivencia'] = $observaciones['convivencia'] === null;
 
                 if ($user->degree == 4) {
                     $promedios['admin_data'][$user->id]['mathCuarto'] = MathCuarto::where('user_id', $user->id)->pluck('average')->first();
@@ -257,7 +213,7 @@ class ConceptController extends Controller
         // return response()->json(['userId' => $userId]);
         
         $request->validate([
-            'observation' => 'required',
+            'observation' => 'required|string',
         ]);
         $ConceptDocenteMath = Concept::where('user_id', $userId)->first();
 

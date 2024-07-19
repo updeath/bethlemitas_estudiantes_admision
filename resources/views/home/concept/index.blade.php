@@ -91,7 +91,7 @@
                                     <!-- Nombre -->
                                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                         @if (isset($user['name']))
-                                            {{ $user['name'] }}
+                                            {{ $user['name'] }} {{$user['last_name']}}
                                         @endif
                                     </td>
 
