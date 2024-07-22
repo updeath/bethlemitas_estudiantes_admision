@@ -180,7 +180,7 @@
                                                     }, $observacionSpanish);
 
                                                     // Concatenar las observaciones con '<br> <br> - ' como separador
-                                                    $observacionesConcatenadasSpanish = implode('<br> <br> - ', $observacionSpanishLimpia);
+                                                    $observacionesConcatenadasSpanish = implode('<br> <br>- ', $observacionSpanishLimpia);
                                                 @endphp
                                                 <!-- Aca se esta haciendo una condicion pra que en caso tal de que el rol sea Rector pueda editar las observaciones-->
                                                 @if (Auth::user()->hasRole('Rector') || (Auth::user()->hasRole('Docente') && auth()->user()->asignature == 'spanish') )
@@ -249,7 +249,7 @@
                                                     }, $observacionMath);
 
                                                     // Concatenar las observaciones con '<br> <br> - ' como separador
-                                                    $observacionesConcatenadasMath = implode('<br> <br> - ', $observacionMathLimpia);
+                                                    $observacionesConcatenadasMath = implode('<br> <br>- ', $observacionMathLimpia);
                                                 @endphp
 
                                                 @if (Auth::user()->hasRole('Rector') || (Auth::user()->hasRole('Docente') && auth()->user()->asignature == 'math'))
@@ -314,7 +314,7 @@
                                                     }, $observacionEnglish);
 
                                                     // Concatenar las observaciones con '<br> <br> - ' como separador
-                                                    $observacionesConcatenadasEnglish = implode('<br> <br> - ', $observacionEnglishLimpia);
+                                                    $observacionesConcatenadasEnglish = implode('<br> <br>- ', $observacionEnglishLimpia);
                                                 @endphp
 
                                                 @if (Auth::user()->hasRole('Rector') || (Auth::user()->hasRole('Docente') && auth()->user()->asignature == 'english'))
@@ -383,7 +383,7 @@
                                                     }, $observacionPsicoorientador);
 
                                                     // Concatenar las observaciones con '<br> <br> - ' como separador
-                                                    $observacionesConcatenadasPsicoorientador = implode('<br> <br> - ', $observacionPsicoorientadorLimpia);
+                                                    $observacionesConcatenadasPsicoorientador = implode('<br> <br>- ', $observacionPsicoorientadorLimpia);
                                                 @endphp
 
                                                 @if (Auth::user()->hasRole('Rector') || Auth::user()->hasRole('Psicoorientador'))
@@ -451,7 +451,7 @@
                                                     }, $observacionAcademico);
 
                                                     // Concatenar las observaciones con '<br> <br> - ' como separador
-                                                    $observacionesConcatenadasAcademico = implode('<br> <br> - ', $observacionAcademicoLimpia);
+                                                    $observacionesConcatenadasAcademico = implode('<br> <br>- ', $observacionAcademicoLimpia);
                                                 @endphp
 
                                                 @if (Auth::user()->hasRole('Rector') || Auth::user()->hasRole('CoordinadorAcademico'))
@@ -517,7 +517,7 @@
                                                     }, $observacionConvivencia);
 
                                                     // Concatenar las observaciones con '<br> <br> - ' como separador
-                                                    $observacionesConcatenadasConvivencia = implode('<br> <br> - ', $observacionConvivenciaLimpia);
+                                                    $observacionesConcatenadasConvivencia = implode('<br> <br>- ', $observacionConvivenciaLimpia);
                                                 @endphp
                                                 @if (Auth::user()->hasRole('Rector') || Auth::user()->hasRole('CoordinadorConvivencia'))
                                                     <button
@@ -583,7 +583,7 @@
                                                     }, $observacionRector);
 
                                                     // Concatenar las observaciones con '<br> <br> - ' como separador
-                                                    $observacionesConcatenadasRector = implode('<br> <br> - ', $observacionRectorLimpia);
+                                                    $observacionesConcatenadasRector = implode('<br> <br>- ', $observacionRectorLimpia);
                                                 @endphp
                                                 @if (Auth::user()->hasRole('Rector'))
                                                     <button
