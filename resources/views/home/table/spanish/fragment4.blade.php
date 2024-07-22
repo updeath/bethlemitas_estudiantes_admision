@@ -51,7 +51,6 @@
                     <div class="mb-10">
                     <span class="text-lg font-semibold mb-2">Fragmento B:</span><br>
                         <div class=" mb-4 flex justify-center">
-                            
                             <img src="{{ asset('img/spanish/nine/4B.jpeg') }}" class=" h-auto rounded-lg">
                         </div>
                         <p class="bg-gray-200 text-gray-800 py-4 px-6 rounded-md shadow-md mb-4">

@@ -21,6 +21,7 @@ use App\Exports\Spanish\spanish7Export;
 use App\Exports\Spanish\spanish8Export;
 use App\Exports\Spanish\spanish9Export;
 use App\Exports\Spanish\spanish10Export;
+use Illuminate\Support\Facades\Log;
 
 class SpanishController extends Controller
 {
@@ -59,12 +60,17 @@ class SpanishController extends Controller
     {
         return view("home.forms.spanish.spanish10");
     }
-    public function index_spanishFragment()
+    public function index_spanishFragment($userId)
     {
-        $users = User::all();
-        $promedioData = [];
 
-        foreach ($users as $user) {
+        // // Registrar el valor de $userId para depuración
+        // Log::info('Valor de $userId: ' . $userId);
+        // Mostrar temporalmente el valor de $userId en la interfaz de usuario
+        // return response()->json(['userId' => $userId]);
+
+        $user = User::find($userId);
+        $promedioData = [];
+        
             // Check if a record exists for the user
             $userSpanishCuarto = SpanishDecimo::where('user_id', $user->id)->first();
 
@@ -98,7 +104,7 @@ class SpanishController extends Controller
                 // Handle the case where no record is found for the user
                 // You may choose to skip the user or perform some other action
             }
-        }
+        
         return view("home.table.spanish.fragment4", compact('promedioData'));
     }
 
@@ -711,6 +717,10 @@ class SpanishController extends Controller
                 ];
             }
         }
+
+        // Log::info('valor de promedios: ' . json_encode($promedioData));
+        // return response()->json(['promediosss' => $promedioData]);
+
         return view("home.table.spanish.spanish7", compact('promedioData', 'users'));
     }
 
@@ -1182,6 +1192,10 @@ class SpanishController extends Controller
                 ];
             }
         }
+
+        // Log::info('valor de promedios: ' . json_encode($promedioData));
+        // return response()->json(['promediosss' => $promedioData]);
+
         return view("home.table.spanish.spanish10", compact('promedioData', 'users'));
     }
 

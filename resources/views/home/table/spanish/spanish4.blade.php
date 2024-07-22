@@ -114,9 +114,13 @@
                                             </button>
                                         @else
                                             <div class="flex items-center space-x-2">
+                                                @php
+                                                    $comment8 = $data['comment8'];
+                                                    $comment8Clean = preg_replace("/[\r\n]/", '<br>\n', $comment8);
+                                                @endphp
                                                 <button
                                                     class="bg-gray-500 hover:bg-gray-600 rounded-full px-3 py-1 text-xs font-semibold text-white btn-show-info"
-                                                    onclick="showModal('{{ $data['comment8'] }}')">
+                                                    onclick="showModal('{{ $comment8Clean }}')">
                                                     Visualizar Respuesta
                                                 </button>
                                                 <form

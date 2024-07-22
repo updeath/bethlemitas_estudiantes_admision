@@ -117,9 +117,13 @@
                                             </button>
                                         @else
                                             <div class="flex items-center space-x-2">
+                                                @php
+                                                    $comment6 = $data['comment6'];
+                                                    $comment6Clean = preg_replace("/[\r\n]/", '<br>\n', $comment6);
+                                                @endphp
                                                 <button
                                                     class="bg-gray-500 hover:bg-gray-600 rounded-full px-3 py-1 text-xs font-semibold text-white btn-show-info"
-                                                    onclick="showModal('{{ $data['comment6'] }}')">
+                                                    onclick="showModal('{{ $comment6Clean }}')">
                                                     Visualizar Respuesta
                                                 </button>
                                                 <form
@@ -150,9 +154,13 @@
                                             </button>
                                         @else
                                             <div class="flex items-center space-x-2">
+                                                @php
+                                                    $comment7 = $data['comment7'];
+                                                    $comment7Clean = preg_replace("/[\r\n]/", '<br>\n', $comment7);
+                                                @endphp
                                                 <button
                                                     class="inline-block bg-gray-500 hover:bg-gray-600 rounded-full px-2 py-1 text-xs font-semibold text-white mr-1 mb-1 btn-show-info"
-                                                    onclick="showModal7('{{ $data['comment7'] }}')" id="calificarButton7">
+                                                    onclick="showModal7('{{ $comment7Clean }}')" id="calificarButton7">
                                                     Visualizar Respuesta
                                                 </button>
                                                 <form
@@ -183,9 +191,13 @@
                                             </button>
                                         @else
                                             <div class="flex items-center space-x-2">
+                                                @php
+                                                    $comment10 = $data['comment10'];
+                                                    $comment10Clean = preg_replace("/[\r\n]/", '<br>\n', $comment10);
+                                                @endphp
                                                 <button
                                                     class="inline-block bg-gray-500 hover:bg-gray-600 rounded-full px-2 py-1 text-xs font-semibold text-white mr-1 mb-1 btn-show-info"
-                                                    onclick="showModal10('{{ $data['comment10'] }}')"
+                                                    onclick="showModal10('{{ $comment10Clean }}')"
                                                     id="calificarButton10">
                                                     Visualizar Respuesta
                                                 </button>
