@@ -171,7 +171,16 @@
                                                 @endif
 
                                                 @php
-                                                    $observacionesConcatenadasSpanish = implode('<br> <br> - ', $user['observacionSpanish']);
+                                                    // Array de observaciones
+                                                    $observacionSpanish = $user['observacionSpanish'];
+
+                                                    // Limpiar los saltos de línea de cada observación
+                                                    $observacionSpanishLimpia = array_map(function($obs) {
+                                                        return preg_replace("/[\r\n]/", '<br>\n', $obs);
+                                                    }, $observacionSpanish);
+
+                                                    // Concatenar las observaciones con '<br> <br> - ' como separador
+                                                    $observacionesConcatenadasSpanish = implode('<br> <br> - ', $observacionSpanishLimpia);
                                                 @endphp
                                                 <!-- Aca se esta haciendo una condicion pra que en caso tal de que el rol sea Rector pueda editar las observaciones-->
                                                 @if (Auth::user()->hasRole('Rector') || (Auth::user()->hasRole('Docente') && auth()->user()->asignature == 'spanish') )
@@ -231,7 +240,16 @@
                                                 @endif
 
                                                 @php
-                                                    $observacionesConcatenadasMath = implode('<br> <br> - ', $user['observacionMath']);
+                                                    // Array de observaciones
+                                                    $observacionMath = $user['observacionMath'];
+
+                                                    // Limpiar los saltos de línea de cada observación
+                                                    $observacionMathLimpia = array_map(function($obs) {
+                                                        return preg_replace("/[\r\n]/", '<br>\n', $obs);
+                                                    }, $observacionMath);
+
+                                                    // Concatenar las observaciones con '<br> <br> - ' como separador
+                                                    $observacionesConcatenadasMath = implode('<br> <br> - ', $observacionMathLimpia);
                                                 @endphp
 
                                                 @if (Auth::user()->hasRole('Rector') || (Auth::user()->hasRole('Docente') && auth()->user()->asignature == 'math'))
@@ -287,8 +305,18 @@
                                                 @endif
 
                                                 @php
-                                                    $observacionesConcatenadasEnglish = implode('<br> <br> - ', $user['observacionEnglish']);
+                                                    // Array de observaciones
+                                                    $observacionEnglish = $user['observacionEnglish'];
+
+                                                    // Limpiar los saltos de línea de cada observación
+                                                    $observacionEnglishLimpia = array_map(function($obs) {
+                                                        return preg_replace("/[\r\n]/", '<br>\n', $obs);
+                                                    }, $observacionEnglish);
+
+                                                    // Concatenar las observaciones con '<br> <br> - ' como separador
+                                                    $observacionesConcatenadasEnglish = implode('<br> <br> - ', $observacionEnglishLimpia);
                                                 @endphp
+
                                                 @if (Auth::user()->hasRole('Rector') || (Auth::user()->hasRole('Docente') && auth()->user()->asignature == 'english'))
                                                     <button
                                                         onclick="openObservationModalVisualizarEnglish('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasEnglish }}', true)"
@@ -346,8 +374,18 @@
                                                 @endif
 
                                                 @php
-                                                    $observacionesConcatenadasPsicoorientador = implode('<br> <br> - ', $user['observacionPsicoorientador']);
+                                                    // Array de observaciones
+                                                    $observacionPsicoorientador = $user['observacionPsicoorientador'];
+
+                                                    // Limpiar los saltos de línea de cada observación
+                                                    $observacionPsicoorientadorLimpia = array_map(function($obs) {
+                                                        return preg_replace("/[\r\n]/", '<br>\n', $obs);
+                                                    }, $observacionPsicoorientador);
+
+                                                    // Concatenar las observaciones con '<br> <br> - ' como separador
+                                                    $observacionesConcatenadasPsicoorientador = implode('<br> <br> - ', $observacionPsicoorientadorLimpia);
                                                 @endphp
+
                                                 @if (Auth::user()->hasRole('Rector') || Auth::user()->hasRole('Psicoorientador'))
                                                     <button
                                                         onclick="openObservationModalVisualizarPsicoorientador('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasPsicoorientador }}', true)"
@@ -404,8 +442,18 @@
                                                         
                                                 @endif
                                                 @php
-                                                    $observacionesConcatenadasAcademico = implode('<br> <br> - ', $user['observacionAcademico']);
+                                                    // Array de observaciones
+                                                    $observacionAcademico = $user['observacionAcademico'];
+
+                                                    // Limpiar los saltos de línea de cada observación
+                                                    $observacionAcademicoLimpia = array_map(function($obs) {
+                                                        return preg_replace("/[\r\n]/", '<br>\n', $obs);
+                                                    }, $observacionAcademico);
+
+                                                    // Concatenar las observaciones con '<br> <br> - ' como separador
+                                                    $observacionesConcatenadasAcademico = implode('<br> <br> - ', $observacionAcademicoLimpia);
                                                 @endphp
+
                                                 @if (Auth::user()->hasRole('Rector') || Auth::user()->hasRole('CoordinadorAcademico'))
                                                     <button
                                                         onclick="openObservationModalVisualizarAcademico('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasAcademico }}', true)"
@@ -452,15 +500,24 @@
 
                                                 @if(auth()->check() && auth()->user()->hasRole('CoordinadorConvivencia'))
                                                         
-                                                        <button
-                                                            onclick="openObservationModalConvivencia('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
-                                                            class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
-                                                            <i class="fas fa-plus text-sm"></i>
-                                                        </button>
-                                                        
-                                                    @endif
+                                                    <button
+                                                        onclick="openObservationModalConvivencia('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
+                                                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                        <i class="fas fa-plus text-sm"></i>
+                                                    </button>
+                                                    
+                                                @endif
                                                 @php
-                                                    $observacionesConcatenadasConvivencia = implode('<br> <br> - ', $user['observacionConvivencia']);
+                                                    // Array de observaciones
+                                                    $observacionConvivencia = $user['observacionConvivencia'];
+
+                                                    // Limpiar los saltos de línea de cada observación
+                                                    $observacionConvivenciaLimpia = array_map(function($obs) {
+                                                        return preg_replace("/[\r\n]/", '<br>\n', $obs);
+                                                    }, $observacionConvivencia);
+
+                                                    // Concatenar las observaciones con '<br> <br> - ' como separador
+                                                    $observacionesConcatenadasConvivencia = implode('<br> <br> - ', $observacionConvivenciaLimpia);
                                                 @endphp
                                                 @if (Auth::user()->hasRole('Rector') || Auth::user()->hasRole('CoordinadorConvivencia'))
                                                     <button
@@ -508,24 +565,39 @@
                                             @else
 
                                                 @if(auth()->check() && auth()->user()->hasRole('Rector'))
-                                                        @can('save.observationsRector')
-                                                        <button
-                                                            onclick="openObservationModalRector('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
-                                                            class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
-                                                            <i class="fas fa-plus text-sm"></i>
-                                                        </button>
-                                                        @endcan
-                                                    @endif
+                                                    @can('save.observationsRector')
+                                                    <button
+                                                        onclick="openObservationModalRector('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
+                                                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                        <i class="fas fa-plus text-sm"></i>
+                                                    </button>
+                                                    @endcan
+                                                @endif
                                                 @php
-                                                    $observacionesConcatenadasRector = implode('<br> <br> - ', $user['observacionRector']);
+                                                    // Array de observaciones
+                                                    $observacionRector = $user['observacionRector'];
+
+                                                    // Limpiar los saltos de línea de cada observación
+                                                    $observacionRectorLimpia = array_map(function($obs) {
+                                                        return preg_replace("/[\r\n]/", '<br>\n', $obs);
+                                                    }, $observacionRector);
+
+                                                    // Concatenar las observaciones con '<br> <br> - ' como separador
+                                                    $observacionesConcatenadasRector = implode('<br> <br> - ', $observacionRectorLimpia);
                                                 @endphp
-                                                
+                                                @if (Auth::user()->hasRole('Rector'))
                                                     <button
                                                         onclick="openObservationModalVisualizarRector('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasRector }}', true)"
                                                         class="bg-gray-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
                                                         <i class="fas fa-eye text-sm"></i>
                                                     </button>
-                                                
+                                                @else
+                                                    <button
+                                                        onclick="openObservationModalVisualizarRector('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasRector }}', false)"
+                                                        class="bg-gray-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                        <i class="fas fa-eye text-sm"></i>
+                                                    </button>
+                                                @endif
                                             @endif
                                         @else
 
@@ -1782,9 +1854,12 @@
                 document.getElementById('observationFormRRector').action = formAction;
                 document.getElementById('visualizarObservationRector').innerText = name + ' ' + last_name;
                 const formattedObservations = observations.replace(/<br\s*\/?>/gi, '');
-                document.getElementById('observationsTextareaRRector').value = formattedObservations;
-            
-        }
+                document.getElementById('observationsTextareaRRector').value = formattedObservations;    
+            }else {
+                document.getElementById('observationModalVisualizarRector').classList.remove('hidden');
+                document.getElementById('visualizarObservationRector').innerText = name + ' ' + last_name;
+                document.getElementById('observationsContainerRector').innerHTML = observations;
+            }
     }
 
         function closeObservationModalVisualizarRector() {

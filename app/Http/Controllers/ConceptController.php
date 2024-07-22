@@ -134,6 +134,9 @@ class ConceptController extends Controller
             }
         }
 
+        // Log::info('valor de promedios: ' . json_encode($promedios));
+        // return response()->json(['promediosss' => $promedios]);
+
         return view("home.concept.index", ['promedios' => $promedios, 'auth_user' => $auth_user, 'users' => $users]);
     }
 
@@ -175,13 +178,17 @@ class ConceptController extends Controller
             'observationRector' => 'required',
         ]);
 
+        // Limpia los saltos de línea múltiples en la observación del rector
+        $observationSpanish = $request->input('observationRector');
+        $observationSpanishLimpia = preg_replace("/[\r\n]+/", "\n\n", $observationSpanish);
+
         // Busca el concepto del docente por id del usuario
         $conceptEdit = Concept::where('user_id', $userId)->first();
 
         // Si se encuentra el concepto del docente hace lo siguiente
         if ($conceptEdit) {
             // Actualiza la observación con la nueva observación del request
-            $conceptEdit->ObservationDocenteSpanish = $request->input('observationRector');
+            $conceptEdit->ObservationDocenteSpanish = $observationSpanishLimpia;
             // Guarda los cambios en la base de datos
             $conceptEdit->save();
 
@@ -249,13 +256,17 @@ class ConceptController extends Controller
             'observationRector' => 'required',
         ]);
 
+        // Limpia los saltos de línea múltiples en la observación del rector
+        $observationMath = $request->input('observationRector');
+        $observationMathLimpia = preg_replace("/[\r\n]+/", "\n\n", $observationMath);
+
         // Busca el concepto del docente por id del usuario
         $conceptEdit = Concept::where('user_id', $userId)->first();
 
         // Si se encuentra el concepto del docente hace lo siguiente
         if ($conceptEdit) {
             // Actualiza la observación con la nueva observación del request
-            $conceptEdit->ObservationDocenteMath = $request->input('observationRector');
+            $conceptEdit->ObservationDocenteMath = $observationMathLimpia;
             // Guarda los cambios en la base de datos
             $conceptEdit->save();
 
@@ -318,13 +329,17 @@ class ConceptController extends Controller
             'observationRector' => 'required',
         ]);
 
+        // Limpia los saltos de línea múltiples en la observación del rector
+        $observationEnglish = $request->input('observationRector');
+        $observationEnglishLimpia = preg_replace("/[\r\n]+/", "\n\n", $observationEnglish);
+
         // Busca el concepto del docente por id del usuario
         $conceptEdit = Concept::where('user_id', $userId)->first();
 
         // Si se encuentra el concepto del docente hace lo siguiente
         if ($conceptEdit) {
             // Actualiza la observación con la nueva observación del request
-            $conceptEdit->ObservationDocenteEnglish = $request->input('observationRector');
+            $conceptEdit->ObservationDocenteEnglish = $observationEnglishLimpia;
             // Guarda los cambios en la base de datos
             $conceptEdit->save();
 
@@ -387,13 +402,17 @@ class ConceptController extends Controller
             'observationRector' => 'required',
         ]);
 
+        // Limpia los saltos de línea múltiples en la observación del rector
+        $observationPsicoorientador = $request->input('observationRector');
+        $observationPsicoorientadorLimpia = preg_replace("/[\r\n]+/", "\n\n", $observationPsicoorientador);
+
         // Busca el concepto del docente por id del usuario
         $conceptEdit = Concept::where('user_id', $userId)->first();
 
         // Si se encuentra el concepto del docente hace lo siguiente
         if ($conceptEdit) {
             // Actualiza la observación con la nueva observación del request
-            $conceptEdit->ObservationPsicoorientador = $request->input('observationRector');
+            $conceptEdit->ObservationPsicoorientador = $observationPsicoorientadorLimpia;
             // Guarda los cambios en la base de datos
             $conceptEdit->save();
 
@@ -456,13 +475,17 @@ class ConceptController extends Controller
             'observationRector' => 'required',
         ]);
 
+        // Limpia los saltos de línea múltiples en la observación del rector
+        $observationRector = $request->input('observationRector');
+        $observationRectorLimpia = preg_replace("/[\r\n]+/", "\n\n", $observationRector);
+
         // Busca el concepto del docente por id del usuario
         $conceptEdit = Concept::where('user_id', $userId)->first();
 
         // Si se encuentra el concepto del docente hace lo siguiente
         if ($conceptEdit) {
             // Actualiza la observación con la nueva observación del request
-            $conceptEdit->ObservationRector = $request->input('observationRector');
+            $conceptEdit->ObservationRector = $observationRectorLimpia;
             // Guarda los cambios en la base de datos
             $conceptEdit->save();
 
@@ -525,13 +548,17 @@ class ConceptController extends Controller
             'observationRector' => 'required',
         ]);
 
+        // Limpia los saltos de línea múltiples en la observación del rector
+        $observationAcademico = $request->input('observationRector');
+        $observationAcademicoLimpia = preg_replace("/[\r\n]+/", "\n\n", $observationAcademico);
+
         // Busca el concepto del docente por id del usuario
         $conceptEdit = Concept::where('user_id', $userId)->first();
 
         // Si se encuentra el concepto del docente hace lo siguiente
         if ($conceptEdit) {
             // Actualiza la observación con la nueva observación del request
-            $conceptEdit->ObservationAcademico = $request->input('observationRector');
+            $conceptEdit->ObservationAcademico = $observationAcademicoLimpia;
             // Guarda los cambios en la base de datos
             $conceptEdit->save();
 
@@ -595,13 +622,17 @@ class ConceptController extends Controller
             'observationRector' => 'required',
         ]);
 
+        // Limpia los saltos de línea múltiples en la observación del rector
+        $observationConvivencia = $request->input('observationRector');
+        $observationConvivenciaLimpia = preg_replace("/[\r\n]+/", "\n\n", $observationConvivencia);
+
         // Busca el concepto del docente por id del usuario
         $conceptEdit = Concept::where('user_id', $userId)->first();
 
         // Si se encuentra el concepto del docente hace lo siguiente
         if ($conceptEdit) {
             // Actualiza la observación con la nueva observación del request
-            $conceptEdit->ObservationConvivencia = $request->input('observationRector');
+            $conceptEdit->ObservationConvivencia = $observationConvivenciaLimpia;
             // Guarda los cambios en la base de datos
             $conceptEdit->save();
 
