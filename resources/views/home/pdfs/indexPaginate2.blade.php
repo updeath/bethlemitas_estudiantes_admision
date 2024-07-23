@@ -87,6 +87,10 @@
 
         }
 
+        .signature-image {
+            width: 150rem;
+            height: 30rem;
+        }
 
     </style>
 </head>
@@ -125,7 +129,13 @@
                 <td><p style="white-space: pre-line; ">{!! nl2br(implode("\n", $observation)) !!}</p></td>
             </tr>
             <tr class="fila2">
-                <td><br><br>Firma:  </td>
+                <td><br><br>Firma: 
+                    @if($signatureSpanish10)
+                        <img src="{{ public_path('img/digital/' . $signatureSpanish10) }}" class="signature-image" alt="Firma del Docente de Español">
+                    @else
+                        Sin firma
+                    @endif
+                </td>
             </tr>
         </table>
 

@@ -87,6 +87,10 @@
 
         }
 
+        .signature-image {
+            width: 150rem;
+            height: 30rem;
+        }
 
     </style>
 </head>
@@ -143,7 +147,7 @@
                 <td><p style="white-space: pre-line; ">{!! nl2br(implode("\n", $observation2)) !!}</p></td>
             </tr>
             <tr class="fila2">
-                <td><br><br>Firma: </td>
+                <td><br><br>Firma:</td>
             </tr>
         </table>
 
