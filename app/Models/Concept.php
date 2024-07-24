@@ -17,7 +17,13 @@ class Concept extends Model
         'ObservationAcademico',
         'ObservationConvivencia',
         'ObservationRector',
-        'signature_image_spanish_decimo'
+        'signature_image_spanish_decimo',
+        'signature_image_math_decimo',
+        'signature_image_english_decimo',
+        'signature_image_psicoorientador',
+        'signature_image_coordinador_academico',
+        'signature_image_coordinador_convivencia',
+        'signature_image_rector'
     ];
 
     public function user()

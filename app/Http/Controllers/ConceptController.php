@@ -656,8 +656,8 @@ class ConceptController extends Controller
         }
     }
 
-    // ----------------------------- Controlador de la firma digital ----------------------------------
-    public function saveDigitalAsignature(Request $request) {
+    // ----------------------------- Controlador de la firma digital español decimo ----------------------------------
+    public function saveDigitalAsignatureSpanishDecimo(Request $request) {
         $userId = $request->input('userId');
         
         // // Registrar el valor de $userId para depuración
@@ -694,5 +694,231 @@ class ConceptController extends Controller
        return redirect()->back()->with('error', 'Error al subir la firma');
     }
     
+    // ----------------------------- Controlador de la firma digital matematicas decimo ----------------------------------
+     public function saveDigitalAsignatureMathDecimo(Request $request) {
+        $userId = $request->input('userId');
+        
+        // // Registrar el valor de $userId para depuración
+        // Log::info('Valor de $userId: ' . $userId);
+        // // Puedes realizar más validaciones y procesamiento aquí si es necesario
+        // // Retornar una respuesta JSON con el userId
+        // return response()->json(['userId' => $userId]);
 
+       $userId = intval($userId);
+       if (!is_int($userId)) {
+           return redirect()->back()->with('error', 'Usuario no encontador');
+       }
+        
+       //validacion de la perticion
+       $request->validate([
+           'digital' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+       ]);
+
+       //guardar la imagen en la base de datos
+       if ($request->hasFile('digital')) {
+           $image = $request->file('digital');
+           $imageName = time(). '.' .$image->getClientOriginalExtension();
+
+           //mover la imagen a la carpeta deseada (public/img/digital)
+           $image->move(public_path('img/digital'), $imageName);
+
+           //crear o actualizar el registro en la tabla concepts
+           $concept = Concept::updateOrCreate(
+               ['user_id' => $userId],
+               ['signature_image_math_decimo' => $imageName]
+           );
+           return redirect()->back()->with('success', 'Firma subida correctamente');
+       }
+       return redirect()->back()->with('error', 'Error al subir la firma');
+    }
+
+    // ----------------------------- Controlador de la firma digital ingles decimo ----------------------------------
+    public function saveDigitalAsignatureEnglishDecimo(Request $request) {
+        $userId = $request->input('userId');
+        
+        // // Registrar el valor de $userId para depuración
+        // Log::info('Valor de $userId: ' . $userId);
+        // // Puedes realizar más validaciones y procesamiento aquí si es necesario
+        // // Retornar una respuesta JSON con el userId
+        // return response()->json(['userId' => $userId]);
+
+       $userId = intval($userId);
+       if (!is_int($userId)) {
+           return redirect()->back()->with('error', 'Usuario no encontador');
+       }
+        
+       //validacion de la perticion
+       $request->validate([
+           'digital' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+       ]);
+
+       //guardar la imagen en la base de datos
+       if ($request->hasFile('digital')) {
+           $image = $request->file('digital');
+           $imageName = time(). '.' .$image->getClientOriginalExtension();
+
+           //mover la imagen a la carpeta deseada (public/img/digital)
+           $image->move(public_path('img/digital'), $imageName);
+
+           //crear o actualizar el registro en la tabla concepts
+           $concept = Concept::updateOrCreate(
+               ['user_id' => $userId],
+               ['signature_image_english_decimo' => $imageName]
+           );
+           return redirect()->back()->with('success', 'Firma subida correctamente');
+       }
+       return redirect()->back()->with('error', 'Error al subir la firma');
+    }
+
+    // ----------------------------- Controlador de la firma digital psicoorientador ----------------------------------
+    public function saveDigitalAsignaturePsicoorientador(Request $request) {
+        $userId = $request->input('userId');
+        
+        // // Registrar el valor de $userId para depuración
+        // Log::info('Valor de $userId: ' . $userId);
+        // // Puedes realizar más validaciones y procesamiento aquí si es necesario
+        // // Retornar una respuesta JSON con el userId
+        // return response()->json(['userId' => $userId]);
+
+       $userId = intval($userId);
+       if (!is_int($userId)) {
+           return redirect()->back()->with('error', 'Usuario no encontador');
+       }
+        
+       //validacion de la perticion
+       $request->validate([
+           'digital' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+       ]);
+
+       //guardar la imagen en la base de datos
+       if ($request->hasFile('digital')) {
+           $image = $request->file('digital');
+           $imageName = time(). '.' .$image->getClientOriginalExtension();
+
+           //mover la imagen a la carpeta deseada (public/img/digital)
+           $image->move(public_path('img/digital'), $imageName);
+
+           //crear o actualizar el registro en la tabla concepts
+           $concept = Concept::updateOrCreate(
+               ['user_id' => $userId],
+               ['signature_image_psicoorientador' => $imageName]
+           );
+           return redirect()->back()->with('success', 'Firma subida correctamente');
+       }
+       return redirect()->back()->with('error', 'Error al subir la firma');
+    }
+
+    // ----------------------------- Controlador de la firma digital coordinador academico ----------------------------------
+    public function saveDigitalAsignatureCoordinadorAcademico(Request $request) {
+        $userId = $request->input('userId');
+        
+        // // Registrar el valor de $userId para depuración
+        // Log::info('Valor de $userId: ' . $userId);
+        // // Puedes realizar más validaciones y procesamiento aquí si es necesario
+        // // Retornar una respuesta JSON con el userId
+        // return response()->json(['userId' => $userId]);
+
+       $userId = intval($userId);
+       if (!is_int($userId)) {
+           return redirect()->back()->with('error', 'Usuario no encontador');
+       }
+        
+       //validacion de la perticion
+       $request->validate([
+           'digital' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+       ]);
+
+       //guardar la imagen en la base de datos
+       if ($request->hasFile('digital')) {
+           $image = $request->file('digital');
+           $imageName = time(). '.' .$image->getClientOriginalExtension();
+
+           //mover la imagen a la carpeta deseada (public/img/digital)
+           $image->move(public_path('img/digital'), $imageName);
+
+           //crear o actualizar el registro en la tabla concepts
+           $concept = Concept::updateOrCreate(
+               ['user_id' => $userId],
+               ['signature_image_coordinador_academico' => $imageName]
+           );
+           return redirect()->back()->with('success', 'Firma subida correctamente');
+       }
+       return redirect()->back()->with('error', 'Error al subir la firma');
+    }
+
+    // ----------------------------- Controlador de la firma digital coordinador convivencia ----------------------------------
+    public function saveDigitalAsignatureCoordinadorConvivencia(Request $request) {
+        $userId = $request->input('userId');
+        
+        // // Registrar el valor de $userId para depuración
+        // Log::info('Valor de $userId: ' . $userId);
+        // // Puedes realizar más validaciones y procesamiento aquí si es necesario
+        // // Retornar una respuesta JSON con el userId
+        // return response()->json(['userId' => $userId]);
+
+       $userId = intval($userId);
+       if (!is_int($userId)) {
+           return redirect()->back()->with('error', 'Usuario no encontador');
+       }
+        
+       //validacion de la perticion
+       $request->validate([
+           'digital' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+       ]);
+
+       //guardar la imagen en la base de datos
+       if ($request->hasFile('digital')) {
+           $image = $request->file('digital');
+           $imageName = time(). '.' .$image->getClientOriginalExtension();
+
+           //mover la imagen a la carpeta deseada (public/img/digital)
+           $image->move(public_path('img/digital'), $imageName);
+
+           //crear o actualizar el registro en la tabla concepts
+           $concept = Concept::updateOrCreate(
+               ['user_id' => $userId],
+               ['signature_image_coordinador_convivencia' => $imageName]
+           );
+           return redirect()->back()->with('success', 'Firma subida correctamente');
+       }
+       return redirect()->back()->with('error', 'Error al subir la firma');
+    }
+
+    // ----------------------------- Controlador de la firma digital rector ----------------------------------
+    public function saveDigitalAsignatureRector(Request $request) {
+        $userId = $request->input('userId');
+        
+        // // Registrar el valor de $userId para depuración
+        // Log::info('Valor de $userId: ' . $userId);
+        // // Puedes realizar más validaciones y procesamiento aquí si es necesario
+        // // Retornar una respuesta JSON con el userId
+        // return response()->json(['userId' => $userId]);
+
+       $userId = intval($userId);
+       if (!is_int($userId)) {
+           return redirect()->back()->with('error', 'Usuario no encontador');
+       }
+        
+       //validacion de la perticion
+       $request->validate([
+           'digital' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+       ]);
+
+       //guardar la imagen en la base de datos
+       if ($request->hasFile('digital')) {
+           $image = $request->file('digital');
+           $imageName = time(). '.' .$image->getClientOriginalExtension();
+
+           //mover la imagen a la carpeta deseada (public/img/digital)
+           $image->move(public_path('img/digital'), $imageName);
+
+           //crear o actualizar el registro en la tabla concepts
+           $concept = Concept::updateOrCreate(
+               ['user_id' => $userId],
+               ['signature_image_rector' => $imageName]
+           );
+           return redirect()->back()->with('success', 'Firma subida correctamente');
+       }
+       return redirect()->back()->with('error', 'Error al subir la firma');
+    }
 }

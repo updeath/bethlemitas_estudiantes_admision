@@ -130,7 +130,13 @@
                 <td><p style="white-space: pre-line; ">{!! nl2br(implode("\n", $observation)) !!}</p></td>
             </tr>
             <tr class="fila2">
-                <td><br><br>Firma: </td>
+                <td><br><br>Firma: 
+                    @if($signaturePsicoorientador)
+                        <img src="{{ public_path('img/digital/' . $signaturePsicoorientador) }}" class="signature-image" alt="Firma del Psicoorientador">
+                    @else
+                        Sin firma
+                    @endif
+                </td>
             </tr>
         </table>
 
@@ -147,7 +153,13 @@
                 <td><p style="white-space: pre-line; ">{!! nl2br(implode("\n", $observation2)) !!}</p></td>
             </tr>
             <tr class="fila2">
-                <td><br><br>Firma:</td>
+                <td><br><br>Firma: 
+                    @if($signatureAcademico)
+                        <img src="{{ public_path('img/digital/' . $signatureAcademico) }}" class="signature-image" alt="Firma del Coordinador Academico">
+                    @else
+                        Sin firma
+                    @endif
+                </td>
             </tr>
         </table>
 
@@ -164,7 +176,13 @@
                 <td><p style="white-space: pre-line; ">{!! nl2br(implode("\n", $observation3)) !!}</p></td>
             </tr>
             <tr class="fila2">
-                <td><br><br>Firma: </td>
+                <td><br><br>Firma: 
+                    @if($signatureConvivencia)
+                        <img src="{{ public_path('img/digital/' . $signatureConvivencia) }}" class="signature-image" alt="Firma del Coordinador Convivencia">
+                    @else
+                        Sin firma
+                    @endif
+                </td>
             </tr>
         </table>
 
@@ -181,7 +199,13 @@
                 <td><p style="white-space: pre-line; ">{!! nl2br(implode("\n", $observation4)) !!}</p></td>
             </tr>
             <tr class="fila2">
-                <td><br><br>Firma: </td>
+                <td><br><br>Firma: 
+                    @if($signatureRector)
+                        <img src="{{ public_path('img/digital/' . $signatureRector) }}" class="signature-image" alt="Firma del Rector">
+                    @else
+                        Sin firma
+                    @endif
+                </td>
             </tr>
         </table>
 

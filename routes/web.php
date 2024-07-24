@@ -244,7 +244,13 @@ Route::middleware(['web', 'setLanguage', 'auth'])->group(function () {
     Route::post('/save-observationConvivencia/{userId}', [ConceptController::class, 'saveObservationConvivencia'])->name('save.observationsConvivencia');
 
     // --------------- Firma Digital -----------------
-    Route::post('/save-digital-assignature/{userId}', [ConceptController::class, 'saveDigitalAsignature'])->name('save.digitalAsignature');
+    Route::post('/save-digital-assignature-spanish-decimo/{userId}', [ConceptController::class, 'saveDigitalAsignatureSpanishDecimo'])->name('save.digitalAsignatureSpanishDecimo');
+    Route::post('/save-digital-assignature-math-decimo/{userId}', [ConceptController::class, 'saveDigitalAsignatureMathDecimo'])->name('save.digitalAsignatureMathDecimo');
+    Route::post('/save-digital-assignature-english-decimo/{userId}', [ConceptController::class, 'saveDigitalAsignatureEnglishDecimo'])->name('save.digitalAsignatureEnglishDecimo');
+    Route::post('/save-digital-assignature-psicoorientador/{userId}', [ConceptController::class, 'saveDigitalAsignaturePsicoorientador'])->name('save.digitalAsignaturePsicoorientador');
+    Route::post('/save-digital-assignature-coordinador-academico/{userId}', [ConceptController::class, 'saveDigitalAsignatureCoordinadorAcademico'])->name('save.digitalAsignatureCoordinadorAcademico');
+    Route::post('/save-digital-assignature-coordinador-convivencia/{userId}', [ConceptController::class, 'saveDigitalAsignatureCoordinadorConvivencia'])->name('save.digitalAsignatureCoordinadorConvivencia');
+    Route::post('/save-digital-assignature-rector/{userId}', [ConceptController::class, 'saveDigitalAsignatureRector'])->name('save.digitalAsignatureRector');
 
     //---------------- Editar conceptos --------------
     Route::put('/edit-concept-spanish/{userId}', [ConceptController::class, 'saveUpdateObservationsDocenteSpanish'])->name('update.concepSpanishForRector');

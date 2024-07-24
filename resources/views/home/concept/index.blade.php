@@ -267,6 +267,13 @@
                                                         <i class="fas fa-eye text-sm"></i>
                                                     </button>
                                                 @endif
+                                                @if (Auth::user()->hasRole('Docente') && auth()->user()->asignature == 'math')
+                                                    <button
+                                                        onclick="openDigitalAsignatureMathDecimo('{{ $user['id'] }}')"
+                                                        class="bg-green-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                        <i class="fas fa-pen text-sm"></i>
+                                                    </button> 
+                                                @endif
                                             @endif
                                         @else
                                             @if(auth()->check() && auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'math')
@@ -331,6 +338,13 @@
                                                         class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
                                                         <i class="fas fa-eye text-sm"></i>
                                                     </button>
+                                                @endif
+                                                @if (Auth::user()->hasRole('Docente') && auth()->user()->asignature == 'english')
+                                                    <button
+                                                        onclick="openDigitalAsignatureEnglishDecimo('{{ $user['id'] }}')"
+                                                        class="bg-green-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                        <i class="fas fa-pen text-sm"></i>
+                                                    </button> 
                                                 @endif
                                             @endif
                                         @else
@@ -401,6 +415,13 @@
                                                         <i class="fas fa-eye text-sm"></i>
                                                     </button>
                                                 @endif
+                                                @if (Auth::user()->hasRole('Psicoorientador'))
+                                                    <button
+                                                        onclick="openDigitalAsignaturePsicoorientador('{{ $user['id'] }}')"
+                                                        class="bg-green-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                        <i class="fas fa-pen text-sm"></i>
+                                                    </button> 
+                                                @endif
                                             @endif
                                         @else
 
@@ -469,6 +490,13 @@
                                                         <i class="fas fa-eye text-sm"></i>
                                                     </button>
                                                 @endif
+                                                @if (Auth::user()->hasRole('CoordinadorAcademico'))
+                                                    <button
+                                                        onclick="openDigitalAsignatureCoordinadorAcademico('{{ $user['id'] }}')"
+                                                        class="bg-green-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                        <i class="fas fa-pen text-sm"></i>
+                                                    </button> 
+                                                @endif
                                             @endif
                                         @else
 
@@ -533,6 +561,13 @@
                                                         class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
                                                         <i class="fas fa-eye text-sm"></i>
                                                     </button>
+                                                @endif
+                                                @if (Auth::user()->hasRole('CoordinadorConvivencia'))
+                                                    <button
+                                                        onclick="openDigitalAsignatureCoordinadorConvivencia('{{ $user['id'] }}')"
+                                                        class="bg-green-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                        <i class="fas fa-pen text-sm"></i>
+                                                    </button> 
                                                 @endif
                                             @endif
                                         @else
@@ -599,6 +634,13 @@
                                                         class="bg-gray-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
                                                         <i class="fas fa-eye text-sm"></i>
                                                     </button>
+                                                @endif
+                                                @if (Auth::user()->hasRole('Rector'))
+                                                    <button
+                                                        onclick="openDigitalAsignatureRector('{{ $user['id'] }}')"
+                                                        class="bg-green-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
+                                                        <i class="fas fa-pen text-sm"></i>
+                                                    </button> 
                                                 @endif
                                             @endif
                                         @else
@@ -1479,7 +1521,7 @@
         </div>
     </div>
 
-    <!-- ************Aqui va la seccion de la firma digital spanish decimo **************** -->
+    <!-- ************Aqui va la seccion de la firma digital español decimo **************** -->
 
     <div id="section_signature_spanish_decimo" class="section_signature_spanish_decimo fixed inset-0 overflow-y-auto hidden">
         <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -1497,7 +1539,7 @@
                     <!-- Area para la Firma-->
                     @if (isset($user['name']))
                     <form id="digitalFormSpanish"
-                          action="{{ route('save.digitalAsignature', ['userId' => ':userId']) }}"
+                          action="{{ route('save.digitalAsignatureSpanishDecimo', ['userId' => ':userId']) }}"
                           method="POST"
                           enctype="multipart/form-data">
                         @csrf
@@ -1519,6 +1561,250 @@
     </div>
 
     <!-- ******************************************************************* -->
+
+    <!-- ************ Aqui va la seccion de la firma digital matematicas decimo **************** -->
+
+    <div id="section_signature_math_decimo" class="section_signature_math_decimo fixed inset-0 overflow-y-auto hidden">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Overlay semitransparente -->
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <!-- Contenido del modal -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div
+                class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full sm:max-w-lg">
+                <!-- Contenido del modal aquí -->
+                <div class="bg-gray-50 px-4 py-5 sm:p-6">
+                    <!-- Area para la Firma-->
+                    @if (isset($user['name']))
+                    <form id="digitalFormSpanish"
+                          action="{{ route('save.digitalAsignatureMathDecimo', ['userId' => ':userId']) }}"
+                          method="POST"
+                          enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" id="userIdInputDigitalMathDecimo" name="userId" value="">
+                        <input type="file" id="digital" name="digital">
+                        <button type="submit"
+                                class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-700 transition duration-300">
+                            Subir firma
+                        </button>
+                    </form>
+                    @endif
+                    <button onclick="closeDigitalAsignatureMathDecimo()"
+                        class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ******************************************************************* -->
+    <!-- ************ Aqui va la seccion de la firma digital ingles decimo **************** -->
+
+    <div id="section_signature_english_decimo" class="section_signature_english_decimo fixed inset-0 overflow-y-auto hidden">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Overlay semitransparente -->
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <!-- Contenido del modal -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div
+                class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full sm:max-w-lg">
+                <!-- Contenido del modal aquí -->
+                <div class="bg-gray-50 px-4 py-5 sm:p-6">
+                    <!-- Area para la Firma-->
+                    @if (isset($user['name']))
+                    <form id="digitalFormSpanish"
+                          action="{{ route('save.digitalAsignatureEnglishDecimo', ['userId' => ':userId']) }}"
+                          method="POST"
+                          enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" id="userIdInputDigitalEnglishDecimo" name="userId" value="">
+                        <input type="file" id="digital" name="digital">
+                        <button type="submit"
+                                class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-700 transition duration-300">
+                            Subir firma
+                        </button>
+                    </form>
+                    @endif
+                    <button onclick="closeDigitalAsignatureEnglishDecimo()"
+                        class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ******************************************************************* -->
+
+    <!-- ************ Aqui va la seccion de la firma digital psicoorientador **************** -->
+
+    <div id="section_signature_psicoorientador" class="section_signature_psicoorientador fixed inset-0 overflow-y-auto hidden">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Overlay semitransparente -->
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <!-- Contenido del modal -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div
+                class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full sm:max-w-lg">
+                <!-- Contenido del modal aquí -->
+                <div class="bg-gray-50 px-4 py-5 sm:p-6">
+                    <!-- Area para la Firma-->
+                    @if (isset($user['name']))
+                    <form id="digitalFormSpanish"
+                          action="{{ route('save.digitalAsignaturePsicoorientador', ['userId' => ':userId']) }}"
+                          method="POST"
+                          enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" id="userIdInputDigitalPsicoorientador" name="userId" value="">
+                        <input type="file" id="digital" name="digital">
+                        <button type="submit"
+                                class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-700 transition duration-300">
+                            Subir firma
+                        </button>
+                    </form>
+                    @endif
+                    <button onclick="closeDigitalAsignaturePsicoorientador()"
+                        class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ******************************************************************* -->
+    <!-- ************ Aqui va la seccion de la firma digital coordinador academico **************** -->
+
+    <div id="section_signature_coordinador_academico" class="section_signature_coordinador_academico fixed inset-0 overflow-y-auto hidden">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Overlay semitransparente -->
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <!-- Contenido del modal -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div
+                class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full sm:max-w-lg">
+                <!-- Contenido del modal aquí -->
+                <div class="bg-gray-50 px-4 py-5 sm:p-6">
+                    <!-- Area para la Firma-->
+                    @if (isset($user['name']))
+                    <form id="digitalFormSpanish"
+                          action="{{ route('save.digitalAsignatureCoordinadorAcademico', ['userId' => ':userId']) }}"
+                          method="POST"
+                          enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" id="userIdInputDigitalCoordinadorAcademico" name="userId" value="">
+                        <input type="file" id="digital" name="digital">
+                        <button type="submit"
+                                class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-700 transition duration-300">
+                            Subir firma
+                        </button>
+                    </form>
+                    @endif
+                    <button onclick="closeDigitalAsignatureCoordinadorAcademico()"
+                        class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ******************************************************************* -->
+    <!-- ************ Aqui va la seccion de la firma digital coordinador conviviencia **************** -->
+
+    <div id="section_signature_coordinador_convivencia" class="section_signature_coordinador_convivencia fixed inset-0 overflow-y-auto hidden">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Overlay semitransparente -->
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <!-- Contenido del modal -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div
+                class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full sm:max-w-lg">
+                <!-- Contenido del modal aquí -->
+                <div class="bg-gray-50 px-4 py-5 sm:p-6">
+                    <!-- Area para la Firma-->
+                    @if (isset($user['name']))
+                    <form id="digitalFormSpanish"
+                          action="{{ route('save.digitalAsignatureCoordinadorConvivencia', ['userId' => ':userId']) }}"
+                          method="POST"
+                          enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" id="userIdInputDigitalCoordinadorConvivencia" name="userId" value="">
+                        <input type="file" id="digital" name="digital">
+                        <button type="submit"
+                                class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-700 transition duration-300">
+                            Subir firma
+                        </button>
+                    </form>
+                    @endif
+                    <button onclick="closeDigitalAsignatureCoordinadorConvivencia()"
+                        class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ******************************************************************* -->
+
+    <!-- ************ Aqui va la seccion de la firma digital rector **************** -->
+
+    <div id="section_signature_rector" class="section_signature_rector fixed inset-0 overflow-y-auto hidden">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Overlay semitransparente -->
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <!-- Contenido del modal -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div
+                class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full sm:max-w-lg">
+                <!-- Contenido del modal aquí -->
+                <div class="bg-gray-50 px-4 py-5 sm:p-6">
+                    <!-- Area para la Firma-->
+                    @if (isset($user['name']))
+                    <form id="digitalFormSpanish"
+                          action="{{ route('save.digitalAsignatureRector', ['userId' => ':userId']) }}"
+                          method="POST"
+                          enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" id="userIdInputDigitalRector" name="userId" value="">
+                        <input type="file" id="digital" name="digital">
+                        <button type="submit"
+                                class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-700 transition duration-300">
+                            Subir firma
+                        </button>
+                    </form>
+                    @endif
+                    <button onclick="closeDigitalAsignatureRector()"
+                        class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ******************************************************************* -->
+
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -1918,5 +2204,160 @@
         }
     </script>
 
-@endsection
+    <!-- espacio apartado para realizar la firma digital de matematicas para los de grado decimo-->
+    <script>
+        function openDigitalAsignatureMathDecimo(userId) {
+            // console.log('Opening digital signature for user ID:', userId);
+            let section_signature_math_decimo = document.getElementById('section_signature_math_decimo');
+            section_signature_math_decimo.classList.remove('hidden');
 
+            let userIdInput = document.getElementById('userIdInputDigitalMathDecimo');
+            userIdInput.value = userId;
+            // console.log('User ID input value:', userIdInput.value);
+
+            let form = document.getElementById('digitalFormSpanish');
+            let formAction = form.getAttribute('action');
+            // console.log('Form action before replacement:', formAction);
+            // Reemplaza ':userId' con el 'userId' real
+            formAction = formAction.replace(':userId', userId);
+            // console.log('Form action after replacement:', formAction);
+            form.setAttribute('action', formAction);
+        }
+
+        function closeDigitalAsignatureMathDecimo() {
+            let section_signature_math_decimo = document.getElementById('section_signature_math_decimo');
+            section_signature_math_decimo.classList.add('hidden');
+        }
+    </script>
+
+    <!-- espacio apartado para realizar la firma digital de ingles para los de grado decimo-->
+    <script>
+        function openDigitalAsignatureEnglishDecimo(userId) {
+            // console.log('Opening digital signature for user ID:', userId);
+            let section_signature_english_decimo = document.getElementById('section_signature_english_decimo');
+            section_signature_english_decimo.classList.remove('hidden');
+
+            let userIdInput = document.getElementById('userIdInputDigitalEnglishDecimo');
+            userIdInput.value = userId;
+            // console.log('User ID input value:', userIdInput.value);
+
+            let form = document.getElementById('digitalFormSpanish');
+            let formAction = form.getAttribute('action');
+            // console.log('Form action before replacement:', formAction);
+            // Reemplaza ':userId' con el 'userId' real
+            formAction = formAction.replace(':userId', userId);
+            // console.log('Form action after replacement:', formAction);
+            form.setAttribute('action', formAction);
+        }
+
+        function closeDigitalAsignatureEnglishDecimo() {
+            let section_signature_english_decimo = document.getElementById('section_signature_english_decimo');
+            section_signature_english_decimo.classList.add('hidden');
+        }
+    </script>
+
+    <!-- espacio apartado para realizar la firma digital de psicoorientador-->
+    <script>
+        function openDigitalAsignaturePsicoorientador(userId) {
+            // console.log('Opening digital signature for user ID:', userId);
+            let section_signature_psicoorientador = document.getElementById('section_signature_psicoorientador');
+            section_signature_psicoorientador.classList.remove('hidden');
+
+            let userIdInput = document.getElementById('userIdInputDigitalPsicoorientador');
+            userIdInput.value = userId;
+            // console.log('User ID input value:', userIdInput.value);
+
+            let form = document.getElementById('digitalFormSpanish');
+            let formAction = form.getAttribute('action');
+            // console.log('Form action before replacement:', formAction);
+            // Reemplaza ':userId' con el 'userId' real
+            formAction = formAction.replace(':userId', userId);
+            // console.log('Form action after replacement:', formAction);
+            form.setAttribute('action', formAction);
+        }
+
+        function closeDigitalAsignaturePsicoorientador() {
+            let section_signature_psicoorientador = document.getElementById('section_signature_psicoorientador');
+            section_signature_psicoorientador.classList.add('hidden');
+        }
+    </script>
+
+    <!-- espacio apartado para realizar la firma digital de coordinador academico-->
+    <script>
+        function openDigitalAsignatureCoordinadorAcademico(userId) {
+            // console.log('Opening digital signature for user ID:', userId);
+            let section_signature_coordinador_academico = document.getElementById('section_signature_coordinador_academico');
+            section_signature_coordinador_academico.classList.remove('hidden');
+
+            let userIdInput = document.getElementById('userIdInputDigitalCoordinadorAcademico');
+            userIdInput.value = userId;
+            // console.log('User ID input value:', userIdInput.value);
+
+            let form = document.getElementById('digitalFormSpanish');
+            let formAction = form.getAttribute('action');
+            // console.log('Form action before replacement:', formAction);
+            // Reemplaza ':userId' con el 'userId' real
+            formAction = formAction.replace(':userId', userId);
+            // console.log('Form action after replacement:', formAction);
+            form.setAttribute('action', formAction);
+        }
+
+        function closeDigitalAsignatureCoordinadorAcademico() {
+            let section_signature_coordinador_academico = document.getElementById('section_signature_coordinador_academico');
+            section_signature_coordinador_academico.classList.add('hidden');
+        }
+    </script>
+
+    <!-- espacio apartado para realizar la firma digital de coordinador convivencia-->
+    <script>
+        function openDigitalAsignatureCoordinadorConvivencia(userId) {
+            // console.log('Opening digital signature for user ID:', userId);
+            let section_signature_coordinador_convivencia = document.getElementById('section_signature_coordinador_convivencia');
+            section_signature_coordinador_convivencia.classList.remove('hidden');
+
+            let userIdInput = document.getElementById('userIdInputDigitalCoordinadorConvivencia');
+            userIdInput.value = userId;
+            // console.log('User ID input value:', userIdInput.value);
+
+            let form = document.getElementById('digitalFormSpanish');
+            let formAction = form.getAttribute('action');
+            // console.log('Form action before replacement:', formAction);
+            // Reemplaza ':userId' con el 'userId' real
+            formAction = formAction.replace(':userId', userId);
+            // console.log('Form action after replacement:', formAction);
+            form.setAttribute('action', formAction);
+        }
+
+        function closeDigitalAsignatureCoordinadorConvivencia() {
+            let section_signature_coordinador_convivencia = document.getElementById('section_signature_coordinador_convivencia');
+            section_signature_coordinador_convivencia.classList.add('hidden');
+        }
+    </script>
+
+    <!-- espacio apartado para realizar la firma digital rector -->
+    <script>
+        function openDigitalAsignatureRector(userId) {
+            // console.log('Opening digital signature for user ID:', userId);
+            let section_signature_rector = document.getElementById('section_signature_rector');
+            section_signature_rector.classList.remove('hidden');
+
+            let userIdInput = document.getElementById('userIdInputDigitalRector');
+            userIdInput.value = userId;
+            // console.log('User ID input value:', userIdInput.value);
+
+            let form = document.getElementById('digitalFormSpanish');
+            let formAction = form.getAttribute('action');
+            // console.log('Form action before replacement:', formAction);
+            // Reemplaza ':userId' con el 'userId' real
+            formAction = formAction.replace(':userId', userId);
+            // console.log('Form action after replacement:', formAction);
+            form.setAttribute('action', formAction);
+        }
+
+        function closeDigitalAsignatureRector() {
+            let section_signature_rector = document.getElementById('section_signature_rector');
+            section_signature_rector.classList.add('hidden');
+        }
+    </script>
+
+@endsection

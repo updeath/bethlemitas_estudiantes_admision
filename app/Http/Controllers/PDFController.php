@@ -229,6 +229,10 @@ class PDFController extends Controller
             'observation2' => $observation2,
             'observation3' => $observation3,
             'observation4' => $observation4,
+            'signaturePsicoorientador' => $observations->signature_image_psicoorientador,
+            'signatureAcademico' => $observations->signature_image_coordinador_academico,
+            'signatureConvivencia' => $observations->signature_image_coordinador_convivencia,
+            'signatureRector' => $observations->signature_image_rector,
         ];
 
         $filename = 'generatePdf/Aspirante_' . $user->name . '.pdf';
@@ -256,6 +260,8 @@ class PDFController extends Controller
             'observation2' => $observationDocenteMath,
             'observation3' => $observationDocenteEnglish,
             'signatureSpanish10' => $observations->signature_image_spanish_decimo,
+            'signatureMath10' => $observations->signature_image_math_decimo,
+            'signatureEnglish10' => $observations->signature_image_english_decimo,
         ];
 
         // Generar HTML para la segunda página

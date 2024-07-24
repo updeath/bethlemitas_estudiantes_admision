@@ -152,7 +152,13 @@
                 <td><p style="white-space: pre-line; ">{!! nl2br(implode("\n", $observation2)) !!}</p></td>
             </tr>
             <tr class="fila2">
-                <td><br><br>Firma: </td>
+                <td><br><br>Firma: 
+                    @if($signatureMath10)
+                        <img src="{{ public_path('img/digital/' . $signatureMath10) }}" class="signature-image" alt="Firma del Docente de Matematicas">
+                    @else
+                        Sin firma
+                    @endif
+                </td>
             </tr>
         </table>
 
@@ -169,7 +175,13 @@
                 <td><p style="white-space: pre-line; ">{!! nl2br(implode("\n", $observation3)) !!}</p></td>
             </tr>
             <tr class="fila2">
-                <td><br><br>Firma: </td>
+                <td><br><br>Firma: 
+                    @if($signatureEnglish10)
+                        <img src="{{ public_path('img/digital/' .$signatureEnglish10) }}" class="signature-image" alt="Firma del Docente de Ingles">
+                    @else
+                        Sin firma
+                    @endif
+                </td>
             </tr>
         </table>
 
