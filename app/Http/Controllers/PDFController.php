@@ -255,7 +255,7 @@ class PDFController extends Controller
             'observation' => $observationDocenteSpanish,
             'observation2' => $observationDocenteMath,
             'observation3' => $observationDocenteEnglish,
-            'signatureSpanish10' => $observations->signature_image,
+            'signatureSpanish10' => $observations->signature_image_spanish_decimo,
         ];
 
         // Generar HTML para la segunda página

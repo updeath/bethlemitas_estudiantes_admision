@@ -198,7 +198,7 @@
                                                 @endif
                                                 @if (Auth::user()->hasRole('Docente') && auth()->user()->asignature == 'spanish')
                                                     <button
-                                                        onclick="openDigitalAsignature('{{ $user['id'] }}')"
+                                                        onclick="openDigitalAsignatureSpanishDecimo('{{ $user['id'] }}')"
                                                         class="bg-green-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
                                                         <i class="fas fa-pen text-sm"></i>
                                                     </button> 
@@ -1479,9 +1479,9 @@
         </div>
     </div>
 
-    <!-- ************Aqui va la seccion de la firma digital **************** -->
+    <!-- ************Aqui va la seccion de la firma digital spanish decimo **************** -->
 
-    <div id="section_signature" class="section_signature fixed inset-0 overflow-y-auto hidden">
+    <div id="section_signature_spanish_decimo" class="section_signature_spanish_decimo fixed inset-0 overflow-y-auto hidden">
         <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
             <!-- Overlay semitransparente -->
             <div class="fixed inset-0 transition-opacity" aria-hidden="true">
@@ -1501,7 +1501,7 @@
                           method="POST"
                           enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" id="userIdInputDigitalSpanish" name="userId" value="">
+                        <input type="hidden" id="userIdInputDigitalSpanishDecimo" name="userId" value="">
                         <input type="file" id="digital" name="digital">
                         <button type="submit"
                                 class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-700 transition duration-300">
@@ -1509,7 +1509,7 @@
                         </button>
                     </form>
                     @endif
-                    <button onclick="closeDigitalAsignature()"
+                    <button onclick="closeDigitalAsignatureSpanishDecimo()"
                         class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 active:bg-gray-100 transition duration-300 mr-2">
                         Cancelar
                     </button>
@@ -1892,14 +1892,14 @@
         }
     </script>
 
-    <!-- espacio apartado para realizar la firma digital-->
+    <!-- espacio apartado para realizar la firma digital de español para los de grado decimo-->
     <script>
-        function openDigitalAsignature(userId) {
+        function openDigitalAsignatureSpanishDecimo(userId) {
             // console.log('Opening digital signature for user ID:', userId);
-            let section_signature = document.getElementById('section_signature');
-            section_signature.classList.remove('hidden');
+            let section_signature_spanish_decimo = document.getElementById('section_signature_spanish_decimo');
+            section_signature_spanish_decimo.classList.remove('hidden');
 
-            let userIdInput = document.getElementById('userIdInputDigitalSpanish');
+            let userIdInput = document.getElementById('userIdInputDigitalSpanishDecimo');
             userIdInput.value = userId;
             // console.log('User ID input value:', userIdInput.value);
 
@@ -1912,9 +1912,9 @@
             form.setAttribute('action', formAction);
         }
 
-        function closeDigitalAsignature() {
-            let section_signature = document.getElementById('section_signature');
-            section_signature.classList.add('hidden');
+        function closeDigitalAsignatureSpanishDecimo() {
+            let section_signature_spanish_decimo = document.getElementById('section_signature_spanish_decimo');
+            section_signature_spanish_decimo.classList.add('hidden');
         }
     </script>
 

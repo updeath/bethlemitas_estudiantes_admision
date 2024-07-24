@@ -687,7 +687,7 @@ class ConceptController extends Controller
            //crear o actualizar el registro en la tabla concepts
            $concept = Concept::updateOrCreate(
                ['user_id' => $userId],
-               ['signature_image' => $imageName]
+               ['signature_image_spanish_decimo' => $imageName]
            );
            return redirect()->back()->with('success', 'Firma subida correctamente');
        }

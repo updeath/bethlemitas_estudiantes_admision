@@ -17,7 +17,7 @@ class Concept extends Model
         'ObservationAcademico',
         'ObservationConvivencia',
         'ObservationRector',
-        'signature_image'
+        'signature_image_spanish_decimo'
     ];
 
     public function user()
