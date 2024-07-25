@@ -172,6 +172,7 @@ class UserController extends Controller
             'name' => 'name',
             'last_name' => 'last_name',
             'degree' => 'degree', 
+            'asignature' => 'asignature',
             'email' => 'email',
             'number_documment' => 'number_documment',
             'typeDocumment' => 'typeDocumment',
