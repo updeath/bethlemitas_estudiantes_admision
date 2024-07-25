@@ -72,7 +72,7 @@
                             <div class="text-sm font-bold text-gray-700 tracking-wide">Correo electronico</div>
                             <input id="email" name="email" value="{{ session('email') }}"
                                 class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-yellow-500"
-                                type="" placeholder="test@bethlemitaspereira.edu.co">
+                                type="email" placeholder="test@bethlemitaspereira.edu.co">
                             @if ($errors->has('email'))
                                 <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Correo
                                         incorrecto</span></p>

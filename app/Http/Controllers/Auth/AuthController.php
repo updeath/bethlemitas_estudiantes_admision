@@ -123,7 +123,6 @@ class AuthController extends Controller
         ->delete();
 
         $expiration = Carbon::now()->addMinutes(10); // Caduca en 10 minutos
-
         $tokenValidar = Str::random(60);
 
         DB::table('password_reset_tokens')->insert([
@@ -135,11 +134,16 @@ class AuthController extends Controller
 
         $consultaToken = DB::table('password_reset_tokens')->where('email', $request->email)->value('token');
 
-        Mail::send('auth.verify', ['token' => $consultaToken], function ($message) use ($request) {
-            $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
-                ->to($request->email)
-                ->subject('Restablecer contraseña en la plataforma bethlemitas');
-        });
+        try {
+            Mail::send('auth.verify', ['token' => $consultaToken], function ($message) use ($request) {
+                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                    ->to($request->email)
+                    ->subject('Restablecer contraseña en la plataforma bethlemitas');
+            });
+        } catch (\Exception $e) {
+            // Log::error('Error al enviar el correo: ' . $e->getMessage());
+            return back()->with('error', 'Hubo un problema al enviar el correo. Inténtalo de nuevo más tarde.');
+        }
 
         return back()->with('message', 'Se ha enviado un correo para restablecer su contraseña. Este enlace caducará en 10 minutos.');
     }
