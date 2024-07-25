@@ -45,6 +45,8 @@ class AuthController extends Controller
     public function logout() {
         Auth::logout();
         Session::flush();
+        // Regenerar la sesión para prevenir el uso de la sesión antigua
+        Session::regenerate(true);
         return redirect()->route('login')->with('success', 'Sesión cerrada correctamente');
     }
 

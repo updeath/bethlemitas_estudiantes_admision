@@ -77,7 +77,9 @@ class UserController extends Controller
             $query->where(function ($q) use ($searchTerm) {
                 $q->where('name', 'LIKE', '%' . $searchTerm . '%')
                     ->orWhere('last_name', 'LIKE', '%' . $searchTerm . '%')
-                    ->orWhere('email', 'LIKE', '%' . $searchTerm . '%');
+                    ->orWhere('email', 'LIKE', '%' . $searchTerm . '%')
+                    ->orWhere('number_documment', 'LIKE', '%' . $searchTerm . '%')
+                    ->orWhereRaw("CONCAT(name, ' ', last_name) LIKE ?", ['%' . $searchTerm . '%']);
             });
         }
 
@@ -160,7 +162,7 @@ class UserController extends Controller
             'typeDocumment' => 'required|in:TI,CC,NUIP',
             'iphone' => 'required|numeric',
             'status' => 'required|in:Activo,Bloqueado',
-            'password' => 'required',
+            'password' => 'required|min:6',
             'roles' => 'required|array|min:1',
             'roles.*' => 'exists:roles,id',
 
@@ -214,24 +216,36 @@ class UserController extends Controller
         $user = Auth::user(); // Obtiene los datos del usuario logueado
 
         // Validacion de los datos
-        $request->validate([
-            'name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required|email|unique:users,email,' . $user->id,
-            'number_documment' => 'required|digits_between:1,20|unique:users,number_documment,' . $user->id,
-            'typeDocumment' => 'required|in:TI,CC,NUIP',
-            'iphone' => 'required|numeric',
-            'password' => 'required|min:6',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
-        ]);
+        if (!Auth::user()->hasRole('Admin')) {
+            $request->validate([
+                'email' => 'required|email|unique:users,email,' . $user->id,
+                'iphone' => 'required|numeric',
+                'password' => 'required|min:6'
+            ]);
 
-        $user->name = $request->name;
-        $user->last_name = $request->last_name;
-        $user->email = $request->email;
-        $user->number_documment = $request->number_documment;
-        $user->typeDocumment = $request->typeDocumment;
-        $user->iphone = $request->iphone;
-        $user->password = $request->password;
+            $user->email = $request->email;
+            $user->iphone = $request->iphone;
+            $user->password = $request->password;
+        } else {
+            $request->validate([
+                'name' => 'required',
+                'last_name' => 'required',
+                'email' => 'required|email|unique:users,email,' . $user->id,
+                'number_documment' => 'required|digits_between:1,20|unique:users,number_documment,' . $user->id,
+                'typeDocumment' => 'required|in:TI,CC,NUIP',
+                'iphone' => 'required|numeric',
+                'password' => 'required|min:6',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+            ]);
+
+            $user->name = $request->name;
+            $user->last_name = $request->last_name;
+            $user->email = $request->email;
+            $user->number_documment = $request->number_documment;
+            $user->typeDocumment = $request->typeDocumment;
+            $user->iphone = $request->iphone;
+            $user->password = $request->password;
+        }
 
         // Validar la foto
         if ($request->hasFile('image')) {
