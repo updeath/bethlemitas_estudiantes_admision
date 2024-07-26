@@ -194,28 +194,28 @@
                         <div x-show="subMenu" class="ml-6">
                             
 
-                                @if((auth()->user()->hasRole('Aspirante') && auth()->user()->degree == '4') || 
+                                @if((auth()->user()->hasRole('Aspirante') && auth()->user()->degree == '4°') || 
                                 (auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'math') ||
                                 auth()->user()->hasRole(['Admin', 'Rector', 'CoordinadorAcademico', 'CoordinadorConvivencia']))
                                     <a x-show="selectedOption === 'Matematicas'" href="{{ route('form.create.math4') }}"
                                         class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 4°</a>
                                 @endif
 
-                                @if((auth()->user()->hasRole('Aspirante') && auth()->user()->degree == '5') || 
+                                @if((auth()->user()->hasRole('Aspirante') && auth()->user()->degree == '5°') || 
                                 (auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'math') ||
                                 auth()->user()->hasRole(['Admin', 'Rector', 'CoordinadorAcademico' , 'CoordinadorConvivencia']))
                                     <a x-show="selectedOption === 'Matematicas'" href="{{ route('form.create.math5') }}"
                                     class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 5°</a>
                                 @endif
 
-                                @if((auth()->user()->hasRole('Aspirante') && auth()->user()->degree == '6') || 
+                                @if((auth()->user()->hasRole('Aspirante') && auth()->user()->degree == '6°') || 
                                 (auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'math') ||
                                 auth()->user()->hasRole(['Admin', 'Rector', 'CoordinadorAcademico' , 'CoordinadorConvivencia']))
                                     <a x-show="selectedOption === 'Matematicas'" href="{{ route('form.create.math6') }}"
                                     class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 6°</a>
                                 @endif
 
-                                @if((auth()->user()->hasRole('Aspirante') && auth()->user()->degree == '7') || 
+                                @if((auth()->user()->hasRole('Aspirante') && auth()->user()->degree == '7°') || 
                                 (auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'math') ||
                                 auth()->user()->hasRole(['Admin', 'Rector', 'CoordinadorAcademico' , 'CoordinadorConvivencia']))
                                     <a x-show="selectedOption === 'Matematicas'" href="{{ route('form.create.math7') }}"
@@ -223,21 +223,21 @@
                                     Grado 7°</a>
                                 @endif
 
-                                @if((auth()->user()->hasRole('Aspirante') && auth()->user()->degree == '8') || 
+                                @if((auth()->user()->hasRole('Aspirante') && auth()->user()->degree == '8°') || 
                                 (auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'math') ||
                                 auth()->user()->hasRole(['Admin', 'Rector', 'CoordinadorAcademico' , 'CoordinadorConvivencia']))
                                 <a x-show="selectedOption === 'Matematicas'" href="{{ route('form.create.math8') }}"
                                     class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 8°</a>
                                 @endif
 
-                                @if((auth()->user()->hasRole('Aspirante') && auth()->user()->degree == '9') || 
+                                @if((auth()->user()->hasRole('Aspirante') && auth()->user()->degree == '9°') || 
                                 (auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'math') ||
                                 auth()->user()->hasRole(['Admin', 'Rector', 'CoordinadorAcademico' , 'CoordinadorConvivencia']))
                                     <a x-show="selectedOption === 'Matematicas'" href="{{ route('form.create.math9') }}"
                                     class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 9°</a>
                                 @endif
 
-                                @if((auth()->user()->hasRole('Aspirante') && auth()->user()->degree == '10') || 
+                                @if((auth()->user()->hasRole('Aspirante') && auth()->user()->degree == '10°') || 
                                 (auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'math') ||
                                 auth()->user()->hasRole(['Admin', 'Rector', 'CoordinadorAcademico' , 'CoordinadorConvivencia']))
                                     <a x-show="selectedOption === 'Matematicas'" href="{{ route('form.create.math10') }}"
@@ -256,49 +256,49 @@
                         @endif 
                         <div x-show="subMenu" class="ml-6">
 
-                            @if((auth()->user()->hasRole('Aspirante') && auth()->user()->degree == '4') || 
+                            @if((auth()->user()->hasRole('Aspirante') && auth()->user()->degree == '4°') || 
                             (auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'spanish') ||
                             auth()->user()->hasRole(['Admin', 'Rector', 'CoordinadorAcademico' , 'CoordinadorConvivencia']))
                                 <a x-show="selectedOption === 'Español'" href="{{ route('form.create.spanish4') }}"
                                     class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 4°</a>
                             @endif 
 
-                            @if((auth()->user()->hasRole('Aspirante') && auth()->user()->degree == '5') || 
+                            @if((auth()->user()->hasRole('Aspirante') && auth()->user()->degree == '5°') || 
                             (auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'spanish') ||
                             auth()->user()->hasRole(['Admin', 'Rector', 'CoordinadorAcademico' , 'CoordinadorConvivencia']))
                                 <a x-show="selectedOption === 'Español'" href="{{ route('form.create.spanish5') }}"
                                     class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 5°</a>
                             @endif 
 
-                            @if((auth()->user()->hasRole('Aspirante') && auth()->user()->degree == '6') || 
+                            @if((auth()->user()->hasRole('Aspirante') && auth()->user()->degree == '6°') || 
                             (auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'spanish') ||
                             auth()->user()->hasRole(['Admin', 'Rector', 'CoordinadorAcademico' , 'CoordinadorConvivencia']))
                                 <a x-show="selectedOption === 'Español'" href="{{ route('form.create.spanish6') }}"
                                     class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 6°</a>
                             @endif 
 
-                            @if((auth()->user()->hasRole('Aspirante') && auth()->user()->degree == '7') || 
+                            @if((auth()->user()->hasRole('Aspirante') && auth()->user()->degree == '7°') || 
                             (auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'spanish') ||
                             auth()->user()->hasRole(['Admin', 'Rector', 'CoordinadorAcademico' , 'CoordinadorConvivencia']))
                                 <a x-show="selectedOption === 'Español'" href="{{ route('form.create.spanish7') }}"
                                     class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 7°</a>
                             @endif 
                         
-                            @if((auth()->user()->hasRole('Aspirante') && auth()->user()->degree == '8') || 
+                            @if((auth()->user()->hasRole('Aspirante') && auth()->user()->degree == '8°') || 
                             (auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'spanish') ||
                             auth()->user()->hasRole(['Admin', 'Rector', 'CoordinadorAcademico' , 'CoordinadorConvivencia']))
                                 <a x-show="selectedOption === 'Español'" href="{{ route('form.create.spanish8') }}"
                                     class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 8°</a>
                             @endif 
 
-                            @if((auth()->user()->hasRole('Aspirante') && auth()->user()->degree == '9') || 
+                            @if((auth()->user()->hasRole('Aspirante') && auth()->user()->degree == '9°') || 
                             (auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'spanish') ||
                             auth()->user()->hasRole(['Admin', 'Rector', 'CoordinadorAcademico' , 'CoordinadorConvivencia']))
                             <a x-show="selectedOption === 'Español'" href="{{ route('form.create.spanish9') }}"
                                 class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 9°</a>
                             @endif 
                                 
-                            @if((auth()->user()->hasRole('Aspirante') && auth()->user()->degree == '10') || 
+                            @if((auth()->user()->hasRole('Aspirante') && auth()->user()->degree == '10°') || 
                             (auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'spanish') ||
                             auth()->user()->hasRole(['Admin', 'Rector', 'CoordinadorAcademico' , 'CoordinadorConvivencia']))
                             <a x-show="selectedOption === 'Español'" href="{{ route('form.create.spanish10') }}"

@@ -89,41 +89,41 @@ class ConceptController extends Controller
                 $promedios['admin_data'][$user->id]['observacionConvivencia'] = $observaciones['convivencia'];
                 $promedios['admin_data'][$user->id]['observacionPredeterminadaPresenteConvivencia'] = $observaciones['convivencia'] === null;
 
-                if ($user->degree == 4) {
+                if ($user->degree == '4°') {
                     $promedios['admin_data'][$user->id]['mathCuarto'] = MathCuarto::where('user_id', $user->id)->pluck('average')->first();
                     $promedios['admin_data'][$user->id]['spanishCuarto'] = SpanishCuarto::where('user_id', $user->id)->pluck('averageSpanishPC')->first();
                     $promedios['admin_data'][$user->id]['englishCuarto'] = EnglishCuartoQuinto::where('user_id', $user->id)->pluck('average')->first();
                     $promedios['admin_data'][$user->id]['englishCuartoPart2'] = EnglishCQpart2::where('user_id', $user->id)->pluck('average')->first();
-                } elseif ($user->degree == 3) {
+                } elseif ($user->degree == '3°') {
                     $promedios['admin_data'][$user->id]['englishTercero'] = EnglishCuartoQuinto::where('user_id', $user->id)->pluck('average')->first();
                     $promedios['admin_data'][$user->id]['englishTerceroPart2'] = EnglishCQpart2::where('user_id', $user->id)->pluck('average')->first();
-                } elseif ($user->degree == 5) {
+                } elseif ($user->degree == '5°') {
                     $promedios['admin_data'][$user->id]['mathQuinto'] = MathQuinto::where('user_id', $user->id)->pluck('averagePQ')->first();
                     $promedios['admin_data'][$user->id]['spanishQuinto'] = SpanishQuinto::where('user_id', $user->id)->pluck('averageSpanishPQ')->first();
                     $promedios['admin_data'][$user->id]['englishQuinto'] = EnglishQuintoSexto::where('user_id', $user->id)->pluck('average')->first();
                     $promedios['admin_data'][$user->id]['englishQuintoPart2'] = EnglishQuintoSextoPart2::where('user_id', $user->id)->pluck('average')->first();
-                } elseif ($user->degree == 6) {
+                } elseif ($user->degree == '6°') {
                     $promedios['admin_data'][$user->id]['mathSexto'] = MathSexto::where('user_id', $user->id)->pluck('averagePSX')->first();
                     $promedios['admin_data'][$user->id]['spanishSexto'] = SpanishSexto::where('user_id', $user->id)->pluck('averageSpanishPSX')->first();
                     $promedios['admin_data'][$user->id]['englishSexto'] = EnglishQuintoSexto::where('user_id', $user->id)->pluck('average')->first();
                     $promedios['admin_data'][$user->id]['englishSextoPart2'] = EnglishQuintoSextoPart2::where('user_id', $user->id)->pluck('average')->first();
-                } elseif ($user->degree == 7) {
+                } elseif ($user->degree == '7°') {
                     $promedios['admin_data'][$user->id]['mathSeptimo'] = MathSeptimo::where('user_id', $user->id)->pluck('averagePS')->first();
                     $promedios['admin_data'][$user->id]['spanishSeptimo'] = SpanishSeptimo::where('user_id', $user->id)->pluck('averageSpanishPS')->first();
                     $promedios['admin_data'][$user->id]['englishSeptimo'] = EnglishSeptimoOctavo::where('user_id', $user->id)->pluck('average')->first();
                     $promedios['admin_data'][$user->id]['englishSeptimoPart2'] = EnglishSeptimoOctavoParte2::where('user_id', $user->id)->pluck('average')->first();
-                } elseif ($user->degree == 8) {
+                } elseif ($user->degree == '8°') {
                     $promedios['admin_data'][$user->id]['mathOctavo'] = MathOctavo::where('user_id', $user->id)->pluck('averagePO')->first();
                     $promedios['admin_data'][$user->id]['spanishOctavo'] = SpanishOctavo::where('user_id', $user->id)->pluck('averageSpanishPO')->first();
                     $promedios['admin_data'][$user->id]['englishOctavo'] = EnglishSeptimoOctavo::where('user_id', $user->id)->pluck('average')->first();
                     $promedios['admin_data'][$user->id]['englishOctavoPart2'] = EnglishSeptimoOctavoParte2::where('user_id', $user->id)->pluck('average')->first();
-                } elseif ($user->degree == 9) {
+                } elseif ($user->degree == '9°') {
                     $promedios['admin_data'][$user->id]['mathNoveno'] = MathNoveno::where('user_id', $user->id)->pluck('averagePNO')->first();
                     $promedios['admin_data'][$user->id]['spanishNoveno'] = SpanishNoveno::where('user_id', $user->id)->pluck('averageSpanishPNO')->first();
                     $promedios['admin_data'][$user->id]['englishNoveno'] = English9_10_11::where('user_id', $user->id)->pluck('average')->first();
                     $promedios['admin_data'][$user->id]['englishNoveno2'] = English9_10_11Part2::where('user_id', $user->id)->pluck('average')->first();
                     $promedios['admin_data'][$user->id]['englishNoveno3'] = English9_10_11_Part3::where('user_id', $user->id)->pluck('average')->first();
-                } elseif ($user->degree == 10) {
+                } elseif ($user->degree == '10°') {
                     $promedios['admin_data'][$user->id]['mathDecimo'] = MathDecimo::where('user_id', $user->id)->pluck('averagePD')->first();
                     $promedios['admin_data'][$user->id]['spanishDecimo'] = SpanishDecimo::where('user_id', $user->id)->pluck('averageSpanishPD')->first();
                     $promedios['admin_data'][$user->id]['englishDecimo'] = English9_10_11::where('user_id', $user->id)->pluck('average')->first();
