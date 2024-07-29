@@ -138,20 +138,28 @@
                                 @endif
 
                                 <div x-show="subMenu" class="ml-6">
-                                    <a x-show="selectedOption === 'Español'" href="{{ route('tables.spanish4') }}"
-                                        class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 4°</a>
-                                    <a x-show="selectedOption === 'Español'" href="{{ route('tables.spanish5') }}"
-                                        class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 5°</a>
-                                    <a x-show="selectedOption === 'Español'" href="{{ route('tables.spanish6') }}"
-                                        class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 6°</a>
-                                    <a x-show="selectedOption === 'Español'" href="{{ route('tables.spanish7') }}"
-                                        class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 7°</a>
-                                    <a x-show="selectedOption === 'Español'" href="{{ route('tables.spanish8') }}"
-                                        class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 8°</a>
-                                    <a x-show="selectedOption === 'Español'" href="{{ route('tables.spanish9') }}"
-                                        class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 9°</a>
-                                    <a x-show="selectedOption === 'Español'" href="{{ route('tables.spanish10') }}"
-                                        class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 10°</a>
+                                    @if (auth()->user()->load_degrees == '3°-4°')
+                                        <a x-show="selectedOption === 'Español'" href="{{ route('tables.spanish4') }}"
+                                            class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 4°</a>
+                                    @endif
+                                    @if (auth()->user()->load_degrees == '5°-6°-7°')
+                                        <a x-show="selectedOption === 'Español'" href="{{ route('tables.spanish5') }}"
+                                            class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 5°</a>
+                                        <a x-show="selectedOption === 'Español'" href="{{ route('tables.spanish6') }}"
+                                            class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 6°</a>
+                                        <a x-show="selectedOption === 'Español'" href="{{ route('tables.spanish7') }}"
+                                            class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 7°</a>
+                                    @endif
+                                    @if (auth()->user()->load_degrees == '8°-9°')
+                                        <a x-show="selectedOption === 'Español'" href="{{ route('tables.spanish8') }}"
+                                            class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 8°</a>
+                                        <a x-show="selectedOption === 'Español'" href="{{ route('tables.spanish9') }}"
+                                            class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 9°</a>
+                                    @endif
+                                    @if (auth()->user()->load_degrees == '10°')
+                                        <a x-show="selectedOption === 'Español'" href="{{ route('tables.spanish10') }}"
+                                            class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 10°</a>
+                                    @endif
                                 </div>
 
                             </div>

@@ -86,16 +86,13 @@
                             id="location">
                             <option disabled selected> Seleccionar </option>
 
-                            <option value="jardin" {{ $user->degree == 'jardin' ? 'selected' : '' }}>jardin
-                            </option>
-
                             <option value="pre-jardin" {{ $user->degree == 'pre-jardin' ? 'selected' : '' }}>pre-jardin
                             </option>
 
-                            <option value="1°A" {{ $user->degree == '1°A' ? 'selected' : '' }}>1°A
+                            <option value="jardin" {{ $user->degree == 'jardin' ? 'selected' : '' }}>jardin
                             </option>
 
-                            <option value="1°B" {{ $user->degree == '1°B' ? 'selected' : '' }}>1°B
+                            <option value="1°" {{ $user->degree == '1°' ? 'selected' : '' }}>1°A
                             </option>
 
                             <option value="2°" {{ $user->degree == '2°' ? 'selected' : '' }}>2°
@@ -150,6 +147,42 @@
                         
                     </select>
                 </div>
+            </div>
+        </div>
+
+        <div class="relative z-0 w-full mb-5 group">
+            <label class="peer-focus:font-medium  text-sm text-gray-500 dark:text-gray-400" for="location">
+                Grados a cargo
+            </label>
+            <div>
+
+                <select name="load_degrees" id="load_degrees" value="{{ $user->load_degrees }}"
+                    class="w-full bg-gray-200 border border-gray-200 text-gray-600 text-xs py-2 px-3 pr-8 mb-3 rounded"
+                    id="location">
+                    <option disabled selected> Seleccionar </option>
+
+                    <option value="pre-jardin/jardin" {{ $user->load_degrees == 'pre-jardin/jardin' ? 'selected' : '' }}>pre-jardin/jardin
+                    </option>
+
+                    <option value="1°" {{ $user->load_degrees == '1°' ? 'selected' : '' }}>1°
+                    </option>
+
+                    <option value="2°" {{ $user->load_degrees == '2°' ? 'selected' : '' }}>2°
+                    </option>
+
+                    <option value="3°-4°" {{ $user->load_degrees == '3°-4°' ? 'selected' : '' }}>3°-4°
+                    </option>
+
+                    <option value="5°-6°-7°" {{ $user->load_degrees == '5°-6°-7°' ? 'selected' : '' }}>5°-6°-7°
+                    </option>
+
+                    <option value="8°-9°" {{ $user->load_degrees == '8°-9°' ? 'selected' : '' }}>8°-9°
+                    </option>
+
+                    <option value="10°" {{ $user->load_degrees == '10°' ? 'selected' : '' }}>10°
+                    </option>
+                </select>
+                    
             </div>
         </div>
         

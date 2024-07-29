@@ -34,8 +34,6 @@ class ConceptController extends Controller
 {
     public function index_concept(Request $request)
     {
-
-
         if (!Auth::check()) {
             return redirect()->route('login');
         }
@@ -43,17 +41,30 @@ class ConceptController extends Controller
         $auth_user = Auth::user();
         $promedios = [];
 
+        //obtener los grados del usuario logueado
+        $loadDegrees = $auth_user->load_degrees ? explode('-', str_replace('/', '-', $auth_user->load_degrees)) : [];
+
         if ($auth_user->hasRole(['Admin', 'Docente','Psicoorientador','CoordinadorAcademico', 'CoordinadorConvivencia', 'Rector','Secretaria'])) {
             $usersQuery = User::whereHas('roles', function ($query) {
                 $query->where('name', 'Aspirante');
             });
 
+            //aplicar filtro de busqueda si existe
             if ($request->has('search')) {
                 $searchTerm = $request->input('search');
                 $usersQuery->where(function ($q) use ($searchTerm) {
                     $q->where('name', 'LIKE', '%' . $searchTerm . '%')
                         ->orWhere('last_name', 'LIKE', '%' . $searchTerm . '%')
                         ->orWhereRaw("CONCAT(name, ' ', last_name) LIKE ?", ['%' . $searchTerm . '%']);
+                });
+            }
+
+            //aplicar el filtro de grados para el usuario logueado
+            if (!empty($loadDegrees)) {
+                $usersQuery->where(function ($q) use ($loadDegrees) {
+                    foreach ($loadDegrees as $degree) {
+                        $q->orWhere('degree', 'LIKE', '%' . $degree . '%');
+                    } 
                 });
             }
 

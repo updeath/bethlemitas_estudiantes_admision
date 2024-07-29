@@ -106,8 +106,9 @@ class UserController extends Controller
             'typeDocumment' => 'required|in:TI,CC,NUIP',
             'iphone' => 'required|numeric',
             'status' => 'required|in:Activo,Bloqueado',
-            'degree' => 'nullable|in:jardin,pre-jardin,1°A,1°B,2°,3°,4°,5°,6°,7°,8°,9°,10°',
+            'degree' => 'nullable|in:jardin,pre-jardin,1°,2°,3°,4°,5°,6°,7°,8°,9°,10°',
             'asignature' => 'nullable|in:english,math,spanish',
+            'load_degrees' => 'nullable|in:pre-jardin/jardin,1°,2°,3°-4°,5°-6°-7°,8°-9°,10°',
             'password' => 'required',
             'roles' => 'required|array|min:1',
             'roles.*' => 'exists:roles,id',
@@ -121,12 +122,14 @@ class UserController extends Controller
         $user->typeDocumment = $request->input('typeDocumment');
         $user->iphone = $request->input('iphone');
         $user->status = $request->input('status');
-        $user->degree = $request->input('degree', 0);
+        $user->degree = $request->input('degree');
+
         
         $roles = Role::whereIn('id', $request->input('roles'))->get();
         $user->assignRole($roles);
 
         $user->asignature = $request->input('asignature');
+        $user->load_degrees = $request->input('load_degrees');
         $user->password = bcrypt($request->input('password'));
         $user->save();
 
@@ -146,7 +149,6 @@ class UserController extends Controller
 
     public function update(Request $request, string $id)
     {
-
         $user = User::findOrFail($id);
 
         $datosActuales = $user->toArray();
@@ -155,8 +157,9 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => 'required',
             'last_name' => 'required',
-            'degree' => 'nullable|in:jardin,pre-jardin,1°A,1°B,2°,3°,4°,5°,6°,7°,8°,9°,10°',
+            'degree' => 'nullable|in:jardin,pre-jardin,1°,2°,3°,4°,5°,6°,7°,8°,9°,10°',
             'asignature' => 'nullable|in:english,math,spanish',
+            'load_degrees' => 'nullable|in:pre-jardin/jardin,1°,2°,3°-4°,5°-6°-7°,8°-9°,10°',
             'email' => 'required|email|unique:users,email,' . $user->id,
             'number_documment' => 'required|digits_between:1,20|unique:users,number_documment,' . $user->id,
             'typeDocumment' => 'required|in:TI,CC,NUIP',
@@ -165,13 +168,14 @@ class UserController extends Controller
             'password' => 'required|min:6',
             'roles' => 'required|array|min:1',
             'roles.*' => 'exists:roles,id',
-
-
         ]);
+
         $fieldsToUpdate = [
             'name' => 'name',
             'last_name' => 'last_name',
-            'degree' => 'degree', 
+            'degree' => 'degree',
+            'asignature' => 'asignature',
+            'load_degrees' => 'load_degrees',
             'email' => 'email',
             'number_documment' => 'number_documment',
             'typeDocumment' => 'typeDocumment',
@@ -180,11 +184,14 @@ class UserController extends Controller
         ];
 
         foreach ($fieldsToUpdate as $field => $attribute) {
-            if ($attribute != 'password' && $datosActuales[$attribute] != $validatedData[$field]) {
+            // Usa array_key_exists para verificar si la clave está presente
+            if ($attribute != 'password' && array_key_exists($field, $validatedData) && $datosActuales[$attribute] != $validatedData[$field]) {
                 $user->$attribute = $validatedData[$field];
                 $huboCambios = true;
+            } elseif ($attribute != 'password' && !array_key_exists($field, $validatedData) && $datosActuales[$attribute] !== null) {
+                $user->$attribute = null;
+                $huboCambios = true;
             }
-            
         }
 
         if ($user->password != $validatedData['password']) {
@@ -202,12 +209,10 @@ class UserController extends Controller
 
         if ($huboCambios) {
             $user->update();
-            $user->roles()->sync($request->input('roles'));
             return redirect()->back()->with('success', 'Perfil actualizado correctamente.');
         } else {
             return redirect()->back()->with('info', 'No se realizó ninguna actualización.');
         }
-
     }
 
 

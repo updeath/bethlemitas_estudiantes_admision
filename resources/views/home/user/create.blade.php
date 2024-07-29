@@ -99,16 +99,13 @@
                         id="location">
                         <option disabled selected> Seleccionar </option>
 
-                        <option value="jardin" {{ old('degree') == 'jardin' ? 'selected' : '' }}>jardin
-                        </option>
-
                         <option value="pre-jardin" {{ old('degree') == 'pre-jardin' ? 'selected' : '' }}>pre-jardin
                         </option>
 
-                        <option value="1°A" {{ old('degree') == '1°A' ? 'selected' : '' }}>1°A
-                        </option>
+                        <option value="jardin" {{ old('degree') == 'jardin' ? 'selected' : '' }}>jardin
+                        </option>                       
 
-                        <option value="1°B" {{ old('degree') == '1°B' ? 'selected' : '' }}>1°B
+                        <option value="1°" {{ old('degree') == '1°' ? 'selected' : '' }}>1°
                         </option>
 
                         <option value="2°" {{ old('degree') == '2°' ? 'selected' : '' }}>2°
@@ -141,9 +138,6 @@
                 </div>
                 
             </div>
-                @error('degree')
-                    <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Incorrecto</span></p>
-                @enderror
             </div>
 
             <div class="   ">
@@ -172,6 +166,41 @@
         <!-- ---------------------------------------------------- -->
         <!-- ---------------------------------------------------- -->
 
+        <div class="relative z-0 w-full mb-5 group">
+            <label class="peer-focus:font-medium  text-sm text-gray-500 dark:text-gray-400" for="location">
+                Grados a cargo
+            </label>
+            <div>
+
+                <select name="load_degrees" id="load_degrees" value="{{ old('load_degrees') }}"
+                    class="w-full bg-gray-200 border border-gray-200 text-gray-600 text-xs py-2 px-3 pr-8 mb-3 rounded"
+                    id="location">
+                    <option disabled selected> Seleccionar </option>
+                    
+                    <option value="pre-jardin/jardin" {{ old('load_degrees') == 'pre-jardin/jardin°' ? 'selected' : '' }}>pre-jardin/jardin
+                    </option>
+
+                    <option value="1°" {{ old('load_degrees') == '1°' ? 'selected' : '' }}>1°
+                    </option>
+
+                    <option value="2°" {{ old('load_degrees') == '2°' ? 'selected' : '' }}>2°
+                    </option>
+
+                    <option value="3°-4°" {{ old('load_degrees') == '3°-4°' ? 'selected' : '' }}>3°-4°
+                    </option>
+
+                    <option value="5°-6°-7°" {{ old('load_degrees') == '5°-6°-7°' ? 'selected' : '' }}>5°-6°-7°
+                    </option>
+
+                    <option value="8°-9°" {{ old('load_degrees') == '8°-9°' ? 'selected' : '' }}>8°-9°
+                    </option>
+
+                    <option value="10°" {{ old('load_degrees') == '10°' ? 'selected' : '' }}>10°
+                    </option>
+                </select>
+                    
+            </div>
+        </div>
 
         <!-- ---------------------------------------------------- -->
         <!-- ---------------------------------------------------- -->

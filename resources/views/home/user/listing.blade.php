@@ -74,6 +74,10 @@
                             Rol Asignado</th>
 
                         <th
+                            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                            Grados a cargo</th>
+
+                        <th
                             class="px-12 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                             Acciones</th>
 
@@ -152,6 +156,10 @@
                             @elseif($user->asignature == 'spanish')
                             <b class="font-medium text-gray-700"><br>Español</b>
                             @endif
+                        </td>
+
+                        <td class="px-6 py-4 leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
+                            <div class="text-sm leading-5 text-gray-900">{{ $user->load_degrees ?? 'No aplica' }}</div>
                         </td>
 
                         <td
