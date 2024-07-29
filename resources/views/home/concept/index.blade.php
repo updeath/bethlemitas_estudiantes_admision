@@ -144,7 +144,7 @@
 
 
 
-                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    <td class="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
                                         @if ($user['observacionSpanish'])
                                             @if ($user['observacionPredeterminadaPresenteSpanish'])
 
@@ -218,7 +218,7 @@
                                     </td>
                                
 
-                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    <td class="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
                                         @if ($user['observacionMath'])
                                             @if ($user['observacionPredeterminadaPresenteMath'])
                                                 @if(auth()->check() && auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'math')
@@ -289,7 +289,7 @@
                                     </td>
                                     
                                 
-                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    <td class="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
                                         @if ($user['observacionEnglish'])
                                             @if ($user['observacionPredeterminadaPresenteEnglish'])
                                                 @if(auth()->check() && auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'english')
@@ -365,7 +365,7 @@
 
 
 
-                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    <td class="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
                                         @if ($user['observacionPsicoorientador'])
                                             @if ($user['observacionPredeterminadaPresentePsicoorientador'])
                                                 @if(auth()->check() && auth()->user()->hasRole('Psicoorientador'))
@@ -441,7 +441,7 @@
 
 
                                     
-                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    <td class="px-8 py-4 whitespace-no-wrap border-b border-gray-200">
                                         @if ($user['observacionAcademico'])
                                             @if ($user['observacionPredeterminadaPresenteAcademico'])
                                                 @if(auth()->check() && auth()->user()->hasRole('CoordinadorAcademico'))
@@ -514,7 +514,7 @@
 
 
 
-                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    <td class="px-8 py-4 whitespace-no-wrap border-b border-gray-200">
                                         @if ($user['observacionConvivencia'])
                                             @if ($user['observacionPredeterminadaPresenteConvivencia'])
                                                 @if(auth()->check() && auth()->user()->hasRole('CoordinadorConvivencia'))
