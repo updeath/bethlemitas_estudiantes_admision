@@ -147,7 +147,7 @@
                 <div>
                     <select name="asignature" id="asignature" value="{{ old('asignature') }}"
                         class="w-full bg-gray-200 border border-gray-200 text-gray-600 text-xs py-2 px-3 pr-8 mb-3 rounded"
-                        id="location">
+                        id="location" @if (Auth::user()->hasRole('Secretaria')) disabled @endif>
                         <option disabled selected> Seleccionar </option>
                         <option value="english" {{ old('asignature') == 'english' ? 'selected' : '' }}>Inglés
                         </option>
@@ -174,7 +174,7 @@
 
                 <select name="load_degrees" id="load_degrees" value="{{ old('load_degrees') }}"
                     class="w-full bg-gray-200 border border-gray-200 text-gray-600 text-xs py-2 px-3 pr-8 mb-3 rounded"
-                    id="location">
+                    id="location"  @if (Auth::user()->hasRole('Secretaria')) disabled @endif>
                     <option disabled selected> Seleccionar </option>
                     
                     <option value="pre-jardin/jardin" {{ old('load_degrees') == 'pre-jardin/jardin°' ? 'selected' : '' }}>pre-jardin/jardin

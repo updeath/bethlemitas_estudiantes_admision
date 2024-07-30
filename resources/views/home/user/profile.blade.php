@@ -45,7 +45,7 @@
         enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        <div class="grid md:grid-cols-2">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="relative z-0 w-full group">
                 <div class="grid md:grid-cols-2 md:gap-6">
                     <div class="relative z-0 w-full mb-5 group">
