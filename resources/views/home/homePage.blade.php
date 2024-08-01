@@ -53,19 +53,21 @@
                     </a>
 
                     <div x-show="isOpen" class="ml-10">
-                        <a href="{{ route('create_user') }}"
-                            class="flex items-center px-6 py-2 text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100"
-                            href="#">
-                            <!-- Icono si es necesario -->
-                            <span class="mx-3">• Crear Usuario</span>
-                        </a>
-                        @if (Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Rector'))
-                            <a href="{{ route('listingUser') }}"
-                                class="flex items-center px-6 py-2  text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100"
+                        @if (Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Rector') || Auth::user()->hasRole('Secretaria') )
+                            <a href="{{ route('create_user') }}"
+                                class="flex items-center px-6 py-2 text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100"
                                 href="#">
                                 <!-- Icono si es necesario -->
-                                <span class="mx-3">• Listar Usuarios</span>
+                                <span class="mx-3">• Crear Usuario</span>
                             </a>
+                            @if (Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Rector'))
+                                <a href="{{ route('listingUser') }}"
+                                    class="flex items-center px-6 py-2  text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100"
+                                    href="#">
+                                    <!-- Icono si es necesario -->
+                                    <span class="mx-3">• Listar Usuarios</span>
+                                </a>
+                            @endif
                         @endif
 
                         <a href="{{ route('user.tableStudents') }}"
@@ -84,7 +86,7 @@
                 <!-- ------------------------------------------------------------------ -->
                 <!-- ------------------------------------------------------------------ -->
 
-                @if(auth()->check() && auth()->user()->hasRole(['Admin', 'CoordinadorAcademico', 'CoordinadorConvivencia', 'Rector', 'Docente']))
+                @if(auth()->check() && auth()->user()->hasRole('Docente'))
                     @if(auth()->user()->asignature !== 'english')
 
                         <div x-data="{ isOpen: false, subMenu: false, selectedOption: '' }">
@@ -112,21 +114,29 @@
                                 @endif
                                 
                                 <div x-show="subMenu" class="ml-6">
-                                    <a x-show="selectedOption === 'Matematicas'" href="{{ route('table.math4') }}"
-                                        class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 4°</a>
-                                    <a x-show="selectedOption === 'Matematicas'" href="{{ route('table.math5') }}"
-                                        class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 5°</a>
-                                    <a x-show="selectedOption === 'Matematicas'" href="{{ route('table.math6') }}"
-                                        class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 6°</a>
-                                    <a x-show="selectedOption === 'Matematicas'" href="{{ route('table.math7') }}"
-                                        class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">•
-                                        Grado 7°</a>
-                                    <a x-show="selectedOption === 'Matematicas'" href="{{ route('table.math8') }}"
-                                        class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 8°</a>
-                                    <a x-show="selectedOption === 'Matematicas'" href="{{ route('table.math9') }}"
-                                        class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 9°</a>
-                                    <a x-show="selectedOption === 'Matematicas'" href="{{ route('table.math10') }}"
-                                        class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 10°</a>
+                                    @if (auth()->user()->load_degrees == '3°-4°')
+                                        <a x-show="selectedOption === 'Matematicas'" href="{{ route('table.math4') }}"
+                                            class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 4°</a>
+                                    @endif
+                                    @if (auth()->user()->load_degrees == '5°-6°-7°')
+                                        <a x-show="selectedOption === 'Matematicas'" href="{{ route('table.math5') }}"
+                                            class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 5°</a>
+                                        <a x-show="selectedOption === 'Matematicas'" href="{{ route('table.math6') }}"
+                                            class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 6°</a>
+                                        <a x-show="selectedOption === 'Matematicas'" href="{{ route('table.math7') }}"
+                                            class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">•
+                                            Grado 7°</a>
+                                    @endif
+                                    @if (auth()->user()->load_degrees == '8°-9°')
+                                        <a x-show="selectedOption === 'Matematicas'" href="{{ route('table.math8') }}"
+                                            class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 8°</a>
+                                        <a x-show="selectedOption === 'Matematicas'" href="{{ route('table.math9') }}"
+                                            class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 9°</a>
+                                    @endif
+                                    @if (auth()->user()->load_degrees == '10°')
+                                        <a x-show="selectedOption === 'Matematicas'" href="{{ route('table.math10') }}"
+                                            class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 10°</a>
+                                    @endif
                                 </div>
 
                                 @if(auth()->check() && (auth()->user()->hasRole(['Docente']) || auth()->user()->hasRole(['Admin', 'CoordinadorAcademico', 'CoordinadorConvivencia', 'Rector'])) && (auth()->user()->asignature == 'spanish' || auth()->user()->hasRole(['Admin', 'CoordinadorAcademico', 'CoordinadorConvivencia', 'Rector']))) 
