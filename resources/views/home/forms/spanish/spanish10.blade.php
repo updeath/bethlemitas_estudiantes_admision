@@ -20,24 +20,24 @@
             </div>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPD1" name="spanishPD1" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPD1" name="spanishPD1" value="A. no se apoya en fuentes ni en opiniones de analistas.">
                 <span class="ml-2">A. no se apoya en fuentes ni en opiniones de analistas.</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPD1" name="spanishPD1" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPD1" name="spanishPD1" value="B. no considera la relación entre TE y eficiencia del sistema penal en Chile.">
                 <span class="ml-2">B. no considera la relación entre TE y eficiencia del sistema penal en Chile.</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPD1" name="spanishPD1" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPD1" name="spanishPD1" value="C. supone que el caso colombiano es semejante al de Estados Unidos.">
                 <span class="ml-2">C. supone que el caso colombiano es semejante al de Estados Unidos.</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPD1" name="spanishPD1" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPD1" name="spanishPD1" value="D. supone que una menor TE en el país se traduce en un sistema penal más eficiente.">
                 <span class="ml-2">D. supone que una menor TE en el país se traduce en un sistema penal más eficiente.</span>
             </div>
             @error('spanishPD1')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-        @enderror
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+            @enderror
         </div>
 
         <!-- Pregunta 2 -->
@@ -45,24 +45,24 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">2. En el enunciado "Pero la tendencia presentada por la ANIF es correcta", la palabra "Pero" contribuye a</label>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPD2" name="spanishPD2" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPD2" name="spanishPD2" value="A. señalar la invalidez de una tesis posterior.">
                 <span class="ml-2">A. señalar la invalidez de una tesis posterior.</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPD2" name="spanishPD2" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPD2" name="spanishPD2" value="B. refutar la validez de un juicio previo.">
                 <span class="ml-2">B. refutar la validez de un juicio previo.</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPD2" name="spanishPD2" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPD2" name="spanishPD2" value="C. relativizar la validez de una premisa posterior.">
                 <span class="ml-2">C. relativizar la validez de una premisa posterior.</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPD2" name="spanishPD2" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPD2" name="spanishPD2" value="D. indicar la validez de una información previa.">
                 <span class="ml-2">D. indicar la validez de una información previa.</span>
             </div>
             @error('spanishPD2')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-        @enderror
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+            @enderror
         </div>
 
         <!-- Pregunta 3 -->
@@ -70,24 +70,24 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">3. Teniendo en cuenta el argumento central del autor y la estructura argumentativa de su escrito, ¿qué función cumplen, respectivamente, el tercer y cuarto párrafo del texto?</label>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPD3" name="spanishPD3" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPD3" name="spanishPD3" value="A. Evidencia/antítesis.">
                 <span class="ml-2">A. Evidencia/antítesis.</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPD3" name="spanishPD3" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPD3" name="spanishPD3" value="B. Evidencia/argumento.">
                 <span class="ml-2">B. Evidencia/argumento.</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPD3" name="spanishPD3" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPD3" name="spanishPD3" value="C. Ejemplo/síntesis.">
                 <span class="ml-2">C. Ejemplo/síntesis.</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPD3" name="spanishPD3" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPD3" name="spanishPD3" value="D. Ejemplo/contraejemplo.">
                 <span class="ml-2">D. Ejemplo/contraejemplo.</span>
             </div>
             @error('spanishPD3')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-        @enderror
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+            @enderror
         </div>
 
 
@@ -107,8 +107,8 @@
                 name="comment_fragmentPD4_1"  
                 placeholder="Tu respuesta aquí: ">{{ old('comment_fragmentPD4_1') }}</textarea>
                 @error('comment_fragmentPD4_1')
-                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-            @enderror
+                    <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+                @enderror
             </div>
 
             <div class="mb-10">
@@ -211,24 +211,24 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">8. ¿Qué es la lectura crítica?</label>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPD8" name="spanishPD8" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPD8" name="spanishPD8" value="A. La habilidad de comprender, analizar, evaluar y reflexionar sobre los textos escritos desde una perspectiva crítica.">
                 <span class="ml-2">A. La habilidad de comprender, analizar, evaluar y reflexionar sobre los textos escritos desde una perspectiva crítica.</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPD8" name="spanishPD8" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPD8" name="spanishPD8" value="B. La habilidad de identificar, interpretar, argumentar y proponer soluciones a problemas reales o hipotéticos.">
                 <span class="ml-2">B. La habilidad de identificar, interpretar, argumentar y proponer soluciones a problemas reales o hipotéticos.</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPD8" name="spanishPD8" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPD8" name="spanishPD8" value="C. La habilidad de expresar ideas, opiniones, sentimientos y emociones de forma oral o escrita con claridad y coherencia.">
                 <span class="ml-2">C. La habilidad de expresar ideas, opiniones, sentimientos y emociones de forma oral o escrita con claridad y coherencia.</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPD8" name="spanishPD8" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPD8" name="spanishPD8" value="D. La habilidad de interactuar con otras personas respetando la diversidad, los derechos humanos y los valores democráticos.">
                 <span class="ml-2">D. La habilidad de interactuar con otras personas respetando la diversidad, los derechos humanos y los valores democráticos.</span>
             </div>
             @error('spanishPD8')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-        @enderror
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+            @enderror
         </div>
 
         <!-- Pregunta 9 -->
@@ -240,24 +240,24 @@
 
             <div class="flex items-center mb-2">
                 
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPD9" name="spanishPD9" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPD9" name="spanishPD9" value="A. Un microrrelato">
                 <span class="ml-2">A. Un microrrelato</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPD9" name="spanishPD9" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPD9" name="spanishPD9" value="B. Un poema">
                 <span class="ml-2">B. Un poema</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPD9" name="spanishPD9" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPD9" name="spanishPD9" value="C. Una fábula">
                 <span class="ml-2">C. Una fábula</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPD9" name="spanishPD9" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPD9" name="spanishPD9" value="D. Un fragmento de una novela">
                 <span class="ml-2">D. Un fragmento de una novela</span>
             </div>
             @error('spanishPD9')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-        @enderror
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+            @enderror
         </div>
 
         <!-- Pregunta 10 -->
@@ -265,24 +265,24 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">10. ¿Qué efecto produce en el lector la descripción del protagonista?</label>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPD10" name="spanishPD10" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPD10" name="spanishPD10" value="A. Le causa risa y diversión">
                 <span class="ml-2">A. Le causa risa y diversión</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPD10" name="spanishPD10" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPD10" name="spanishPD10" value="B. Le provoca miedo y repulsión">
                 <span class="ml-2">B. Le provoca miedo y repulsión</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPD10" name="spanishPD10" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPD10" name="spanishPD10" value="C. Le inspira ternura y compasión">
                 <span class="ml-2">C. Le inspira ternura y compasión</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPD10" name="spanishPD10" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPD10" name="spanishPD10" value="D. Le genera curiosidad e interés">
                 <span class="ml-2">D. Le genera curiosidad e interés</span>
             </div>
             @error('spanishPD10')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-        @enderror
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+            @enderror
         </div>
 
         <div class=" ml-[5%] mt-5 ">
@@ -315,6 +315,26 @@
         Toast.fire({
             icon: 'success',
             title: '{{ session('success') }}',
+        });
+    </script>
+@endif
+
+@if (session('error'))
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            iconColor: 'white',
+            customClass: {
+                popup: 'colored-toast',
+            },
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true,
+        });
+        Toast.fire({
+            icon: 'error',
+            title: '{{ session('error') }}',
         });
     </script>
 @endif

@@ -104,13 +104,7 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">7. ¿Qué es la crónica?</label>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. Información interpretativa de hechos o acontecimientos.</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">B. Narración breve de hechos de ficción.</span>
-            </div>
-            <div class="flex items-center mt-2">
-                <span class="ml-2">C. Relato popular de un hecho real o fabuloso adornado con elementos fantásticos.</span>
+                <span class="ml-2">R/= {{ $spanishSexto->spanishPSX7 }}</span>
             </div>
         </div>
 
@@ -119,13 +113,7 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">8. ¿Dentro de qué género se enmarca comúnmente la crónica?</label>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. El género fantástico.</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. El género periodístico.</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">C. El género dramático.</span>
+                <span class="ml-2">R/= {{ $spanishSexto->spanishPSX8 }}</span>
             </div>
         </div>
 
@@ -135,13 +123,7 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">9. Señale cuál de las siguientes opciones representa una de las características principales de la crónica:</label>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. Participan personajes ficticios.</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. El texto está compuesto por hechos fantásticos.</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">C. Narra hechos ocurridos en forma cronológica.</span>
+                <span class="ml-2">R/= {{ $spanishSexto->spanishPSX9 }}</span>
             </div>
         </div>
 
@@ -150,13 +132,7 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">10. En términos prácticos, en la crónica periodística:</label>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. La narración se apoya en testimonios de testigos reales o ficticios.</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. Se dejan a un lado los aspectos emocionales de las partes y el eje gira en torno a los sucesos que se desea mencionar.</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">C. Ambas opciones son correctas.</span>
+                <span class="ml-2">R/= {{ $spanishSexto->spanishPSX10 }}</span>
             </div>
         </div>
 </div>

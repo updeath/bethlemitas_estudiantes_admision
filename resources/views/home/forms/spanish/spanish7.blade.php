@@ -135,74 +135,74 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">8. ¿Qué categoría gramatical es la palabra “ay” cuando expresa sorpresa o dolor?</label>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPS8" name="spanishPS8" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPS8" name="spanishPS8" value="A. Preposición">
                 <span class="ml-2">A. Preposición</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPS8" name="spanishPS8" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPS8" name="spanishPS8" value="B. Conjunción">
                 <span class="ml-2">B. Conjunción</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPS8" name="spanishPS8" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPS8" name="spanishPS8" value="C. Interjección">
                 <span class="ml-2">C. Interjección</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPS8" name="spanishPS8" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPS8" name="spanishPS8" value="D. Adverbio">
                 <span class="ml-2">D. Adverbio</span>
             </div>
             @error('spanishPS8')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-        @enderror
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+            @enderror
         </div>
 
         <!-- Pregunta 9 -->
         <div class="mb-5 border-t p-2 border-gray-400">
-            <label class="block text-sm font-medium text-gray-600 mb-3">9) ¿Qué es la comunicación?</label>
+            <label class="block text-sm font-medium text-gray-600 mb-3">9. ¿Qué es la comunicación?</label>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPS9" name="spanishPS9" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPS9" name="spanishPS9" value="A. El proceso de intercambio de información entre un emisor y un receptor mediante un código y un canal.">
                 <span class="ml-2">A. El proceso de intercambio de información entre un emisor y un receptor mediante un código y un canal.</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPS9" name="spanishPS9" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPS9" name="spanishPS9" value="B. El conjunto de signos que se utilizan para expresar ideas, sentimientos o emociones.">
                 <span class="ml-2">B. El conjunto de signos que se utilizan para expresar ideas, sentimientos o emociones.</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPS9" name="spanishPS9" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPS9" name="spanishPS9" value="C. La capacidad de comprender y producir diferentes tipos de textos orales y escritos.">
                 <span class="ml-2">C. La capacidad de comprender y producir diferentes tipos de textos orales y escritos.</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPS9" name="spanishPS9" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPS9" name="spanishPS9" value="D. La ciencia que estudia el origen, la estructura y el funcionamiento del lenguaje.">
                 <span class="ml-2">D. La ciencia que estudia el origen, la estructura y el funcionamiento del lenguaje.</span>
             </div>
             @error('spanishPS9')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-        @enderror
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+            @enderror
         </div>
 
         <!-- Pregunta 10 -->
         <div class=" border-t p-2 border-gray-400">
-            <label class="block text-sm font-medium text-gray-600 mb-3">10) ¿Qué es el código en la comunicación?</label>
+            <label class="block text-sm font-medium text-gray-600 mb-3">10. ¿Qué es el código en la comunicación?</label>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPS10" name="spanishPS10" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPS10" name="spanishPS10" value="A. El sistema de signos y reglas que comparten el emisor y el receptor para entenderse.">
                 <span class="ml-2">A. El sistema de signos y reglas que comparten el emisor y el receptor para entenderse.</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPS10" name="spanishPS10" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPS10" name="spanishPS10" value="B. El medio físico por el que se transmite el mensaje del emisor al receptor.">
                 <span class="ml-2">B. El medio físico por el que se transmite el mensaje del emisor al receptor.</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPS10" name="spanishPS10" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPS10" name="spanishPS10" value="C. La información que el emisor quiere comunicar al receptor.">
                 <span class="ml-2">C. La información que el emisor quiere comunicar al receptor.</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPS10" name="spanishPS10" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPS10" name="spanishPS10" value="D. La situación o el contexto en el que se produce la comunicación.">
                 <span class="ml-2">D. La situación o el contexto en el que se produce la comunicación.</span>
             </div>
             @error('spanishPS10')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-        @enderror
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+            @enderror
         </div>
 
         <div class=" ml-[5%] mt-5 ">
@@ -233,6 +233,25 @@
         Toast.fire({
             icon: 'success',
             title: '{{ session('success') }}',
+        });
+    </script>
+@endif
+@if (session('error'))
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            iconColor: 'white',
+            customClass: {
+                popup: 'colored-toast',
+            },
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true,
+        });
+        Toast.fire({
+            icon: 'error',
+            title: '{{ session('error') }}',
         });
     </script>
 @endif

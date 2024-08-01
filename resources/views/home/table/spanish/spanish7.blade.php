@@ -129,7 +129,7 @@
 
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                     @if ($data['user']->spanishSeptimo)
-                                        @if ($data['user']->spanishSeptimo->spanishPS1 !== null && $data['user']->spanishSeptimo->spanishPS1 != 1)
+                                        @if ($data['user']->spanishSeptimo->spanishPS1 !== null && $data['user']->spanishSeptimo->spanishPS1 != 0)
                                             <button
                                                 class="bg-green-500 hover:bg-green-600 rounded-full px-3 py-1 text-xs font-semibold text-white btn-show-info">
                                                 Calificación Exitosamente
@@ -149,7 +149,7 @@
                                                     action="{{ route('calificar.spanishPS1', ['userId' => $data['user']->id]) }}"   
                                                     method="POST" class="flex items-center space-x-2">
                                                     @csrf
-                                                    <input type="number" min="1" max="5" name="cantidad"
+                                                    <input type="number" min="0" max="5" name="cantidad"
                                                         placeholder="Calificación"
                                                         class="rounded-l-md px-3 py-1 border text-gray-800 border-gray-300 focus:outline-none focus:border-blue-500">
                                                     <button type="submit"
@@ -167,7 +167,7 @@
 
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                     @if ($data['user']->spanishSeptimo)
-                                        @if ($data['user']->spanishSeptimo->spanishPS2 !== null && $data['user']->spanishSeptimo->spanishPS2 != 1)
+                                        @if ($data['user']->spanishSeptimo->spanishPS2 !== null && $data['user']->spanishSeptimo->spanishPS2 != 0)
                                             <button
                                                 class="bg-green-500 hover:bg-green-600 rounded-full px-3 py-1 text-xs font-semibold text-white btn-show-info">
                                                 Calificación Exitosamente
@@ -187,7 +187,7 @@
                                                     action="{{ route('calificar.spanishPS2', ['userId' => $data['user']->id]) }}"
                                                     method="POST" class="flex items-center space-x-2">
                                                     @csrf
-                                                    <input type="number" min="1" max="5" name="cantidad"
+                                                    <input type="number" min="0" max="5" name="cantidad"
                                                         placeholder="Calificación"
                                                         class="rounded-l-md px-3 py-1 border text-gray-800 border-gray-300 focus:outline-none focus:border-blue-500">
                                                     <button type="submit"
@@ -204,7 +204,7 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                     @if ($data['user']->spanishSeptimo)
-                                        @if ($data['user']->spanishSeptimo->spanishPS3 !== null && $data['user']->spanishSeptimo->spanishPS3 != 1)
+                                        @if ($data['user']->spanishSeptimo->spanishPS3 !== null && $data['user']->spanishSeptimo->spanishPS3 != 0)
                                             <button
                                                 class="bg-green-500 hover:bg-green-600 rounded-full px-3 py-1 text-xs font-semibold text-white btn-show-info">
                                                 Calificación Exitosamente
@@ -224,7 +224,7 @@
                                                     action="{{ route('calificar.spanishPS3', ['userId' => $data['user']->id]) }}"
                                                     method="POST" class="flex items-center space-x-2">
                                                     @csrf
-                                                    <input type="number" min="1" max="5" name="cantidad"
+                                                    <input type="number" min="0" max="5" name="cantidad"
                                                         placeholder="Calificación"
                                                         class="rounded-l-md px-3 py-1 border text-gray-800 border-gray-300 focus:outline-none focus:border-blue-500">
                                                     <button type="submit"
@@ -241,7 +241,7 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                     @if ($data['user']->spanishSeptimo)
-                                        @if ($data['user']->spanishSeptimo->spanishPS4 !== null && $data['user']->spanishSeptimo->spanishPS4 != 1)
+                                        @if ($data['user']->spanishSeptimo->spanishPS4 !== null && $data['user']->spanishSeptimo->spanishPS4 != 0)
                                             <button
                                                 class="bg-green-500 hover:bg-green-600 rounded-full px-3 py-1 text-xs font-semibold text-white btn-show-info">
                                                 Calificación Exitosamente
@@ -261,7 +261,7 @@
                                                     action="{{ route('calificar.spanishPS4', ['userId' => $data['user']->id]) }}"
                                                     method="POST" class="flex items-center space-x-2">
                                                     @csrf
-                                                    <input type="number" min="1" max="5" name="cantidad"
+                                                    <input type="number" min="0" max="5" name="cantidad"
                                                         placeholder="Calificación"
                                                         class="rounded-l-md px-3 py-1 border text-gray-800 border-gray-300 focus:outline-none focus:border-blue-500">
                                                     <button type="submit"
@@ -278,7 +278,7 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                     @if ($data['user']->spanishSeptimo)
-                                        @if ($data['user']->spanishSeptimo->spanishPS5 !== null && $data['user']->spanishSeptimo->spanishPS5 != 1)
+                                        @if ($data['user']->spanishSeptimo->spanishPS5 !== null && $data['user']->spanishSeptimo->spanishPS5 != 0)
                                             <button
                                                 class="bg-green-500 hover:bg-green-600 rounded-full px-3 py-1 text-xs font-semibold text-white btn-show-info">
                                                 Calificación Exitosamente
@@ -298,7 +298,7 @@
                                                     action="{{ route('calificar.spanishPS5', ['userId' => $data['user']->id]) }}"
                                                     method="POST" class="flex items-center space-x-2">
                                                     @csrf
-                                                    <input type="number" min="1" max="5" name="cantidad"
+                                                    <input type="number" min="0" max="5" name="cantidad"
                                                         placeholder="Calificación"
                                                         class="rounded-l-md px-3 py-1 border text-gray-800 border-gray-300 focus:outline-none focus:border-blue-500">
                                                     <button type="submit"
@@ -315,7 +315,7 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                     @if ($data['user']->spanishSeptimo)
-                                        @if ($data['user']->spanishSeptimo->spanishPS6 !== null && $data['user']->spanishSeptimo->spanishPS6 != 1)
+                                        @if ($data['user']->spanishSeptimo->spanishPS6 !== null && $data['user']->spanishSeptimo->spanishPS6 != 0)
                                             <button
                                                 class="bg-green-500 hover:bg-green-600 rounded-full px-3 py-1 text-xs font-semibold text-white btn-show-info">
                                                 Calificación Exitosamente
@@ -335,7 +335,7 @@
                                                     action="{{ route('calificar.spanishPS6', ['userId' => $data['user']->id]) }}"
                                                     method="POST" class="flex items-center space-x-2">
                                                     @csrf
-                                                    <input type="number" min="1" max="5" name="cantidad"
+                                                    <input type="number" min="0" max="5" name="cantidad"
                                                         placeholder="Calificación"
                                                         class="rounded-l-md px-3 py-1 border text-gray-800 border-gray-300 focus:outline-none focus:border-blue-500">
                                                     <button type="submit"
@@ -352,7 +352,7 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                     @if ($data['user']->spanishSeptimo)
-                                        @if ($data['user']->spanishSeptimo->spanishPS7 !== null && $data['user']->spanishSeptimo->spanishPS7 != 1)
+                                        @if ($data['user']->spanishSeptimo->spanishPS7 !== null && $data['user']->spanishSeptimo->spanishPS7 != 0)
                                             <button
                                                 class="bg-green-500 hover:bg-green-600 rounded-full px-3 py-1 text-xs font-semibold text-white btn-show-info">
                                                 Calificación Exitosamente
@@ -372,7 +372,7 @@
                                                     action="{{ route('calificar.spanishPS7', ['userId' => $data['user']->id]) }}"
                                                     method="POST" class="flex items-center space-x-2">
                                                     @csrf
-                                                    <input type="number" min="1" max="5" name="cantidad"
+                                                    <input type="number" min="0" max="5" name="cantidad"
                                                         placeholder="Calificación"
                                                         class="rounded-l-md px-3 py-1 border text-gray-800 border-gray-300 focus:outline-none focus:border-blue-500">
                                                     <button type="submit"

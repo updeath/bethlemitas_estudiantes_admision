@@ -78,24 +78,24 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">6. ¿Qué es un texto?</label>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPO6" name="spanishPO6" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPO6" name="spanishPO6" value="A. Una unidad de comunicación con sentido completo, coherencia interna y adecuación a un contexto.">
                 <span class="ml-2">A. Una unidad de comunicación con sentido completo, coherencia interna y adecuación a un contexto.</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPO6" name="spanishPO6" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPO6" name="spanishPO6" value="B. Una unidad lingüística formada por una o más palabras que expresan una idea.">
                 <span class="ml-2">B. Una unidad lingüística formada por una o más palabras que expresan una idea.</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPO6" name="spanishPO6" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPO6" name="spanishPO6" value="C. Una unidad gramatical formada por un sujeto y un predicado que constituyen una oración.">
                 <span class="ml-2">C. Una unidad gramatical formada por un sujeto y un predicado que constituyen una oración.</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPO6" name="spanishPO6" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPO6" name="spanishPO6" value="D. Una unidad semántica formada por un significante y un significado que constituyen una palabra.">
                 <span class="ml-2">D. Una unidad semántica formada por un significante y un significado que constituyen una palabra.</span>
             </div>
             @error('spanishPO6')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-        @enderror
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+            @enderror
         </div>
 
         <!-- Pregunta 7 -->
@@ -103,24 +103,24 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">7. ¿Qué es la coherencia en un texto?</label>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPO7" name="spanishPO7" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPO7" name="spanishPO7" value="A. La relación lógica y ordenada entre las ideas que se presentan en el texto.">
                 <span class="ml-2">A. La relación lógica y ordenada entre las ideas que se presentan en el texto.</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPO7" name="spanishPO7" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPO7" name="spanishPO7" value="B. La conexión adecuada entre las palabras, las oraciones y los párrafos del texto.">
                 <span class="ml-2">B. La conexión adecuada entre las palabras, las oraciones y los párrafos del texto.</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPO7" name="spanishPO7" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPO7" name="spanishPO7" value="C. La adaptación del texto al propósito comunicativo, al destinatario y al registro.">
                 <span class="ml-2">C. La adaptación del texto al propósito comunicativo, al destinatario y al registro.</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPO7" name="spanishPO7" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPO7" name="spanishPO7" value="D. La corrección ortográfica, gramatical y léxica del texto.">
                 <span class="ml-2">D. La corrección ortográfica, gramatical y léxica del texto.</span>
             </div>
             @error('spanishPO7')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-        @enderror
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+            @enderror
         </div>
 
 
@@ -143,24 +143,24 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">9. ¿Qué movimiento artístico y filosófico surgió en el siglo XVIII como una reacción revolucionaria en contra de las tendencias de la Ilustración y el Neoclasicismo?</label>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPO9" name="spanishPO9" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPO9" name="spanishPO9" value="A. El Barroco">
                 <span class="ml-2">A. El Barroco</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPO9" name="spanishPO9" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPO9" name="spanishPO9" value="B. El Renacimiento">
                 <span class="ml-2">B. El Renacimiento</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPO9" name="spanishPO9" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPO9" name="spanishPO9" value="C. El Romanticismo">
                 <span class="ml-2">C. El Romanticismo</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPO9" name="spanishPO9" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPO9" name="spanishPO9" value="D. El Realismo">
                 <span class="ml-2">D. El Realismo</span>
             </div>
             @error('spanishPO9')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-        @enderror
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+            @enderror
         </div>
 
         <!-- Pregunta 10 -->
@@ -168,36 +168,31 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">10. ¿Qué autor alemán fue uno de los máximos exponentes del romanticismo literario y escribió obras como Las cuitas del joven Werther o Fausto?</label>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPO10" name="spanishPO10" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPO10" name="spanishPO10" value="A. Friedrich Schiller">
                 <span class="ml-2">A. Friedrich Schiller</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPO10" name="spanishPO10" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPO10" name="spanishPO10" value="B. Johann Wolfgang von Goethe">
                 <span class="ml-2">B. Johann Wolfgang von Goethe</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPO10" name="spanishPO10" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPO10" name="spanishPO10" value="C. Heinrich Heine">
                 <span class="ml-2">C. Heinrich Heine</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPO10" name="spanishPO10" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPO10" name="spanishPO10" value="D. Thomas Mann">
                 <span class="ml-2">D. Thomas Mann</span>
             </div>
             @error('spanishPO10')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-        @enderror
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+            @enderror
         </div>
-
-
-
         <div class=" ml-[5%] mt-5 ">
             <button type="submit"
                 class="bg-[#3A8BC0] text-white py-2 px-4 rounded-md hover:bg-blue-500 focus:outline-none">Enviar
                 Respuestas
             </button>
         </div>
-
-
     </form>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -218,6 +213,25 @@
         Toast.fire({
             icon: 'success',
             title: '{{ session('success') }}',
+        });
+    </script>
+@endif
+@if (session('error'))
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            iconColor: 'white',
+            customClass: {
+                popup: 'colored-toast',
+            },
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true,
+        });
+        Toast.fire({
+            icon: 'error',
+            title: '{{ session('error') }}',
         });
     </script>
 @endif

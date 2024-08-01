@@ -35,7 +35,7 @@
 
                         <div class="flex items-center border rounded-l-md border-gray-300">
                             <label for="cantidad" class="px-3 py-2 bg-gray-200 border-r text-gray-800">Calificación</label>
-                            <input type="number" min="0.2" max="1.2" step="0.1" name="cantidad" id="cantidad" placeholder="0,2 - 1,2" class="p-2 focus:outline-none focus:border-blue-500">
+                            <input type="number" min="0" max="1.2" step="0.1" name="cantidad" id="cantidad" placeholder="0 - 1,2" class="p-2 focus:outline-none focus:border-blue-500">
                         </div>
 
                         <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-r-md focus:outline-none">
@@ -61,7 +61,7 @@
                             @csrf
                             <div class="flex items-center border rounded-l-md border-gray-300">
                                 <label for="cantidad" class="px-3 py-2 bg-gray-200 border-r text-gray-800">Calificación</label>
-                                <input type="number" min="0.2" max="1.2" step="0.1" name="cantidad" id="cantidad" placeholder="0,2 - 1,2" class="p-2 focus:outline-none focus:border-blue-500">
+                                <input type="number" min="0" max="1.2" step="0.1" name="cantidad" id="cantidad" placeholder="0 - 1,2" class="p-2 focus:outline-none focus:border-blue-500">
                             </div>
                             <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-r-md focus:outline-none">
                                 Enviar Calificación
@@ -86,7 +86,7 @@
                             @csrf
                             <div class="flex items-center border rounded-l-md border-gray-300">
                                 <label for="cantidad" class="px-3 py-2 bg-gray-200 border-r text-gray-800">Calificación</label>
-                                <input type="number" min="0.2" max="1.2" step="0.1" name="cantidad" id="cantidad" placeholder="0,2 - 1,2" class="p-2 focus:outline-none focus:border-blue-500">
+                                <input type="number" min="0" max="1.2" step="0.1" name="cantidad" id="cantidad" placeholder="0 - 1,2" class="p-2 focus:outline-none focus:border-blue-500">
                             </div>
                             <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-r-md focus:outline-none">
                                 Enviar Calificación
@@ -110,7 +110,7 @@
                             @csrf
                             <div class="flex items-center border rounded-l-md border-gray-300">
                                 <label for="cantidad" class="px-3 py-2 bg-gray-200 border-r text-gray-800">Calificación</label>
-                                <input type="number" min="0.2" max="1.2" step="0.1" name="cantidad" id="cantidad" placeholder="0,2 - 1,2" class="p-2 focus:outline-none focus:border-blue-500">
+                                <input type="number" min="0" max="1.2" step="0.1" name="cantidad" id="cantidad" placeholder="0 - 1,2" class="p-2 focus:outline-none focus:border-blue-500">
                             </div>
                             <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-r-md focus:outline-none">
                                 Enviar Calificación

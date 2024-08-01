@@ -67,16 +67,7 @@
             <br><br>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. Narrar</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. Informar</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. Argumentar</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">D. Solicitar</span>
+                <span class="ml-2">R/= {{ $spanishNoveno->spanishPNO1 }}</span>
             </div>
         </div>
 
@@ -88,16 +79,7 @@
             <p>“La vida es efímera, como una flor que se marchita en un día. Por eso hay que aprovechar cada momento, cada oportunidad, cada sueño.”</p> <br>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. Breve</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. Bello</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. Triste</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">D. Frágil</span>
+                <span class="ml-2">R/= {{ $spanishNoveno->spanishPNO2 }}</span>
             </div>
         </div>
 
@@ -110,16 +92,7 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">3. ¿Qué tipo de sintagma tiene un verbo como núcleo?</label>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. Sintagma nominal</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. Sintagma verbal</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. Sintagma preposicional</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">D. Sintagma adjetival</span>
+                <span class="ml-2">R/= {{ $spanishNoveno->spanishPNO3 }}</span>
             </div>
         </div>
 
@@ -129,16 +102,7 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">4. ¿Qué categoría gramatical es la palabra <em>“que”</em> cuando introduce una oración subordinada sustantiva?</label>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. Preposición</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. Conjunción</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. Interjección</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">D. Adverbio</span>
+                <span class="ml-2">R/= {{ $spanishNoveno->spanishPNO4 }}</span>
             </div>
         </div>
 
@@ -151,16 +115,7 @@
             </p>
             <br>
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. De autoridad</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. De ejemplificación</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. De analogía</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">D. De causa y efecto</span>
+                <span class="ml-2">R/= {{ $spanishNoveno->spanishPNO5 }}</span>
             </div>
         </div>
 
@@ -176,16 +131,7 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">6. ¿Qué tipo de narrador tiene el texto?</label>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. Omnisciente</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. Testigo</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. Protagonista</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">D. Equisciente</span>
+                <span class="ml-2">R/= {{ $spanishNoveno->spanishPNO6 }}</span>
             </div>
         </div>
 
@@ -194,16 +140,7 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">7. ¿Qué significa la palabra “maloca” en el contexto del texto de <span class="text-black font-bold">La Vorágine?</span></label>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. Una planta medicinal.</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. Una choza grande.</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. Una canoa rápida.</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">D. Una trampa mortal.</span>
+                <span class="ml-2">R/= {{ $spanishNoveno->spanishPNO7 }}</span>
             </div>
         </div>
 
@@ -213,16 +150,7 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">8. ¿Qué efecto produce el uso de la conjunción “pero” en la primera oración del texto de <span class="text-black font-bold">La Vorágine?</span></label>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. Expresa una oposición entre dos ideas.</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. Introduce una consecuencia lógica.</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. Añade una información adicional.</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">D. Establece una relación temporal.</span>
+                <span class="ml-2">R/= {{ $spanishNoveno->spanishPNO8 }}</span>
             </div>
         </div>
 
@@ -231,16 +159,7 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">9. ¿Qué recurso literario se emplea en el fragmento de <span class="text-black font-bold">La Vorágine?</span> al comparar los árboles con gigantes?</label>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. Metáfora</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. Hipérbole</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. Símil</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">D. Personificación</span>
+                <span class="ml-2">R/= {{ $spanishNoveno->spanishPNO9 }}</span>
             </div>
         </div>
 
@@ -249,16 +168,7 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">10. ¿Qué tema se aborda en el texto?</label>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. La explotación del caucho en la Amazonía.</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. La aventura de un poeta en la selva que viaja en busca de su amada.</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. La violencia contra los pueblos indígenas y la barbarie de la explotación.</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">D. La belleza y el misterio de la naturaleza.</span>
+                <span class="ml-2">R/= {{ $spanishNoveno->spanishPNO10 }}</span>
             </div>
         </div>
 </div>

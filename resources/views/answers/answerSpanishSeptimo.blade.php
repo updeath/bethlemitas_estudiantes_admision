@@ -140,52 +140,25 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">8. ¿Qué categoría gramatical es la palabra “ay” cuando expresa sorpresa o dolor?</label>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. Preposición</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. Conjunción</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. Interjección</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">D. Adverbio</span>
+                <span class="ml-2">R/= {{ $spanishSeptimo->spanishPS8 }}</span>
             </div>
         </div>
 
         <!-- Pregunta 9 -->
         <div class="mb-5 border-t p-2 border-gray-400">
-            <label class="block text-sm font-medium text-gray-600 mb-3">9) ¿Qué es la comunicación?</label>
+            <label class="block text-sm font-medium text-gray-600 mb-3">9. ¿Qué es la comunicación?</label>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. El proceso de intercambio de información entre un emisor y un receptor mediante un código y un canal.</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. El conjunto de signos que se utilizan para expresar ideas, sentimientos o emociones.</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. La capacidad de comprender y producir diferentes tipos de textos orales y escritos.</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">D. La ciencia que estudia el origen, la estructura y el funcionamiento del lenguaje.</span>
+                <span class="ml-2">R/= {{ $spanishSeptimo->spanishPS9 }}</span>
             </div>
         </div>
 
         <!-- Pregunta 10 -->
         <div class=" border-t p-2 border-gray-400">
-            <label class="block text-sm font-medium text-gray-600 mb-3">10) ¿Qué es el código en la comunicación?</label>
+            <label class="block text-sm font-medium text-gray-600 mb-3">10. ¿Qué es el código en la comunicación?</label>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. El sistema de signos y reglas que comparten el emisor y el receptor para entenderse.</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. El medio físico por el que se transmite el mensaje del emisor al receptor.</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. La información que el emisor quiere comunicar al receptor.</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">D. La situación o el contexto en el que se produce la comunicación.</span>
+                <span class="ml-2">R/= {{ $spanishSeptimo->spanishPS10 }}</span>
             </div>
         </div>
 </div>

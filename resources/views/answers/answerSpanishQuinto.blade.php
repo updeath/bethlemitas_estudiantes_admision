@@ -60,16 +60,7 @@
             </div>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. La hora del evento</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. El lugar del evento</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. El nombre de la escuela</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">D. La fecha del evento</span>
+                <span class="ml-2">R/= {{ $spanishQuinto->spanishPQ1 }}</span>
             </div>
         </div>
 
@@ -88,16 +79,7 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">2. ¿Qué signos tiene la frase resaltada?</label>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. De interrogación</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. Guión de diálogo</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. Paréntesis</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">D. Comillas</span>
+                <span class="ml-2">R/= {{ $spanishQuinto->spanishPQ2 }}</span>
             </div>
         </div>
 
@@ -107,16 +89,7 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">3. ¿Cómo es el escenario donde se desarrolla la historia?</label>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. Una ciudad rica y ostentosa</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. Un parque de diversiones</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. Una casa humilde en el bosque</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">D. Un castillo en el bosque</span>
+                <span class="ml-2">R/= {{ $spanishQuinto->spanishPQ3 }}</span>
             </div>
         </div>
 
@@ -137,16 +110,7 @@
             </div>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. Estados Unidos</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. México</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. Alemania</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">D. Noruega</span>
+                <span class="ml-2">R/= {{ $spanishQuinto->spanishPQ4 }}</span>
             </div>
         </div>
 
@@ -155,16 +119,7 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">5. ¿Qué obras realizaron?</label>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. Poemas y prosas</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. Cuentos y diccionarios</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. Reportajes</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">D. Obras de teatro</span>
+                <span class="ml-2">R/= {{ $spanishQuinto->spanishPQ5 }}</span>
             </div>
         </div>
 
@@ -201,16 +156,7 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">8. ¿Qué significa la palabra voluminosos en el texto?</label>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. Enormes</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. Hambrientos</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. Lentos</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">D. Divertidos</span>
+                <span class="ml-2">R/= {{ $spanishQuinto->spanishPQ8 }}</span>
             </div>
         </div>
 
@@ -223,16 +169,7 @@
             </div>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. Libros para niños.</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. Artículos para el hogar.</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. Clases de baile.</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">D. Celebración de eventos.</span>
+                <span class="ml-2">R/= {{ $spanishQuinto->spanishPQ9 }}</span>
             </div>
         </div>
 

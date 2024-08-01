@@ -92,19 +92,19 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">7. ¿Qué es la crónica?</label>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPSX7" name="spanishPSX7" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPSX7" name="spanishPSX7" value="A. Información interpretativa de hechos o acontecimientos.">
                 <span class="ml-2">A. Información interpretativa de hechos o acontecimientos.</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPSX7" name="spanishPSX7" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPSX7" name="spanishPSX7" value="B. Narración breve de hechos de ficción.">
                 <span class="ml-2">B. Narración breve de hechos de ficción.</span>
             </div>
             <div class="flex items-center mt-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPSX7" name="spanishPSX7" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPSX7" name="spanishPSX7" value="C. Relato popular de un hecho real o fabuloso adornado con elementos fantásticos.">
                 <span class="ml-2">C. Relato popular de un hecho real o fabuloso adornado con elementos fantásticos.</span>
             </div>
             @error('spanishPSX7')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
             @enderror
         </div>
 
@@ -113,19 +113,19 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">8. ¿Dentro de qué género se enmarca comúnmente la crónica?</label>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPSX8" name="spanishPSX8" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPSX8" name="spanishPSX8" value="A. El género fantástico.">
                 <span class="ml-2">A. El género fantástico.</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPSX8" name="spanishPSX8" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPSX8" name="spanishPSX8" value="B. El género periodístico.">
                 <span class="ml-2">B. El género periodístico.</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPSX8" name="spanishPSX8" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPSX8" name="spanishPSX8" value="C. El género dramático.">
                 <span class="ml-2">C. El género dramático.</span>
             </div>
             @error('spanishPSX8')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
             @enderror
         </div>
 
@@ -135,15 +135,15 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">9. Señale cuál de las siguientes opciones representa una de las características principales de la crónica:</label>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPSX9" name="spanishPSX9" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPSX9" name="spanishPSX9" value="A. Participan personajes ficticios.">
                 <span class="ml-2">A. Participan personajes ficticios.</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPSX9" name="spanishPSX9" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPSX9" name="spanishPSX9" value="B. El texto está compuesto por hechos fantásticos.">
                 <span class="ml-2">B. El texto está compuesto por hechos fantásticos.</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPSX9" name="spanishPSX9" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPSX9" name="spanishPSX9" value="C. Narra hechos ocurridos en forma cronológica.">
                 <span class="ml-2">C. Narra hechos ocurridos en forma cronológica.</span>
             </div>
             @error('spanishPSX9')
@@ -156,19 +156,19 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">10. En términos prácticos, en la crónica periodística:</label>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPSX10" name="spanishPSX10" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPSX10" name="spanishPSX10" value="A. La narración se apoya en testimonios de testigos reales o ficticios.">
                 <span class="ml-2">A. La narración se apoya en testimonios de testigos reales o ficticios.</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPSX10" name="spanishPSX10" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPSX10" name="spanishPSX10" value="B. Se dejan a un lado los aspectos emocionales de las partes y el eje gira en torno a los sucesos que se desea mencionar.">
                 <span class="ml-2">B. Se dejan a un lado los aspectos emocionales de las partes y el eje gira en torno a los sucesos que se desea mencionar.</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPSX10" name="spanishPSX10" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPSX10" name="spanishPSX10" value="C. Ambas opciones son correctas.">
                 <span class="ml-2">C. Ambas opciones son correctas.</span>
             </div>
             @error('spanishPSX10')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
             @enderror
         </div>
 
@@ -178,8 +178,6 @@
                 Respuestas
             </button>
         </div>
-
-
     </form>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -200,6 +198,25 @@
         Toast.fire({
             icon: 'success',
             title: '{{ session('success') }}',
+        });
+    </script>
+@endif
+@if (session('error'))
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            iconColor: 'white',
+            customClass: {
+                popup: 'colored-toast',
+            },
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true,
+        });
+        Toast.fire({
+            icon: 'error',
+            title: '{{ session('error') }}',
         });
     </script>
 @endif

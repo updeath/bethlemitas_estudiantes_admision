@@ -60,16 +60,7 @@
             </div>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. Presente</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. Pasado</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. Futuro</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">D. Infinitivo</span>
+                <span class="ml-2">R/= {{ $spanishCuarto->spanishPC1 }}</span>
             </div>
         </div>
 
@@ -78,16 +69,7 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">2. ¿Qué pasa si en la receta no realizamos el paso dos?</label>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. Nada, porque el pastel de todos modos sale bien.</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. No se puede realizar el pastel porque le haría falta el huevo. </span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. El pastel no saldría bien porque la mantequilla no se batió.</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">D. Nada porque enseguida se acomodan los ingredientes.</span>
+                <span class="ml-2">R/= {{ $spanishCuarto->spanishPC2 }}</span>
             </div>
         </div>
 
@@ -96,16 +78,7 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">3. ¿Cual de las palabras no es un verbo?</label>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. Enjuagar</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. Sazonador</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. Escurrir</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">D. Agregar</span>
+                <span class="ml-2">R/= {{ $spanishCuarto->spanishPC3 }}</span>
             </div>
         </div>
 
@@ -123,16 +96,7 @@
             </div>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. Ramitas y té</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. Yerbabuena y agua</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. Yerbabuena, agua y un poco de azúcar</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">D. Fuego lento y agua</span>
+                <span class="ml-2">R/= {{ $spanishCuarto->spanishPC4 }}</span>
             </div>
         </div>
 
@@ -141,16 +105,7 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">5. Las palabras resaltadas y subrayadas en el texto son:</label>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. Sustantivos</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. Verbos</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. Personajes</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">D. Malestares</span>
+                <span class="ml-2">R/= {{ $spanishCuarto->spanishPC5 }}</span>
             </div>
         </div>
 
@@ -163,21 +118,22 @@
                     <img src="{{ asset('img/spanish/four/op1.png') }}" class=" w-[100px]" alt="Gráfica 1 ">
                     <span class="ml-2">Opción 1</span>
                 </div>
-
                 <div class="mb-2">
                     <img src="{{ asset('img/spanish/four/op2.png') }}"class=" w-[100px]" alt="Gráfica 2 ">
                     <span class="ml-2">Opción 2</span>
                 </div>
-
                 <div class=" ">
                     <img src="{{ asset('img/spanish/four/op3.png') }}" class=" w-[100px]" alt="Gráfica 3 ">
                     <span class="ml-2">Opción 3</span>
                 </div>
-
                 <div class=" ">
                     <img src="{{ asset('img/spanish/four/op4.png') }}"class=" w-[100px]" alt="Gráfica 4 ">
                     <span class="ml-2">Opción 4</span>
                 </div>
+                <br>
+            </div>
+            <div>
+                <samp class="ml-2">R/= {{ $spanishCuarto->spanishPC6 }}</samp>
             </div>
         </div>
 
@@ -186,16 +142,7 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">7. Juan tiene que escribir un texto sobre el cuidado de las mascotas. La fuente de información que más le sirve para escribir su texto es:</label>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. La enfermera del centro de salud, porque ella sabe sobre muchas enfermedades.</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. El libro "Vida sana de las mascotas", porque trata diversos aspectos sobre la crianza y cuidado de las mascotas.</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. La profesora de ciencias sociales, porque en clase les ha hablado sobre la importancia de tener una mascota.</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">D. El libro de ciencias naturales, porque este contiene información sobre todo tipo de especies.</span>
+                <span class="ml-2">R/= {{ $spanishCuarto->spanishPC7 }}</span>
             </div>
         </div>
 
@@ -229,13 +176,7 @@
             </div>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. Un poema, porque utiliza palabras bonitas</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. Un cuento, porque narra una historia sobre un árbol</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. Una ronda, porque se repiten muchas palabras</span>
+                <span class="ml-2">R/= {{ $spanishCuarto->spanishPC9 }}</span>
             </div>
         </div>
 
@@ -243,15 +184,8 @@
         <div class="mb-3 border-t p-2 border-gray-400">
             <label class="block text-sm font-medium text-gray-600 mb-3">10. La lectura de esta historia enseña que:</label>
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. Es bueno conversar con los árboles encantados.</span>
+                <span class="ml-2">R/= {{ $spanishCuarto->spanishPC10 }}</span>
             </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. Cuando se quiere lograr algo, hay que intentarlo muchas veces.</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. Pedir el favor y agradecer nos ayuda a conseguir lo que queremos.</span>
-            </div>
-        </div>
 </div>
 
 @endsection

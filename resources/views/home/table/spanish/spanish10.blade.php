@@ -69,6 +69,10 @@
 
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                Respuestas regulares</th>
+
+                            <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                 Pregunta 4</th>
 
                             <th
@@ -108,6 +112,9 @@
                                     {{ $data['cantidadRespuestasMalas'] }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    {{ $data['cantidadRespuestasRegulares'] }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                     @if ($data['user']->spanishDecimo)
                                         <a href="{{ route('fragment.spanishPD4', ['userId' => $data['user']->id]) }}"
                                             class="inline-block bg-blue-500 hover:bg-blue-700 text-white rounded-full px-4 py-2 transition duration-300 ease-in-out">
@@ -120,7 +127,7 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                     @if ($data['user']->spanishDecimo)
-                                        @if ($data['user']->spanishDecimo->spanishPD5 !== null && $data['user']->spanishDecimo->spanishPD5 != 1)
+                                        @if ($data['user']->spanishDecimo->spanishPD5 !== null && $data['user']->spanishDecimo->spanishPD5 != 0)
                                             <button
                                                 class="bg-green-500 hover:bg-green-600 rounded-full px-3 py-1 text-xs font-semibold text-white btn-show-info">
                                                 Calificación Exitosamente
@@ -140,7 +147,7 @@
                                                     action="{{ route('calificar.spanishPD5', ['userId' => $data['user']->id]) }}"
                                                     method="POST" class="flex items-center space-x-2">
                                                     @csrf
-                                                    <input type="number" min="1" max="5" name="cantidad"
+                                                    <input type="number" min="0" max="5" name="cantidad"
                                                         placeholder="Calificación"
                                                         class="rounded-l-md px-3 py-1 border text-gray-800 border-gray-300 focus:outline-none focus:border-blue-500">
                                                     <button type="submit"
@@ -157,7 +164,7 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                     @if ($data['user']->spanishDecimo)
-                                        @if ($data['user']->spanishDecimo->spanishPD6 !== null && $data['user']->spanishDecimo->spanishPD6 != 1)
+                                        @if ($data['user']->spanishDecimo->spanishPD6 !== null && $data['user']->spanishDecimo->spanishPD6 != 0)
                                             <button
                                                 class="bg-green-500 hover:bg-green-600 rounded-full px-3 py-1 text-xs font-semibold text-white btn-show-info">
                                                 Calificación Exitosamente
@@ -177,7 +184,7 @@
                                                     action="{{ route('calificar.spanishPD6', ['userId' => $data['user']->id]) }}"
                                                     method="POST" class="flex items-center space-x-2">
                                                     @csrf
-                                                    <input type="number" min="1" max="5" name="cantidad"
+                                                    <input type="number" min="0" max="5" name="cantidad"
                                                         placeholder="Calificación"
                                                         class="rounded-l-md px-3 py-1 border text-gray-800 border-gray-300 focus:outline-none focus:border-blue-500">
                                                     <button type="submit"
@@ -194,7 +201,7 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                     @if ($data['user']->spanishDecimo)
-                                        @if ($data['user']->spanishDecimo->spanishPD7 !== null && $data['user']->spanishDecimo->spanishPD7 != 1)
+                                        @if ($data['user']->spanishDecimo->spanishPD7 !== null && $data['user']->spanishDecimo->spanishPD7 != 0)
                                             <button
                                                 class="bg-green-500 hover:bg-green-600 rounded-full px-3 py-1 text-xs font-semibold text-white btn-show-info">
                                                 Calificación Exitosamente
@@ -214,7 +221,7 @@
                                                     action="{{ route('calificar.spanishPD7', ['userId' => $data['user']->id]) }}"
                                                     method="POST" class="flex items-center space-x-2">
                                                     @csrf
-                                                    <input type="number" min="1" max="5" name="cantidad"
+                                                    <input type="number" min="0" max="5" name="cantidad"
                                                         placeholder="Calificación"
                                                         class="rounded-l-md px-3 py-1 border text-gray-800 border-gray-300 focus:outline-none focus:border-blue-500">
                                                     <button type="submit"

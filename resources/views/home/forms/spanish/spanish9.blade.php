@@ -27,24 +27,24 @@
             <br><br>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO1" name="spanishPNO1" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO1" name="spanishPNO1" value="A. Narrar">
                 <span class="ml-2">A. Narrar</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO1" name="spanishPNO1" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO1" name="spanishPNO1" value="B. Informar">
                 <span class="ml-2">B. Informar</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO1" name="spanishPNO1" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO1" name="spanishPNO1" value="C. Argumentar">
                 <span class="ml-2">C. Argumentar</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO1" name="spanishPNO1" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO1" name="spanishPNO1" value="D. Solicitar">
                 <span class="ml-2">D. Solicitar</span>
             </div>
             @error('spanishPNO1')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-        @enderror
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+            @enderror
         </div>
 
 
@@ -55,24 +55,24 @@
             <p>“La vida es efímera, como una flor que se marchita en un día. Por eso hay que aprovechar cada momento, cada oportunidad, cada sueño.”</p> <br>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO2" name="spanishPNO2" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO2" name="spanishPNO2" value="A. Breve">
                 <span class="ml-2">A. Breve</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO2" name="spanishPNO2" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO2" name="spanishPNO2" value="B. Bello">
                 <span class="ml-2">B. Bello</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO2" name="spanishPNO2" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO2" name="spanishPNO2" value="C. Triste">
                 <span class="ml-2">C. Triste</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO2" name="spanishPNO2" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO2" name="spanishPNO2" value="D. Frágil">
                 <span class="ml-2">D. Frágil</span>
             </div>
             @error('spanishPNO2')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-        @enderror
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+            @enderror
         </div>
 
 
@@ -84,24 +84,24 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">3. ¿Qué tipo de sintagma tiene un verbo como núcleo?</label>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO3" name="spanishPNO3" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO3" name="spanishPNO3" value="A. Sintagma nominal">
                 <span class="ml-2">A. Sintagma nominal</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO3" name="spanishPNO3" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO3" name="spanishPNO3" value="B. Sintagma verbal">
                 <span class="ml-2">B. Sintagma verbal</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO3" name="spanishPNO3" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO3" name="spanishPNO3" value="C. Sintagma preposicional">
                 <span class="ml-2">C. Sintagma preposicional</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO3" name="spanishPNO3" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO3" name="spanishPNO3" value="D. Sintagma adjetival">
                 <span class="ml-2">D. Sintagma adjetival</span>
             </div>
             @error('spanishPNO3')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-        @enderror
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+            @enderror
         </div>
 
 
@@ -110,24 +110,24 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">4. ¿Qué categoría gramatical es la palabra <em>“que”</em> cuando introduce una oración subordinada sustantiva?</label>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO4" name="spanishPNO4" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO4" name="spanishPNO4" value="A. Preposición">
                 <span class="ml-2">A. Preposición</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO4" name="spanishPNO4" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO4" name="spanishPNO4" value="B. Conjunción">
                 <span class="ml-2">B. Conjunción</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO4" name="spanishPNO4" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO4" name="spanishPNO4" value="C. Interjección">
                 <span class="ml-2">C. Interjección</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO4" name="spanishPNO4" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO4" name="spanishPNO4" value="D. Adverbio">
                 <span class="ml-2">D. Adverbio</span>
             </div>
             @error('spanishPNO4')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-        @enderror
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+            @enderror
         </div>
 
 
@@ -139,24 +139,24 @@
             </p>
             <br>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO5" name="spanishPNO5" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO5" name="spanishPNO5" value="A. De autoridad">
                 <span class="ml-2">A. De autoridad</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO5" name="spanishPNO5" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO5" name="spanishPNO5" value="B. De ejemplificación">
                 <span class="ml-2">B. De ejemplificación</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO5" name="spanishPNO5" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO5" name="spanishPNO5" value="C. De analogía">
                 <span class="ml-2">C. De analogía</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO5" name="spanishPNO5" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO5" name="spanishPNO5" value="D. De causa y efecto">
                 <span class="ml-2">D. De causa y efecto</span>
             </div>
             @error('spanishPNO5')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-        @enderror
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+            @enderror
         </div>
 
 
@@ -171,24 +171,24 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">6. ¿Qué tipo de narrador tiene el texto?</label>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO6" name="spanishPNO6" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO6" name="spanishPNO6" value="A. Omnisciente">
                 <span class="ml-2">A. Omnisciente</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO6" name="spanishPNO6" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO6" name="spanishPNO6" value="B. Testigo">
                 <span class="ml-2">B. Testigo</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO6" name="spanishPNO6" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO6" name="spanishPNO6" value="C. Protagonista">
                 <span class="ml-2">C. Protagonista</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO6" name="spanishPNO6" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO6" name="spanishPNO6" value="D. Equisciente">
                 <span class="ml-2">D. Equisciente</span>
             </div>
             @error('spanishPNO6')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-        @enderror
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+            @enderror
         </div>
 
         <!-- Pregunta 7 -->
@@ -196,24 +196,24 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">7. ¿Qué significa la palabra “maloca” en el contexto del texto de <span class="text-black font-bold">La Vorágine?</span></label>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO7" name="spanishPNO7" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO7" name="spanishPNO7" value="A. Una planta medicinal.">
                 <span class="ml-2">A. Una planta medicinal.</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO7" name="spanishPNO7" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO7" name="spanishPNO7" value="B. Una choza grande.">
                 <span class="ml-2">B. Una choza grande.</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO7" name="spanishPNO7" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO7" name="spanishPNO7" value="C. Una canoa rápida.">
                 <span class="ml-2">C. Una canoa rápida.</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO7" name="spanishPNO7" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO7" name="spanishPNO7" value="D. Una trampa mortal.">
                 <span class="ml-2">D. Una trampa mortal.</span>
             </div>
             @error('spanishPNO7')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-        @enderror
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+            @enderror
         </div>
 
 
@@ -222,24 +222,24 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">8. ¿Qué efecto produce el uso de la conjunción “pero” en la primera oración del texto de <span class="text-black font-bold">La Vorágine?</span></label>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO8" name="spanishPNO8" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO8" name="spanishPNO8" value="A. Expresa una oposición entre dos ideas.">
                 <span class="ml-2">A. Expresa una oposición entre dos ideas.</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO8" name="spanishPNO8" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO8" name="spanishPNO8" value="B. Introduce una consecuencia lógica.">
                 <span class="ml-2">B. Introduce una consecuencia lógica.</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO8" name="spanishPNO8" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO8" name="spanishPNO8" value="C. Añade una información adicional.">
                 <span class="ml-2">C. Añade una información adicional.</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO8" name="spanishPNO8" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO8" name="spanishPNO8" value="D. Establece una relación temporal.">
                 <span class="ml-2">D. Establece una relación temporal.</span>
             </div>
             @error('spanishPNO8')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-        @enderror
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+            @enderror
         </div>
 
         <!-- Pregunta 9 -->
@@ -247,24 +247,24 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">9. ¿Qué recurso literario se emplea en el fragmento de <span class="text-black font-bold">La Vorágine?</span> al comparar los árboles con gigantes?</label>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO9" name="spanishPNO9" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO9" name="spanishPNO9" value="A. Metáfora">
                 <span class="ml-2">A. Metáfora</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO9" name="spanishPNO9" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO9" name="spanishPNO9" value="B. Hipérbole">
                 <span class="ml-2">B. Hipérbole</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO9" name="spanishPNO9" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO9" name="spanishPNO9" value="C. Símil">
                 <span class="ml-2">C. Símil</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO9" name="spanishPNO9" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO9" name="spanishPNO9" value="D. Personificación">
                 <span class="ml-2">D. Personificación</span>
             </div>
             @error('spanishPNO9')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-        @enderror
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+            @enderror
         </div>
 
         <!-- Pregunta 10 -->
@@ -272,36 +272,31 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">10. ¿Qué tema se aborda en el texto?</label>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO10" name="spanishPNO10" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO10" name="spanishPNO10" value="A. La explotación del caucho en la Amazonía.">
                 <span class="ml-2">A. La explotación del caucho en la Amazonía.</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO10" name="spanishPNO10" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO10" name="spanishPNO10" value="B. La aventura de un poeta en la selva que viaja en busca de su amada.">
                 <span class="ml-2">B. La aventura de un poeta en la selva que viaja en busca de su amada.</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO10" name="spanishPNO10" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO10" name="spanishPNO10" value="C. La violencia contra los pueblos indígenas y la barbarie de la explotación.">
                 <span class="ml-2">C. La violencia contra los pueblos indígenas y la barbarie de la explotación.</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO10" name="spanishPNO10" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPNO10" name="spanishPNO10" value="D. La belleza y el misterio de la naturaleza.">
                 <span class="ml-2">D. La belleza y el misterio de la naturaleza.</span>
             </div>
             @error('spanishPNO10')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-        @enderror
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+            @enderror
         </div>
-
-
-
         <div class=" ml-[5%] mt-5 ">
             <button type="submit"
                 class="bg-[#3A8BC0] text-white py-2 px-4 rounded-md hover:bg-blue-500 focus:outline-none">Enviar
                 Respuestas
             </button>
         </div>
-
-
     </form>
 </div>
 
@@ -323,6 +318,25 @@
         Toast.fire({
             icon: 'success',
             title: '{{ session('success') }}',
+        });
+    </script>
+@endif
+@if (session('error'))
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            iconColor: 'white',
+            customClass: {
+                popup: 'colored-toast',
+            },
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true,
+        });
+        Toast.fire({
+            icon: 'error',
+            title: '{{ session('error') }}',
         });
     </script>
 @endif

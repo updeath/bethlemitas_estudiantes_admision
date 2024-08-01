@@ -107,7 +107,7 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                     @if ($data['user']->spanishCuarto)
-                                        @if ($data['user']->spanishCuarto->spanishPC8 !== null && $data['user']->spanishCuarto->spanishPC8 != 1)
+                                        @if ($data['user']->spanishCuarto->spanishPC8 !== null && $data['user']->spanishCuarto->spanishPC8 != 0)
                                             <button
                                                 class="bg-green-500 hover:bg-green-600 rounded-full px-3 py-1 text-xs font-semibold text-white btn-show-info">
                                                 Calificación Exitosamente
@@ -127,7 +127,7 @@
                                                     action="{{ route('calificar.spanishPC8', ['userId' => $data['user']->id]) }}"
                                                     method="POST" class="flex items-center space-x-2">
                                                     @csrf
-                                                    <input type="number" min="1" max="5" name="cantidad"
+                                                    <input type="number" min="0" max="5" name="cantidad"
                                                         placeholder="Calificación"
                                                         class="rounded-l-md px-3 py-1 border text-gray-800 border-gray-300 focus:outline-none focus:border-blue-500">
                                                     <button type="submit"

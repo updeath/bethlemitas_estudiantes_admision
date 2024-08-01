@@ -129,144 +129,152 @@ class SpanishController extends Controller
 
         $promedioData = [];
         foreach ($users as $user) {
-            $spanishCuarto = SpanishCuarto::where('user_id', $user->id)->first();
-            if ($spanishCuarto !== null) {
-                $respuestas = collect($spanishCuarto->toArray())->only([
-                    'spanishPC1',
-                    'spanishPC2',
-                    'spanishPC3',
-                    'spanishPC4',
-                    'spanishPC5',
-                    'spanishPC6',
-                    'spanishPC7',
-                    'spanishPC8',
-                    'spanishPC9',
-                    'spanishPC10',
-                ])->values();
+            $SpanishCuarto = SpanishCuarto::where('user_id', $user->id)->first();
+            if ($SpanishCuarto !== null) {
 
-                $respuestasCollection = collect($respuestas);
-
-                $cantidadRespuestasCorrectas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 5;
-                })->count();
-
-                $cantidadRespuestasCon4 = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 4;
-                })->count();
-                $sumarCantidadCorrectas = $cantidadRespuestasCorrectas + $cantidadRespuestasCon4;
-
-                $cantidadRespuestasRegulares = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 3;
-                })->count();
-
-                $cantidadRespuestasCon2 = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 2;
-                })->count();
-
-
-                $cantidadRespuestasIncorrectas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 1;
-                })->count();
-                $sumarCantidadIncorrectas = $cantidadRespuestasCon2 + $cantidadRespuestasIncorrectas;
-
-                $puntuacionPorRespuestaCorrecta = 5 / 10;
-                $puntuacionPorRespuestaCon4 = 0.4;
-                $puntuacionPorRespuestaRegular = 3 / 10;
-                $puntuacionPorRespuestaCon2 = 0.2;
-                $puntuacionPorRespuestaIncorrecta = 0;
-
-                $promedio = ($puntuacionPorRespuestaCorrecta * $cantidadRespuestasCorrectas) +
-                    ($puntuacionPorRespuestaCon4 * $cantidadRespuestasCon4) +
-                    ($puntuacionPorRespuestaRegular * $cantidadRespuestasRegulares) +
-                    ($puntuacionPorRespuestaCon2 * $cantidadRespuestasCon2) +
-                    ($puntuacionPorRespuestaIncorrecta * $cantidadRespuestasIncorrectas);
-
+                $sumaPromedio = 0;
+                $cantidadRespuestasCorrectas = 0;
+                $cantidadRespuestasRegulares = 0;
+                $cantidadRespuestasIncorrectas = 0;
+    
+                $respuestas = [
+                    $SpanishCuarto->spanishPC1,
+                    $SpanishCuarto->spanishPC2,
+                    $SpanishCuarto->spanishPC3,
+                    $SpanishCuarto->spanishPC4,
+                    $SpanishCuarto->spanishPC5,
+                    $SpanishCuarto->spanishPC6,
+                    $SpanishCuarto->spanishPC7,
+                    $SpanishCuarto->spanishPC8,
+                    $SpanishCuarto->spanishPC9,
+                    $SpanishCuarto->spanishPC10,
+                ];
+    
+                $respuestasCorrectas = [
+                    'D. Infinitivo',
+                    'C. El pastel no saldría bien porque la mantequilla no se batió.',
+                    'B. Sazonador',
+                    'C. Yerbabuena, agua y un poco de azúcar',
+                    'B. Verbos',
+                    'Opción 3', 
+                    'B. El libro ´Vida sana de las mascotas´, porque trata diversos aspectos sobre la crianza y cuidado de las mascotas',  // 
+                    null,  // respuesta 8 no es una comparación de string
+                    'B. Un cuento, porque narra una historia sobre un árbol',
+                    'C. Pedir el favor y agradecer nos ayuda a conseguir lo que queremos.',
+                ];
+    
+                foreach ($respuestas as $index => $respuesta) {
+                    if ($respuestasCorrectas[$index] !== null) {
+                        if ($respuesta == $respuestasCorrectas[$index]) {
+                            $cantidadRespuestasCorrectas++;
+                            $sumaPromedio += 0.5;
+                        } else {
+                            $cantidadRespuestasIncorrectas++;
+                        }
+                    } else {
+                        if ($respuesta >= 4) {
+                            $cantidadRespuestasCorrectas++;
+                            $sumaPromedio += $respuesta / 10;
+                        } elseif ($respuesta < 4 && $respuesta >= 3) {
+                            $cantidadRespuestasRegulares++;
+                            $sumaPromedio += $respuesta / 10;
+                        } elseif ($respuesta < 3 && $respuesta >= 1) {
+                            $cantidadRespuestasIncorrectas++;
+                            $sumaPromedio += $respuesta / 10;
+                        }elseif ($respuesta < 1) {
+                            $cantidadRespuestasIncorrectas++;
+                            $sumaPromedio += $respuesta;
+                        }
+                    }
+                }
+    
                 $cantidadDeVeces = SpanishCuarto::where('user_id', $user->id)->count();
-
-                $spanishCuarto->update([
-                    'averageSpanishPC' => $promedio,
+    
+                $SpanishCuarto->update([
+                    'averageSpanishPC' => $sumaPromedio,
                     'attemptsSpanishPC' => $cantidadDeVeces,
-                    'correctSpanishPC' => $sumarCantidadCorrectas,
-                    'incorrectSpanishPC' => $sumarCantidadIncorrectas,
-                    'regularSpanishPC' => $cantidadRespuestasRegulares
+                    'correctSpanishPC' => $cantidadRespuestasCorrectas,
+                    'incorrectSpanishPC' => $cantidadRespuestasIncorrectas,
+                    'regularSpanishPC' => $cantidadRespuestasRegulares,
                 ]);
-
+    
                 $comment8 = SpanishCuarto::where('user_id', $user->id)->value('commentPC8');
+    
                 $promedioData[] = [
-                    'id' => $user->id, // Agregar el ID del usuario al array
+                    'id' => $user->id,
                     'user' => $user,
-                    'promedio' => $promedio,
+                    'promedio' => $sumaPromedio,
                     'cantidadRespuestasBuenas' => $cantidadRespuestasCorrectas,
                     'cantidadRespuestasMalas' => $cantidadRespuestasIncorrectas,
                     'cantidadRespuestasRegulares' => $cantidadRespuestasRegulares,
                     'cantidadDeVeces' => $cantidadDeVeces,
-                    'comment8' => $comment8
+                    'comment8' => $comment8,
                 ];
             }
         }
         return view("home.table.spanish.spanish4", compact('promedioData', 'users'));
     }
 
-    public function table_spanish4Table2(Request $request)
-    {
-        $estudianteRole = Role::where('name', 'Aspirante')->first();
-        $query = $estudianteRole->users()
-            ->whereHas('spanishCuarto');
+    // public function table_spanish4Table2(Request $request)
+    // {
+    //     $estudianteRole = Role::where('name', 'Aspirante')->first();
+    //     $query = $estudianteRole->users()
+    //         ->whereHas('spanishCuarto');
 
-        if ($request->has('search')) {
-            $searchTerm = $request->input('search');
-            $query->where(function ($q) use ($searchTerm) {
-                $q->where('name', 'LIKE', '%' . $searchTerm . '%')
-                    ->orWhere('last_name', 'LIKE', '%' . $searchTerm . '%')
-                    ->orWhereRaw("CONCAT(name, ' ', last_name) LIKE ?", ['%' . $searchTerm . '%']);
-            });
-        }
+    //     if ($request->has('search')) {
+    //         $searchTerm = $request->input('search');
+    //         $query->where(function ($q) use ($searchTerm) {
+    //             $q->where('name', 'LIKE', '%' . $searchTerm . '%')
+    //                 ->orWhere('last_name', 'LIKE', '%' . $searchTerm . '%')
+    //                 ->orWhereRaw("CONCAT(name, ' ', last_name) LIKE ?", ['%' . $searchTerm . '%']);
+    //         });
+    //     }
 
-        // Paginar los resultados con un máximo de 3 elementos por página
-        $users = $query->paginate(10);
+    //     // Paginar los resultados con un máximo de 3 elementos por página
+    //     $users = $query->paginate(10);
 
-        $promedioData = [];
-        foreach ($users as $user) {
-            $spanishCuarto = SpanishCuarto::where('user_id', $user->id)->first();
+    //     $promedioData = [];
+    //     foreach ($users as $user) {
+    //         $spanishCuarto = SpanishCuarto::where('user_id', $user->id)->first();
 
-            // Verificar si la observación es "Sin Observación"
-            $observacion = $spanishCuarto && $spanishCuarto->ObservationspanishPC !== 'Sin Observacion'
-                ? explode(' - ', $spanishCuarto->ObservationspanishPC)
-                : null;
+    //         // Verificar si la observación es "Sin Observación"
+    //         $observacion = $spanishCuarto && $spanishCuarto->ObservationspanishPC !== 'Sin Observacion'
+    //             ? explode(' - ', $spanishCuarto->ObservationspanishPC)
+    //             : null;
 
-            $observacion2 = $spanishCuarto && $spanishCuarto->ObservationspanishPC2 !== 'Sin Observacion'
-                ? explode(' - ', $spanishCuarto->ObservationspanishPC2)
-                : null;
+    //         $observacion2 = $spanishCuarto && $spanishCuarto->ObservationspanishPC2 !== 'Sin Observacion'
+    //             ? explode(' - ', $spanishCuarto->ObservationspanishPC2)
+    //             : null;
 
-            $observacion3 = $spanishCuarto && $spanishCuarto->ObservationspanishPC3 !== 'Sin Observacion'
-                ? explode(' - ', $spanishCuarto->ObservationspanishPC3)
-                : null;
+    //         $observacion3 = $spanishCuarto && $spanishCuarto->ObservationspanishPC3 !== 'Sin Observacion'
+    //             ? explode(' - ', $spanishCuarto->ObservationspanishPC3)
+    //             : null;
 
-            $observacion4 = $spanishCuarto && $spanishCuarto->ObservationspanishPC4 !== 'Sin Observacion'
-                ? explode(' - ', $spanishCuarto->ObservationspanishPC4)
-                : null;
+    //         $observacion4 = $spanishCuarto && $spanishCuarto->ObservationspanishPC4 !== 'Sin Observacion'
+    //             ? explode(' - ', $spanishCuarto->ObservationspanishPC4)
+    //             : null;
 
-            $observacionPredeterminadaPresente = $observacion === null;
-            $observacionPredeterminadaPresente2 = $observacion2 === null;
-            $observacionPredeterminadaPresente3 = $observacion3 === null;
-            $observacionPredeterminadaPresente4 = $observacion4 === null;
+    //         $observacionPredeterminadaPresente = $observacion === null;
+    //         $observacionPredeterminadaPresente2 = $observacion2 === null;
+    //         $observacionPredeterminadaPresente3 = $observacion3 === null;
+    //         $observacionPredeterminadaPresente4 = $observacion4 === null;
 
-            $promedioData[] = [
-                'id' => $user->id, // Agregar el ID del usuario al array
-                'user' => $user,
-                'observacion' => $observacion,
-                'observacion2' => $observacion2,
-                'observacion3' => $observacion3,
-                'observacion4' => $observacion4,
-                'observacionPredeterminadaPresente' => $observacionPredeterminadaPresente,
-                'observacionPredeterminadaPresente2' => $observacionPredeterminadaPresente2,
-                'observacionPredeterminadaPresente3' => $observacionPredeterminadaPresente3,
-                'observacionPredeterminadaPresente4' => $observacionPredeterminadaPresente4,
-            ];
+    //         $promedioData[] = [
+    //             'id' => $user->id, // Agregar el ID del usuario al array
+    //             'user' => $user,
+    //             'observacion' => $observacion,
+    //             'observacion2' => $observacion2,
+    //             'observacion3' => $observacion3,
+    //             'observacion4' => $observacion4,
+    //             'observacionPredeterminadaPresente' => $observacionPredeterminadaPresente,
+    //             'observacionPredeterminadaPresente2' => $observacionPredeterminadaPresente2,
+    //             'observacionPredeterminadaPresente3' => $observacionPredeterminadaPresente3,
+    //             'observacionPredeterminadaPresente4' => $observacionPredeterminadaPresente4,
+    //         ];
 
-        }
-        return view("home.table.spanish.table2.spanish4", compact('promedioData', 'users'));
-    }
+    //     }
+    //     return view("home.table.spanish.table2.spanish4", compact('promedioData', 'users'));
+    // }
     /*********************************** TABLA MATH5 ********************************************************** */
     public function table_spanish5(Request $request)
     {
@@ -289,78 +297,85 @@ class SpanishController extends Controller
         $promedioData = [];
         foreach ($users as $user) {
 
-            $spanishQuinto = SpanishQuinto::where('user_id', $user->id)->first();
-            if ($spanishQuinto !== null) {
-                $respuestas = collect($spanishQuinto->toArray())->only([
-                    'spanishPQ1',
-                    'spanishPQ2',
-                    'spanishPQ3',
-                    'spanishPQ4',
-                    'spanishPQ5',
-                    'spanishPQ6',
-                    'spanishPQ7',
-                    'spanishPQ8',
-                    'spanishPQ9',
-                    'spanishPQ10',
-                ])->values();
+            $SpanishQuinto = SpanishQuinto::where('user_id', $user->id)->first();
+            if ($SpanishQuinto !== null) {
 
-                $respuestasCollection = collect($respuestas);
-
-                $cantidadRespuestasCorrectas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 5;
-                })->count();
-
-                $cantidadRespuestasCon4 = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 4;
-                })->count();
-                $sumarCantidadCorrectas = $cantidadRespuestasCorrectas + $cantidadRespuestasCon4;
-
-                $cantidadRespuestasRegulares = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 3;
-                })->count();
-
-                $cantidadRespuestasCon2 = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 2;
-                })->count();
-
-
-                $cantidadRespuestasIncorrectas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 1;
-                })->count();
-                $sumarCantidadIncorrectas = $cantidadRespuestasCon2 + $cantidadRespuestasIncorrectas;
-
-                $puntuacionPorRespuestaCorrecta = 5 / 10;
-                $puntuacionPorRespuestaCon4 = 0.4;
-                $puntuacionPorRespuestaRegular = 3 / 10;
-                $puntuacionPorRespuestaCon2 = 0.2;
-                $puntuacionPorRespuestaIncorrecta = 0;
-
-                $promedio = ($puntuacionPorRespuestaCorrecta * $cantidadRespuestasCorrectas) +
-                    ($puntuacionPorRespuestaCon4 * $cantidadRespuestasCon4) +
-                    ($puntuacionPorRespuestaRegular * $cantidadRespuestasRegulares) +
-                    ($puntuacionPorRespuestaCon2 * $cantidadRespuestasCon2) +
-                    ($puntuacionPorRespuestaIncorrecta * $cantidadRespuestasIncorrectas);
-
+                $sumaPromedio = 0;
+                $cantidadRespuestasCorrectas = 0;
+                $cantidadRespuestasRegulares = 0;
+                $cantidadRespuestasIncorrectas = 0;
+    
+                $respuestas = [
+                    $SpanishQuinto->spanishPQ1,
+                    $SpanishQuinto->spanishPQ2,
+                    $SpanishQuinto->spanishPQ3,
+                    $SpanishQuinto->spanishPQ4,
+                    $SpanishQuinto->spanishPQ5,
+                    $SpanishQuinto->spanishPQ6,
+                    $SpanishQuinto->spanishPQ7,
+                    $SpanishQuinto->spanishPQ8,
+                    $SpanishQuinto->spanishPQ9,
+                    $SpanishQuinto->spanishPQ10,
+                ];
+    
+                $respuestasCorrectas = [
+                    'C. El nombre de la escuela',
+                    'B. Guión de diálogo',
+                    'C. Una casa humilde en el bosque',
+                    'A. Estados Unidos',
+                    'B. Cuentos y diccionarios',
+                    null,  // respuesta 6 no es una comparación de string
+                    null,  // respuesta 7 no es una comparación de string
+                    'A. Enormes',
+                    'D. Celebración de eventos.',
+                    null,  // respuesta 10 no es una comparación de string
+                ];
+    
+                foreach ($respuestas as $index => $respuesta) {
+                    if ($respuestasCorrectas[$index] !== null) {
+                        if ($respuesta == $respuestasCorrectas[$index]) {
+                            $cantidadRespuestasCorrectas++;
+                            $sumaPromedio += 0.5;
+                        } else {
+                            $cantidadRespuestasIncorrectas++;
+                        }
+                    } else {
+                        if ($respuesta >= 4) {
+                            $cantidadRespuestasCorrectas++;
+                            $sumaPromedio += $respuesta / 10;
+                        } elseif ($respuesta < 4 && $respuesta >= 3) {
+                            $cantidadRespuestasRegulares++;
+                            $sumaPromedio += $respuesta / 10;
+                        } elseif ($respuesta < 3 && $respuesta >= 1) {
+                            $cantidadRespuestasIncorrectas++;
+                            $sumaPromedio += $respuesta / 10;
+                        }elseif ($respuesta < 1) {
+                            $cantidadRespuestasIncorrectas++;
+                            $sumaPromedio += $respuesta;
+                        }
+                    }
+                }
+    
                 $cantidadDeVeces = SpanishQuinto::where('user_id', $user->id)->count();
-
-                $spanishQuinto->update([
-                    'averageSpanishPQ' => $promedio,
+    
+                $SpanishQuinto->update([
+                    'averageSpanishPQ' => $sumaPromedio,
                     'attemptsSpanishPQ' => $cantidadDeVeces,
-                    'correctSpanishPQ' => $sumarCantidadCorrectas,
-                    'incorrectSpanishPQ' => $sumarCantidadIncorrectas,
-                    'regularSpanishPQ' => $cantidadRespuestasRegulares
+                    'correctSpanishPQ' => $cantidadRespuestasCorrectas,
+                    'incorrectSpanishPQ' => $cantidadRespuestasIncorrectas,
+                    'regularSpanishPQ' => $cantidadRespuestasRegulares,
                 ]);
-
+    
                 $comment6 = SpanishQuinto::where('user_id', $user->id)->value('commentPQ6');
                 $comment7 = SpanishQuinto::where('user_id', $user->id)->value('commentPQ7');
                 $comment10 = SpanishQuinto::where('user_id', $user->id)->value('commentPQ10');
-
+    
                 $promedioData[] = [
                     'id' => $user->id,
                     'user' => $user,
-                    'promedio' => $promedio,
-                    'cantidadRespuestasBuenas' => $sumarCantidadCorrectas,
-                    'cantidadRespuestasMalas' => $sumarCantidadIncorrectas,
+                    'promedio' => $sumaPromedio,
+                    'cantidadRespuestasBuenas' => $cantidadRespuestasCorrectas,
+                    'cantidadRespuestasMalas' => $cantidadRespuestasIncorrectas,
                     'cantidadRespuestasRegulares' => $cantidadRespuestasRegulares,
                     'cantidadDeVeces' => $cantidadDeVeces,
                     'comment6' => $comment6,
@@ -373,67 +388,67 @@ class SpanishController extends Controller
         return view("home.table.spanish.spanish5", compact('promedioData', 'users'));
     }
 
-    public function table_spanish5Table2(Request $request)
-    {
-        $estudianteRole = Role::where('name', 'Aspirante')->first();
-        $query = $estudianteRole->users()
-            ->whereHas('spanishQuinto');
+    // public function table_spanish5Table2(Request $request)
+    // {
+    //     $estudianteRole = Role::where('name', 'Aspirante')->first();
+    //     $query = $estudianteRole->users()
+    //         ->whereHas('spanishQuinto');
 
-        if ($request->has('search')) {
-            $searchTerm = $request->input('search');
-            $query->where(function ($q) use ($searchTerm) {
-                $q->where('name', 'LIKE', '%' . $searchTerm . '%')
-                    ->orWhere('last_name', 'LIKE', '%' . $searchTerm . '%')
-                    ->orWhereRaw("CONCAT(name, ' ', last_name) LIKE ?", ['%' . $searchTerm . '%']);
-            });
-        }
+    //     if ($request->has('search')) {
+    //         $searchTerm = $request->input('search');
+    //         $query->where(function ($q) use ($searchTerm) {
+    //             $q->where('name', 'LIKE', '%' . $searchTerm . '%')
+    //                 ->orWhere('last_name', 'LIKE', '%' . $searchTerm . '%')
+    //                 ->orWhereRaw("CONCAT(name, ' ', last_name) LIKE ?", ['%' . $searchTerm . '%']);
+    //         });
+    //     }
 
-        // Paginar los resultados con un máximo de 3 elementos por página
-        $users = $query->paginate(10);
+    //     // Paginar los resultados con un máximo de 3 elementos por página
+    //     $users = $query->paginate(10);
 
-        $promedioData = [];
-        foreach ($users as $user) {
+    //     $promedioData = [];
+    //     foreach ($users as $user) {
 
-            $spanishQuinto = SpanishQuinto::where('user_id', $user->id)->first();
+    //         $spanishQuinto = SpanishQuinto::where('user_id', $user->id)->first();
 
-            // Verificar si la observación es "Sin Observación"
-            $observacion = $spanishQuinto && $spanishQuinto->ObservationspanishPQ !== 'Sin Observacion'
-                ? explode(' - ', $spanishQuinto->ObservationspanishPQ)
-                : null;
+    //         // Verificar si la observación es "Sin Observación"
+    //         $observacion = $spanishQuinto && $spanishQuinto->ObservationspanishPQ !== 'Sin Observacion'
+    //             ? explode(' - ', $spanishQuinto->ObservationspanishPQ)
+    //             : null;
 
-            $observacion2 = $spanishQuinto && $spanishQuinto->ObservationspanishPQ2 !== 'Sin Observacion'
-                ? explode(' - ', $spanishQuinto->ObservationspanishPQ2)
-                : null;
+    //         $observacion2 = $spanishQuinto && $spanishQuinto->ObservationspanishPQ2 !== 'Sin Observacion'
+    //             ? explode(' - ', $spanishQuinto->ObservationspanishPQ2)
+    //             : null;
 
-            $observacion3 = $spanishQuinto && $spanishQuinto->ObservationspanishPQ3 !== 'Sin Observacion'
-                ? explode(' - ', $spanishQuinto->ObservationspanishPQ3)
-                : null;
+    //         $observacion3 = $spanishQuinto && $spanishQuinto->ObservationspanishPQ3 !== 'Sin Observacion'
+    //             ? explode(' - ', $spanishQuinto->ObservationspanishPQ3)
+    //             : null;
 
-            $observacion4 = $spanishQuinto && $spanishQuinto->ObservationspanishPQ4 !== 'Sin Observacion'
-                ? explode(' - ', $spanishQuinto->ObservationspanishPQ4)
-                : null;
+    //         $observacion4 = $spanishQuinto && $spanishQuinto->ObservationspanishPQ4 !== 'Sin Observacion'
+    //             ? explode(' - ', $spanishQuinto->ObservationspanishPQ4)
+    //             : null;
 
-            $observacionPredeterminadaPresente = $observacion === null;
-            $observacionPredeterminadaPresente2 = $observacion2 === null;
-            $observacionPredeterminadaPresente3 = $observacion3 === null;
-            $observacionPredeterminadaPresente4 = $observacion4 === null;
+    //         $observacionPredeterminadaPresente = $observacion === null;
+    //         $observacionPredeterminadaPresente2 = $observacion2 === null;
+    //         $observacionPredeterminadaPresente3 = $observacion3 === null;
+    //         $observacionPredeterminadaPresente4 = $observacion4 === null;
 
-            $promedioData[] = [
-                'id' => $user->id, // Agregar el ID del usuario al array
-                'user' => $user,
-                'observacion' => $observacion,
-                'observacion2' => $observacion2,
-                'observacion3' => $observacion3,
-                'observacion4' => $observacion4,
-                'observacionPredeterminadaPresente' => $observacionPredeterminadaPresente,
-                'observacionPredeterminadaPresente2' => $observacionPredeterminadaPresente2,
-                'observacionPredeterminadaPresente3' => $observacionPredeterminadaPresente3,
-                'observacionPredeterminadaPresente4' => $observacionPredeterminadaPresente4,
-            ];
+    //         $promedioData[] = [
+    //             'id' => $user->id, // Agregar el ID del usuario al array
+    //             'user' => $user,
+    //             'observacion' => $observacion,
+    //             'observacion2' => $observacion2,
+    //             'observacion3' => $observacion3,
+    //             'observacion4' => $observacion4,
+    //             'observacionPredeterminadaPresente' => $observacionPredeterminadaPresente,
+    //             'observacionPredeterminadaPresente2' => $observacionPredeterminadaPresente2,
+    //             'observacionPredeterminadaPresente3' => $observacionPredeterminadaPresente3,
+    //             'observacionPredeterminadaPresente4' => $observacionPredeterminadaPresente4,
+    //         ];
 
-        }
-        return view("home.table.spanish.table2.spanish5", compact('promedioData', 'users'));
-    }
+    //     }
+    //     return view("home.table.spanish.table2.spanish5", compact('promedioData', 'users'));
+    // }
 
     /******************************************** TABLA 6 *************************************************** */
 
@@ -458,81 +473,88 @@ class SpanishController extends Controller
         $promedioData = [];
         foreach ($users as $user) {
 
-            $spanishSexto = SpanishSexto::where('user_id', $user->id)->first();
-            if ($spanishSexto !== null) {
-                $respuestas = collect($spanishSexto->toArray())->only([
-                    'spanishPSX1',
-                    'spanishPSX2',
-                    'spanishPSX3',
-                    'spanishPSX4',
-                    'spanishPSX5',
-                    'spanishPSX6',
-                    'spanishPSX7',
-                    'spanishPSX8',
-                    'spanishPSX9',
-                    'spanishPSX10',
-                ])->values();
+            $SpanishSexto = SpanishSexto::where('user_id', $user->id)->first();
+            if ($SpanishSexto !== null) {
 
-                $respuestasCollection = collect($respuestas);
-
-                $cantidadRespuestasCorrectas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 5;
-                })->count();
-
-                $cantidadRespuestasCon4 = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 4;
-                })->count();
-                $sumarCantidadCorrectas = $cantidadRespuestasCorrectas + $cantidadRespuestasCon4;
-
-                $cantidadRespuestasRegulares = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 3;
-                })->count();
-
-                $cantidadRespuestasCon2 = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 2;
-                })->count();
-
-
-                $cantidadRespuestasIncorrectas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 1;
-                })->count();
-                $sumarCantidadIncorrectas = $cantidadRespuestasCon2 + $cantidadRespuestasIncorrectas;
-
-                $puntuacionPorRespuestaCorrecta = 5 / 10;
-                $puntuacionPorRespuestaCon4 = 0.4;
-                $puntuacionPorRespuestaRegular = 3 / 10;
-                $puntuacionPorRespuestaCon2 = 0.2;
-                $puntuacionPorRespuestaIncorrecta = 0;
-
-                $promedio = ($puntuacionPorRespuestaCorrecta * $cantidadRespuestasCorrectas) +
-                    ($puntuacionPorRespuestaCon4 * $cantidadRespuestasCon4) +
-                    ($puntuacionPorRespuestaRegular * $cantidadRespuestasRegulares) +
-                    ($puntuacionPorRespuestaCon2 * $cantidadRespuestasCon2) +
-                    ($puntuacionPorRespuestaIncorrecta * $cantidadRespuestasIncorrectas);
-
+                $sumaPromedio = 0;
+                $cantidadRespuestasCorrectas = 0;
+                $cantidadRespuestasRegulares = 0;
+                $cantidadRespuestasIncorrectas = 0;
+    
+                $respuestas = [
+                    $SpanishSexto->spanishPSX1,
+                    $SpanishSexto->spanishPSX2,
+                    $SpanishSexto->spanishPSX3,
+                    $SpanishSexto->spanishPSX4,
+                    $SpanishSexto->spanishPSX5,
+                    $SpanishSexto->spanishPSX6,
+                    $SpanishSexto->spanishPSX7,
+                    $SpanishSexto->spanishPSX8,
+                    $SpanishSexto->spanishPSX9,
+                    $SpanishSexto->spanishPSX10,
+                ];
+    
+                $respuestasCorrectas = [
+                    null,  // respuesta 1 no es una comparación de string
+                    null,  // respuesta 2 no es una comparación de string
+                    null,  // respuesta 3 no es una comparación de string
+                    null,  // respuesta 4 no es una comparación de string
+                    null,  // respuesta 5 no es una comparación de string
+                    null,  // respuesta 6 no es una comparación de string
+                    'A. Información interpretativa de hechos o acontecimientos.',
+                    'B. El género periodístico.',
+                    'C. Narra hechos ocurridos en forma cronológica.',
+                    'B. Se dejan a un lado los aspectos emocionales de las partes y el eje gira en torno a los sucesos que se desea mencionar.',
+                ];
+    
+                foreach ($respuestas as $index => $respuesta) {
+                    if ($respuestasCorrectas[$index] !== null) {
+                        if ($respuesta == $respuestasCorrectas[$index]) {
+                            $cantidadRespuestasCorrectas++;
+                            $sumaPromedio += 0.5;
+                        } else {
+                            $cantidadRespuestasIncorrectas++;
+                        }
+                    } else {
+                        if ($respuesta >= 4) {
+                            $cantidadRespuestasCorrectas++;
+                            $sumaPromedio += $respuesta / 10;
+                        } elseif ($respuesta < 4 && $respuesta >= 3) {
+                            $cantidadRespuestasRegulares++;
+                            $sumaPromedio += $respuesta / 10;
+                        } elseif ($respuesta < 3 && $respuesta >= 1) {
+                            $cantidadRespuestasIncorrectas++;
+                            $sumaPromedio += $respuesta / 10;
+                        }elseif ($respuesta < 1) {
+                            $cantidadRespuestasIncorrectas++;
+                            $sumaPromedio += $respuesta;
+                        }
+                    }
+                }
+    
                 $cantidadDeVeces = SpanishSexto::where('user_id', $user->id)->count();
-
-                $spanishSexto->update([
-                    'averageSpanishPSX' => $promedio,
+    
+                $SpanishSexto->update([
+                    'averageSpanishPSX' => $sumaPromedio,
                     'attemptsSpanishPSX' => $cantidadDeVeces,
-                    'correctSpanishPSX' => $sumarCantidadCorrectas,
-                    'incorrectSpanishPSX' => $sumarCantidadIncorrectas,
-                    'regularSpanishPSX' => $cantidadRespuestasRegulares
+                    'correctSpanishPSX' => $cantidadRespuestasCorrectas,
+                    'incorrectSpanishPSX' => $cantidadRespuestasIncorrectas,
+                    'regularSpanishPSX' => $cantidadRespuestasRegulares,
                 ]);
-
-                $comment1 = $user->spanishSexto->value('commentPSX1');
-                $comment2 = $user->spanishSexto->value('commentPSX2');
-                $comment3 = $user->spanishSexto->value('commentPSX3');
-                $comment4 = $user->spanishSexto->value('commentPSX4');
-                $comment5 = $user->spanishSexto->value('commentPSX5');
-                $comment6 = $user->spanishSexto->value('commentPSX6');
-
+    
+                $comment1 = SpanishSexto::where('user_id', $user->id)->value('commentPSX1');
+                $comment2 = SpanishSexto::where('user_id', $user->id)->value('commentPSX2');
+                $comment3 = SpanishSexto::where('user_id', $user->id)->value('commentPSX3');
+                $comment4 = SpanishSexto::where('user_id', $user->id)->value('commentPSX4');
+                $comment5 = SpanishSexto::where('user_id', $user->id)->value('commentPSX5');
+                $comment6 = SpanishSexto::where('user_id', $user->id)->value('commentPSX6');
+    
                 $promedioData[] = [
                     'id' => $user->id,
                     'user' => $user,
-                    'promedio' => $promedio,
-                    'cantidadRespuestasBuenas' => $sumarCantidadCorrectas,
-                    'cantidadRespuestasMalas' => $sumarCantidadIncorrectas,
+                    'promedio' => $sumaPromedio,
+                    'cantidadRespuestasBuenas' => $cantidadRespuestasCorrectas,
+                    'cantidadRespuestasMalas' => $cantidadRespuestasIncorrectas,
                     'cantidadRespuestasRegulares' => $cantidadRespuestasRegulares,
                     'cantidadDeVeces' => $cantidadDeVeces,
                     'comment1' => $comment1,
@@ -547,67 +569,67 @@ class SpanishController extends Controller
         return view("home.table.spanish.spanish6", compact('promedioData', 'users'));
     }
 
-    public function table_spanish6Table2(Request $request)
-    {
-        $estudianteRole = Role::where('name', 'Aspirante')->first();
-        $query = $estudianteRole->users()
-            ->whereHas('spanishSexto');
+    // public function table_spanish6Table2(Request $request)
+    // {
+    //     $estudianteRole = Role::where('name', 'Aspirante')->first();
+    //     $query = $estudianteRole->users()
+    //         ->whereHas('spanishSexto');
 
-        if ($request->has('search')) {
-            $searchTerm = $request->input('search');
-            $query->where(function ($q) use ($searchTerm) {
-                $q->where('name', 'LIKE', '%' . $searchTerm . '%')
-                    ->orWhere('last_name', 'LIKE', '%' . $searchTerm . '%')
-                    ->orWhereRaw("CONCAT(name, ' ', last_name) LIKE ?", ['%' . $searchTerm . '%']);
-            });
-        }
+    //     if ($request->has('search')) {
+    //         $searchTerm = $request->input('search');
+    //         $query->where(function ($q) use ($searchTerm) {
+    //             $q->where('name', 'LIKE', '%' . $searchTerm . '%')
+    //                 ->orWhere('last_name', 'LIKE', '%' . $searchTerm . '%')
+    //                 ->orWhereRaw("CONCAT(name, ' ', last_name) LIKE ?", ['%' . $searchTerm . '%']);
+    //         });
+    //     }
 
-        // Paginar los resultados con un máximo de 3 elementos por página
-        $users = $query->paginate(10);
+    //     // Paginar los resultados con un máximo de 3 elementos por página
+    //     $users = $query->paginate(10);
 
-        $promedioData = [];
-        foreach ($users as $user) {
+    //     $promedioData = [];
+    //     foreach ($users as $user) {
 
-            $spanishSexto = SpanishSexto::where('user_id', $user->id)->first();
+    //         $spanishSexto = SpanishSexto::where('user_id', $user->id)->first();
 
-            // Verificar si la observación es "Sin Observación"
-            $observacion = $spanishSexto && $spanishSexto->ObservationspanishPSX !== 'Sin Observacion'
-                ? explode(' - ', $spanishSexto->ObservationspanishPSX)
-                : null;
+    //         // Verificar si la observación es "Sin Observación"
+    //         $observacion = $spanishSexto && $spanishSexto->ObservationspanishPSX !== 'Sin Observacion'
+    //             ? explode(' - ', $spanishSexto->ObservationspanishPSX)
+    //             : null;
 
-            $observacion2 = $spanishSexto && $spanishSexto->ObservationspanishPSX2 !== 'Sin Observacion'
-                ? explode(' - ', $spanishSexto->ObservationspanishPSX2)
-                : null;
+    //         $observacion2 = $spanishSexto && $spanishSexto->ObservationspanishPSX2 !== 'Sin Observacion'
+    //             ? explode(' - ', $spanishSexto->ObservationspanishPSX2)
+    //             : null;
 
-            $observacion3 = $spanishSexto && $spanishSexto->ObservationspanishPSX3 !== 'Sin Observacion'
-                ? explode(' - ', $spanishSexto->ObservationspanishPSX3)
-                : null;
+    //         $observacion3 = $spanishSexto && $spanishSexto->ObservationspanishPSX3 !== 'Sin Observacion'
+    //             ? explode(' - ', $spanishSexto->ObservationspanishPSX3)
+    //             : null;
 
-            $observacion4 = $spanishSexto && $spanishSexto->ObservationspanishPSX4 !== 'Sin Observacion'
-                ? explode(' - ', $spanishSexto->ObservationspanishPSX4)
-                : null;
+    //         $observacion4 = $spanishSexto && $spanishSexto->ObservationspanishPSX4 !== 'Sin Observacion'
+    //             ? explode(' - ', $spanishSexto->ObservationspanishPSX4)
+    //             : null;
 
-            $observacionPredeterminadaPresente = $observacion === null;
-            $observacionPredeterminadaPresente2 = $observacion2 === null;
-            $observacionPredeterminadaPresente3 = $observacion3 === null;
-            $observacionPredeterminadaPresente4 = $observacion4 === null;
+    //         $observacionPredeterminadaPresente = $observacion === null;
+    //         $observacionPredeterminadaPresente2 = $observacion2 === null;
+    //         $observacionPredeterminadaPresente3 = $observacion3 === null;
+    //         $observacionPredeterminadaPresente4 = $observacion4 === null;
 
-            $promedioData[] = [
-                'id' => $user->id, // Agregar el ID del usuario al array
-                'user' => $user,
-                'observacion' => $observacion,
-                'observacion2' => $observacion2,
-                'observacion3' => $observacion3,
-                'observacion4' => $observacion4,
-                'observacionPredeterminadaPresente' => $observacionPredeterminadaPresente,
-                'observacionPredeterminadaPresente2' => $observacionPredeterminadaPresente2,
-                'observacionPredeterminadaPresente3' => $observacionPredeterminadaPresente3,
-                'observacionPredeterminadaPresente4' => $observacionPredeterminadaPresente4,
-            ];
+    //         $promedioData[] = [
+    //             'id' => $user->id, // Agregar el ID del usuario al array
+    //             'user' => $user,
+    //             'observacion' => $observacion,
+    //             'observacion2' => $observacion2,
+    //             'observacion3' => $observacion3,
+    //             'observacion4' => $observacion4,
+    //             'observacionPredeterminadaPresente' => $observacionPredeterminadaPresente,
+    //             'observacionPredeterminadaPresente2' => $observacionPredeterminadaPresente2,
+    //             'observacionPredeterminadaPresente3' => $observacionPredeterminadaPresente3,
+    //             'observacionPredeterminadaPresente4' => $observacionPredeterminadaPresente4,
+    //         ];
 
-        }
-        return view("home.table.spanish.table2.spanish6", compact('promedioData', 'users'));
-    }
+    //     }
+    //     return view("home.table.spanish.table2.spanish6", compact('promedioData', 'users'));
+    // }
     /*************************************** tabla 7 ************************************************************* */
     public function table_spanish7(Request $request)
     {
@@ -630,67 +652,75 @@ class SpanishController extends Controller
         $promedioData = [];
         foreach ($users as $user) {
 
-            $spanishSptimo = SpanishSeptimo::where('user_id', $user->id)->first();
-            if ($spanishSptimo !== null) {
-                $respuestas = collect($spanishSptimo->toArray())->only([
-                    'spanishPS1',
-                    'spanishPS2',
-                    'spanishPS3',
-                    'spanishPS4',
-                    'spanishPS5',
-                    'spanishPS6',
-                    'spanishPS7',
-                    'spanishPS8',
-                    'spanishPS9',
-                    'spanishPS10',
-                ])->values();
+            $SpanishSeptimo = SpanishSeptimo::where('user_id', $user->id)->first();
+            if ($SpanishSeptimo !== null) {
 
-                $respuestasCollection = collect($respuestas);
-
-                $cantidadRespuestasCorrectas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 5;
-                })->count();
-
-                $cantidadRespuestasCon4 = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 4;
-                })->count();
-                $sumarCantidadCorrectas = $cantidadRespuestasCorrectas + $cantidadRespuestasCon4;
-
-                $cantidadRespuestasRegulares = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 3;
-                })->count();
-
-                $cantidadRespuestasCon2 = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 2;
-                })->count();
-
-
-                $cantidadRespuestasIncorrectas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 1;
-                })->count();
-                $sumarCantidadIncorrectas = $cantidadRespuestasCon2 + $cantidadRespuestasIncorrectas;
-
-                $puntuacionPorRespuestaCorrecta = 5 / 10;
-                $puntuacionPorRespuestaCon4 = 0.4;
-                $puntuacionPorRespuestaRegular = 3 / 10;
-                $puntuacionPorRespuestaCon2 = 0.2;
-                $puntuacionPorRespuestaIncorrecta = 0;
-
-                $promedio = ($puntuacionPorRespuestaCorrecta * $cantidadRespuestasCorrectas) +
-                    ($puntuacionPorRespuestaCon4 * $cantidadRespuestasCon4) +
-                    ($puntuacionPorRespuestaRegular * $cantidadRespuestasRegulares) +
-                    ($puntuacionPorRespuestaCon2 * $cantidadRespuestasCon2) +
-                    ($puntuacionPorRespuestaIncorrecta * $cantidadRespuestasIncorrectas);
-
+                $sumaPromedio = 0;
+                $cantidadRespuestasCorrectas = 0;
+                $cantidadRespuestasRegulares = 0;
+                $cantidadRespuestasIncorrectas = 0;
+    
+                $respuestas = [
+                    $SpanishSeptimo->spanishPS1,
+                    $SpanishSeptimo->spanishPS2,
+                    $SpanishSeptimo->spanishPS3,
+                    $SpanishSeptimo->spanishPS4,
+                    $SpanishSeptimo->spanishPS5,
+                    $SpanishSeptimo->spanishPS6,
+                    $SpanishSeptimo->spanishPS7,
+                    $SpanishSeptimo->spanishPS8,
+                    $SpanishSeptimo->spanishPS9,
+                    $SpanishSeptimo->spanishPS10,
+                ];
+    
+                $respuestasCorrectas = [
+                    null,  // respuesta 1 no es una comparación de string
+                    null,  // respuesta 2 no es una comparación de string
+                    null,  // respuesta 3 no es una comparación de string
+                    null,  // respuesta 4 no es una comparación de string
+                    null,  // respuesta 5 no es una comparación de string
+                    null,  // respuesta 6 no es una comparación de string
+                    null,  // respuesta 7 no es una comparación de string
+                    'C. Interjección',
+                    'A. El proceso de intercambio de información entre un emisor y un receptor mediante un código y un canal.',
+                    'A. El sistema de signos y reglas que comparten el emisor y el receptor para entenderse.',
+                ];
+    
+                foreach ($respuestas as $index => $respuesta) {
+                    if ($respuestasCorrectas[$index] !== null) {
+                        if ($respuesta == $respuestasCorrectas[$index]) {
+                            $cantidadRespuestasCorrectas++;
+                            $sumaPromedio += 0.5;
+                        } else {
+                            $cantidadRespuestasIncorrectas++;
+                        }
+                    } else {
+                        if ($respuesta >= 4) {
+                            $cantidadRespuestasCorrectas++;
+                            $sumaPromedio += $respuesta / 10;
+                        } elseif ($respuesta < 4 && $respuesta >= 3) {
+                            $cantidadRespuestasRegulares++;
+                            $sumaPromedio += $respuesta / 10;
+                        } elseif ($respuesta < 3 && $respuesta >= 1) {
+                            $cantidadRespuestasIncorrectas++;
+                            $sumaPromedio += $respuesta / 10;
+                        }elseif ($respuesta < 1) {
+                            $cantidadRespuestasIncorrectas++;
+                            $sumaPromedio += $respuesta;
+                        }
+                    }
+                }
+    
                 $cantidadDeVeces = SpanishSeptimo::where('user_id', $user->id)->count();
-
-                $spanishSptimo->update([
-                    'averageSpanishPS' => $promedio,
+    
+                $SpanishSeptimo->update([
+                    'averageSpanishPS' => $sumaPromedio,
                     'attemptsSpanishPS' => $cantidadDeVeces,
-                    'correctSpanishPS' => $sumarCantidadCorrectas,
-                    'incorrectSpanishPS' => $sumarCantidadIncorrectas,
-                    'regularSpanishPS' => $cantidadRespuestasRegulares
+                    'correctSpanishPS' => $cantidadRespuestasCorrectas,
+                    'incorrectSpanishPS' => $cantidadRespuestasIncorrectas,
+                    'regularSpanishPS' => $cantidadRespuestasRegulares,
                 ]);
+    
                 $comment1 = SpanishSeptimo::where('user_id', $user->id)->value('commentPS1');
                 $comment2 = SpanishSeptimo::where('user_id', $user->id)->value('commentPS2');
                 $comment3 = SpanishSeptimo::where('user_id', $user->id)->value('commentPS3');
@@ -698,13 +728,13 @@ class SpanishController extends Controller
                 $comment5 = SpanishSeptimo::where('user_id', $user->id)->value('commentPS5');
                 $comment6 = SpanishSeptimo::where('user_id', $user->id)->value('commentPS6');
                 $comment7 = SpanishSeptimo::where('user_id', $user->id)->value('commentPS7');
-
+    
                 $promedioData[] = [
                     'id' => $user->id,
                     'user' => $user,
-                    'promedio' => $promedio,
-                    'cantidadRespuestasBuenas' => $sumarCantidadCorrectas,
-                    'cantidadRespuestasMalas' => $sumarCantidadIncorrectas,
+                    'promedio' => $sumaPromedio,
+                    'cantidadRespuestasBuenas' => $cantidadRespuestasCorrectas,
+                    'cantidadRespuestasMalas' => $cantidadRespuestasIncorrectas,
                     'cantidadRespuestasRegulares' => $cantidadRespuestasRegulares,
                     'cantidadDeVeces' => $cantidadDeVeces,
                     'comment1' => $comment1,
@@ -724,67 +754,67 @@ class SpanishController extends Controller
         return view("home.table.spanish.spanish7", compact('promedioData', 'users'));
     }
 
-    public function table_spanish7Table2(Request $request)
-    {
-        $estudianteRole = Role::where('name', 'Aspirante')->first();
-        $query = $estudianteRole->users()
-            ->whereHas('SpanishSeptimo');
+    // public function table_spanish7Table2(Request $request)
+    // {
+    //     $estudianteRole = Role::where('name', 'Aspirante')->first();
+    //     $query = $estudianteRole->users()
+    //         ->whereHas('SpanishSeptimo');
 
-        if ($request->has('search')) {
-            $searchTerm = $request->input('search');
-            $query->where(function ($q) use ($searchTerm) {
-                $q->where('name', 'LIKE', '%' . $searchTerm . '%')
-                    ->orWhere('last_name', 'LIKE', '%' . $searchTerm . '%')
-                    ->orWhereRaw("CONCAT(name, ' ', last_name) LIKE ?", ['%' . $searchTerm . '%']);
-            });
-        }
+    //     if ($request->has('search')) {
+    //         $searchTerm = $request->input('search');
+    //         $query->where(function ($q) use ($searchTerm) {
+    //             $q->where('name', 'LIKE', '%' . $searchTerm . '%')
+    //                 ->orWhere('last_name', 'LIKE', '%' . $searchTerm . '%')
+    //                 ->orWhereRaw("CONCAT(name, ' ', last_name) LIKE ?", ['%' . $searchTerm . '%']);
+    //         });
+    //     }
 
-        // Paginar los resultados con un máximo de 3 elementos por página
-        $users = $query->paginate(10);
+    //     // Paginar los resultados con un máximo de 3 elementos por página
+    //     $users = $query->paginate(10);
 
-        $promedioData = [];
-        foreach ($users as $user) {
+    //     $promedioData = [];
+    //     foreach ($users as $user) {
 
-            $spanishSeptimo = SpanishSeptimo::where('user_id', $user->id)->first();
+    //         $spanishSeptimo = SpanishSeptimo::where('user_id', $user->id)->first();
 
-            // Verificar si la observación es "Sin Observación"
-            $observacion = $spanishSeptimo && $spanishSeptimo->ObservationspanishPS !== 'Sin Observacion'
-                ? explode(' - ', $spanishSeptimo->ObservationspanishPS)
-                : null;
+    //         // Verificar si la observación es "Sin Observación"
+    //         $observacion = $spanishSeptimo && $spanishSeptimo->ObservationspanishPS !== 'Sin Observacion'
+    //             ? explode(' - ', $spanishSeptimo->ObservationspanishPS)
+    //             : null;
 
-            $observacion2 = $spanishSeptimo && $spanishSeptimo->ObservationspanishPS2 !== 'Sin Observacion'
-                ? explode(' - ', $spanishSeptimo->ObservationspanishPS2)
-                : null;
+    //         $observacion2 = $spanishSeptimo && $spanishSeptimo->ObservationspanishPS2 !== 'Sin Observacion'
+    //             ? explode(' - ', $spanishSeptimo->ObservationspanishPS2)
+    //             : null;
 
-            $observacion3 = $spanishSeptimo && $spanishSeptimo->ObservationspanishPS3 !== 'Sin Observacion'
-                ? explode(' - ', $spanishSeptimo->ObservationspanishPS3)
-                : null;
+    //         $observacion3 = $spanishSeptimo && $spanishSeptimo->ObservationspanishPS3 !== 'Sin Observacion'
+    //             ? explode(' - ', $spanishSeptimo->ObservationspanishPS3)
+    //             : null;
 
-            $observacion4 = $spanishSeptimo && $spanishSeptimo->ObservationspanishPS4 !== 'Sin Observacion'
-                ? explode(' - ', $spanishSeptimo->ObservationspanishPS4)
-                : null;
+    //         $observacion4 = $spanishSeptimo && $spanishSeptimo->ObservationspanishPS4 !== 'Sin Observacion'
+    //             ? explode(' - ', $spanishSeptimo->ObservationspanishPS4)
+    //             : null;
 
-            $observacionPredeterminadaPresente = $observacion === null;
-            $observacionPredeterminadaPresente2 = $observacion2 === null;
-            $observacionPredeterminadaPresente3 = $observacion3 === null;
-            $observacionPredeterminadaPresente4 = $observacion4 === null;
+    //         $observacionPredeterminadaPresente = $observacion === null;
+    //         $observacionPredeterminadaPresente2 = $observacion2 === null;
+    //         $observacionPredeterminadaPresente3 = $observacion3 === null;
+    //         $observacionPredeterminadaPresente4 = $observacion4 === null;
 
-            $promedioData[] = [
-                'id' => $user->id, // Agregar el ID del usuario al array
-                'user' => $user,
-                'observacion' => $observacion,
-                'observacion2' => $observacion2,
-                'observacion3' => $observacion3,
-                'observacion4' => $observacion4,
-                'observacionPredeterminadaPresente' => $observacionPredeterminadaPresente,
-                'observacionPredeterminadaPresente2' => $observacionPredeterminadaPresente2,
-                'observacionPredeterminadaPresente3' => $observacionPredeterminadaPresente3,
-                'observacionPredeterminadaPresente4' => $observacionPredeterminadaPresente4,
-            ];
+    //         $promedioData[] = [
+    //             'id' => $user->id, // Agregar el ID del usuario al array
+    //             'user' => $user,
+    //             'observacion' => $observacion,
+    //             'observacion2' => $observacion2,
+    //             'observacion3' => $observacion3,
+    //             'observacion4' => $observacion4,
+    //             'observacionPredeterminadaPresente' => $observacionPredeterminadaPresente,
+    //             'observacionPredeterminadaPresente2' => $observacionPredeterminadaPresente2,
+    //             'observacionPredeterminadaPresente3' => $observacionPredeterminadaPresente3,
+    //             'observacionPredeterminadaPresente4' => $observacionPredeterminadaPresente4,
+    //         ];
 
-        }
-        return view("home.table.spanish.table2.spanish7", compact('promedioData', 'users'));
-    }
+    //     }
+    //     return view("home.table.spanish.table2.spanish7", compact('promedioData', 'users'));
+    // }
 
     /***************************************************** TABLA 8 ************************************* */
     public function table_spanish8(Request $request)
@@ -806,158 +836,164 @@ class SpanishController extends Controller
 
         $promedioData = [];
         foreach ($users as $user) {
+            $SpanishOctavo = SpanishOctavo::where('user_id', $user->id)->first();
+            if ($SpanishOctavo !== null) {
 
-                $spanishSptimo = SpanishOctavo::where('user_id', $user->id)->first();
-                if ($spanishSptimo !== null) {
-                    $respuestas = collect($spanishSptimo->toArray())->only([
-                        'spanishPO1',
-                        'spanishPO2',
-                        'spanishPO3',
-                        'spanishPO4',
-                        'spanishPO5',
-                        'spanishPO6',
-                        'spanishPO7',
-                        'spanishPO8',
-                        'spanishPO9',
-                        'spanishPO10',
-                    ])->values();
-
-                    $respuestasCollection = collect($respuestas);
-
-                    $cantidadRespuestasCorrectas = $respuestasCollection->filter(function ($respuesta) {
-                        return $respuesta == 5;
-                    })->count();
-
-                    $cantidadRespuestasCon4 = $respuestasCollection->filter(function ($respuesta) {
-                        return $respuesta == 4;
-                    })->count();
-                    $sumarCantidadCorrectas = $cantidadRespuestasCorrectas + $cantidadRespuestasCon4;
-
-                    $cantidadRespuestasRegulares = $respuestasCollection->filter(function ($respuesta) {
-                        return $respuesta == 3;
-                    })->count();
-
-                    $cantidadRespuestasCon2 = $respuestasCollection->filter(function ($respuesta) {
-                        return $respuesta == 2;
-                    })->count();
-
-
-                    $cantidadRespuestasIncorrectas = $respuestasCollection->filter(function ($respuesta) {
-                        return $respuesta == 1;
-                    })->count();
-                    $sumarCantidadIncorrectas = $cantidadRespuestasCon2 + $cantidadRespuestasIncorrectas;
-
-                    $puntuacionPorRespuestaCorrecta = 5 / 10;
-                    $puntuacionPorRespuestaCon4 = 0.4;
-                    $puntuacionPorRespuestaRegular = 3 / 10;
-                    $puntuacionPorRespuestaCon2 = 0.2;
-                    $puntuacionPorRespuestaIncorrecta = 0;
-
-                    $promedio = ($puntuacionPorRespuestaCorrecta * $cantidadRespuestasCorrectas) +
-                        ($puntuacionPorRespuestaCon4 * $cantidadRespuestasCon4) +
-                        ($puntuacionPorRespuestaRegular * $cantidadRespuestasRegulares) +
-                        ($puntuacionPorRespuestaCon2 * $cantidadRespuestasCon2) +
-                        ($puntuacionPorRespuestaIncorrecta * $cantidadRespuestasIncorrectas);
-
-                    $cantidadDeVeces = SpanishOctavo::where('user_id', $user->id)->count();
-
-                    $spanishSptimo->update([
-                        'averageSpanishPO' => $promedio,
-                        'attemptsSpanishPO' => $cantidadDeVeces,
-                        'correctSpanishPO' => $sumarCantidadCorrectas,
-                        'incorrectSpanishPO' => $sumarCantidadIncorrectas,
-                        'regularSpanishPO' => $cantidadRespuestasRegulares
-                    ]);
-
-                    $comment1 = SpanishOctavo::where('user_id', $user->id)->value('commentPO1');
-                    $comment2 = SpanishOctavo::where('user_id', $user->id)->value('commentPO2');
-                    $comment3 = SpanishOctavo::where('user_id', $user->id)->value('commentPO3');
-                    $comment4 = SpanishOctavo::where('user_id', $user->id)->value('commentPO4');
-                    $comment5 = SpanishOctavo::where('user_id', $user->id)->value('commentPO5');
-                    $comment8 = SpanishOctavo::where('user_id', $user->id)->value('commentPO8');
-
-                    $promedioData[] = [
-                        'id' => $user->id,
-                        'user' => $user,
-                        'promedio' => $promedio,
-                        'cantidadRespuestasBuenas' => $sumarCantidadCorrectas,
-                        'cantidadRespuestasMalas' => $sumarCantidadIncorrectas,
-                        'cantidadRespuestasRegulares' => $cantidadRespuestasRegulares,
-                        'cantidadDeVeces' => $cantidadDeVeces,
-                        'comment1' => $comment1,
-                        'comment2' => $comment2,
-                        'comment3' => $comment3,
-                        'comment4' => $comment4,
-                        'comment5' => $comment5,
-                        'comment8' => $comment8,
-                    ];
+                $sumaPromedio = 0;
+                $cantidadRespuestasCorrectas = 0;
+                $cantidadRespuestasRegulares = 0;
+                $cantidadRespuestasIncorrectas = 0;
+    
+                $respuestas = [
+                    $SpanishOctavo->spanishPO1,
+                    $SpanishOctavo->spanishPO2,
+                    $SpanishOctavo->spanishPO3,
+                    $SpanishOctavo->spanishPO4,
+                    $SpanishOctavo->spanishPO5,
+                    $SpanishOctavo->spanishPO6,
+                    $SpanishOctavo->spanishPO7,
+                    $SpanishOctavo->spanishPO8,
+                    $SpanishOctavo->spanishPO9,
+                    $SpanishOctavo->spanishPO10,
+                ];
+    
+                $respuestasCorrectas = [
+                    null,  // respuesta 1 no es una comparación de string
+                    null,  // respuesta 2 no es una comparación de string
+                    null,  // respuesta 3 no es una comparación de string
+                    null,  // respuesta 4 no es una comparación de string
+                    null,  // respuesta 5 no es una comparación de string
+                    'A. Una unidad de comunicación con sentido completo, coherencia interna y adecuación a un contexto.',
+                    'A. La relación lógica y ordenada entre las ideas que se presentan en el texto.',
+                    null,
+                    'C. El Romanticismo',
+                    'B. Johann Wolfgang von Goethe',
+                ];
+    
+                foreach ($respuestas as $index => $respuesta) {
+                    if ($respuestasCorrectas[$index] !== null) {
+                        if ($respuesta == $respuestasCorrectas[$index]) {
+                            $cantidadRespuestasCorrectas++;
+                            $sumaPromedio += 0.5;
+                        } else {
+                            $cantidadRespuestasIncorrectas++;
+                        }
+                    } else {
+                        if ($respuesta >= 4) {
+                            $cantidadRespuestasCorrectas++;
+                            $sumaPromedio += $respuesta / 10;
+                        } elseif ($respuesta < 4 && $respuesta >= 3) {
+                            $cantidadRespuestasRegulares++;
+                            $sumaPromedio += $respuesta / 10;
+                        } elseif ($respuesta < 3 && $respuesta >= 1) {
+                            $cantidadRespuestasIncorrectas++;
+                            $sumaPromedio += $respuesta / 10;
+                        }elseif ($respuesta < 1) {
+                            $cantidadRespuestasIncorrectas++;
+                            $sumaPromedio += $respuesta;
+                        }
+                    }
                 }
+    
+                $cantidadDeVeces = SpanishOctavo::where('user_id', $user->id)->count();
+    
+                $SpanishOctavo->update([
+                    'averageSpanishPO' => $sumaPromedio,
+                    'attemptsSpanishPO' => $cantidadDeVeces,
+                    'correctSpanishPO' => $cantidadRespuestasCorrectas,
+                    'incorrectSpanishPO' => $cantidadRespuestasIncorrectas,
+                    'regularSpanishPO' => $cantidadRespuestasRegulares,
+                ]);
+    
+                $comment1 = SpanishOctavo::where('user_id', $user->id)->value('commentPO1');
+                $comment2 = SpanishOctavo::where('user_id', $user->id)->value('commentPO2');
+                $comment3 = SpanishOctavo::where('user_id', $user->id)->value('commentPO3');
+                $comment4 = SpanishOctavo::where('user_id', $user->id)->value('commentPO4');
+                $comment5 = SpanishOctavo::where('user_id', $user->id)->value('commentPO5');
+                $comment8 = SpanishOctavo::where('user_id', $user->id)->value('commentPO8');
+    
+                $promedioData[] = [
+                    'id' => $user->id,
+                    'user' => $user,
+                    'promedio' => $sumaPromedio,
+                    'cantidadRespuestasBuenas' => $cantidadRespuestasCorrectas,
+                    'cantidadRespuestasMalas' => $cantidadRespuestasIncorrectas,
+                    'cantidadRespuestasRegulares' => $cantidadRespuestasRegulares,
+                    'cantidadDeVeces' => $cantidadDeVeces,
+                    'comment1' => $comment1,
+                    'comment2' => $comment2,
+                    'comment3' => $comment3,
+                    'comment4' => $comment4,
+                    'comment5' => $comment5,
+                    'comment8' => $comment8,
+                ];
+            }
             }
             return view("home.table.spanish.spanish8", compact('promedioData', 'users'));
     }
 
 
-    public function table_spanish8Table2(Request $request)
-    {
-        $estudianteRole = Role::where('name', 'Aspirante')->first();
-        $query = $estudianteRole->users()
-            ->whereHas('SpanishOctavo');
+    // public function table_spanish8Table2(Request $request)
+    // {
+    //     $estudianteRole = Role::where('name', 'Aspirante')->first();
+    //     $query = $estudianteRole->users()
+    //         ->whereHas('SpanishOctavo');
 
-        if ($request->has('search')) {
-            $searchTerm = $request->input('search');
-            $query->where(function ($q) use ($searchTerm) {
-                $q->where('name', 'LIKE', '%' . $searchTerm . '%')
-                    ->orWhere('last_name', 'LIKE', '%' . $searchTerm . '%')
-                    ->orWhereRaw("CONCAT(name, ' ', last_name) LIKE ?", ['%' . $searchTerm . '%']);
-            });
-        }
+    //     if ($request->has('search')) {
+    //         $searchTerm = $request->input('search');
+    //         $query->where(function ($q) use ($searchTerm) {
+    //             $q->where('name', 'LIKE', '%' . $searchTerm . '%')
+    //                 ->orWhere('last_name', 'LIKE', '%' . $searchTerm . '%')
+    //                 ->orWhereRaw("CONCAT(name, ' ', last_name) LIKE ?", ['%' . $searchTerm . '%']);
+    //         });
+    //     }
 
-        // Paginar los resultados con un máximo de 3 elementos por página
-        $users = $query->paginate(10);
+    //     // Paginar los resultados con un máximo de 3 elementos por página
+    //     $users = $query->paginate(10);
 
-        $promedioData = [];
-        foreach ($users as $user) {
+    //     $promedioData = [];
+    //     foreach ($users as $user) {
 
-            $spanishOctavo = SpanishOctavo::where('user_id', $user->id)->first();
+    //         $spanishOctavo = SpanishOctavo::where('user_id', $user->id)->first();
 
-            // Verificar si la observación es "Sin Observación"
-            $observacion = $spanishOctavo && $spanishOctavo->ObservationspanishPO !== 'Sin Observacion'
-                ? explode(' - ', $spanishOctavo->ObservationspanishPO)
-                : null;
+    //         // Verificar si la observación es "Sin Observación"
+    //         $observacion = $spanishOctavo && $spanishOctavo->ObservationspanishPO !== 'Sin Observacion'
+    //             ? explode(' - ', $spanishOctavo->ObservationspanishPO)
+    //             : null;
 
-            $observacion2 = $spanishOctavo && $spanishOctavo->ObservationspanishPO2 !== 'Sin Observacion'
-                ? explode(' - ', $spanishOctavo->ObservationspanishPO2)
-                : null;
+    //         $observacion2 = $spanishOctavo && $spanishOctavo->ObservationspanishPO2 !== 'Sin Observacion'
+    //             ? explode(' - ', $spanishOctavo->ObservationspanishPO2)
+    //             : null;
 
-            $observacion3 = $spanishOctavo && $spanishOctavo->ObservationspanishPO3 !== 'Sin Observacion'
-                ? explode(' - ', $spanishOctavo->ObservationspanishPO3)
-                : null;
+    //         $observacion3 = $spanishOctavo && $spanishOctavo->ObservationspanishPO3 !== 'Sin Observacion'
+    //             ? explode(' - ', $spanishOctavo->ObservationspanishPO3)
+    //             : null;
 
-            $observacion4 = $spanishOctavo && $spanishOctavo->ObservationspanishPO4 !== 'Sin Observacion'
-                ? explode(' - ', $spanishOctavo->ObservationspanishPO4)
-                : null;
+    //         $observacion4 = $spanishOctavo && $spanishOctavo->ObservationspanishPO4 !== 'Sin Observacion'
+    //             ? explode(' - ', $spanishOctavo->ObservationspanishPO4)
+    //             : null;
 
-            $observacionPredeterminadaPresente = $observacion === null;
-            $observacionPredeterminadaPresente2 = $observacion2 === null;
-            $observacionPredeterminadaPresente3 = $observacion3 === null;
-            $observacionPredeterminadaPresente4 = $observacion4 === null;
+    //         $observacionPredeterminadaPresente = $observacion === null;
+    //         $observacionPredeterminadaPresente2 = $observacion2 === null;
+    //         $observacionPredeterminadaPresente3 = $observacion3 === null;
+    //         $observacionPredeterminadaPresente4 = $observacion4 === null;
 
-            $promedioData[] = [
-                'id' => $user->id, // Agregar el ID del usuario al array
-                'user' => $user,
-                'observacion' => $observacion,
-                'observacion2' => $observacion2,
-                'observacion3' => $observacion3,
-                'observacion4' => $observacion4,
-                'observacionPredeterminadaPresente' => $observacionPredeterminadaPresente,
-                'observacionPredeterminadaPresente2' => $observacionPredeterminadaPresente2,
-                'observacionPredeterminadaPresente3' => $observacionPredeterminadaPresente3,
-                'observacionPredeterminadaPresente4' => $observacionPredeterminadaPresente4,
-            ];
+    //         $promedioData[] = [
+    //             'id' => $user->id, // Agregar el ID del usuario al array
+    //             'user' => $user,
+    //             'observacion' => $observacion,
+    //             'observacion2' => $observacion2,
+    //             'observacion3' => $observacion3,
+    //             'observacion4' => $observacion4,
+    //             'observacionPredeterminadaPresente' => $observacionPredeterminadaPresente,
+    //             'observacionPredeterminadaPresente2' => $observacionPredeterminadaPresente2,
+    //             'observacionPredeterminadaPresente3' => $observacionPredeterminadaPresente3,
+    //             'observacionPredeterminadaPresente4' => $observacionPredeterminadaPresente4,
+    //         ];
 
-        }
-        return view("home.table.spanish.table2.spanish8", compact('promedioData', 'users'));
-    }
+    //     }
+    //     return view("home.table.spanish.table2.spanish8", compact('promedioData', 'users'));
+    // }
 
     public function table_spanish9(Request $request)
     {
@@ -978,106 +1014,69 @@ class SpanishController extends Controller
         $promedioData = [];
         foreach ($users as $user) {
             $SpanishNoveno = SpanishNoveno::where('user_id', $user->id)->first();
-            // Obtener todas las respuestas de las columnas mathPC1, mathPC2, ..., mathPC10
 
             if ($SpanishNoveno !== null) {
-                // Si $mathQuinto no es null, obtenemos las respuestas
-                $respuestas = collect($SpanishNoveno->toArray())->only([
-                    'spanishPNO1',
-                    'spanishPNO2',
-                    'spanishPNO3',
-                    'spanishPNO4',
-                    'spanishPNO5',
-                    'spanishPNO6',
-                    'spanishPNO7',
-                    'spanishPNO8',
-                    'spanishPNO9',
-                    'spanishPNO10',
-                ])->values();
-                $respuestasCollection = collect($respuestas);
 
-                $cantidadRespuestasBuenas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 5;
-                })->count();
+                $sumaPromedio = 0;
+                $cantidadRespuestasCorrectas = 0;
+                $cantidadRespuestasRegulares = 0;
+                $cantidadRespuestasIncorrectas = 0;
 
-                $cantidadRespuestasMalas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 1;
-                })->count();
+                $respuestas = [
+                    $SpanishNoveno->spanishPNO1,
+                    $SpanishNoveno->spanishPNO2,
+                    $SpanishNoveno->spanishPNO3,
+                    $SpanishNoveno->spanishPNO4,
+                    $SpanishNoveno->spanishPNO5,
+                    $SpanishNoveno->spanishPNO6,
+                    $SpanishNoveno->spanishPNO7,
+                    $SpanishNoveno->spanishPNO8,
+                    $SpanishNoveno->spanishPNO9,
+                    $SpanishNoveno->spanishPNO10,
+                ];
 
-                $puntuacionPorPregunta = 5 / 10;
-                $promedio = $puntuacionPorPregunta * $cantidadRespuestasBuenas;
+                $respuestasCorrectas = [
+                    'D. Solicitar',
+                    'A. Breve',
+                    'B. Sintagma verbal',
+                    'B. Conjunción',
+                    'B. De ejemplificación',
+                    'A. Omnisciente',
+                    'B. Una choza grande.',
+                    'C. Añade una información adicional.',
+                    'C. Símil',
+                    'C. La violencia contra los pueblos indígenas y la barbarie de la explotación.',
+                ];
+
+                foreach ($respuestas as $index => $respuesta) {
+                    if ($respuestasCorrectas[$index] !== null) {
+                        if ($respuesta == $respuestasCorrectas[$index]) {
+                            $cantidadRespuestasCorrectas++;
+                            $sumaPromedio += 0.5;
+                        } else {
+                            $cantidadRespuestasIncorrectas++;
+                        }
+                    } 
+                }
 
                 $cantidadDeVeces = SpanishNoveno::where('user_id', $user->id)->count();
 
-                $respuestasCollection = collect($respuestas);
-
-                $cantidadRespuestasBuenas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 5;
-                })->count();
-
-                $cantidadRespuestasMalas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 1;
-                })->count();
-
-                $puntuacionPorPregunta = 5 / 10;
-                $promedio = $puntuacionPorPregunta * $cantidadRespuestasBuenas;
-
-                // Verificar si la observación es "Sin Observación"
-                $observacion = $SpanishNoveno && $SpanishNoveno->ObservationspanishPNO !== 'Sin Observacion'
-                    ? explode(' - ', $SpanishNoveno->ObservationspanishPNO)
-                    : null;
-
-                $observacion2 = $SpanishNoveno && $SpanishNoveno->ObservationspanishPNO2 !== 'Sin Observacion'
-                    ? explode(' - ', $SpanishNoveno->ObservationspanishPNO2)
-                    : null;
-
-                $observacion3 = $SpanishNoveno && $SpanishNoveno->ObservationspanishPNO3 !== 'Sin Observacion'
-                    ? explode(' - ', $SpanishNoveno->ObservationspanishPNO3)
-                    : null;
-
-                $observacion4 = $SpanishNoveno && $SpanishNoveno->ObservationspanishPNO4 !== 'Sin Observacion'
-                    ? explode(' - ', $SpanishNoveno->ObservationspanishPNO4)
-                    : null;
-
-                $observacionPredeterminadaPresente = $observacion === null;
-                $observacionPredeterminadaPresente2 = $observacion2 === null;
-                $observacionPredeterminadaPresente3 = $observacion3 === null;
-                $observacionPredeterminadaPresente4 = $observacion4 === null;
-
                 $SpanishNoveno->update([
-                    'averageSpanishPNO' => $promedio,
+                    'averageSpanishPNO' => $sumaPromedio,
                     'attemptsSpanishPNO' => $cantidadDeVeces,
-                    'correctSpanishPNO' => $cantidadRespuestasBuenas,
-                    'incorrectSpanishPNO' => $cantidadRespuestasMalas,
+                    'correctSpanishPNO' => $cantidadRespuestasCorrectas,
+                    'incorrectSpanishPNO' => $cantidadRespuestasIncorrectas,
+                    'regularSpanishPNO' => $cantidadRespuestasRegulares,
                 ]);
 
                 $promedioData[] = [
+                    'id' => $user->id,
                     'user' => $user,
-                    'promedio' => $promedio,
-                    'cantidadRespuestasBuenas' => $cantidadRespuestasBuenas,
-                    'cantidadRespuestasMalas' => $cantidadRespuestasMalas,
+                    'promedio' => $sumaPromedio,
+                    'cantidadRespuestasBuenas' => $cantidadRespuestasCorrectas,
+                    'cantidadRespuestasMalas' => $cantidadRespuestasIncorrectas,
+                    'cantidadRespuestasRegulares' => $cantidadRespuestasRegulares,
                     'cantidadDeVeces' => $cantidadDeVeces,
-                    'observacion' => $observacion,
-                    'observacion2' => $observacion2,
-                    'observacion3' => $observacion3,
-                    'observacion4' => $observacion4,
-                    'observacionPredeterminadaPresente' => $observacionPredeterminadaPresente,
-                    'observacionPredeterminadaPresente2' => $observacionPredeterminadaPresente2,
-                    'observacionPredeterminadaPresente3' => $observacionPredeterminadaPresente3,
-                    'observacionPredeterminadaPresente4' => $observacionPredeterminadaPresente4,
-                ];
-            } else {
-                $respuestas = [
-                    'spanishPNO1' => null,
-                    'spanishPNO2' => null,
-                    'spanishPNO3' => null,
-                    'spanishPNO4' => null,
-                    'spanishPNO5' => null,
-                    'spanishPNO6' => null,
-                    'spanishPNO7' => null,
-                    'spanishPNO8' => null,
-                    'spanishPNO9' => null,
-                    'spanishPNO10' => null,
                 ];
             }
         }
@@ -1104,71 +1103,77 @@ class SpanishController extends Controller
         foreach ($users as $user) {
             $spanishDecimo = SpanishDecimo::where('user_id', $user->id)->first();
             if ($spanishDecimo !== null) {
-                $respuestas = collect($spanishDecimo->toArray())->only([
-                    'spanishPD1',
-                    'spanishPD2',
-                    'spanishPD3',
-                    'spanishPD4',
-                    'spanishPD5',
-                    'spanishPD6',
-                    'spanishPD7',
-                    'spanishPD8',
-                    'spanishPD9',
-                    'spanishPD10',
-                ])->values();
 
-                $respuestasCollection = collect($respuestas);
+                $sumaPromedio = 0;
+                $cantidadRespuestasCorrectas = 0;
+                $cantidadRespuestasRegulares = 0;
+                $cantidadRespuestasIncorrectas = 0;
 
-                $cantidadRespuestasCorrectas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 5;
-                })->count();
+                $respuestas = [
+                    $spanishDecimo->spanishPD1,
+                    $spanishDecimo->spanishPD2,
+                    $spanishDecimo->spanishPD3,
+                    $spanishDecimo->spanishPD4,
+                    $spanishDecimo->spanishPD5,
+                    $spanishDecimo->spanishPD6,
+                    $spanishDecimo->spanishPD7,
+                    $spanishDecimo->spanishPD8,
+                    $spanishDecimo->spanishPD9,
+                    $spanishDecimo->spanishPD10,
+                ];
 
-                $cantidadRespuestasCon4 = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 4;
-                })->count();
-                $sumarCantidadCorrectas = $cantidadRespuestasCorrectas + $cantidadRespuestasCon4;
+                $respuestasCorrectas = [
+                    'D. supone que una menor TE en el país se traduce en un sistema penal más eficiente.',
+                    'B. refutar la validez de un juicio previo.',
+                    'A. Evidencia/antítesis.',
+                    null,  // respuesta 4 no es una comparación de string
+                    null,  // respuesta 5 no es una comparación de string
+                    null,  // respuesta 6 no es una comparación de string
+                    null,  // respuesta 7 no es una comparación de string
+                    'A. La habilidad de comprender, analizar, evaluar y reflexionar sobre los textos escritos desde una perspectiva crítica.',
+                    'D. Un fragmento de una novela',
+                    'B. Le provoca miedo y repulsión',
+                ];
 
-                $cantidadRespuestasRegulares = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 3;
-                })->count();
-
-                $cantidadRespuestasCon2 = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 2;
-                })->count();
-
-
-                $cantidadRespuestasIncorrectas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 1;
-                })->count();
-                $sumarCantidadIncorrectas = $cantidadRespuestasCon2 + $cantidadRespuestasIncorrectas;
-
-                $puntuacionPorRespuestaCorrecta = 5 / 10;
-                $puntuacionPorRespuestaCon4 = 0.4;
-                $puntuacionPorRespuestaRegular = 3 / 10;
-                $puntuacionPorRespuestaCon2 = 0.2;
-                $puntuacionPorRespuestaIncorrecta = 0;
-
-                $promedio = ($puntuacionPorRespuestaCorrecta * $cantidadRespuestasCorrectas) +
-                    ($puntuacionPorRespuestaCon4 * $cantidadRespuestasCon4) +
-                    ($puntuacionPorRespuestaRegular * $cantidadRespuestasRegulares) +
-                    ($puntuacionPorRespuestaCon2 * $cantidadRespuestasCon2) +
-                    ($puntuacionPorRespuestaIncorrecta * $cantidadRespuestasIncorrectas);
+                foreach ($respuestas as $index => $respuesta) {
+                    if ($respuestasCorrectas[$index] !== null) {
+                        if ($respuesta == $respuestasCorrectas[$index]) {
+                            $cantidadRespuestasCorrectas++;
+                            $sumaPromedio += 0.5;
+                        } else {
+                            $cantidadRespuestasIncorrectas++;
+                        }
+                    } else {
+                        if ($respuesta >= 4) {
+                            $cantidadRespuestasCorrectas++;
+                            $sumaPromedio += $respuesta / 10;
+                        } elseif ($respuesta < 4 && $respuesta >= 3) {
+                            $cantidadRespuestasRegulares++;
+                            $sumaPromedio += $respuesta / 10;
+                        } elseif ($respuesta < 3 && $respuesta >= 1) {
+                            $cantidadRespuestasIncorrectas++;
+                            $sumaPromedio += $respuesta / 10;
+                        }elseif ($respuesta < 1) {
+                            $cantidadRespuestasIncorrectas++;
+                            $sumaPromedio += $respuesta;
+                        }
+                    }
+                }
 
                 $cantidadDeVeces = SpanishDecimo::where('user_id', $user->id)->count();
 
                 $spanishDecimo->update([
-                    'averageSpanishPD' => $promedio,
+                    'averageSpanishPD' => $sumaPromedio,
                     'attemptsSpanishPD' => $cantidadDeVeces,
-                    'correctSpanishPD' => $sumarCantidadCorrectas,
-                    'incorrectSpanishPD' => $sumarCantidadIncorrectas,
-                    'regularSpanishPD' => $cantidadRespuestasRegulares
+                    'correctSpanishPD' => $cantidadRespuestasCorrectas,
+                    'incorrectSpanishPD' => $cantidadRespuestasIncorrectas,
+                    'regularSpanishPD' => $cantidadRespuestasRegulares,
                 ]);
 
                 $comment4_1 = SpanishDecimo::where('user_id', $user->id)->value('comment_fragmentPD4_1');
                 $comment4_2 = SpanishDecimo::where('user_id', $user->id)->value('comment_fragmentPD4_2');
                 $comment4_3 = SpanishDecimo::where('user_id', $user->id)->value('comment_fragmentPD4_3');
                 $comment4_4 = SpanishDecimo::where('user_id', $user->id)->value('comment_fragmentPD4_4');
-
 
                 $comment5 = SpanishDecimo::where('user_id', $user->id)->value('commentPD5');
                 $comment6 = SpanishDecimo::where('user_id', $user->id)->value('commentPD6');
@@ -1177,9 +1182,9 @@ class SpanishController extends Controller
                 $promedioData[] = [
                     'id' => $user->id,
                     'user' => $user,
-                    'promedio' => $promedio,
-                    'cantidadRespuestasBuenas' => $sumarCantidadCorrectas,
-                    'cantidadRespuestasMalas' => $sumarCantidadIncorrectas,
+                    'promedio' => $sumaPromedio,
+                    'cantidadRespuestasBuenas' => $cantidadRespuestasCorrectas,
+                    'cantidadRespuestasMalas' => $cantidadRespuestasIncorrectas,
                     'cantidadRespuestasRegulares' => $cantidadRespuestasRegulares,
                     'cantidadDeVeces' => $cantidadDeVeces,
                     'comment4_1' => $comment4_1,
@@ -1193,9 +1198,6 @@ class SpanishController extends Controller
             }
         }
 
-        // Log::info('valor de promedios: ' . json_encode($promedioData));
-        // return response()->json(['promediosss' => $promedioData]);
-
         return view("home.table.spanish.spanish10", compact('promedioData', 'users'));
     }
 
@@ -1203,72 +1205,82 @@ class SpanishController extends Controller
     {
         // Validar los datos del formulario
         $request->validate([
-            'spanishPC1' => 'required|integer|in:1,5',
-            'spanishPC2' => 'required|integer|in:1,5',
-            'spanishPC3' => 'required|integer|in:1,5',
-            'spanishPC4' => 'required|integer|in:1,5',
-            'spanishPC5' => 'required|integer|in:1,5',
-            'spanishPC6' => 'required|integer|in:1,5',
-            'spanishPC7' => 'required|integer|in:1,5',
+            'spanishPC1' => 'required|string',
+            'spanishPC2' => 'required|string',
+            'spanishPC3' => 'required|string',
+            'spanishPC4' => 'required|string',
+            'spanishPC5' => 'required|string',
+            'spanishPC6' => 'required|string',
+            'spanishPC7' => 'required|string',
             'commentPC8' => 'required|string',
-            'spanishPC9' => 'required|integer|in:1,5',
-            'spanishPC10' => 'required|integer|in:1,5',
+            'spanishPC9' => 'required|string',
+            'spanishPC10' => 'required|string',
         ]);
 
-        $user_id = Auth::id();
+        $user_id = Auth::id(); //extraigo el id del usuario logueado
+        $existingRecord = SpanishCuarto::where('user_id', $user_id)->first(); //hago una consulta en la tabla para guardar el registro en la variable
 
-        $spanishCuarto = new SpanishCuarto();
-        $spanishCuarto->user_id = $user_id;
-        $spanishCuarto->spanishPC1 = $request->input('spanishPC1');
-        $spanishCuarto->spanishPC2 = $request->input('spanishPC2');
-        $spanishCuarto->spanishPC3 = $request->input('spanishPC3');
-        $spanishCuarto->spanishPC4 = $request->input('spanishPC4');
-        $spanishCuarto->spanishPC5 = $request->input('spanishPC5');
-        $spanishCuarto->spanishPC6 = $request->input('spanishPC6');
-        $spanishCuarto->spanishPC7 = $request->input('spanishPC7');
-        $spanishCuarto->commentPC8 = $request->input('commentPC8');
-        $spanishCuarto->spanishPC9 = $request->input('spanishPC9');
-        $spanishCuarto->spanishPC10 = $request->input('spanishPC10');
+        if ($existingRecord) { //hago la condicion, si existe un registro me sale el error y no me deja enviar nuevamente un formulario
+            return redirect()->back()->with('error', 'El custionario ya ha sido resuelto');
+        }else { //sino existe registro las respuestas del formulario se guardan
+            $spanishCuarto = new SpanishCuarto();
+            $spanishCuarto->user_id = $user_id;
+            $spanishCuarto->spanishPC1 = $request->input('spanishPC1');
+            $spanishCuarto->spanishPC2 = $request->input('spanishPC2');
+            $spanishCuarto->spanishPC3 = $request->input('spanishPC3');
+            $spanishCuarto->spanishPC4 = $request->input('spanishPC4');
+            $spanishCuarto->spanishPC5 = $request->input('spanishPC5');
+            $spanishCuarto->spanishPC6 = $request->input('spanishPC6');
+            $spanishCuarto->spanishPC7 = $request->input('spanishPC7');
+            $spanishCuarto->commentPC8 = $request->input('commentPC8');
+            $spanishCuarto->spanishPC9 = $request->input('spanishPC9');
+            $spanishCuarto->spanishPC10 = $request->input('spanishPC10');
 
-        $spanishCuarto->save();
+            $spanishCuarto->save();
 
-        return redirect()->back()->with('success', 'Datos almacenados correctamente.');
+            return redirect()->back()->with('success', 'Datos almacenados correctamente.');
+        }
     }
 
     public function store_spanish5(Request $request)
     {
         // Validar los datos del formulario
         $request->validate([
-            'spanishPQ1' => 'required|integer|in:1,5',
-            'spanishPQ2' => 'required|integer|in:1,5',
-            'spanishPQ3' => 'required|integer|in:1,5',
-            'spanishPQ4' => 'required|integer|in:1,5',
-            'spanishPQ5' => 'required|integer|in:1,5',
+            'spanishPQ1' => 'required|string',
+            'spanishPQ2' => 'required|string',
+            'spanishPQ3' => 'required|string',
+            'spanishPQ4' => 'required|string',
+            'spanishPQ5' => 'required|string',
             'commentPQ6' => 'required|string',
             'commentPQ7' => 'required|string',
-            'spanishPQ8' => 'required|integer|in:1,5',
-            'spanishPQ9' => 'required|integer|in:1,5',
+            'spanishPQ8' => 'required|string',
+            'spanishPQ9' => 'required|string',
             'commentPQ10' => 'required|string',
         ]);
 
         $user_id = Auth::id();
+        $existingRecord = SpanishQuinto::where('user_id', $user_id)->first();
 
-        $spanishQuinto = new SpanishQuinto();
-        $spanishQuinto->user_id = $user_id;
-        $spanishQuinto->spanishPQ1 = $request->input('spanishPQ1');
-        $spanishQuinto->spanishPQ2 = $request->input('spanishPQ2');
-        $spanishQuinto->spanishPQ3 = $request->input('spanishPQ3');
-        $spanishQuinto->spanishPQ4 = $request->input('spanishPQ4');
-        $spanishQuinto->spanishPQ5 = $request->input('spanishPQ5');
-        $spanishQuinto->commentPQ6 = $request->input('commentPQ6');
-        $spanishQuinto->commentPQ7 = $request->input('commentPQ7');
-        $spanishQuinto->spanishPQ8 = $request->input('spanishPQ8');
-        $spanishQuinto->spanishPQ9 = $request->input('spanishPQ9');
-        $spanishQuinto->commentPQ10 = $request->input('commentPQ10');
+        if ($existingRecord) {
+            return redirect()->back()->with('error', 'El custionario ya ha sido resuelto');
+        }else {
+            $spanishQuinto = new SpanishQuinto();
+            $spanishQuinto->user_id = $user_id;
+            $spanishQuinto->spanishPQ1 = $request->input('spanishPQ1');
+            $spanishQuinto->spanishPQ2 = $request->input('spanishPQ2');
+            $spanishQuinto->spanishPQ3 = $request->input('spanishPQ3');
+            $spanishQuinto->spanishPQ4 = $request->input('spanishPQ4');
+            $spanishQuinto->spanishPQ5 = $request->input('spanishPQ5');
+            $spanishQuinto->commentPQ6 = $request->input('commentPQ6');
+            $spanishQuinto->commentPQ7 = $request->input('commentPQ7');
+            $spanishQuinto->spanishPQ8 = $request->input('spanishPQ8');
+            $spanishQuinto->spanishPQ9 = $request->input('spanishPQ9');
+            $spanishQuinto->commentPQ10 = $request->input('commentPQ10');
 
-        $spanishQuinto->save();
+            $spanishQuinto->save();
 
-        return redirect()->back()->with('success', 'Datos almacenados correctamente.');
+            return redirect()->back()->with('success', 'Datos almacenados correctamente.');
+        }
     }
     public function store_spanish6(Request $request)
     {
@@ -1280,30 +1292,36 @@ class SpanishController extends Controller
             'commentPSX4' => 'required|string',
             'commentPSX5' => 'required|string',
             'commentPSX6' => 'required|string',
-            'spanishPSX7' => 'required|integer|in:1,5',
-            'spanishPSX8' => 'required|integer|in:1,5',
-            'spanishPSX9' => 'required|integer|in:1,5',
-            'spanishPSX10' => 'required|integer|in:1,5',
+            'spanishPSX7' => 'required|string',
+            'spanishPSX8' => 'required|string',
+            'spanishPSX9' => 'required|string',
+            'spanishPSX10' => 'required|string',
         ]);
 
         $user_id = Auth::id();
+        $existingRecord = SpanishSexto::where('user_id', $user_id)->first();
 
-        $spanishSexto = new SpanishSexto();
-        $spanishSexto->user_id = $user_id;
-        $spanishSexto->commentPSX1 = $request->input('commentPSX1');
-        $spanishSexto->commentPSX2 = $request->input('commentPSX2');
-        $spanishSexto->commentPSX3 = $request->input('commentPSX3');
-        $spanishSexto->commentPSX4 = $request->input('commentPSX4');
-        $spanishSexto->commentPSX5 = $request->input('commentPSX5');
-        $spanishSexto->commentPSX6 = $request->input('commentPSX6');
-        $spanishSexto->spanishPSX7 = $request->input('spanishPSX7');
-        $spanishSexto->spanishPSX8 = $request->input('spanishPSX8');
-        $spanishSexto->spanishPSX9 = $request->input('spanishPSX9');
-        $spanishSexto->spanishPSX10 = $request->input('spanishPSX10');
+        if ($existingRecord) {
+            return redirect()->back()->with('error', 'El custionario ya ha sido resuelto');
+        }else {
 
-        $spanishSexto->save();
+            $spanishSexto = new SpanishSexto();
+            $spanishSexto->user_id = $user_id;
+            $spanishSexto->commentPSX1 = $request->input('commentPSX1');
+            $spanishSexto->commentPSX2 = $request->input('commentPSX2');
+            $spanishSexto->commentPSX3 = $request->input('commentPSX3');
+            $spanishSexto->commentPSX4 = $request->input('commentPSX4');
+            $spanishSexto->commentPSX5 = $request->input('commentPSX5');
+            $spanishSexto->commentPSX6 = $request->input('commentPSX6');
+            $spanishSexto->spanishPSX7 = $request->input('spanishPSX7');
+            $spanishSexto->spanishPSX8 = $request->input('spanishPSX8');
+            $spanishSexto->spanishPSX9 = $request->input('spanishPSX9');
+            $spanishSexto->spanishPSX10 = $request->input('spanishPSX10');
 
-        return redirect()->back()->with('success', 'Datos almacenados correctamente.');
+            $spanishSexto->save();
+
+            return redirect()->back()->with('success', 'Datos almacenados correctamente.');
+        }
     }
 
     public function store_spanish7(Request $request)
@@ -1317,29 +1335,35 @@ class SpanishController extends Controller
             'commentPS5' => 'required|string',
             'commentPS6' => 'required|string',
             'commentPS7' => 'required|string',
-            'spanishPS8' => 'required|integer|in:1,5',
-            'spanishPS9' => 'required|integer|in:1,5',
-            'spanishPS10' => 'required|integer|in:1,5',
+            'spanishPS8' => 'required|string',
+            'spanishPS9' => 'required|string',
+            'spanishPS10' => 'required|string',
         ]);
 
         $user_id = Auth::id();
+        $existingRecord = SpanishSeptimo::where('user_id', $user_id)->first();
 
-        $spanishSexto = new SpanishSeptimo();
-        $spanishSexto->user_id = $user_id;
-        $spanishSexto->commentPS1 = $request->input('commentPS1');
-        $spanishSexto->commentPS2 = $request->input('commentPS2');
-        $spanishSexto->commentPS3 = $request->input('commentPS3');
-        $spanishSexto->commentPS4 = $request->input('commentPS4');
-        $spanishSexto->commentPS5 = $request->input('commentPS5');
-        $spanishSexto->commentPS6 = $request->input('commentPS6');
-        $spanishSexto->commentPS7 = $request->input('commentPS7');
-        $spanishSexto->spanishPS8 = $request->input('spanishPS8');
-        $spanishSexto->spanishPS9 = $request->input('spanishPS9');
-        $spanishSexto->spanishPS10 = $request->input('spanishPS10');
+        if ($existingRecord) {
+            return redirect()->back()->with('error', 'El custionario ya ha sido resuelto');
+        }else {
 
-        $spanishSexto->save();
+            $spanishSexto = new SpanishSeptimo();
+            $spanishSexto->user_id = $user_id;
+            $spanishSexto->commentPS1 = $request->input('commentPS1');
+            $spanishSexto->commentPS2 = $request->input('commentPS2');
+            $spanishSexto->commentPS3 = $request->input('commentPS3');
+            $spanishSexto->commentPS4 = $request->input('commentPS4');
+            $spanishSexto->commentPS5 = $request->input('commentPS5');
+            $spanishSexto->commentPS6 = $request->input('commentPS6');
+            $spanishSexto->commentPS7 = $request->input('commentPS7');
+            $spanishSexto->spanishPS8 = $request->input('spanishPS8');
+            $spanishSexto->spanishPS9 = $request->input('spanishPS9');
+            $spanishSexto->spanishPS10 = $request->input('spanishPS10');
 
-        return redirect()->back()->with('success', 'Datos almacenados correctamente.');
+            $spanishSexto->save();
+
+            return redirect()->back()->with('success', 'Datos almacenados correctamente.');
+        }
     }
 
     public function store_spanish8(Request $request)
@@ -1351,75 +1375,87 @@ class SpanishController extends Controller
             'commentPO3' => 'required|string',
             'commentPO4' => 'required|string',
             'commentPO5' => 'required|string',
-            'spanishPO6' => 'required|integer|in:1,5',
-            'spanishPO7' => 'required|integer|in:1,5',
+            'spanishPO6' => 'required|string',
+            'spanishPO7' => 'required|string',
             'commentPO8' => 'required|string',
-            'spanishPO9' => 'required|integer|in:1,5',
-            'spanishPO10' => 'required|integer|in:1,5',
+            'spanishPO9' => 'required|string',
+            'spanishPO10' => 'required|string',
         ]);
 
         $user_id = Auth::id();
+        $existingRecord = SpanishOctavo::where('user_id', $user_id)->first();
 
-        $spanishOctavo = new SpanishOctavo();
-        $spanishOctavo->user_id = $user_id;
-        $spanishOctavo->commentPO1 = $request->input('commentPO1');
-        $spanishOctavo->commentPO2 = $request->input('commentPO2');
-        $spanishOctavo->commentPO3 = $request->input('commentPO3');
-        $spanishOctavo->commentPO4 = $request->input('commentPO4');
-        $spanishOctavo->commentPO5 = $request->input('commentPO5');
-        $spanishOctavo->spanishPO6 = $request->input('spanishPO6');
-        $spanishOctavo->spanishPO7 = $request->input('spanishPO7');
-        $spanishOctavo->commentPO8 = $request->input('commentPO8');
-        $spanishOctavo->spanishPO9 = $request->input('spanishPO9');
-        $spanishOctavo->spanishPO10 = $request->input('spanishPO10');
+        if ($existingRecord) {
+            return redirect()->back()->with('error', 'El custionario ya ha sido resuelto');
+        }else {
 
-        $spanishOctavo->save();
+            $spanishOctavo = new SpanishOctavo();
+            $spanishOctavo->user_id = $user_id;
+            $spanishOctavo->commentPO1 = $request->input('commentPO1');
+            $spanishOctavo->commentPO2 = $request->input('commentPO2');
+            $spanishOctavo->commentPO3 = $request->input('commentPO3');
+            $spanishOctavo->commentPO4 = $request->input('commentPO4');
+            $spanishOctavo->commentPO5 = $request->input('commentPO5');
+            $spanishOctavo->spanishPO6 = $request->input('spanishPO6');
+            $spanishOctavo->spanishPO7 = $request->input('spanishPO7');
+            $spanishOctavo->commentPO8 = $request->input('commentPO8');
+            $spanishOctavo->spanishPO9 = $request->input('spanishPO9');
+            $spanishOctavo->spanishPO10 = $request->input('spanishPO10');
 
-        return redirect()->back()->with('success', 'Datos almacenados correctamente.');
+            $spanishOctavo->save();
+
+            return redirect()->back()->with('success', 'Datos almacenados correctamente.');
+        }
     }
     public function store_spanish9(Request $request)
     {
         // Validar los datos del formulario
         $request->validate([
-            'spanishPNO1' => 'required|integer|in:1,5',
-            'spanishPNO2' => 'required|integer|in:1,5',
-            'spanishPNO3' => 'required|integer|in:1,5',
-            'spanishPNO4' => 'required|integer|in:1,5',
-            'spanishPNO5' => 'required|integer|in:1,5',
-            'spanishPNO6' => 'required|integer|in:1,5',
-            'spanishPNO7' => 'required|integer|in:1,5',
-            'spanishPNO8' => 'required|integer|in:1,5',
-            'spanishPNO9' => 'required|integer|in:1,5',
-            'spanishPNO10' => 'required|integer|in:1,5',
+            'spanishPNO1' => 'required|string',
+            'spanishPNO2' => 'required|string',
+            'spanishPNO3' => 'required|string',
+            'spanishPNO4' => 'required|string',
+            'spanishPNO5' => 'required|string',
+            'spanishPNO6' => 'required|string',
+            'spanishPNO7' => 'required|string',
+            'spanishPNO8' => 'required|string',
+            'spanishPNO9' => 'required|string',
+            'spanishPNO10' => 'required|string',
         ]);
 
         $user_id = Auth::id();
+        $existingRecord = SpanishNoveno::where('user_id', $user_id)->first();
 
-        $spanishNoveno = new SpanishNoveno();
-        $spanishNoveno->user_id = $user_id;
-        $spanishNoveno->spanishPNO1 = $request->input('spanishPNO1');
-        $spanishNoveno->spanishPNO2 = $request->input('spanishPNO2');
-        $spanishNoveno->spanishPNO3 = $request->input('spanishPNO3');
-        $spanishNoveno->spanishPNO4 = $request->input('spanishPNO4');
-        $spanishNoveno->spanishPNO5 = $request->input('spanishPNO5');
-        $spanishNoveno->spanishPNO6 = $request->input('spanishPNO6');
-        $spanishNoveno->spanishPNO7 = $request->input('spanishPNO7');
-        $spanishNoveno->spanishPNO8 = $request->input('spanishPNO8');
-        $spanishNoveno->spanishPNO9 = $request->input('spanishPNO9');
-        $spanishNoveno->spanishPNO10 = $request->input('spanishPNO10');
+        if ($existingRecord) {
+            return redirect()->back()->with('error', 'El cuestionario ya ha sido resuelto');
+        }else {
 
-        $spanishNoveno->save();
+            $spanishNoveno = new SpanishNoveno();
+            $spanishNoveno->user_id = $user_id;
+            $spanishNoveno->spanishPNO1 = $request->input('spanishPNO1');
+            $spanishNoveno->spanishPNO2 = $request->input('spanishPNO2');
+            $spanishNoveno->spanishPNO3 = $request->input('spanishPNO3');
+            $spanishNoveno->spanishPNO4 = $request->input('spanishPNO4');
+            $spanishNoveno->spanishPNO5 = $request->input('spanishPNO5');
+            $spanishNoveno->spanishPNO6 = $request->input('spanishPNO6');
+            $spanishNoveno->spanishPNO7 = $request->input('spanishPNO7');
+            $spanishNoveno->spanishPNO8 = $request->input('spanishPNO8');
+            $spanishNoveno->spanishPNO9 = $request->input('spanishPNO9');
+            $spanishNoveno->spanishPNO10 = $request->input('spanishPNO10');
 
-        return redirect()->back()->with('success', 'Datos almacenados correctamente.');
+            $spanishNoveno->save();
+
+            return redirect()->back()->with('success', 'Datos almacenados correctamente.');
+        }
     }
 
     public function store_spanish10(Request $request)
-    {
+    {   
         // Validar los datos del formulario
         $request->validate([
-            'spanishPD1' => 'required|integer|in:1,5',
-            'spanishPD2' => 'required|integer|in:1,5',
-            'spanishPD3' => 'required|integer|in:1,5',
+            'spanishPD1' => 'required|string',
+            'spanishPD2' => 'required|string',
+            'spanishPD3' => 'required|string',
             'comment_fragmentPD4_1' => 'required|string',
             'comment_fragmentPD4_2' => 'required|string',
             'comment_fragmentPD4_3' => 'required|string',
@@ -1427,32 +1463,39 @@ class SpanishController extends Controller
             'commentPD5' => 'required|string',
             'commentPD6' => 'required|string',
             'commentPD7' => 'required|string',
-            'spanishPD8' => 'required|integer|in:1,5',
-            'spanishPD9' => 'required|integer|in:1,5',
-            'spanishPD10' => 'required|integer|in:1,5',
+            'spanishPD8' => 'required|string',
+            'spanishPD9' => 'required|string',
+            'spanishPD10' => 'required|string',
         ]);
 
         $user_id = Auth::id();
+        $existingRecord = SpanishDecimo::where('user_id', $user_id)->first();
 
-        $spanishDecimo = new SpanishDecimo();
-        $spanishDecimo->user_id = $user_id;
-        $spanishDecimo->spanishPD1 = $request->input('spanishPD1');
-        $spanishDecimo->spanishPD2 = $request->input('spanishPD2');
-        $spanishDecimo->spanishPD3 = $request->input('spanishPD3');
-        $spanishDecimo->comment_fragmentPD4_1 = $request->input('comment_fragmentPD4_1');
-        $spanishDecimo->comment_fragmentPD4_2 = $request->input('comment_fragmentPD4_2');
-        $spanishDecimo->comment_fragmentPD4_3 = $request->input('comment_fragmentPD4_3');
-        $spanishDecimo->comment_fragmentPD4_4 = $request->input('comment_fragmentPD4_4');
-        $spanishDecimo->commentPD5 = $request->input('commentPD5');
-        $spanishDecimo->commentPD6 = $request->input('commentPD6');
-        $spanishDecimo->commentPD7 = $request->input('commentPD7');
-        $spanishDecimo->spanishPD8 = $request->input('spanishPD8');
-        $spanishDecimo->spanishPD9 = $request->input('spanishPD9');
-        $spanishDecimo->spanishPD10 = $request->input('spanishPD10');
+        if ($existingRecord) {
+            //Usuario ya tiene un registro
+            return redirect()->back()->with('error', 'El cuestionario ya ha sido resuelto');
+        }else {
 
-        $spanishDecimo->save();
+            $spanishDecimo = new SpanishDecimo();
+            $spanishDecimo->user_id = $user_id;
+            $spanishDecimo->spanishPD1 = $request->input('spanishPD1');
+            $spanishDecimo->spanishPD2 = $request->input('spanishPD2');
+            $spanishDecimo->spanishPD3 = $request->input('spanishPD3');
+            $spanishDecimo->comment_fragmentPD4_1 = $request->input('comment_fragmentPD4_1');
+            $spanishDecimo->comment_fragmentPD4_2 = $request->input('comment_fragmentPD4_2');
+            $spanishDecimo->comment_fragmentPD4_3 = $request->input('comment_fragmentPD4_3');
+            $spanishDecimo->comment_fragmentPD4_4 = $request->input('comment_fragmentPD4_4');
+            $spanishDecimo->commentPD5 = $request->input('commentPD5');
+            $spanishDecimo->commentPD6 = $request->input('commentPD6');
+            $spanishDecimo->commentPD7 = $request->input('commentPD7');
+            $spanishDecimo->spanishPD8 = $request->input('spanishPD8');
+            $spanishDecimo->spanishPD9 = $request->input('spanishPD9');
+            $spanishDecimo->spanishPD10 = $request->input('spanishPD10');
 
-        return redirect()->back()->with('success', 'Datos almacenados correctamente.');
+            $spanishDecimo->save();
+
+            return redirect()->back()->with('success', 'Datos almacenados correctamente.');
+        }
     }
     public function resetearPuntosSpanish4()
     {
@@ -1511,7 +1554,7 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->spanishPC8;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 1)
-            if ($estadoPregunta == 1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
                     'cantidad' => 'required|numeric|min:0|max:5',
@@ -1540,7 +1583,7 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->spanishPQ6;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 1)
-            if ($estadoPregunta == 1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
                     'cantidad' => 'required|numeric|min:0|max:5',
@@ -1568,7 +1611,7 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->spanishPQ7;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 1)
-            if ($estadoPregunta == 1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
                     'cantidad' => 'required|numeric|min:0|max:5',
@@ -1597,7 +1640,7 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->spanishPQ10;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 1)
-            if ($estadoPregunta == 1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
                     'cantidad' => 'required|numeric|min:0|max:5',
@@ -1627,7 +1670,7 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->spanishPSX1;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 1)
-            if ($estadoPregunta == 1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
                     'cantidad' => 'required|numeric|min:0|max:5',
@@ -1656,7 +1699,7 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->spanishPSX2;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 1)
-            if ($estadoPregunta == 1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
                     'cantidad' => 'required|numeric|min:0|max:5',
@@ -1683,7 +1726,7 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->spanishPSX3;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 1)
-            if ($estadoPregunta == 1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
                     'cantidad' => 'required|numeric|min:0|max:5',
@@ -1712,7 +1755,7 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->spanishPSX4;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 1)
-            if ($estadoPregunta == 1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
                     'cantidad' => 'required|numeric|min:0|max:5',
@@ -1741,7 +1784,7 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->spanishPSX5;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 1)
-            if ($estadoPregunta == 1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
                     'cantidad' => 'required|numeric|min:0|max:5',
@@ -1770,7 +1813,7 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->spanishPSX6;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 1)
-            if ($estadoPregunta == 1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
                     'cantidad' => 'required|numeric|min:0|max:5',
@@ -1798,7 +1841,7 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->spanishPS1;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 1)
-            if ($estadoPregunta == 1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
                     'cantidad' => 'required|numeric|min:0|max:5',
@@ -1826,7 +1869,7 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->spanishPS2;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 1)
-            if ($estadoPregunta == 1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
                     'cantidad' => 'required|numeric|min:0|max:5',
@@ -1855,7 +1898,7 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->spanishPS3;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 1)
-            if ($estadoPregunta == 1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
                     'cantidad' => 'required|numeric|min:0|max:5',
@@ -1883,7 +1926,7 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->spanishPS4;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 1)
-            if ($estadoPregunta == 1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
                     'cantidad' => 'required|numeric|min:0|max:5',
@@ -1911,7 +1954,7 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->spanishPS5;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 1)
-            if ($estadoPregunta == 1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
                     'cantidad' => 'required|numeric|min:0|max:5',
@@ -1940,7 +1983,7 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->spanishPS6;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 1)
-            if ($estadoPregunta == 1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
                     'cantidad' => 'required|numeric|min:0|max:5',
@@ -1968,7 +2011,7 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->spanishPS7;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 1)
-            if ($estadoPregunta == 1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
                     'cantidad' => 'required|numeric|min:0|max:5',
@@ -1999,7 +2042,7 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->spanishPO1;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 1)
-            if ($estadoPregunta == 1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
                     'cantidad' => 'required|numeric|min:0|max:5',
@@ -2026,7 +2069,7 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->spanishPO2;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 1)
-            if ($estadoPregunta == 1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
                     'cantidad' => 'required|numeric|min:0|max:5',
@@ -2053,7 +2096,7 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->spanishPO3;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 1)
-            if ($estadoPregunta == 1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
                     'cantidad' => 'required|numeric|min:0|max:5',
@@ -2080,7 +2123,7 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->spanishPO4;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 1)
-            if ($estadoPregunta == 1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
                     'cantidad' => 'required|numeric|min:0|max:5',
@@ -2107,7 +2150,7 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->spanishPO5;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 1)
-            if ($estadoPregunta == 1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
                     'cantidad' => 'required|numeric|min:0|max:5',
@@ -2135,7 +2178,7 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->spanishPO8;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 1)
-            if ($estadoPregunta == 1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
                     'cantidad' => 'required|numeric|min:0|max:5',
@@ -2164,7 +2207,7 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->spanishPD5;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 1)
-            if ($estadoPregunta == 1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
                     'cantidad' => 'required|numeric|min:0|max:5',
@@ -2191,7 +2234,7 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->spanishPD6;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 1)
-            if ($estadoPregunta == 1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
                     'cantidad' => 'required|numeric|min:0|max:5',
@@ -2218,7 +2261,7 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->spanishPD7;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 1)
-            if ($estadoPregunta == 1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
                     'cantidad' => 'required|numeric|min:0|max:5',
@@ -2245,10 +2288,10 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->fragment_numberPD1;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 0.1)
-            if ($estadoPregunta == 0.1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
-                    'cantidad' => 'required|numeric|min:0.2|max:1.2',
+                    'cantidad' => 'required|numeric|min:0|max:1.2',
                 ]);
 
                 $pregunta->fragment_numberPD1 = $request->input('cantidad');
@@ -2272,10 +2315,10 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->fragment_numberPD2;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 0.1)
-            if ($estadoPregunta == 0.1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
-                    'cantidad' => 'required|numeric|min:0.2|max:1.2',
+                    'cantidad' => 'required|numeric|min:0|max:1.2',
                 ]);
 
                 $pregunta->fragment_numberPD2 = $request->input('cantidad');
@@ -2299,10 +2342,10 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->fragment_numberPD3;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 0.1)
-            if ($estadoPregunta == 0.1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
-                    'cantidad' => 'required|numeric|min:0.2|max:1.2',
+                    'cantidad' => 'required|numeric|min:0|max:1.2',
                 ]);
 
                 $pregunta->fragment_numberPD3 = $request->input('cantidad');
@@ -2326,10 +2369,10 @@ class SpanishController extends Controller
             $estadoPregunta = $pregunta->fragment_numberPD4;
 
             // Verificar si la pregunta NO ha sido calificada antes (considerando el valor por defecto 0.1)
-            if ($estadoPregunta == 0.1) {
+            if ($estadoPregunta == 0) {
                 // La pregunta no ha sido calificada, procesar la calificación
                 $request->validate([
-                    'cantidad' => 'required|numeric|min:0.2|max:1.2',
+                    'cantidad' => 'required|numeric|min:0|max:1.2',
                 ]);
 
                 $pregunta->fragment_numberPD4 = $request->input('cantidad');

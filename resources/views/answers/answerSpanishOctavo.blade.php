@@ -95,16 +95,7 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">6. ¿Qué es un texto?</label>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. Una unidad de comunicación con sentido completo, coherencia interna y adecuación a un contexto.</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. Una unidad lingüística formada por una o más palabras que expresan una idea.</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. Una unidad gramatical formada por un sujeto y un predicado que constituyen una oración.</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">D. Una unidad semántica formada por un significante y un significado que constituyen una palabra.</span>
+                <span class="ml-2">R/= {{ $spanishOctavo->spanishPO6 }}span>
             </div>
         </div>
 
@@ -113,16 +104,7 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">7. ¿Qué es la coherencia en un texto?</label>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. La relación lógica y ordenada entre las ideas que se presentan en el texto.</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. La conexión adecuada entre las palabras, las oraciones y los párrafos del texto.</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. La adaptación del texto al propósito comunicativo, al destinatario y al registro.</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">D. La corrección ortográfica, gramatical y léxica del texto.</span>
+                <span class="ml-2">R/= {{ $spanishOctavo->spanishPO7 }}</span>
             </div>
         </div>
 
@@ -141,16 +123,7 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">9. ¿Qué movimiento artístico y filosófico surgió en el siglo XVIII como una reacción revolucionaria en contra de las tendencias de la Ilustración y el Neoclasicismo?</label>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. El Barroco</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. El Renacimiento</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. El Romanticismo</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">D. El Realismo</span>
+                <span class="ml-2">R/= {{ $spanishOctavo->spanishPO9 }}</span>
             </div>
         </div>
 
@@ -159,16 +132,7 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">10. ¿Qué autor alemán fue uno de los máximos exponentes del romanticismo literario y escribió obras como Las cuitas del joven Werther o Fausto?</label>
 
             <div class="flex items-center mb-2">
-                <span class="ml-2">A. Friedrich Schiller</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">B. Johann Wolfgang von Goethe</span>
-            </div>
-            <div class="flex items-center mb-2">
-                <span class="ml-2">C. Heinrich Heine</span>
-            </div>
-            <div class="flex items-center">
-                <span class="ml-2">D. Thomas Mann</span>
+                <span class="ml-2">R/= {{ $spanishOctavo->spanishPO10 }}</span>
             </div>
         </div>
 </div>

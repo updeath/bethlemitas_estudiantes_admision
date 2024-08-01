@@ -19,24 +19,24 @@
             </div>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ1" name="spanishPQ1" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ1" name="spanishPQ1" value="A. La hora del evento">
                 <span class="ml-2">A. La hora del evento</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ1" name="spanishPQ1" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ1" name="spanishPQ1" value="B. El lugar del event">
                 <span class="ml-2">B. El lugar del evento</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ1" name="spanishPQ1" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ1" name="spanishPQ1" value="C. El nombre de la escuela">
                 <span class="ml-2">C. El nombre de la escuela</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ1" name="spanishPQ1" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ1" name="spanishPQ1" value="D. La fecha del evento">
                 <span class="ml-2">D. La fecha del evento</span>
             </div>
             @error('spanishPQ1')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-        @enderror
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+            @enderror
         </div>
 
 
@@ -54,24 +54,24 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">2. ¿Qué signos tiene la frase resaltada?</label>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ2" name="spanishPQ2" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ2" name="spanishPQ2" value="A. De interrogación">
                 <span class="ml-2">A. De interrogación</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ2" name="spanishPQ2" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ2" name="spanishPQ2" value="B. Guión de diálogo">
                 <span class="ml-2">B. Guión de diálogo</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ2" name="spanishPQ2" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ2" name="spanishPQ2" value="C. Paréntesis">
                 <span class="ml-2">C. Paréntesis</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ2" name="spanishPQ2" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ2" name="spanishPQ2" value="D. Comillas">
                 <span class="ml-2">D. Comillas</span>
             </div>
             @error('spanishPQ2')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-        @enderror
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+            @enderror
         </div>
 
         <!-- Pregunta 3 -->
@@ -80,24 +80,24 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">3. ¿Cómo es el escenario donde se desarrolla la historia?</label>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ3" name="spanishPQ3" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ3" name="spanishPQ3" value="A. Una ciudad rica y ostentosa">
                 <span class="ml-2">A. Una ciudad rica y ostentosa</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ3" name="spanishPQ3" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ3" name="spanishPQ3" value="B. Un parque de diversiones">
                 <span class="ml-2">B. Un parque de diversiones</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ3" name="spanishPQ3" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ3" name="spanishPQ3" value="C. Una casa humilde en el bosque">
                 <span class="ml-2">C. Una casa humilde en el bosque</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ3" name="spanishPQ3" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ3" name="spanishPQ3" value="D. Un castillo en el bosque">
                 <span class="ml-2">D. Un castillo en el bosque</span>
             </div>
             @error('spanishPQ3')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-        @enderror
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+            @enderror
         </div>
 
         <!-- Pregunta 4 -->
@@ -117,24 +117,24 @@
             </div>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ4" name="spanishPQ4" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ4" name="spanishPQ4" value="A. Estados Unidos">
                 <span class="ml-2">A. Estados Unidos</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ4" name="spanishPQ4" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ4" name="spanishPQ4" value="B. México">
                 <span class="ml-2">B. México</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ4" name="spanishPQ4" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ4" name="spanishPQ4" value="C. Alemania">
                 <span class="ml-2">C. Alemania</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ4" name="spanishPQ4" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ4" name="spanishPQ4" value="D. Noruega">
                 <span class="ml-2">D. Noruega</span>
             </div>
             @error('spanishPQ4')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-        @enderror
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+            @enderror
         </div>
 
         <!-- Pregunta 5 -->
@@ -142,19 +142,19 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">5. ¿Qué obras realizaron?</label>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ5" name="spanishPQ5" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ5" name="spanishPQ5" value="A. Poemas y prosas">
                 <span class="ml-2">A. Poemas y prosas</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ5" name="spanishPQ5" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ5" name="spanishPQ5" value="B. Cuentos y diccionarios">
                 <span class="ml-2">B. Cuentos y diccionarios</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ5" name="spanishPQ5" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ5" name="spanishPQ5" value="C. Reportajes">
                 <span class="ml-2">C. Reportajes</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ5" name="spanishPQ5" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ5" name="spanishPQ5" value="D. Obras de teatro">
                 <span class="ml-2">D. Obras de teatro</span>
             </div>
             @error('spanishPQ5')
@@ -206,19 +206,19 @@
             <label class="block text-sm font-medium text-gray-600 mb-3">8. ¿Qué significa la palabra voluminosos en el texto?</label>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ8" name="spanishPQ8" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ8" name="spanishPQ8" value="A. Enormes">
                 <span class="ml-2">A. Enormes</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ8" name="spanishPQ8" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ8" name="spanishPQ8" value="B. Hambrientos">
                 <span class="ml-2">B. Hambrientos</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ8" name="spanishPQ8" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ8" name="spanishPQ8" value="C. Lentos">
                 <span class="ml-2">C. Lentos</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ8" name="spanishPQ8" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ8" name="spanishPQ8" value="D. Divertidos">
                 <span class="ml-2">D. Divertidos</span>
             </div>
             @error('spanishPQ8')
@@ -235,24 +235,24 @@
             </div>
 
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ9" name="spanishPQ9" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ9" name="spanishPQ9" value="A. Libros para niños.">
                 <span class="ml-2">A. Libros para niños.</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ9" name="spanishPQ9" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ9" name="spanishPQ9" value="B. Artículos para el hogar.">
                 <span class="ml-2">B. Artículos para el hogar.</span>
             </div>
             <div class="flex items-center mb-2">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ9" name="spanishPQ9" value="1">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ9" name="spanishPQ9" value="C. Clases de baile.">
                 <span class="ml-2">C. Clases de baile.</span>
             </div>
             <div class="flex items-center">
-                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ9" name="spanishPQ9" value="5">
+                <input type="radio" class="form-radio text-indigo-600" id="spanishPQ9" name="spanishPQ9" value="D. Celebración de eventos.">
                 <span class="ml-2">D. Celebración de eventos.</span>
             </div>
             @error('spanishPQ9')
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-        @enderror
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+            @enderror
         </div>
 
 
@@ -297,6 +297,25 @@
         Toast.fire({
             icon: 'success',
             title: '{{ session('success') }}',
+        });
+    </script>
+@endif
+@if (session('error'))
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            iconColor: 'white',
+            customClass: {
+                popup: 'colored-toast',
+            },
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true,
+        });
+        Toast.fire({
+            icon: 'error',
+            title: '{{ session('error') }}',
         });
     </script>
 @endif
