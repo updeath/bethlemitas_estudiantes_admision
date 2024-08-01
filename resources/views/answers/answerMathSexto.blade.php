@@ -61,22 +61,7 @@
                     cajas?</label>
                 <div class="mt-2">
                     <label class="inline-flex items-center"> 
-                        <span class="ml-2">A. Hay 45 paquetes.</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">B. Hay 18 cajas.</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">C. Hay 55 cajas.</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">D. Hay 65 paquetes.</span>
+                        <span class="ml-2">R/= {{ $mathSexto->mathPSX1 }}</span>
                     </label>
                 </div>
             </div>
@@ -87,16 +72,7 @@
                 </label>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. La variable</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. El resultado</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. El valor</span>
-                </div>
-                <div class="flex items-center">
-                    <span class="ml-2">D. El numero</span>
+                    <span class="ml-2">R/= {{ $mathSexto->mathPSX3 }}</span>
                 </div>
             </div>
 
@@ -107,16 +83,7 @@
                 </label>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. 810 Litros</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. 503 Litros</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. 504 Litros</span>
-                </div>
-                <div class="flex items-center">
-                    <span class="ml-2">D. 103 Litros</span>
+                    <span class="ml-2">R/= {{ $mathSexto->mathPSX5 }}</span>
                 </div>
             </div>
 
@@ -127,16 +94,7 @@
                     ¿Cuál es la mayor cantidad de estudiantes por grupo, que puede hacer la profesora maria?</label>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. 7</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. 5</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. 3</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">D. 10</span>
+                    <span class="ml-2">R/= {{ $mathSexto->mathPSX7 }}</span>
                 </div>
             </div>
 
@@ -147,16 +105,7 @@
                     equivalente 3/9 , entonces el número empleado para simplificar es:</label>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. 4 </span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. 6 </span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. 9 </span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">D. 3</span>
+                    <span class="ml-2">R/= {{ $mathSexto->mathPSX9 }}</span>
                 </div>
             </div>
 
@@ -172,22 +121,7 @@
                 </label>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
-                        <span class="ml-2">A. 5</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">B. 6X</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">C. 5X</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">D. 6</span>
+                        <span class="ml-2">R/= {{ $mathSexto->mathPSX2 }}</span>
                     </label>
                 </div>
             </div>
@@ -201,16 +135,7 @@
                     ¿Qué representa la x en la ecuación?</label>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. El costo por pastelillo</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. El numero de cajas de pastelillos</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. El numero de pastelillos por caja</span>
-                </div>
-                <div class="flex items-center">
-                    <span class="ml-2">D. El costo de cada caja de pastelillos</span>
+                    <span class="ml-2">R/= {{ $mathSexto->mathPSX4 }}</span>
                 </div>
             </div>
 
@@ -220,16 +145,7 @@
                     568 globos azules y rojos. Si 234 son rojos ¿ cuántos globos son azules?</label>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. 345</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. 350</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. 123</span>
-                </div>
-                <div class="flex items-center">
-                    <span class="ml-2">D. 334</span>
+                    <span class="ml-2">R/= {{ $mathSexto->mathPSX6 }}</span>
                 </div>
             </div>
 
@@ -260,6 +176,10 @@
                         <img src="{{ asset('img/math/six/opcion4.gif') }}" class=" h-20 w-20" alt="Gráfica 4 ">
                         <span class="ml-2">Opción 4</span>
                     </div>
+                    <br>
+                </div>
+                <div>
+                    <samp class="ml-2">R/= {{ $mathSexto->mathPSX8 }}</samp>
                 </div>
             </div>
 
@@ -271,16 +191,7 @@
                     repartió en total fue:</label>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. 10/18</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. 3/6</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. 5/6</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">D. 10/6</span>
+                    <span class="ml-2">R/= {{ $mathSexto->mathPSX10 }}</span>
                 </div>
             </div>
         </div>

@@ -63,22 +63,7 @@
 
                 <div class="mt-2">
                     <label class="inline-flex items-center">
-                        <span class="ml-2">A. 5/4</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">B. 4/6</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">C. 5/3</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">D. 2/4</span>
+                        <span class="ml-2">R/= {{ $mathOctavo->mathPO1 }}</span>
                     </label>
                 </div>
             </div>
@@ -95,22 +80,7 @@
 
                 <div class="mt-2">
                     <label class="inline-flex items-center">
-                        <span class="ml-2">A. 125/2</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">B. 125/8</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">C. 8/125</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">D. -8/125</span>
+                        <span class="ml-2">R/= {{ $mathOctavo->mathPO2 }}</span>
                     </label>
                 </div>
             </div>
@@ -126,22 +96,7 @@
 
                 <div class="mt-2">
                     <label class="inline-flex items-center">
-                        <span class="ml-2">A. Numérica</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">B. Cuantitativa</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">C. Cualitativa</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">D. Literal</span>
+                        <span class="ml-2">R/= {{ $mathOctavo->mathPO3 }}</span>
                     </label>
                 </div>
             </div>
@@ -157,22 +112,7 @@
 
                 <div class="mt-2">
                     <label class="inline-flex items-center">
-                        <span class="ml-2">A. 1287</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">B. 12</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">C. 1296</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">D. 21</span>
+                        <span class="ml-2">R/= {{ $mathOctavo->mathPO4 }}</span>
                     </label>
                 </div>
             </div>
@@ -184,16 +124,7 @@
                     (4 + 8) - (-5 - 6) da como resultado:</label>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. -4</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. 10</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. 5</span>
-                </div>
-                <div class="flex items-center">
-                    <span class="ml-2">D. 12</span>
+                    <span class="ml-2">R/= {{ $mathOctavo->mathPO5 }}</span>
                 </div>
             </div>
 
@@ -207,16 +138,7 @@
                 </div>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. El área</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. La medida de su base</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. La longitud</span>
-                </div>
-                <div class="flex items-center">
-                    <span class="ml-2">D. Los centímetros de la altura</span>
+                    <span class="ml-2">R/= {{ $mathOctavo->mathPO6 }}</span>
                 </div>
             </div>
 
@@ -226,16 +148,7 @@
                     3m de largo y 2m de ancho. ¿Cuánta baldosa se necesita?</label>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. 5 metros cuadrados</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. 6 metros cuadrados</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. 12 metros cuadrados</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">D. 10 metros cuadrados</span>
+                    <span class="ml-2">R/= {{ $mathOctavo->mathPO7 }}</span>
                 </div>
             </div>
 
@@ -249,16 +162,7 @@
                 </div>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. Chocolate</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. Vainilla</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. Fresas</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">D. Chicle</span>
+                    <span class="ml-2">R/= {{ $mathOctavo->mathPO8 }}</span>
                 </div>
             </div>
 
@@ -269,16 +173,7 @@
                     ecuación que representa esta situación es:</label>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. 5x + 8x = 650.000</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. 5x - 8x = 650.000</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. x + 8x = 650.000</span>
-                </div>
-                <div class="flex items-center">
-                    <span class="ml-2">D. 5x + 8x = 650.000</span>
+                    <span class="ml-2">R/= {{ $mathOctavo->mathPO9 }}</span>
                 </div>
             </div>
 
@@ -289,16 +184,7 @@
                     zapatos?</label>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. $50.000</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. $40.000</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. $60.000</span>
-                </div>
-                <div class="flex items-center">
-                    <span class="ml-2">D. $25.000</span>
+                    <span class="ml-2">R/= {{ $mathOctavo->mathPO10 }}</span>
                 </div>
             </div>
     </div>

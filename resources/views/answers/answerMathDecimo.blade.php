@@ -59,16 +59,7 @@
                     <img src="{{ asset('img/math/ten/1.png') }}" alt="Imagen sin leyenda">
                 </div>
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. 2</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. 8</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. 16</span>
-                </div>
-                <div class="flex items-center">
-                    <span class="ml-2">D. 32</span>
+                    <span class="ml-2">R/= {{ $mathDecimo->mathPD1 }}</span>
                 </div>
             </div>
 
@@ -80,22 +71,7 @@
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center"> 
-                        <span class="ml-2">A. 125/2</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">      
-                        <span class="ml-2">B. 125/8</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">   
-                        <span class="ml-2">C. 8/125</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">D. -8/125</span>
+                        <span class="ml-2">R/= {{ $mathDecimo->mathPD2 }}</span>
                     </label>
                 </div>
             </div>
@@ -109,16 +85,7 @@
                 </div>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. Numérica</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. Cuantitativa</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. Cualitativa</span>
-                </div>
-                <div class="flex items-center">
-                    <span class="ml-2">D. Literal</span>
+                    <span class="ml-2">R/= {{ $mathDecimo->mathPD3 }}</span>
                 </div>
             </div>
 
@@ -129,16 +96,7 @@
                     <img src="{{ asset('img/math/ten/4.png') }}" alt="Imagen sin leyenda">
                 </div>
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. 1,28</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. 5,66</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. 4.33</span>
-                </div>
-                <div class="flex items-center">
-                    <span class="ml-2">D. 9,87</span>
+                    <span class="ml-2">R/= {{ $mathDecimo->mathPD4 }}</span>
                 </div>
             </div>
 
@@ -151,16 +109,7 @@
                 </div>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. El área</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. La medida de su base</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. La longitud</span>
-                </div>
-                <div class="flex items-center">
-                    <span class="ml-2">D. Los centímetros de la altura</span>
+                    <span class="ml-2">R/= {{ $mathDecimo->mathPD5 }}</span>
                 </div>
             </div>
 
@@ -171,16 +120,7 @@
                     <img src="{{ asset('img/math/ten/6.png') }}" alt="Imagen sin leyenda">
                 </div>
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. Daniel aprobó matemáticas porque la suma de sus calificaciones da como resultado 16 y cuando la divido entre cinco me da como resultado 3.5.</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. Daniel aprobó matemáticas porque la suma de sus calificaciones da como resultado 16.</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. Daniel reprobó matemáticas porque la suma de sus calificaciones da como resultado 16 y si dividimos entre 5 da como resultado 3.2.</span>
-                </div>
-                <div class="flex items-center">
-                    <span class="ml-2">D. Daniel reprobó matemáticas porque la suma de sus calificaciones da como resultado 18 y si lo divido entre 6 da como resultado 3.</span>
+                    <span class="ml-2">R/= {{ $mathDecimo->mathPD6 }}</span>
                 </div>
             </div>
 
@@ -189,16 +129,7 @@
                 <label class="block text-sm font-medium text-gray-600">7. Se embaldosará un cuarto, cuyas medidas son 3m de largo y 2m de ancho, la cantidad de baldosa que se necesita es:</label>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. 5 metros cuadrados</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. 6 metros cuadrados</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. 12 metros cuadrados</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">D. 10 metros cuadrados</span>
+                    <span class="ml-2">R/= {{ $mathDecimo->mathPD7 }}</span>
                 </div>
             </div>
 
@@ -209,16 +140,7 @@
                     <img src="{{ asset('img/math/ten/8.png') }}" alt="Imagen sin leyenda">
                 </div>
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. Chocolate</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. Vainilla</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. Fresas</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">D. Chicle</span>
+                    <span class="ml-2">R/= {{ $mathDecimo->mathPD8 }}</span>
                 </div>
             </div>
 
@@ -227,16 +149,7 @@
                 <label class="block text-sm font-medium text-gray-600 mb-2">9. Martha compró 5 pares de zapatos, y Julia compró 8 pares de zapatos, entre las dos pagaron $650.000. La ecuación que representa esta situación es:</label>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. 5x + 8x = 650.000</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. 5x - 8x = 650.000</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. x + 8x = 650.000</span>
-                </div>
-                <div class="flex items-center">
-                    <span class="ml-2">D. 5x + 8x = 650.000</span>
+                    <span class="ml-2">R/= {{ $mathDecimo->mathPD9 }}</span>
                 </div>
             </div>
 
@@ -245,17 +158,8 @@
                 <label class="block text-sm font-medium text-gray-600 mb-3">10. Martha compró 5 pares de zapatos, y Julia compró 8 pares de zapatos. Entre las dos pagaron $650.000. ¿Cuál es el costo de cada par de zapatos?</label>
                 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. $50.000</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. $40.000</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. $60.000</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">D. $25.000</span>
-                </div>
-            
+                    <span class="ml-2">R/= {{ $mathDecimo->mathPD10 }}</span>
+                </div> 
+            </div>   
     </div>
 @endsection

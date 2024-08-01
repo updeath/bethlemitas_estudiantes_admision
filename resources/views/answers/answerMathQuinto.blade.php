@@ -59,22 +59,7 @@
                     Noventa mil trescientos veinticuatro</label>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
-                        <span class="ml-2">A. 90324</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">B. 900.324</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">C. 9.0324</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">D. 90.324</span>
+                        <span class="ml-2">R/= {{ $mathQuinto->mathPQ1 }}</span>
                     </label>
                 </div>
             </div>
@@ -90,16 +75,7 @@
                 </div>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. 823.824.300</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. 703.800.300</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. 723.804.258</span>
-                </div>
-                <div class="flex items-center">
-                    <span class="ml-2">D. 723.824.317</span>
+                    <span class="ml-2">R/= {{ $mathQuinto->mathPQ3 }}</span>
                 </div>
             </div>
 
@@ -113,16 +89,7 @@
                 </div>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. 3/8</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. 5/8</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. 3/5</span>
-                </div>
-                <div class="flex items-center">
-                    <span class="ml-2">D. 5/3</span>
+                    <span class="ml-2">R/= {{ $mathQuinto->mathPQ5 }}</span>
                 </div>
             </div>
 
@@ -133,16 +100,7 @@
                 </label>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. Es la suma de la longitud de todos los lados.</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. Es la suma de todos los lados .</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. Es la multiplicación de todos los lados.</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">D. Es la multiplicación de la base por la altura.</span>
+                    <span class="ml-2">R/= {{ $mathQuinto->mathPQ7 }}</span>
                 </div>
             </div>
 
@@ -152,16 +110,7 @@
                     4, 8, 12, 16. ¿Cuáles son los siguientes 3 números de la serie?</label>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. 17, 18, 19</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. 20, 21, 22</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. 20, 24, 28</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">D. 20, 24, 25</span>
+                    <span class="ml-2">R/= {{ $mathQuinto->mathPQ9 }}</span>
                 </div>
             </div>
 
@@ -176,22 +125,7 @@
                     457.145 </label>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
-                        <span class="ml-2">A. Cuatrocientos sesenta mil ciento cuarenta y cinco</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">B. Cuatrocientos cincuenta mil ciento cincuenta</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">C. Cuatrocientos cincuenta y siete mil ciento cuarenta y cinco</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">D. Trescientos sesenta y cinco mil novecientos ochenta y siete</span>
+                        <span class="ml-2">R/= {{ $mathQuinto->mathPQ2 }}</span>
                     </label>
                 </div>
             </div>
@@ -208,16 +142,7 @@
                 </div>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. 17550</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. 17500</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. 15700</span>
-                </div>
-                <div class="flex items-center">
-                    <span class="ml-2">D. 15750</span>
+                    <span class="ml-2">R/= {{ $mathQuinto->mathPQ4 }}</span>
                 </div>
             </div>
 
@@ -227,16 +152,7 @@
                 </label>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. 60 minutos</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. 120 minutos</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. 350 minutos</span>
-                </div>
-                <div class="flex items-center">
-                    <span class="ml-2">D. 150 minutos</span>
+                    <span class="ml-2">R/= {{ $mathQuinto->mathPQ6 }}</span>
                 </div>
             </div>
 
@@ -250,16 +166,7 @@
                 </div>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. 30</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. 5</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. 15</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">D. 25</span>
+                    <span class="ml-2">R/= {{ $mathQuinto->mathPQ8 }}</span>
                 </div>
             </div>
 
@@ -270,20 +177,9 @@
                     droguería?</label>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. 96 frascos</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. 80 frascos</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. 88 frascos</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">D. 90 frascos</span>
+                    <span class="ml-2">R/= {{ $mathQuinto->mathPQ10 }}</span>
                 </div>
             </div>
-
-
         </div>
 </div>
 

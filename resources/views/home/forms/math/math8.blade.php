@@ -23,28 +23,28 @@
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPO1" name="mathPO1"
-                            value="1">
+                            value="A. 5/4">
                         <span class="ml-2">A. 5/4</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPO1" name="mathPO1"
-                            value="1">
+                            value="B. 4/6">
                         <span class="ml-2">B. 4/6</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPO1" name="mathPO1"
-                            value="5">
+                            value="C. 5/3">
                         <span class="ml-2">C. 5/3</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPO1" name="mathPO1"
-                            value="1">
+                            value="D. 2/4">
                         <span class="ml-2">D. 2/4</span>
                     </label>
                 </div>
@@ -66,28 +66,28 @@
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPO2" name="mathPO2"
-                            value="1">
+                            value="A. 125/2">
                         <span class="ml-2">A. 125/2</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPO2" name="mathPO2"
-                            value="5">
+                            value="B. 125/8">
                         <span class="ml-2">B. 125/8</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPO2" name="mathPO2"
-                            value="1">
+                            value="C. 8/125">
                         <span class="ml-2">C. 8/125</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPO2" name="mathPO2"
-                            value="1">
+                            value="D. -8/125">
                         <span class="ml-2">D. -8/125</span>
                     </label>
                 </div>
@@ -108,28 +108,28 @@
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPO3" name="mathPO3"
-                            value="1">
+                            value="A. Numérica">
                         <span class="ml-2">A. Numérica</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPO3" name="mathPO3"
-                            value="1">
+                            value="B. Cuantitativa">
                         <span class="ml-2">B. Cuantitativa</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPO3" name="mathPO3"
-                            value="5">
+                            value="C. Cualitativa">
                         <span class="ml-2">C. Cualitativa</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPO3" name="mathPO3"
-                            value="1">
+                            value="D. Literal">
                         <span class="ml-2">D. Literal</span>
                     </label>
                 </div>
@@ -150,28 +150,28 @@
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPO4" name="mathPO4"
-                            value="1">
+                            value="A. 1287">
                         <span class="ml-2">A. 1287</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPO4" name="mathPO4"
-                            value="1">
+                            value="B. 12">
                         <span class="ml-2">B. 12</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPO4" name="mathPO4"
-                            value="5">
+                            value="C. 1296">
                         <span class="ml-2">C. 1296</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPO4" name="mathPO4"
-                            value="1">
+                            value="D. 21">
                         <span class="ml-2">D. 21</span>
                     </label>
                 </div>
@@ -188,22 +188,22 @@
 
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPO5" name="mathPO5"
-                        value="1">
+                        value="A. -4">
                     <span class="ml-2">A. -4</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPO5" name="mathPO5"
-                        value="1">
+                        value="B. 10">
                     <span class="ml-2">B. 10</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPO5" name="mathPO5"
-                        value="1">
+                        value="C. 5">
                     <span class="ml-2">C. 5</span>
                 </div>
                 <div class="flex items-center">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPO5" name="mathPO5"
-                        value="5">
+                        value="D. 12">
                     <span class="ml-2">D. 12</span>
                 </div>
                 @error('mathPO5')
@@ -222,22 +222,22 @@
 
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPO6" name="mathPO6"
-                        value="1">
+                        value="A. El área">
                     <span class="ml-2">A. El área</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPO6" name="mathPO6"
-                        value="1">
+                        value="B. La medida de su base">
                     <span class="ml-2">B. La medida de su base</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPO6" name="mathPO6"
-                        value="5">
+                        value="C. La longitud">
                     <span class="ml-2">C. La longitud</span>
                 </div>
                 <div class="flex items-center">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPO6" name="mathPO6"
-                        value="1">
+                        value="D. Los centímetros de la altura">
                     <span class="ml-2">D. Los centímetros de la altura</span>
                 </div>
                 @error('mathPO6')
@@ -252,22 +252,22 @@
 
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPO7" name="mathPO7"
-                        value="1">
+                        value="A. 5 metros cuadrados">
                     <span class="ml-2">A. 5 metros cuadrados</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPO7" name="mathPO7"
-                        value="5">
+                        value="B. 6 metros cuadrados">
                     <span class="ml-2">B. 6 metros cuadrados</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPO7" name="mathPO7"
-                        value="1">
+                        value="C. 12 metros cuadrados">
                     <span class="ml-2">C. 12 metros cuadrados</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPO7" name="mathPO7"
-                        value="1">
+                        value="D. 10 metros cuadrados">
                     <span class="ml-2">D. 10 metros cuadrados</span>
                 </div>
                 @error('mathPO7')
@@ -286,22 +286,22 @@
 
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPO8" name="mathPO8"
-                        value="5">
+                        value="A. Chocolate">
                     <span class="ml-2">A. Chocolate</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPO8" name="mathPO8"
-                        value="1">
+                        value="B. Vainilla">
                     <span class="ml-2">B. Vainilla</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPO8" name="mathPO8"
-                        value="1">
+                        value="C. Fresas">
                     <span class="ml-2">C. Fresas</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPO8" name="mathPO8"
-                        value="1">
+                        value="D. Chicle">
                     <span class="ml-2">D. Chicle</span>
                 </div>
                 @error('mathPO8')
@@ -317,22 +317,22 @@
 
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPO9" name="mathPO9"
-                        value="5">
+                        value="A. 5x + 8x = 650.000">
                     <span class="ml-2">A. 5x + 8x = 650.000</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPO9" name="mathPO9"
-                        value="1">
+                        value="B. 5x - 8x = 650.000">
                     <span class="ml-2">B. 5x - 8x = 650.000</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPO9" name="mathPO9"
-                        value="1">
+                        value="C. x + 8x = 650.000">
                     <span class="ml-2">C. x + 8x = 650.000</span>
                 </div>
                 <div class="flex items-center">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPO9" name="mathPO9"
-                        value="1">
+                        value="D. 5x + 8x = 650.000">
                     <span class="ml-2">D. 5x + 8x = 650.000</span>
                 </div>
                 @error('mathPO9')
@@ -348,22 +348,22 @@
 
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPO10" name="mathPO10"
-                        value="5">
+                        value="A. $50.000">
                     <span class="ml-2">A. $50.000</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPO10" name="mathPO10"
-                        value="1">
+                        value="B. $40.000">
                     <span class="ml-2">B. $40.000</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPO10" name="mathPO10"
-                        value="1">
+                        value="C. $60.000">
                     <span class="ml-2">C. $60.000</span>
                 </div>
                 <div class="flex items-center">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPO10" name="mathPO10"
-                        value="1">
+                        value="D. $25.000">
                     <span class="ml-2">D. $25.000</span>
                 </div>
                 @error('mathPO10')
@@ -397,6 +397,25 @@
             Toast.fire({
                 icon: 'success',
                 title: '{{ session('success') }}',
+            });
+        </script>
+    @endif
+    @if (session('error'))
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                iconColor: 'white',
+                customClass: {
+                    popup: 'colored-toast',
+                },
+                showConfirmButton: false,
+                timer: 2500,
+                timerProgressBar: true,
+            });
+            Toast.fire({
+                icon: 'error',
+                title: '{{ session('error') }}',
             });
         </script>
     @endif

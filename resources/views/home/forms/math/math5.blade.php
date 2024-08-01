@@ -20,34 +20,34 @@
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPQ1" name="mathPQ1"
-                        value="1">
+                        value="A. 90324">
                         <span class="ml-2">A. 90324</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPQ1" name="mathPQ1"
-                        value="1">
+                        value="B. 900.324">
                         <span class="ml-2">B. 900.324</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPQ1" name="mathPQ1"
-                        value="1">
+                        value="C. 9.0324">
                         <span class="ml-2">C. 9.0324</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPQ1" name="mathPQ1"
-                        value="5">
+                        value="D. 90.324">
                         <span class="ml-2">D. 90.324</span>
                     </label>
                 </div>
                 @error('mathPQ1')
-                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-            @enderror
+                    <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+                @enderror
             </div>
 
             <!-- Pregunta 3 -->
@@ -62,27 +62,27 @@
 
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ3" name="mathPQ3"
-                    value="1">
+                    value="A. 823.824.300">
                     <span class="ml-2">A. 823.824.300</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ3" name="mathPQ3"
-                    value="1">
+                    value="B. 703.800.300">
                     <span class="ml-2">B. 703.800.300</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ3" name="mathPQ3"
-                    value="1">
+                    value="C. 723.804.258">
                     <span class="ml-2">C. 723.804.258</span>
                 </div>
                 <div class="flex items-center">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ3" name="mathPQ3"
-                    value="5">
+                    value="D. 723.824.317">
                     <span class="ml-2">D. 723.824.317</span>
                 </div>
                 @error('mathPQ3')
-                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-            @enderror
+                    <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+                @enderror
             </div>
 
             <!-- Pregunta 5 -->
@@ -96,27 +96,27 @@
 
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ5" name="mathPQ5"
-                    value="1">
+                    value="A. 3/8">
                     <span class="ml-2">A. 3/8</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ5" name="mathPQ5"
-                    value="5">
+                    value="B. 5/8">
                     <span class="ml-2">B. 5/8</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ5" name="mathPQ5"
-                    value="1">
+                    value="C. 3/5">
                     <span class="ml-2">C. 3/5</span>
                 </div>
                 <div class="flex items-center">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ5" name="mathPQ5"
-                    value="1">
+                    value="D. 5/3">
                     <span class="ml-2">D. 5/3</span>
                 </div>
                 @error('mathPQ5')
-                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-            @enderror
+                    <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+                @enderror
             </div>
 
             <!-- Pregunta 7 -->
@@ -127,27 +127,27 @@
 
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ7" name="mathPQ7"
-                    value="5">
+                    value="A. Es la suma de la longitud de todos los lados.">
                     <span class="ml-2">A. Es la suma de la longitud de todos los lados.</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ7" name="mathPQ7"
-                    value="1">
-                    <span class="ml-2">B. Es la suma de todos los lados .</span>
+                    value="B. Es la suma de todos los lados.">
+                    <span class="ml-2">B. Es la suma de todos los lados.</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ7" name="mathPQ7"
-                    value="1">
+                    value="C. Es la multiplicación de todos los lados.">
                     <span class="ml-2">C. Es la multiplicación de todos los lados.</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ7" name="mathPQ7"
-                    value="1">
+                    value="D. Es la multiplicación de la base por la altura.">
                     <span class="ml-2">D. Es la multiplicación de la base por la altura.</span>
                 </div>
                 @error('mathPQ7')
-                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-            @enderror
+                    <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+                @enderror
             </div>
 
             <!-- Pregunta 9 -->
@@ -157,27 +157,27 @@
 
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ9" name="mathPQ9"
-                    value="1">
+                    value="A. 17, 18, 19">
                     <span class="ml-2">A. 17, 18, 19</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ9" name="mathPQ9"
-                    value="1">
+                    value="B. 20, 21, 22">
                     <span class="ml-2">B. 20, 21, 22</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ9" name="mathPQ9"
-                    value="5">
+                    value="C. 20, 24, 28">
                     <span class="ml-2">C. 20, 24, 28</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ9" name="mathPQ9"
-                    value="1">
+                    value="D. 20, 24, 25">
                     <span class="ml-2">D. 20, 24, 25</span>
                 </div>
                 @error('mathPQ9')
-                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-            @enderror
+                    <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+                @enderror
             </div>
 
         </div>
@@ -192,34 +192,34 @@
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPQ2" name="mathPQ2"
-                        value="1">
+                        value="A. Cuatrocientos sesenta mil ciento cuarenta y cinco">
                         <span class="ml-2">A. Cuatrocientos sesenta mil ciento cuarenta y cinco</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPQ2" name="mathPQ2"
-                        value="1">
+                        value="B. Cuatrocientos cincuenta mil ciento cincuenta">
                         <span class="ml-2">B. Cuatrocientos cincuenta mil ciento cincuenta</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPQ2" name="mathPQ2"
-                        value="5">
+                        value="C. Cuatrocientos cincuenta y siete mil ciento cuarenta y cinco">
                         <span class="ml-2">C. Cuatrocientos cincuenta y siete mil ciento cuarenta y cinco</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPQ2" name="mathPQ2"
-                        value="1">
+                        value="D. Trescientos sesenta y cinco mil novecientos ochenta y siete">
                         <span class="ml-2">D. Trescientos sesenta y cinco mil novecientos ochenta y siete</span>
                     </label>
                 </div>
                 @error('mathPQ2')
-                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-            @enderror
+                    <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+                @enderror
             </div>
 
             <!-- Pregunta 4 -->
@@ -235,27 +235,27 @@
 
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ4" name="mathPQ4"
-                    value="5">
+                    value="A. 17550">
                     <span class="ml-2">A. 17550</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ4" name="mathPQ4"
-                    value="1">
+                    value="B. 17500">
                     <span class="ml-2">B. 17500</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ4" name="mathPQ4"
-                    value="1">
+                    value="C. 15700">
                     <span class="ml-2">C. 15700</span>
                 </div>
                 <div class="flex items-center">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ4" name="mathPQ4"
-                    value="1">
+                    value="D. 15750">
                     <span class="ml-2">D. 15750</span>
                 </div>
                 @error('mathPQ4')
-                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-            @enderror
+                    <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+                @enderror
             </div>
 
             <!-- Pregunta 6 -->
@@ -265,27 +265,27 @@
 
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ6" name="mathPQ6"
-                    value="1">
+                    value="A. 60 minutos">
                     <span class="ml-2">A. 60 minutos</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ6" name="mathPQ6"
-                    value="5">
+                    value="B. 120 minutos">
                     <span class="ml-2">B. 120 minutos</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ6" name="mathPQ6"
-                    value="1">
+                    value="C. 350 minutos">
                     <span class="ml-2">C. 350 minutos</span>
                 </div>
                 <div class="flex items-center">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ6" name="mathPQ6"
-                    value="1">
+                    value="D. 150 minutos">
                     <span class="ml-2">D. 150 minutos</span>
                 </div>
                 @error('mathPQ6')
-                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-            @enderror
+                    <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+                @enderror
             </div>
 
             <!-- Pregunta 8 -->
@@ -299,22 +299,22 @@
 
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ8" name="mathPQ8"
-                    value="1">
+                    value="A. 30">
                     <span class="ml-2">A. 30</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ8" name="mathPQ8"
-                    value="5">
+                    value="B. 5">
                     <span class="ml-2">B. 5</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ8" name="mathPQ8"
-                    value="1">
+                    value="C. 15">
                     <span class="ml-2">C. 15</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ8" name="mathPQ8"
-                    value="1">
+                    value="D. 25">
                     <span class="ml-2">D. 25</span>
                 </div>
                 @error('mathPQ8')
@@ -330,27 +330,27 @@
 
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ10" name="mathPQ10"
-                    value="5">
+                    value="A. 96 frascos">
                     <span class="ml-2">A. 96 frascos</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ10" name="mathPQ10"
-                    value="1">
+                    value="B. 80 frascos">
                     <span class="ml-2">B. 80 frascos</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ10" name="mathPQ10"
-                    value="1">
+                    value="C. 88 frascos">
                     <span class="ml-2">C. 88 frascos</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ10" name="mathPQ10"
-                    value="1">
+                    value="D. 90 frascos">
                     <span class="ml-2">D. 90 frascos</span>
                 </div>
                 @error('mathPQ10')
-                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
-            @enderror
+                    <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Campo vacio</span></p>
+                @enderror
             </div>
 
 
@@ -381,6 +381,25 @@
     Toast.fire({
         icon: 'success',
         title: '{{ session('success') }}',
+    });
+</script>
+@endif
+@if (session('error'))
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        iconColor: 'white',
+        customClass: {
+            popup: 'colored-toast',
+        },
+        showConfirmButton: false,
+        timer: 2500,
+        timerProgressBar: true,
+    });
+    Toast.fire({
+        icon: 'error',
+        title: '{{ session('error') }}',
     });
 </script>
 @endif

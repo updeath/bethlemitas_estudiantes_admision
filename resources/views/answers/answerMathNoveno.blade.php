@@ -64,16 +64,7 @@
                 </div>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. 2</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. 8</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. 16</span>
-                </div>
-                <div class="flex items-center">
-                    <span class="ml-2">D. 32</span>
+                    <span class="ml-2">R/= {{ $mathNoveno->mathPNO1 }}</span>
                 </div>
             </div>
 
@@ -83,16 +74,7 @@
                     17 es:</label>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. x = 3</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. x = 2</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. x = 11/2</span>
-                </div>
-                <div class="flex items-center">
-                    <span class="ml-2">D. x = -3</span>
+                    <span class="ml-2">R/= {{ $mathNoveno->mathPNO2 }}</span>
                 </div>
             </div>
 
@@ -125,6 +107,10 @@
                         <img src="{{ asset('img/math/nine/3op4.png') }}" class=" w-[120px]" alt="Gráfica 4 ">
                         <span class="ml-2">Opción 4</span>
                     </div>
+                    <br>
+                </div>
+                <div>
+                    <span class="ml-2">R/= {{ $mathNoveno->mathPNO3 }}</span>
                 </div>
             </div>
 
@@ -158,6 +144,10 @@
                         <img src="{{ asset('img/math/nine/4op4.png') }}" class=" w-[100px]" alt="Gráfica 4 ">
                         <span class="ml-2">Opción 4</span>
                     </div>
+                    <br>
+                </div>
+                <div>
+                    <span class="ml-2">R/= {{ $mathNoveno->mathPNO4 }}</span>
                 </div>
             </div>
 
@@ -173,20 +163,7 @@
                 </div>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. Daniel aprobó matemáticas, pues la suma de sus calificaciones da como resultado
-                        16 y cuando la divido entre cinco me da como resultado 3,5.</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. Daniel aprobó matemáticas, pues la suma de sus calificaciones da como resultado
-                        16.</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. Daniel reprobó matemáticas, pues la suma de sus calificaciones da como
-                        resultado 16 y si dividimos entre 5 da como resultado 3,2.</span>
-                </div>
-                <div class="flex items-center">
-                    <span class="ml-2">D. Daniel reprobó matemáticas, pues la suma de sus calificaciones da como
-                        resultado 18 y si lo dividimos entre 6 da como resultado 3.</span>
+                    <span class="ml-2">R/= {{ $mathNoveno->mathPNO5 }}</span>
                 </div>
             </div>
 
@@ -219,6 +196,10 @@
                         <img src="{{ asset('img/math/nine/6op4.png') }}" class=" w-6" alt="Gráfica 4 ">
                         <span class="ml-2">Opción 4</span>
                     </div>
+                    <br>
+                </div>
+                <div>
+                    <span class="ml-2">R/= {{ $mathNoveno->mathPNO6 }}</span>
                 </div>
             </div>
 
@@ -253,6 +234,10 @@
                         <img src="{{ asset('img/math/nine/7op4.png') }}" class="w-[45px]" alt="Gráfica 4 ">
                         <span class="ml-2">Opción 4</span>
                     </div>
+                    <br>
+                </div>
+                <div>
+                    <span class="ml-2">R/= {{ $mathNoveno->mathPNO7 }}</span>
                 </div>
             </div>
 
@@ -287,6 +272,10 @@
                         <img src="{{ asset('img/math/nine/8op4.png') }}" class="w-[130px]" alt="Gráfica 4 ">
                         <span class="ml-2">Opción 4</span>
                     </div>
+                    <br>
+                </div>
+                <div>
+                    <span class="ml-2">R/= {{ $mathNoveno->mathPNO8 }}</span>
                 </div>
             </div>
 
@@ -320,6 +309,10 @@
                         <img src="{{ asset('img/math/nine/9op4.png') }}" class="w-[90px]" alt="Gráfica 4 ">
                         <span class="ml-2">Opción 4</span>
                     </div>
+                    <br>
+                </div>
+                <div>
+                    <span class="ml-2">R/= {{ $mathNoveno->mathPNO9 }}</span>
                 </div>
             </div>
 
@@ -331,19 +324,7 @@
 
                 <div class="grid grid-cols-2 gap-4">
                     <div class="mb-2">
-                        <span class="ml-2">4 años</span>
-                    </div>
-
-                    <div class="mb-2">
-                        <span class="ml-2">5 años</span>
-                    </div>
-
-                    <div class=" ">
-                        <span class="ml-2">7 años</span>
-                    </div>
-
-                    <div class=" ">
-                        <span class="ml-2">9 años</span>
+                        <span class="ml-2">R/= {{ $mathNoveno->mathPNO10 }}</span>
                     </div>
                 </div>
 

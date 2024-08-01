@@ -16,28 +16,28 @@
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPS1" name="mathPS1"
-                            value="1">
+                            value="A. 286.313">
                         <span class="ml-2">A. 286.313</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPS1" name="mathPS1"
-                            value="5">
+                            value="B. 286.312">
                         <span class="ml-2">B. 286.312</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPS1" name="mathPS1"
-                            value="1">
+                            value="C. 266.312">
                         <span class="ml-2">C. 266.312</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPS1" name="mathPS1"
-                            value="1">
+                            value="D. 286.315">
                         <span class="ml-2">D. 286.315</span>
                     </label>
                 </div>
@@ -52,36 +52,29 @@
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPS2" name="mathPS2"
-                            value="5">
+                            value="A. 47">
                         <span class="ml-2">A. 47</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPS2" name="mathPS2"
-                            value="1">
+                            value="B. 75">
                         <span class="ml-2">B. 75</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPS2" name="mathPS2"
-                            value="1">
+                            value="C. 48">
                         <span class="ml-2">C. 48</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPS2" name="mathPS2"
-                            value="1">
+                            value="D. 20">
                         <span class="ml-2">D. 20</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <input type="radio" class="form-radio text-indigo-600" id="mathPS2" name="mathPS2"
-                            value="1">
-                        <span class="ml-2">Otro: ( espacio para agg texto )</span>
                     </label>
                 </div>
                 @error('mathPS2')
@@ -93,21 +86,21 @@
             <div class="mb-10 border-t p-2 border-gray-400">
                 <label class="block text-sm font-medium text-gray-600 mb-2">3. El resultado de 12 + 8 x 8 es:</label>
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPS3" name="mathPS3" value="1">
+                    <input type="radio" class="form-radio text-indigo-600" id="mathPS3" name="mathPS3" value="A. 28">
                     <span class="ml-2">A. 28</span>
                 </div>
                 <div class="flex items-center mb-2">
-                    <input type="radio" class="form-radio text-indigo-600" id="mathPS3" name="mathPS3" value="1">
+                    <input type="radio" class="form-radio text-indigo-600" id="mathPS3" name="mathPS3" value="B. 40">
                     <span class="ml-2">B. 40</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPS3" name="mathPS3"
-                        value="5">
+                        value="C. 76">
                     <span class="ml-2">C. 76</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPS3" name="mathPS3"
-                        value="1">
+                        value="D. 160">
                     <span class="ml-2">D. 160</span>
                 </div>
                 @error('mathPS3')
@@ -121,22 +114,22 @@
                     vivienda, ¿Cuánto mide esto en kilómetros?</label>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPS4" name="mathPS4"
-                        value="1">
+                        value="A. 1,256 km">
                     <span class="ml-2">A. 1,256 km</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPS4" name="mathPS4"
-                        value="1">
+                        value="B. 12,56 km">
                     <span class="ml-2">B. 12,56 km</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPS4" name="mathPS4"
-                        value="1">
+                        value="C. 125,6 km">
                     <span class="ml-2">C. 125,6 km</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPS4" name="mathPS4"
-                        value="5">
+                        value="D. 0,1256 km">
                     <span class="ml-2">D. 0,1256 km</span>
                 </div>
                 @error('mathPS4')
@@ -154,22 +147,22 @@
 
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPS5" name="mathPS5"
-                        value="1">
+                        value="A. 10 cm">
                     <span class="ml-2">A. 10 cm</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPS5" name="mathPS5"
-                        value="5">
+                        value="B. 20 cm">
                     <span class="ml-2">B. 20 cm</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPS5" name="mathPS5"
-                        value="1">
+                        value="C. 13 cm">
                     <span class="ml-2">C. 13 cm</span>
                 </div>
                 <div class="flex items-center">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPS5" name="mathPS5"
-                        value="1">
+                        value="D. 40 cm">
                     <span class="ml-2">D. 40 cm</span>
                 </div>
                 @error('mathPS5')
@@ -188,22 +181,22 @@
 
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPS6" name="mathPS6"
-                        value="1">
+                        value="A. 1 cm">
                     <span class="ml-2">A. 1 cm</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPS6" name="mathPS6"
-                        value="1">
+                        value="B. 2 cm">
                     <span class="ml-2">B. 2 cm</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPS6" name="mathPS6"
-                        value="5">
+                        value="C. 3 cm">
                     <span class="ml-2">C. 3 cm</span>
                 </div>
                 <div class="flex items-center">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPS6" name="mathPS6"
-                        value="1">
+                        value="D. 4 cm">
                     <span class="ml-2">D. 4 cm</span>
                 </div>
                 @error('mathPS6')
@@ -222,22 +215,22 @@
 
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPS7" name="mathPS7"
-                        value="1">
+                        value="A. 4">
                     <span class="ml-2">A. 4</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPS7" name="mathPS7"
-                        value="5">
+                        value="B. 16">
                     <span class="ml-2">B. 16</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPS7" name="mathPS7"
-                        value="1">
+                        value="C. 8">
                     <span class="ml-2">C. 8</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPS7" name="mathPS7"
-                        value="1">
+                        value="D. 10">
                     <span class="ml-2">D. 10</span>
                 </div>
                 @error('mathPS7')
@@ -258,22 +251,22 @@
 
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPS8" name="mathPS8"
-                        value="1">
+                        value="A. 21 estudiantes">
                     <span class="ml-2">A. 21 estudiantes</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPS8" name="mathPS8"
-                        value="1">
+                        value="B. 20 estudiantes">
                     <span class="ml-2">B. 20 estudiantes</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPS8" name="mathPS8"
-                        value="5">
+                        value="C. 22 estudiantes">
                     <span class="ml-2">C. 22 estudiantes</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPS8" name="mathPS8"
-                        value="1">
+                        value="D. 23 estudiantes">
                     <span class="ml-2">D. 23 estudiantes</span>
                 </div>
                 @error('mathPS8')
@@ -292,22 +285,22 @@
 
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPS9" name="mathPS9"
-                        value="1">
+                        value="A. 1/2">
                     <span class="ml-2">A. 1/2</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPS9" name="mathPS9"
-                        value="1">
+                        value="B. 2/3">
                     <span class="ml-2">B. 2/3</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPS9" name="mathPS9"
-                        value="1">
+                        value="C. 3/3">
                     <span class="ml-2">C. 3/3</span>
                 </div>
                 <div class="flex items-center">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPS9" name="mathPS9"
-                        value="5">
+                        value="D. 1/3">
                     <span class="ml-2">D. 1/3</span>
                 </div>
                 @error('mathPS9')
@@ -325,28 +318,28 @@
                     <div class="mb-2">
                         <img src="{{ asset('img/math/seven/opcion1.png') }}" class=" h-20 w-20" alt="Gráfica 1 ">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPS10" name="mathPS10"
-                            value="1">
+                            value="Opción 1">
                         <span class="ml-2">Opción 1</span>
                     </div>
 
                     <div class="mb-2">
                         <img src="{{ asset('img/math/seven/opcion2.png') }}" class=" h-20 w-20" alt="Gráfica 2 ">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPS10" name="mathPS10"
-                            value="5">
+                            value="Opción 2">
                         <span class="ml-2">Opción 2</span>
                     </div>
 
                     <div class=" ">
                         <img src="{{ asset('img/math/seven/opcion3.png') }}" class=" h-20 w-20" alt="Gráfica 3 ">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPS10" name="mathPS10"
-                            value="1">
+                            value="Opción 3">
                         <span class="ml-2">Opción 3</span>
                     </div>
 
                     <div class=" ">
                         <img src="{{ asset('img/math/seven/opcion4.png') }}" class=" h-20 w-20" alt="Gráfica 4 ">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPS10" name="mathPS10"
-                            value="1">
+                            value="Opción 4">
                         <span class="ml-2">Opción 4</span>
                     </div>
                     @error('mathPS10')
@@ -383,6 +376,25 @@
             Toast.fire({
                 icon: 'success',
                 title: '{{ session('success') }}',
+            });
+        </script>
+    @endif
+    @if (session('error'))
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                iconColor: 'white',
+                customClass: {
+                    popup: 'colored-toast',
+                },
+                showConfirmButton: false,
+                timer: 2500,
+                timerProgressBar: true,
+            });
+            Toast.fire({
+                icon: 'error',
+                title: '{{ session('error') }}',
             });
         </script>
     @endif

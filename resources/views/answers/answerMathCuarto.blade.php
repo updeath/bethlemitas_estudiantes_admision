@@ -61,22 +61,7 @@
                         empleados del club para almorzar?</label>
                     <div class="mt-2">
                         <label class="inline-flex items-center">
-                            <span class="ml-2">30 minutos</span>
-                        </label>
-                    </div>
-                    <div class="mt-2">
-                        <label class="inline-flex items-center">
-                            <span class="ml-2">60 minutos</span>
-                        </label>
-                    </div>
-                    <div class="mt-2">
-                        <label class="inline-flex items-center">
-                            <span class="ml-2">75 minutos</span>
-                        </label>
-                    </div>
-                    <div class="mt-2">
-                        <label class="inline-flex items-center">
-                            <span class="ml-2">90 minutos</span>
+                            <span class="ml-2">R/= {{ $mathCuarto->mathPC1 }}</span>
                         </label>
                     </div>
                 </div>
@@ -91,16 +76,7 @@
                     </div>
 
                     <div class="flex items-center mb-2">
-                        <span class="ml-2">A</span>
-                    </div>
-                    <div class="flex items-center mb-2">
-                        <span class="ml-2">B</span>
-                    </div>
-                    <div class="flex items-center mb-2">
-                        <span class="ml-2">C</span>
-                    </div>
-                    <div class="flex items-center">
-                        <span class="ml-2">D</span>
+                        <span class="ml-2">R/= {{ $mathCuarto->mathPC3 }}</span>
                     </div>
                 </div>
 
@@ -118,16 +94,7 @@
                     </div>
 
                     <div class="flex items-center mb-2">
-                        <span class="ml-2">A. 76 cm</span>
-                    </div>
-                    <div class="flex items-center mb-2">
-                        <span class="ml-2">B. 86 cm</span>
-                    </div>
-                    <div class="flex items-center mb-2">
-                        <span class="ml-2">C. 100 cm</span>
-                    </div>
-                    <div class="flex items-center">
-                        <span class="ml-2">D. 110 cm</span>
+                        <span class="ml-2">R/= {{ $mathCuarto->mathPC5 }}</span>
                     </div>
                 </div>
 
@@ -138,16 +105,7 @@
                         hay en cada bodega?</label>
 
                     <div class="flex items-center mb-2">
-                        <span class="ml-2">A. 40</span>
-                    </div>
-                    <div class="flex items-center mb-2">
-                        <span class="ml-2">B. 22</span>
-                    </div>
-                    <div class="flex items-center mb-2">
-                        <span class="ml-2">C. 11</span>
-                    </div>
-                    <div class="flex items-center mb-2">
-                        <span class="ml-2">D. 4</span>
+                        <span class="ml-2">R/= {{ $mathCuarto->mathPC7 }}</span>
                     </div>
                 </div>
 
@@ -163,16 +121,7 @@
                     </div>
 
                     <div class="flex items-center mb-2">
-                        <span class="ml-2">A. 700 metros</span>
-                    </div>
-                    <div class="flex items-center mb-2">
-                        <span class="ml-2">B. 350 metros</span>
-                    </div>
-                    <div class="flex items-center mb-2">
-                        <span class="ml-2">C. 150 metros</span>
-                    </div>
-                    <div class="flex items-center mb-2">
-                        <span class="ml-2">D. 100 metros</span>
+                        <span class="ml-2">R/= {{ $mathCuarto->mathPC9 }}</span>
                     </div>
                 </div>
             </div>
@@ -187,22 +136,7 @@
                         verdes y 25 azules. ¿Cuántas fichas tiene Sebastián en total?</label>
                     <div class="mt-2">
                         <label class="inline-flex items-center">
-                            <span class="ml-2">A. 55</span>
-                        </label>
-                    </div>
-                    <div class="mt-2">
-                        <label class="inline-flex items-center">
-                            <span class="ml-2">B. 75</span>
-                        </label>
-                    </div>
-                    <div class="mt-2">
-                        <label class="inline-flex items-center">
-                            <span class="ml-2">C. 100</span>
-                        </label>
-                    </div>
-                    <div class="mt-2">
-                        <label class="inline-flex items-center">
-                            <span class="ml-2">D. 350</span>
+                            <span class="ml-2">R/= {{ $mathCuarto->mathPC2 }}</span>
                         </label>
                     </div>
                 </div>
@@ -218,16 +152,7 @@
                     </div>
 
                     <div class="flex items-center mb-2">
-                        <span class="ml-2">A. 7, 9, 12</span>
-                    </div>
-                    <div class="flex items-center mb-2">
-                        <span class="ml-2">B. 9, 7, 12</span>
-                    </div>
-                    <div class="flex items-center mb-2">
-                        <span class="ml-2">C. 9, 12, 7</span>
-                    </div>
-                    <div class="flex items-center">
-                        <span class="ml-2">D. 12, 7, 9</span>
+                        <span class="ml-2">R/= {{ $mathCuarto->mathPC4 }}</span>
                     </div>
                 </div>
 
@@ -241,16 +166,7 @@
                     </div>
 
                     <div class="flex items-center mb-2"> 
-                        <span class="ml-2">A</span>
-                    </div>
-                    <div class="flex items-center mb-2">
-                        <span class="ml-2">B</span>
-                    </div>
-                    <div class="flex items-center mb-2">
-                        <span class="ml-2">C</span>
-                    </div>
-                    <div class="flex items-center">
-                        <span class="ml-2">D</span>
+                        <span class="ml-2">R/= {{ $mathCuarto->mathPC6 }}</span>
                     </div>
                 </div>
 
@@ -264,18 +180,8 @@
                     </div>
 
                     <div class="flex items-center mb-2">
-                        <span class="ml-2">A. 4</span>
+                        <span class="ml-2">R/= {{ $mathCuarto->mathPC8 }}</span>
                     </div>
-                    <div class="flex items-center mb-2">
-                        <span class="ml-2">B. 9</span>
-                    </div>
-                    <div class="flex items-center mb-2">
-                        <span class="ml-2">C. 14</span>
-                    </div>
-                    <div class="flex items-center mb-2">
-                        <span class="ml-2">D. 18</span>
-                    </div>
-                </div>
 
                 <!-- Pregunta 10 -->
                 <div class=" border-t p-2 border-gray-400 ">
@@ -288,16 +194,7 @@
                     </div>
 
                     <div class="flex items-center mb-2">
-                        <span class="ml-2">A.</span>
-                    </div>
-                    <div class="flex items-center mb-2">
-                        <span class="ml-2">B.</span>
-                    </div>
-                    <div class="flex items-center mb-2">
-                        <span class="ml-2">C.</span>
-                    </div>
-                    <div class="flex items-center mb-2">
-                        <span class="ml-2">D.</span>
+                        <span class="ml-2">R/= {{ $mathCuarto->mathPC10 }}</span>
                     </div>
                 </div>
             </div>

@@ -57,22 +57,7 @@
                     multiplicación? 35.789 x 8?</label>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
-                        <span class="ml-2">A. 286.313</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">B. 286.312</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">C. 266.312</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">D. 286.315</span>
+                        <span class="ml-2">R/= {{ $mathSeptimo->mathPS1 }}</span>
                     </label>
                 </div>
             </div>
@@ -82,27 +67,7 @@
                 <label class="block text-sm font-medium text-gray-600">2. 5x8+7=</label>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
-                        <span class="ml-2">A. 47</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">B. 75</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">C. 48</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">D. 20</span>
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <label class="inline-flex items-center">
-                        <span class="ml-2">Otro: ( espacio para agg texto )</span>
+                        <span class="ml-2">R/= {{ $mathSeptimo->mathPS2 }}</span>
                     </label>
                 </div>
             </div>
@@ -111,16 +76,7 @@
             <div class="mb-10 border-t p-2 border-gray-400">
                 <label class="block text-sm font-medium text-gray-600 mb-2">3. El resultado de 12 + 8 x 8 es:</label>
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. 28</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. 40</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. 76</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">D. 160</span>
+                    <span class="ml-2">R/= {{ $mathSeptimo->mathPS3 }}</span>
                 </div>
             </div>
 
@@ -129,16 +85,7 @@
                 <label class="block text-sm font-medium text-gray-600 mb-2">4. Si tenemos 12.560 cm en el perímetro de una
                     vivienda, ¿Cuánto mide esto en kilómetros?</label>
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. 1,256 km</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. 12,56 km</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. 125,6 km</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">D. 0,1256 km</span>
+                    <span class="ml-2">R/= {{ $mathSeptimo->mathPS4 }}</span>
                 </div>
             </div>
 
@@ -151,16 +98,7 @@
                 </div>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. 10 cm</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. 20 cm</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. 13 cm</span>
-                </div>
-                <div class="flex items-center">
-                    <span class="ml-2">D. 40 cm</span>
+                    <span class="ml-2">R/= {{ $mathSeptimo->mathPS5 }}</span>
                 </div>
             </div>
 
@@ -174,16 +112,7 @@
                 </div>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. 1 cm</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. 2 cm</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. 3 cm</span>
-                </div>
-                <div class="flex items-center">
-                    <span class="ml-2">D. 4 cm</span>
+                    <span class="ml-2">R/= {{ $mathSeptimo->mathPS6 }}</span>
                 </div>
             </div>
 
@@ -197,16 +126,7 @@
                 </div>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. 4</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. 16</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. 8</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">D. 10</span>
+                    <span class="ml-2">R/= {{ $mathSeptimo->mathPS7 }}</span>
                 </div>
             </div>
 
@@ -222,16 +142,7 @@
                 </div>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. 21 estudiantes</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. 20 estudiantes</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. 22 estudiantes</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">D. 23 estudiantes</span>
+                    <span class="ml-2">R/= {{ $mathSeptimo->mathPS8 }}</span>
                 </div>
             </div>
 
@@ -245,16 +156,7 @@
                 </div>
 
                 <div class="flex items-center mb-2">
-                    <span class="ml-2">A. 1/2</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">B. 2/3</span>
-                </div>
-                <div class="flex items-center mb-2">
-                    <span class="ml-2">C. 3/3</span>
-                </div>
-                <div class="flex items-center">
-                    <span class="ml-2">D. 1/3</span>
+                    <span class="ml-2">R/= {{ $mathSeptimo->mathPS9 }}</span>
                 </div>
             </div>
 
@@ -284,6 +186,10 @@
                         <img src="{{ asset('img/math/seven/opcion4.png') }}" class=" h-20 w-20" alt="Gráfica 4 ">
                         <span class="ml-2">Opción 4</span>
                     </div>
+                    <br>
+                </div>
+                <div>
+                    <span class="ml.2">R/= {{ $mathSeptimo->mathPS10 }}</span>
                 </div>
             </div>
     </div>

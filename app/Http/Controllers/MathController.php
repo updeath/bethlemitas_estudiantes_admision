@@ -88,97 +88,67 @@ class MathController extends Controller
             // Obtener todas las respuestas de las columnas mathPC1, mathPC2, ..., mathPC10
 
             if ($mathCuarto !== null) {
-                // Si $MathCuarto no es null, obtenemos las respuestas
-                $respuestas = collect($mathCuarto->toArray())->only([
-                    'mathPC1',
-                    'mathPC2',
-                    'mathPC3',
-                    'mathPC4',
-                    'mathPC5',
-                    'mathPC6',
-                    'mathPC7',
-                    'mathPC8',
-                    'mathPC9',
-                    'mathPC10',
-                ])->values();
-            } else {
+
+                $sumaPromedio = 0;
+                $cantidadRespuestasCorrectas = 0;
+                $cantidadRespuestasIncorrectas = 0;
+    
                 $respuestas = [
-                    'mathPC1' => null,
-                    'mathPC2' => null,
-                    'mathPC3' => null,
-                    'mathPC4' => null,
-                    'mathPC5' => null,
-                    'mathPC6' => null,
-                    'mathPC7' => null,
-                    'mathPC8' => null,
-                    'mathPC9' => null,
-                    'mathPC10' => null,
+                    $mathCuarto->mathPC1,
+                    $mathCuarto->mathPC2,
+                    $mathCuarto->mathPC3,
+                    $mathCuarto->mathPC4,
+                    $mathCuarto->mathPC5,
+                    $mathCuarto->mathPC6,
+                    $mathCuarto->mathPC7,
+                    $mathCuarto->mathPC8,
+                    $mathCuarto->mathPC9,
+                    $mathCuarto->mathPC10,
+                ];
+    
+                $respuestasCorrectas = [
+                    'D. 90 minutos', //1
+                    'C. 100', //2
+                    'D', //3
+                    'A. 7, 9, 12', //4
+                    'D. 110 cm', // 5
+                    'C', // 6
+                    'C. 11',  // 7
+                    'D. 18',  //8
+                    'D. 100 metros', // 9
+                    'C', // 10
+                ];
+    
+                foreach ($respuestas as $index => $respuesta) {
+                    if ($respuestasCorrectas[$index] !== null) {
+                        if ($respuesta == $respuestasCorrectas[$index]) {
+                            $cantidadRespuestasCorrectas++;
+                            $sumaPromedio += 0.5;
+                        } else {
+                            $cantidadRespuestasIncorrectas++;
+                        }
+                    }
+                }
+    
+                $cantidadDeVeces = MathCuarto::where('user_id', $user->id)->count();
+    
+                $mathCuarto->update([
+                    'average' => $sumaPromedio,
+                    'attempts' => $cantidadDeVeces,
+                    'correct' => $cantidadRespuestasCorrectas,
+                    'incorrect' => $cantidadRespuestasIncorrectas,
+                ]);
+    
+                $promedioData[] = [
+                    'id' => $user->id,
+                    'user' => $user,
+                    'promedio' => $sumaPromedio,
+                    'cantidadRespuestasBuenas' => $cantidadRespuestasCorrectas,
+                    'cantidadRespuestasMalas' => $cantidadRespuestasIncorrectas,
+                    'cantidadDeVeces' => $cantidadDeVeces,
                 ];
             }
-
-            $respuestasCollection = collect($respuestas);
-
-            $cantidadRespuestasBuenas = $respuestasCollection->filter(function ($respuesta) {
-                return $respuesta == 5;
-            })->count();
-
-            $cantidadRespuestasMalas = $respuestasCollection->filter(function ($respuesta) {
-                return $respuesta == 1;
-            })->count();
-
-            $puntuacionPorPregunta = 5 / 10;
-            $promedio = $puntuacionPorPregunta * $cantidadRespuestasBuenas;
-
-            // Verificar si la observación es "Sin Observación"
-            $observacion = $mathCuarto && $mathCuarto->ObservationmathPC !== 'Sin Observacion'
-                ? explode(' - ', $mathCuarto->ObservationmathPC)
-                : null;
-
-            $observacion2 = $mathCuarto && $mathCuarto->ObservationmathPC2 !== 'Sin Observacion'
-                ? explode(' - ', $mathCuarto->ObservationmathPC2)
-                : null;
-
-            $observacion3 = $mathCuarto && $mathCuarto->ObservationmathPC3 !== 'Sin Observacion'
-                ? explode(' - ', $mathCuarto->ObservationmathPC3)
-                : null;
-
-            $observacion4 = $mathCuarto && $mathCuarto->ObservationmathPC4 !== 'Sin Observacion'
-                ? explode(' - ', $mathCuarto->ObservationmathPC4)
-                : null;
-
-            $observacionPredeterminadaPresente = $observacion === null;
-            $observacionPredeterminadaPresente2 = $observacion2 === null;
-            $observacionPredeterminadaPresente3 = $observacion3 === null;
-            $observacionPredeterminadaPresente4 = $observacion4 === null;
-
-            $cantidadDeVeces = MathCuarto::where('user_id', $user->id)->count();
-
-            $mathCuarto->update([
-                'average' => $promedio,
-                'attempts' => $cantidadDeVeces,
-                'correct' => $cantidadRespuestasBuenas,
-                'incorrect' => $cantidadRespuestasMalas,
-            ]);
-
-            $promedioData[] = [
-                'user' => $user,
-                'promedio' => $promedio,
-                'observacion' => $observacion,
-                'observacion2' => $observacion2,
-                'observacion3' => $observacion3,
-                'observacion4' => $observacion4,
-                'observacionPredeterminadaPresente' => $observacionPredeterminadaPresente,
-                'observacionPredeterminadaPresente2' => $observacionPredeterminadaPresente2,
-                'observacionPredeterminadaPresente3' => $observacionPredeterminadaPresente3,
-                'observacionPredeterminadaPresente4' => $observacionPredeterminadaPresente4,
-                'cantidadDeVeces' => $cantidadDeVeces,
-                'cantidadRespuestasBuenas' => $cantidadRespuestasBuenas,
-                'cantidadRespuestasMalas' => $cantidadRespuestasMalas,
-            ];
-
-
         }
-
         return view("home.table.math.math4", compact('promedioData', 'users'));
     }
     public function table_math5(Request $request)
@@ -202,112 +172,68 @@ class MathController extends Controller
         $promedioData = [];
         foreach ($users as $user) {
 
-            $MathQuinto = MathQuinto::where('user_id', $user->id)->first();
+            $mathQuinto = MathQuinto::where('user_id', $user->id)->first();
 
-            if ($MathQuinto !== null) {
-                // Resto del código para obtener respuestas y calcular el promedio
+            if ($mathQuinto !== null) {
 
-                $respuestas = collect($MathQuinto->toArray())->only([
-                    'mathPQ1',
-                    'mathPQ2',
-                    'mathPQ3',
-                    'mathPQ4',
-                    'mathPQ5',
-                    'mathPQ6',
-                    'mathPQ7',
-                    'mathPQ8',
-                    'mathPQ9',
-                    'mathPQ10',
-                ])->values();
-
-                $respuestasCollection = collect($respuestas);
-
-                $cantidadRespuestasBuenas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 5;
-                })->count();
-
-                $cantidadRespuestasMalas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 1;
-                })->count();
-
-                $puntuacionPorPregunta = 5 / 10;
-                $promedio = $puntuacionPorPregunta * $cantidadRespuestasBuenas;
-
-                $cantidadDeVeces = MathQuinto::where('user_id', $user->id)->count();
-
-                $respuestasCollection = collect($respuestas);
-
-                $cantidadRespuestasBuenas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 5;
-                })->count();
-
-                $cantidadRespuestasMalas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 1;
-                })->count();
-
-                $puntuacionPorPregunta = 5 / 10;
-                $promedio = $puntuacionPorPregunta * $cantidadRespuestasBuenas;
-
-                // Verificar si la observación es "Sin Observación"
-                $observacion = $MathQuinto && $MathQuinto->ObservationmathPQ !== 'Sin Observacion'
-                    ? explode(' - ', $MathQuinto->ObservationmathPQ)
-                    : null;
-
-                $observacion2 = $MathQuinto && $MathQuinto->ObservationmathPQ2 !== 'Sin Observacion'
-                    ? explode(' - ', $MathQuinto->ObservationmathPQ2)
-                    : null;
-
-                $observacion3 = $MathQuinto && $MathQuinto->ObservationmathPQ3 !== 'Sin Observacion'
-                    ? explode(' - ', $MathQuinto->ObservationmathPQ3)
-                    : null;
-
-                $observacion4 = $MathQuinto && $MathQuinto->ObservationmathPQ4 !== 'Sin Observacion'
-                    ? explode(' - ', $MathQuinto->ObservationmathPQ4)
-                    : null;
-
-                $observacionPredeterminadaPresente = $observacion === null;
-                $observacionPredeterminadaPresente2 = $observacion2 === null;
-                $observacionPredeterminadaPresente3 = $observacion3 === null;
-                $observacionPredeterminadaPresente4 = $observacion4 === null;
-
-                $MathQuinto->update([
-                    'averagePQ' => $promedio,
-                    'attemptsPQ' => $cantidadDeVeces,
-                    'correctPQ' => $cantidadRespuestasBuenas,
-                    'incorrectPQ' => $cantidadRespuestasMalas,
-                ]);
-
-                $promedioData[] = [
-                    'user' => $user,
-                    'promedio' => $promedio,
-                    'cantidadRespuestasBuenas' => $cantidadRespuestasBuenas,
-                    'cantidadRespuestasMalas' => $cantidadRespuestasMalas,
-                    'cantidadDeVeces' => $cantidadDeVeces,
-                    'observacion' => $observacion,
-                    'observacion2' => $observacion2,
-                    'observacion3' => $observacion3,
-                    'observacion4' => $observacion4,
-                    'observacionPredeterminadaPresente' => $observacionPredeterminadaPresente,
-                    'observacionPredeterminadaPresente2' => $observacionPredeterminadaPresente2,
-                    'observacionPredeterminadaPresente3' => $observacionPredeterminadaPresente3,
-                    'observacionPredeterminadaPresente4' => $observacionPredeterminadaPresente4,
-                ];
-
-            } else {
+                $sumaPromedio = 0;
+                $cantidadRespuestasCorrectas = 0;
+                $cantidadRespuestasIncorrectas = 0;
+    
                 $respuestas = [
-                    'mathPQ1' => null,
-                    'mathPQ2' => null,
-                    'mathPQ3' => null,
-                    'mathPQ4' => null,
-                    'mathPQ5' => null,
-                    'mathPQ6' => null,
-                    'mathPQ7' => null,
-                    'mathPQ8' => null,
-                    'mathPQ9' => null,
-                    'mathPQ10' => null,
+                    $mathQuinto->mathPQ1,
+                    $mathQuinto->mathPQ2,
+                    $mathQuinto->mathPQ3,
+                    $mathQuinto->mathPQ4,
+                    $mathQuinto->mathPQ5,
+                    $mathQuinto->mathPQ6,
+                    $mathQuinto->mathPQ7,
+                    $mathQuinto->mathPQ8,
+                    $mathQuinto->mathPQ9,
+                    $mathQuinto->mathPQ10,
                 ];
-
-                // Resto del código para manejar el caso cuando $MathQuinto es null...
+    
+                $respuestasCorrectas = [
+                    'D. 90.324', //1
+                    'C. Cuatrocientos cincuenta y siete mil ciento cuarenta y cinco', //2
+                    'D. 723.824.317', //3
+                    'A. 17550', //4
+                    'B. 5/8', // 5
+                    'B. 120 minutos', // 6
+                    'A. Es la suma de la longitud de todos los lados.',  // 7
+                    'B. 5',  //8
+                    'C. 20, 24, 28', // 9
+                    'A. 96 frascos', // 10
+                ];
+    
+                foreach ($respuestas as $index => $respuesta) {
+                    if ($respuestasCorrectas[$index] !== null) {
+                        if ($respuesta == $respuestasCorrectas[$index]) {
+                            $cantidadRespuestasCorrectas++;
+                            $sumaPromedio += 0.5;
+                        } else {
+                            $cantidadRespuestasIncorrectas++;
+                        }
+                    }
+                }
+    
+                $cantidadDeVeces = MathQuinto::where('user_id', $user->id)->count();
+    
+                $mathQuinto->update([
+                    'averagePQ' => $sumaPromedio,
+                    'attemptsPQ' => $cantidadDeVeces,
+                    'correctPQ' => $cantidadRespuestasCorrectas,
+                    'incorrectPQ' => $cantidadRespuestasIncorrectas,
+                ]);
+    
+                $promedioData[] = [
+                    'id' => $user->id,
+                    'user' => $user,
+                    'promedio' => $sumaPromedio,
+                    'cantidadRespuestasBuenas' => $cantidadRespuestasCorrectas,
+                    'cantidadRespuestasMalas' => $cantidadRespuestasIncorrectas,
+                    'cantidadDeVeces' => $cantidadDeVeces,
+                ];
             }
         }
 
@@ -335,107 +261,68 @@ class MathController extends Controller
 
         foreach ($users as $user) {
 
-            $MathSexto = MathSexto::where('user_id', $user->id)->first();
+            $mathSexto = MathSexto::where('user_id', $user->id)->first();
             // Obtener todas las respuestas de las columnas mathPC1, mathPC2, ..., mathPC10
 
-            if ($MathSexto !== null) {
-                // Si $mathQuinto no es null, obtenemos las respuestas
-                $respuestas = collect($MathSexto->toArray())->only([
-                    'mathPSX1',
-                    'mathPSX2',
-                    'mathPSX3',
-                    'mathPSX4',
-                    'mathPSX5',
-                    'mathPSX6',
-                    'mathPSX7',
-                    'mathPSX8',
-                    'mathPSX9',
-                    'mathPSX10',
-                ])->values();
-                $respuestasCollection = collect($respuestas);
+            if ($mathSexto !== null) {
 
-                $cantidadRespuestasBuenas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 5;
-                })->count();
-
-                $cantidadRespuestasMalas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 1;
-                })->count();
-
-                $puntuacionPorPregunta = 5 / 10;
-                $promedio = $puntuacionPorPregunta * $cantidadRespuestasBuenas;
-
-                $cantidadDeVeces = MathSexto::where('user_id', $user->id)->count();
-
-                $respuestasCollection = collect($respuestas);
-
-                $cantidadRespuestasBuenas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 5;
-                })->count();
-
-                $cantidadRespuestasMalas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 1;
-                })->count();
-
-                $puntuacionPorPregunta = 5 / 10;
-                $promedio = $puntuacionPorPregunta * $cantidadRespuestasBuenas;
-
-                // Verificar si la observación es "Sin Observación"
-                $observacion = $MathSexto && $MathSexto->ObservationmathPSX !== 'Sin Observacion'
-                    ? explode(' - ', $MathSexto->ObservationmathPSX)
-                    : null;
-
-                $observacion2 = $MathSexto && $MathSexto->ObservationmathPSX2 !== 'Sin Observacion'
-                    ? explode(' - ', $MathSexto->ObservationmathPSX2)
-                    : null;
-
-                $observacion3 = $MathSexto && $MathSexto->ObservationmathPSX3 !== 'Sin Observacion'
-                    ? explode(' - ', $MathSexto->ObservationmathPSX3)
-                    : null;
-
-                $observacion4 = $MathSexto && $MathSexto->ObservationmathPSX4 !== 'Sin Observacion'
-                    ? explode(' - ', $MathSexto->ObservationmathPSX4)
-                    : null;
-
-                $observacionPredeterminadaPresente = $observacion === null;
-                $observacionPredeterminadaPresente2 = $observacion2 === null;
-                $observacionPredeterminadaPresente3 = $observacion3 === null;
-                $observacionPredeterminadaPresente4 = $observacion4 === null;
-
-                $MathSexto->update([
-                    'averagePSX' => $promedio,
-                    'attemptsPSX' => $cantidadDeVeces,
-                    'correctPSX' => $cantidadRespuestasBuenas,
-                    'incorrectPSX' => $cantidadRespuestasMalas,
-                ]);
-
-                $promedioData[] = [
-                    'user' => $user,
-                    'promedio' => $promedio,
-                    'cantidadRespuestasBuenas' => $cantidadRespuestasBuenas,
-                    'cantidadRespuestasMalas' => $cantidadRespuestasMalas,
-                    'cantidadDeVeces' => $cantidadDeVeces,
-                    'observacion' => $observacion,
-                    'observacion2' => $observacion2,
-                    'observacion3' => $observacion3,
-                    'observacion4' => $observacion4,
-                    'observacionPredeterminadaPresente' => $observacionPredeterminadaPresente,
-                    'observacionPredeterminadaPresente2' => $observacionPredeterminadaPresente2,
-                    'observacionPredeterminadaPresente3' => $observacionPredeterminadaPresente3,
-                    'observacionPredeterminadaPresente4' => $observacionPredeterminadaPresente4,
-                ];
-            } else {
+                $sumaPromedio = 0;
+                $cantidadRespuestasCorrectas = 0;
+                $cantidadRespuestasIncorrectas = 0;
+    
                 $respuestas = [
-                    'mathPSX1' => null,
-                    'mathPSX2' => null,
-                    'mathPSX3' => null,
-                    'mathPSX4' => null,
-                    'mathPSX5' => null,
-                    'mathPSX6' => null,
-                    'mathPSX7' => null,
-                    'mathPSX8' => null,
-                    'mathPSX9' => null,
-                    'mathPSX10' => null,
+                    $mathSexto->mathPSX1,
+                    $mathSexto->mathPSX2,
+                    $mathSexto->mathPSX3,
+                    $mathSexto->mathPSX4,
+                    $mathSexto->mathPSX5,
+                    $mathSexto->mathPSX6,
+                    $mathSexto->mathPSX7,
+                    $mathSexto->mathPSX8,
+                    $mathSexto->mathPSX9,
+                    $mathSexto->mathPSX10,
+                ];
+    
+                $respuestasCorrectas = [
+                    'D. Hay 65 paquetes.', //1
+                    'B. 6X', //2
+                    'A. La variable', //3
+                    'C. El numero de pastelillos por caja', //4
+                    'C. 504 Litros', // 5
+                    'D. 334', // 6
+                    'A. 7',  // 7
+                    'Opción 3',  //8
+                    'D. 3', // 9
+                    'D. 10/6', // 10
+                ];
+    
+                foreach ($respuestas as $index => $respuesta) {
+                    if ($respuestasCorrectas[$index] !== null) {
+                        if ($respuesta == $respuestasCorrectas[$index]) {
+                            $cantidadRespuestasCorrectas++;
+                            $sumaPromedio += 0.5;
+                        } else {
+                            $cantidadRespuestasIncorrectas++;
+                        }
+                    }
+                }
+    
+                $cantidadDeVeces = MathSexto::where('user_id', $user->id)->count();
+    
+                $mathSexto->update([
+                    'averagePSX' => $sumaPromedio,
+                    'attemptsPSX' => $cantidadDeVeces,
+                    'correctPSX' => $cantidadRespuestasCorrectas,
+                    'incorrectPSX' => $cantidadRespuestasIncorrectas,
+                ]);
+    
+                $promedioData[] = [
+                    'id' => $user->id,
+                    'user' => $user,
+                    'promedio' => $sumaPromedio,
+                    'cantidadRespuestasBuenas' => $cantidadRespuestasCorrectas,
+                    'cantidadRespuestasMalas' => $cantidadRespuestasIncorrectas,
+                    'cantidadDeVeces' => $cantidadDeVeces,
                 ];
             }
         }
@@ -467,108 +354,66 @@ class MathController extends Controller
             // Obtener todas las respuestas de las columnas mathPC1, mathPC2, ..., mathPC10
 
             if ($mathSeptimo !== null) {
-                // Si $mathQuinto no es null, obtenemos las respuestas
-                $respuestas = collect($mathSeptimo->toArray())->only([
-                    'mathPS1',
-                    'mathPS2',
-                    'mathPS3',
-                    'mathPS4',
-                    'mathPS5',
-                    'mathPS6',
-                    'mathPS7',
-                    'mathPS8',
-                    'mathPS9',
-                    'mathPS10',
-                ])->values();
-                $respuestasCollection = collect($respuestas);
 
-                $cantidadRespuestasBuenas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 5;
-                })->count();
-
-                $cantidadRespuestasMalas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 1;
-                })->count();
-
-                $puntuacionPorPregunta = 5 / 10;
-                $promedio = $puntuacionPorPregunta * $cantidadRespuestasBuenas;
-
-                $cantidadDeVeces = MathSeptimo::where('user_id', $user->id)->count();
-
-                $respuestasCollection = collect($respuestas);
-
-                $cantidadRespuestasBuenas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 5;
-                })->count();
-
-                $cantidadRespuestasMalas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 1;
-                })->count();
-
-                $puntuacionPorPregunta = 5 / 10;
-                $promedio = $puntuacionPorPregunta * $cantidadRespuestasBuenas;
-
-                // Verificar si la observación es "Sin Observación"
-                $observacion = $mathSeptimo && $mathSeptimo->ObservationmathPS !== 'Sin Observacion'
-                    ? explode(' - ', $mathSeptimo->ObservationmathPS)
-                    : null;
-
-                $observacion2 = $mathSeptimo && $mathSeptimo->ObservationmathPS2 !== 'Sin Observacion'
-                    ? explode(' - ', $mathSeptimo->ObservationmathPS2)
-                    : null;
-
-                $observacion3 = $mathSeptimo && $mathSeptimo->ObservationmathPS3 !== 'Sin Observacion'
-                    ? explode(' - ', $mathSeptimo->ObservationmathPS3)
-                    : null;
-
-                $observacion4 = $mathSeptimo && $mathSeptimo->ObservationmathPS4 !== 'Sin Observacion'
-                    ? explode(' - ', $mathSeptimo->ObservationmathPS4)
-                    : null;
-
-                $observacionPredeterminadaPresente = $observacion === null;
-                $observacionPredeterminadaPresente2 = $observacion2 === null;
-                $observacionPredeterminadaPresente3 = $observacion3 === null;
-                $observacionPredeterminadaPresente4 = $observacion4 === null;
-
-                $mathSeptimo->update([
-                    'averagePS' => $promedio,
-                    'attemptsPS' => $cantidadDeVeces,
-                    'correctPS' => $cantidadRespuestasBuenas,
-                    'incorrectPS' => $cantidadRespuestasMalas,
-                ]);
-
-                $promedioData[] = [
-                    'user' => $user,
-                    'promedio' => $promedio,
-                    'cantidadRespuestasBuenas' => $cantidadRespuestasBuenas,
-                    'cantidadRespuestasMalas' => $cantidadRespuestasMalas,
-                    'cantidadDeVeces' => $cantidadDeVeces,
-                    'observacion' => $observacion,
-                    'observacion2' => $observacion2,
-                    'observacion3' => $observacion3,
-                    'observacion4' => $observacion4,
-                    'observacionPredeterminadaPresente' => $observacionPredeterminadaPresente,
-                    'observacionPredeterminadaPresente2' => $observacionPredeterminadaPresente2,
-                    'observacionPredeterminadaPresente3' => $observacionPredeterminadaPresente3,
-                    'observacionPredeterminadaPresente4' => $observacionPredeterminadaPresente4,
-                ];
-            } else {
+                $sumaPromedio = 0;
+                $cantidadRespuestasCorrectas = 0;
+                $cantidadRespuestasIncorrectas = 0;
+    
                 $respuestas = [
-                    'mathPS1' => null,
-                    'mathPS2' => null,
-                    'mathPS3' => null,
-                    'mathPS4' => null,
-                    'mathPS5' => null,
-                    'mathPS6' => null,
-                    'mathPS7' => null,
-                    'mathPS8' => null,
-                    'mathPS9' => null,
-                    'mathPS10' => null,
+                    $mathSeptimo->mathPS1,
+                    $mathSeptimo->mathPS2,
+                    $mathSeptimo->mathPS3,
+                    $mathSeptimo->mathPS4,
+                    $mathSeptimo->mathPS5,
+                    $mathSeptimo->mathPS6,
+                    $mathSeptimo->mathPS7,
+                    $mathSeptimo->mathPS8,
+                    $mathSeptimo->mathPS9,
+                    $mathSeptimo->mathPS10,
+                ];
+    
+                $respuestasCorrectas = [
+                    'B. 286.312', //1
+                    'A. 47', //2
+                    'C. 76', //3
+                    'D. 0,1256 km', //4
+                    'B. 20 cm', // 5
+                    'C. 3 cm', // 6
+                    'B. 16',  // 7
+                    'C. 22 estudiantes',  //8
+                    'D. 1/3', // 9
+                    'Opción 2', // 10
+                ];
+    
+                foreach ($respuestas as $index => $respuesta) {
+                    if ($respuestasCorrectas[$index] !== null) {
+                        if ($respuesta == $respuestasCorrectas[$index]) {
+                            $cantidadRespuestasCorrectas++;
+                            $sumaPromedio += 0.5;
+                        } else {
+                            $cantidadRespuestasIncorrectas++;
+                        }
+                    }
+                }
+    
+                $cantidadDeVeces = MathSeptimo::where('user_id', $user->id)->count();
+    
+                $mathSeptimo->update([
+                    'averagePS' => $sumaPromedio,
+                    'attemptsPS' => $cantidadDeVeces,
+                    'correctPS' => $cantidadRespuestasCorrectas,
+                    'incorrectPS' => $cantidadRespuestasIncorrectas,
+                ]);
+    
+                $promedioData[] = [
+                    'id' => $user->id,
+                    'user' => $user,
+                    'promedio' => $sumaPromedio,
+                    'cantidadRespuestasBuenas' => $cantidadRespuestasCorrectas,
+                    'cantidadRespuestasMalas' => $cantidadRespuestasIncorrectas,
+                    'cantidadDeVeces' => $cantidadDeVeces,
                 ];
             }
-
-
-
         }
 
         return view("home.table.math.math7", compact('promedioData', 'users'));
@@ -594,107 +439,68 @@ class MathController extends Controller
 
         foreach ($users as $user) {
 
-            $MathOctavo = MathOctavo::where('user_id', $user->id)->first();
+            $mathOctavo = MathOctavo::where('user_id', $user->id)->first();
             // Obtener todas las respuestas de las columnas mathPC1, mathPC2, ..., mathPC10
 
-            if ($MathOctavo !== null) {
-                // Si $mathQuinto no es null, obtenemos las respuestas
-                $respuestas = collect($MathOctavo->toArray())->only([
-                    'mathPO1',
-                    'mathPO2',
-                    'mathPO3',
-                    'mathPO4',
-                    'mathPO5',
-                    'mathPO6',
-                    'mathPO7',
-                    'mathPO8',
-                    'mathPO9',
-                    'mathPO10',
-                ])->values();
-                $respuestasCollection = collect($respuestas);
+            if ($mathOctavo !== null) {
 
-                $cantidadRespuestasBuenas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 5;
-                })->count();
-
-                $cantidadRespuestasMalas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 1;
-                })->count();
-
-                $puntuacionPorPregunta = 5 / 10;
-                $promedio = $puntuacionPorPregunta * $cantidadRespuestasBuenas;
-
-                $cantidadDeVeces = MathOctavo::where('user_id', $user->id)->count();
-
-                $respuestasCollection = collect($respuestas);
-
-                $cantidadRespuestasBuenas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 5;
-                })->count();
-
-                $cantidadRespuestasMalas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 1;
-                })->count();
-
-                $puntuacionPorPregunta = 5 / 10;
-                $promedio = $puntuacionPorPregunta * $cantidadRespuestasBuenas;
-
-                // Verificar si la observación es "Sin Observación"
-                $observacion = $MathOctavo && $MathOctavo->ObservationmathPO !== 'Sin Observacion'
-                    ? explode(' - ', $MathOctavo->ObservationmathPO)
-                    : null;
-
-                $observacion2 = $MathOctavo && $MathOctavo->ObservationmathPO2 !== 'Sin Observacion'
-                    ? explode(' - ', $MathOctavo->ObservationmathPO2)
-                    : null;
-
-                $observacion3 = $MathOctavo && $MathOctavo->ObservationmathPO3 !== 'Sin Observacion'
-                    ? explode(' - ', $MathOctavo->ObservationmathPO3)
-                    : null;
-
-                $observacion4 = $MathOctavo && $MathOctavo->ObservationmathPO4 !== 'Sin Observacion'
-                    ? explode(' - ', $MathOctavo->ObservationmathPO4)
-                    : null;
-
-                $observacionPredeterminadaPresente = $observacion === null;
-                $observacionPredeterminadaPresente2 = $observacion2 === null;
-                $observacionPredeterminadaPresente3 = $observacion3 === null;
-                $observacionPredeterminadaPresente4 = $observacion4 === null;
-
-                $MathOctavo->update([
-                    'averagePO' => $promedio,
-                    'attemptsPO' => $cantidadDeVeces,
-                    'correctPO' => $cantidadRespuestasBuenas,
-                    'incorrectPO' => $cantidadRespuestasMalas,
-                ]);
-
-                $promedioData[] = [
-                    'user' => $user,
-                    'promedio' => $promedio,
-                    'cantidadRespuestasBuenas' => $cantidadRespuestasBuenas,
-                    'cantidadRespuestasMalas' => $cantidadRespuestasMalas,
-                    'cantidadDeVeces' => $cantidadDeVeces,
-                    'observacion' => $observacion,
-                    'observacion2' => $observacion2,
-                    'observacion3' => $observacion3,
-                    'observacion4' => $observacion4,
-                    'observacionPredeterminadaPresente' => $observacionPredeterminadaPresente,
-                    'observacionPredeterminadaPresente2' => $observacionPredeterminadaPresente2,
-                    'observacionPredeterminadaPresente3' => $observacionPredeterminadaPresente3,
-                    'observacionPredeterminadaPresente4' => $observacionPredeterminadaPresente4,
-                ];
-            } else {
+                $sumaPromedio = 0;
+                $cantidadRespuestasCorrectas = 0;
+                $cantidadRespuestasIncorrectas = 0;
+    
                 $respuestas = [
-                    'mathP01' => null,
-                    'mathP02' => null,
-                    'mathP03' => null,
-                    'mathP04' => null,
-                    'mathP05' => null,
-                    'mathP06' => null,
-                    'mathP07' => null,
-                    'mathP08' => null,
-                    'mathP09' => null,
-                    'mathP010' => null,
+                    $mathOctavo->mathPO1,
+                    $mathOctavo->mathPO2,
+                    $mathOctavo->mathPO3,
+                    $mathOctavo->mathPO4,
+                    $mathOctavo->mathPO5,
+                    $mathOctavo->mathPO6,
+                    $mathOctavo->mathPO7,
+                    $mathOctavo->mathPO8,
+                    $mathOctavo->mathPO9,
+                    $mathOctavo->mathPO10,
+                ];
+    
+                $respuestasCorrectas = [
+                    'C. 5/3', //1
+                    'B. 125/8', //2
+                    'C. Cualitativa', //3
+                    'C. 1296', //4
+                    'D. 12', // 5
+                    'C. La longitud', // 6
+                    'B. 6 metros cuadrados',  // 7
+                    'A. Chocolate',  //8
+                    'A. 5x + 8x = 650.000', // 9
+                    'A. $50.000', // 10
+                ];
+    
+                foreach ($respuestas as $index => $respuesta) {
+                    if ($respuestasCorrectas[$index] !== null) {
+                        if ($respuesta == $respuestasCorrectas[$index]) {
+                            $cantidadRespuestasCorrectas++;
+                            $sumaPromedio += 0.5;
+                        } else {
+                            $cantidadRespuestasIncorrectas++;
+                        }
+                    }
+                }
+    
+                $cantidadDeVeces = MathOctavo::where('user_id', $user->id)->count();
+    
+                $mathOctavo->update([
+                    'averagePO' => $sumaPromedio,
+                    'attemptsPO' => $cantidadDeVeces,
+                    'correctPO' => $cantidadRespuestasCorrectas,
+                    'incorrectPO' => $cantidadRespuestasIncorrectas,
+                ]);
+    
+                $promedioData[] = [
+                    'id' => $user->id,
+                    'user' => $user,
+                    'promedio' => $sumaPromedio,
+                    'cantidadRespuestasBuenas' => $cantidadRespuestasCorrectas,
+                    'cantidadRespuestasMalas' => $cantidadRespuestasIncorrectas,
+                    'cantidadDeVeces' => $cantidadDeVeces,
                 ];
             }
 
@@ -722,110 +528,70 @@ class MathController extends Controller
         $promedioData = [];
 
         foreach ($users as $user) {
-            $MathNoveno = MathNoveno::where('user_id', $user->id)->first();
+            $mathNoveno = MathNoveno::where('user_id', $user->id)->first();
             // Obtener todas las respuestas de las columnas mathPC1, mathPC2, ..., mathPC10
 
-            if ($MathNoveno !== null) {
-                // Si $mathQuinto no es null, obtenemos las respuestas
-                $respuestas = collect($MathNoveno->toArray())->only([
-                    'mathPNO1',
-                    'mathPNO2',
-                    'mathPNO3',
-                    'mathPNO4',
-                    'mathPNO5',
-                    'mathPNO6',
-                    'mathPNO7',
-                    'mathPNO8',
-                    'mathPNO9',
-                    'mathPNO10',
-                ])->values();
-                $respuestasCollection = collect($respuestas);
+            if ($mathNoveno !== null) {
 
-                $cantidadRespuestasBuenas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 5;
-                })->count();
-
-                $cantidadRespuestasMalas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 1;
-                })->count();
-
-                $puntuacionPorPregunta = 5 / 10;
-                $promedio = $puntuacionPorPregunta * $cantidadRespuestasBuenas;
-
-                $cantidadDeVeces = MathNoveno::where('user_id', $user->id)->count();
-
-                $respuestasCollection = collect($respuestas);
-
-                $cantidadRespuestasBuenas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 5;
-                })->count();
-
-                $cantidadRespuestasMalas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 1;
-                })->count();
-
-                $puntuacionPorPregunta = 5 / 10;
-                $promedio = $puntuacionPorPregunta * $cantidadRespuestasBuenas;
-
-                // Verificar si la observación es "Sin Observación"
-                $observacion = $MathNoveno && $MathNoveno->ObservationmathPNO !== 'Sin Observacion'
-                    ? explode(' - ', $MathNoveno->ObservationmathPNO)
-                    : null;
-
-                $observacion2 = $MathNoveno && $MathNoveno->ObservationmathPNO2 !== 'Sin Observacion'
-                    ? explode(' - ', $MathNoveno->ObservationmathPNO2)
-                    : null;
-
-                $observacion3 = $MathNoveno && $MathNoveno->ObservationmathPNO3 !== 'Sin Observacion'
-                    ? explode(' - ', $MathNoveno->ObservationmathPNO3)
-                    : null;
-
-                $observacion4 = $MathNoveno && $MathNoveno->ObservationmathPNO4 !== 'Sin Observacion'
-                    ? explode(' - ', $MathNoveno->ObservationmathPNO4)
-                    : null;
-
-                $observacionPredeterminadaPresente = $observacion === null;
-                $observacionPredeterminadaPresente2 = $observacion2 === null;
-                $observacionPredeterminadaPresente3 = $observacion3 === null;
-                $observacionPredeterminadaPresente4 = $observacion4 === null;
-
-                $MathNoveno->update([
-                    'averagePNO' => $promedio,
-                    'attemptsPNO' => $cantidadDeVeces,
-                    'correctPNO' => $cantidadRespuestasBuenas,
-                    'incorrectPNO' => $cantidadRespuestasMalas,
-                ]);
-
-                $promedioData[] = [
-                    'user' => $user,
-                    'promedio' => $promedio,
-                    'cantidadRespuestasBuenas' => $cantidadRespuestasBuenas,
-                    'cantidadRespuestasMalas' => $cantidadRespuestasMalas,
-                    'cantidadDeVeces' => $cantidadDeVeces,
-                    'observacion' => $observacion,
-                    'observacion2' => $observacion2,
-                    'observacion3' => $observacion3,
-                    'observacion4' => $observacion4,
-                    'observacionPredeterminadaPresente' => $observacionPredeterminadaPresente,
-                    'observacionPredeterminadaPresente2' => $observacionPredeterminadaPresente2,
-                    'observacionPredeterminadaPresente3' => $observacionPredeterminadaPresente3,
-                    'observacionPredeterminadaPresente4' => $observacionPredeterminadaPresente4,
-                ];
-            } else {
+                $sumaPromedio = 0;
+                $cantidadRespuestasCorrectas = 0;
+                $cantidadRespuestasIncorrectas = 0;
+    
                 $respuestas = [
-                    'mathPNO1' => null,
-                    'mathPNO2' => null,
-                    'mathPNO3' => null,
-                    'mathPNO4' => null,
-                    'mathPNO5' => null,
-                    'mathPNO6' => null,
-                    'mathPNO7' => null,
-                    'mathPNO8' => null,
-                    'mathPNO9' => null,
-                    'mathPNO10' => null,
+                    $mathNoveno->mathPNO1,
+                    $mathNoveno->mathPNO2,
+                    $mathNoveno->mathPNO3,
+                    $mathNoveno->mathPNO4,
+                    $mathNoveno->mathPNO5,
+                    $mathNoveno->mathPNO6,
+                    $mathNoveno->mathPNO7,
+                    $mathNoveno->mathPNO8,
+                    $mathNoveno->mathPNO9,
+                    $mathNoveno->mathPNO10,
+                ];
+    
+                $respuestasCorrectas = [
+                    'D. 32', //1
+                    'A. x = 3', //2
+                    'Opción 3', //3
+                    'Opción 2', //4
+                    'C. Daniel reprobó matemáticas, pues la suma de sus calificaciones da como resultado 16 y si dividimos entre 5 da como resultado 3,2.', // 5
+                    'Opción 4', // 6
+                    'Opción 2',  // 7
+                    'Opción 4',  //8
+                    'Opción 4', // 9
+                    'B. 5 años', // 10
+                ];
+    
+                foreach ($respuestas as $index => $respuesta) {
+                    if ($respuestasCorrectas[$index] !== null) {
+                        if ($respuesta == $respuestasCorrectas[$index]) {
+                            $cantidadRespuestasCorrectas++;
+                            $sumaPromedio += 0.5;
+                        } else {
+                            $cantidadRespuestasIncorrectas++;
+                        }
+                    }
+                }
+    
+                $cantidadDeVeces = MathNoveno::where('user_id', $user->id)->count();
+    
+                $mathNoveno->update([
+                    'averagePNO' => $sumaPromedio,
+                    'attemptsPNO' => $cantidadDeVeces,
+                    'correctPNO' => $cantidadRespuestasCorrectas,
+                    'incorrectPNO' => $cantidadRespuestasIncorrectas,
+                ]);
+    
+                $promedioData[] = [
+                    'id' => $user->id,
+                    'user' => $user,
+                    'promedio' => $sumaPromedio,
+                    'cantidadRespuestasBuenas' => $cantidadRespuestasCorrectas,
+                    'cantidadRespuestasMalas' => $cantidadRespuestasIncorrectas,
+                    'cantidadDeVeces' => $cantidadDeVeces,
                 ];
             }
-
         }
 
         return view("home.table.math.math9", compact('promedioData', 'users'));
@@ -851,107 +617,68 @@ class MathController extends Controller
 
         foreach ($users as $user) {
 
-            $MathDecimo = MathDecimo::where('user_id', $user->id)->first();
+            $mathDecimo = MathDecimo::where('user_id', $user->id)->first();
             // Obtener todas las respuestas de las columnas mathPC1, mathPC2, ..., mathPC10
 
-            if ($MathDecimo !== null) {
-                // Si $mathQuinto no es null, obtenemos las respuestas
-                $respuestas = collect($MathDecimo->toArray())->only([
-                    'mathPD1',
-                    'mathPD2',
-                    'mathPD3',
-                    'mathPD4',
-                    'mathPD5',
-                    'mathPD6',
-                    'mathPD7',
-                    'mathPD8',
-                    'mathPD9',
-                    'mathPD10',
-                ])->values();
-                $respuestasCollection = collect($respuestas);
+            if ($mathDecimo !== null) {
 
-                $cantidadRespuestasBuenas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 5;
-                })->count();
-
-                $cantidadRespuestasMalas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 1;
-                })->count();
-
-                $puntuacionPorPregunta = 5 / 10;
-                $promedio = $puntuacionPorPregunta * $cantidadRespuestasBuenas;
-
-                $cantidadDeVeces = MathDecimo::where('user_id', $user->id)->count();
-
-                $respuestasCollection = collect($respuestas);
-
-                $cantidadRespuestasBuenas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 5;
-                })->count();
-
-                $cantidadRespuestasMalas = $respuestasCollection->filter(function ($respuesta) {
-                    return $respuesta == 1;
-                })->count();
-
-                $puntuacionPorPregunta = 5 / 10;
-                $promedio = $puntuacionPorPregunta * $cantidadRespuestasBuenas;
-
-                // Verificar si la observación es "Sin Observación"
-                $observacion = $MathDecimo && $MathDecimo->ObservationmathPD !== 'Sin Observacion'
-                    ? explode(' - ', $MathDecimo->ObservationmathPD)
-                    : null;
-
-                $observacion2 = $MathDecimo && $MathDecimo->ObservationmathPD2 !== 'Sin Observacion'
-                    ? explode(' - ', $MathDecimo->ObservationmathPD2)
-                    : null;
-
-                $observacion3 = $MathDecimo && $MathDecimo->ObservationmathPD3 !== 'Sin Observacion'
-                    ? explode(' - ', $MathDecimo->ObservationmathPD3)
-                    : null;
-
-                $observacion4 = $MathDecimo && $MathDecimo->ObservationmathPD4 !== 'Sin Observacion'
-                    ? explode(' - ', $MathDecimo->ObservationmathPD4)
-                    : null;
-
-                $observacionPredeterminadaPresente = $observacion === null;
-                $observacionPredeterminadaPresente2 = $observacion2 === null;
-                $observacionPredeterminadaPresente3 = $observacion3 === null;
-                $observacionPredeterminadaPresente4 = $observacion4 === null;
-
-                $MathDecimo->update([
-                    'averagePD' => $promedio,
-                    'attemptsPD' => $cantidadDeVeces,
-                    'correctPD' => $cantidadRespuestasBuenas,
-                    'incorrectPD' => $cantidadRespuestasMalas,
-                ]);
-
-                $promedioData[] = [
-                    'user' => $user,
-                    'promedio' => $promedio,
-                    'cantidadRespuestasBuenas' => $cantidadRespuestasBuenas,
-                    'cantidadRespuestasMalas' => $cantidadRespuestasMalas,
-                    'cantidadDeVeces' => $cantidadDeVeces,
-                    'observacion' => $observacion,
-                    'observacion2' => $observacion2,
-                    'observacion3' => $observacion3,
-                    'observacion4' => $observacion4,
-                    'observacionPredeterminadaPresente' => $observacionPredeterminadaPresente,
-                    'observacionPredeterminadaPresente2' => $observacionPredeterminadaPresente2,
-                    'observacionPredeterminadaPresente3' => $observacionPredeterminadaPresente3,
-                    'observacionPredeterminadaPresente4' => $observacionPredeterminadaPresente4,
-                ];
-            } else {
+                $sumaPromedio = 0;
+                $cantidadRespuestasCorrectas = 0;
+                $cantidadRespuestasIncorrectas = 0;
+    
                 $respuestas = [
-                    'mathPD1' => null,
-                    'mathPD2' => null,
-                    'mathPD3' => null,
-                    'mathPD4' => null,
-                    'mathPD5' => null,
-                    'mathPD6' => null,
-                    'mathPD7' => null,
-                    'mathPD8' => null,
-                    'mathPD9' => null,
-                    'mathPD10' => null,
+                    $mathDecimo->mathPD1,
+                    $mathDecimo->mathPD2,
+                    $mathDecimo->mathPD3,
+                    $mathDecimo->mathPD4,
+                    $mathDecimo->mathPD5,
+                    $mathDecimo->mathPD6,
+                    $mathDecimo->mathPD7,
+                    $mathDecimo->mathPD8,
+                    $mathDecimo->mathPD9,
+                    $mathDecimo->mathPD10,
+                ];
+    
+                $respuestasCorrectas = [
+                    'D. 32', //1
+                    'B. 125/8', //2
+                    'C. Cualitativa', //3
+                    'B. 5,66', //4
+                    'C. La longitud', // 5
+                    'C. Daniel reprobó matemáticas porque la suma de sus calificaciones da como resultado 16 y si dividimos entre 5 da como resultado 3.2.', // 6
+                    'B. 6 metros cuadrados',  // 7
+                    'A. Chocolate',  //8
+                    'D. 5x + 8x = 650.000', // 9
+                    'A. $50.000', // 10
+                ];
+    
+                foreach ($respuestas as $index => $respuesta) {
+                    if ($respuestasCorrectas[$index] !== null) {
+                        if ($respuesta == $respuestasCorrectas[$index]) {
+                            $cantidadRespuestasCorrectas++;
+                            $sumaPromedio += 0.5;
+                        } else {
+                            $cantidadRespuestasIncorrectas++;
+                        }
+                    }
+                }
+    
+                $cantidadDeVeces = MathDecimo::where('user_id', $user->id)->count();
+    
+                $mathDecimo->update([
+                    'averagePD' => $sumaPromedio,
+                    'attemptsPD' => $cantidadDeVeces,
+                    'correctPD' => $cantidadRespuestasCorrectas,
+                    'incorrectPD' => $cantidadRespuestasIncorrectas,
+                ]);
+    
+                $promedioData[] = [
+                    'id' => $user->id,
+                    'user' => $user,
+                    'promedio' => $sumaPromedio,
+                    'cantidadRespuestasBuenas' => $cantidadRespuestasCorrectas,
+                    'cantidadRespuestasMalas' => $cantidadRespuestasIncorrectas,
+                    'cantidadDeVeces' => $cantidadDeVeces,
                 ];
             }
         }
@@ -963,257 +690,299 @@ class MathController extends Controller
     {
         // Validar los datos del formulario
         $request->validate([
-            'mathPC1' => 'required|integer|in:1,5',
-            'mathPC2' => 'required|integer|in:1,5',
-            'mathPC3' => 'required|integer|in:1,5',
-            'mathPC4' => 'required|integer|in:1,5',
-            'mathPC5' => 'required|integer|in:1,5',
-            'mathPC6' => 'required|integer|in:1,5',
-            'mathPC7' => 'required|integer|in:1,5',
-            'mathPC8' => 'required|integer|in:1,5',
-            'mathPC9' => 'required|integer|in:1,5',
-            'mathPC10' => 'required|integer|in:1,5',
+            'mathPC1' => 'required|string',
+            'mathPC2' => 'required|string',
+            'mathPC3' => 'required|string',
+            'mathPC4' => 'required|string',
+            'mathPC5' => 'required|string',
+            'mathPC6' => 'required|string',
+            'mathPC7' => 'required|string',
+            'mathPC8' => 'required|string',
+            'mathPC9' => 'required|string',
+            'mathPC10' => 'required|string',
         ]);
 
         $user_id = Auth::id();
+        $existingRecord = MathCuarto::where('user_id', $user_id)->first();
 
-        $mathCuarto = new MathCuarto();
-        $mathCuarto->user_id = $user_id;
-        $mathCuarto->mathPC1 = $request->input('mathPC1');
-        $mathCuarto->mathPC2 = $request->input('mathPC2');
-        $mathCuarto->mathPC3 = $request->input('mathPC3');
-        $mathCuarto->mathPC4 = $request->input('mathPC4');
-        $mathCuarto->mathPC5 = $request->input('mathPC5');
-        $mathCuarto->mathPC6 = $request->input('mathPC6');
-        $mathCuarto->mathPC7 = $request->input('mathPC7');
-        $mathCuarto->mathPC8 = $request->input('mathPC8');
-        $mathCuarto->mathPC9 = $request->input('mathPC9');
-        $mathCuarto->mathPC10 = $request->input('mathPC10');
+        if ($existingRecord) {
+            return redirect()->back()->with('error', 'El cuestionario ya ha sido resuelto');
+        }else {
 
-        $mathCuarto->save();
+            $mathCuarto = new MathCuarto();
+            $mathCuarto->user_id = $user_id;
+            $mathCuarto->mathPC1 = $request->input('mathPC1');
+            $mathCuarto->mathPC2 = $request->input('mathPC2');
+            $mathCuarto->mathPC3 = $request->input('mathPC3');
+            $mathCuarto->mathPC4 = $request->input('mathPC4');
+            $mathCuarto->mathPC5 = $request->input('mathPC5');
+            $mathCuarto->mathPC6 = $request->input('mathPC6');
+            $mathCuarto->mathPC7 = $request->input('mathPC7');
+            $mathCuarto->mathPC8 = $request->input('mathPC8');
+            $mathCuarto->mathPC9 = $request->input('mathPC9');
+            $mathCuarto->mathPC10 = $request->input('mathPC10');
 
-        return redirect()->back()->with('success', 'Datos almacenados correctamente.');
+            $mathCuarto->save();
+
+            return redirect()->back()->with('success', 'Datos almacenados correctamente.');
+        }
     }
 
     public function store_math5(Request $request)
     {
         // Validar los datos del formulario
         $request->validate([
-            'mathPQ1' => 'required|integer|in:1,5',
-            'mathPQ2' => 'required|integer|in:1,5',
-            'mathPQ3' => 'required|integer|in:1,5',
-            'mathPQ4' => 'required|integer|in:1,5',
-            'mathPQ5' => 'required|integer|in:1,5',
-            'mathPQ6' => 'required|integer|in:1,5',
-            'mathPQ7' => 'required|integer|in:1,5',
-            'mathPQ8' => 'required|integer|in:1,5',
-            'mathPQ9' => 'required|integer|in:1,5',
-            'mathPQ10' => 'required|integer|in:1,5',
+            'mathPQ1' => 'required|string',
+            'mathPQ2' => 'required|string',
+            'mathPQ3' => 'required|string',
+            'mathPQ4' => 'required|string',
+            'mathPQ5' => 'required|string',
+            'mathPQ6' => 'required|string',
+            'mathPQ7' => 'required|string',
+            'mathPQ8' => 'required|string',
+            'mathPQ9' => 'required|string',
+            'mathPQ10' => 'required|string',
         ]);
 
         $user_id = Auth::id();
+        $existingRecord = MathQuinto::where('user_id', $user_id)->first();
 
-        $mathQuinto = new MathQuinto();
-        $mathQuinto->user_id = $user_id;
-        $mathQuinto->mathPQ1 = $request->input('mathPQ1');
-        $mathQuinto->mathPQ2 = $request->input('mathPQ2');
-        $mathQuinto->mathPQ3 = $request->input('mathPQ3');
-        $mathQuinto->mathPQ4 = $request->input('mathPQ4');
-        $mathQuinto->mathPQ5 = $request->input('mathPQ5');
-        $mathQuinto->mathPQ6 = $request->input('mathPQ6');
-        $mathQuinto->mathPQ7 = $request->input('mathPQ7');
-        $mathQuinto->mathPQ8 = $request->input('mathPQ8');
-        $mathQuinto->mathPQ9 = $request->input('mathPQ9');
-        $mathQuinto->mathPQ10 = $request->input('mathPQ10');
+        if ($existingRecord) {
+            return redirect()->back()->with('error', 'El cuestionario ya ha sido resuelto');
+        }else {
 
-        $mathQuinto->save();
+            $mathQuinto = new MathQuinto();
+            $mathQuinto->user_id = $user_id;
+            $mathQuinto->mathPQ1 = $request->input('mathPQ1');
+            $mathQuinto->mathPQ2 = $request->input('mathPQ2');
+            $mathQuinto->mathPQ3 = $request->input('mathPQ3');
+            $mathQuinto->mathPQ4 = $request->input('mathPQ4');
+            $mathQuinto->mathPQ5 = $request->input('mathPQ5');
+            $mathQuinto->mathPQ6 = $request->input('mathPQ6');
+            $mathQuinto->mathPQ7 = $request->input('mathPQ7');
+            $mathQuinto->mathPQ8 = $request->input('mathPQ8');
+            $mathQuinto->mathPQ9 = $request->input('mathPQ9');
+            $mathQuinto->mathPQ10 = $request->input('mathPQ10');
 
-        return redirect()->back()->with('success', 'Datos almacenados correctamente.');
+            $mathQuinto->save();
+
+            return redirect()->back()->with('success', 'Datos almacenados correctamente.');
+        }
     }
 
     public function store_math6(Request $request)
     {
         // Validar los datos del formulario
         $request->validate([
-            'mathPSX1' => 'required|integer|in:1,5',
-            'mathPSX2' => 'required|integer|in:1,5',
-            'mathPSX3' => 'required|integer|in:1,5',
-            'mathPSX4' => 'required|integer|in:1,5',
-            'mathPSX5' => 'required|integer|in:1,5',
-            'mathPSX6' => 'required|integer|in:1,5',
-            'mathPSX7' => 'required|integer|in:1,5',
-            'mathPSX8' => 'required|integer|in:1,5',
-            'mathPSX9' => 'required|integer|in:1,5',
-            'mathPSX10' => 'required|integer|in:1,5',
+            'mathPSX1' => 'required|string',
+            'mathPSX2' => 'required|string',
+            'mathPSX3' => 'required|string',
+            'mathPSX4' => 'required|string',
+            'mathPSX5' => 'required|string',
+            'mathPSX6' => 'required|string',
+            'mathPSX7' => 'required|string',
+            'mathPSX8' => 'required|string',
+            'mathPSX9' => 'required|string',
+            'mathPSX10' => 'required|string',
         ]);
 
         $user_id = Auth::id();
+        $existingRecord = MathSexto::where('user_id', $user_id)->first();
 
-        // Cambiar el modelo a MathSexto
-        $mathSexto = new MathSexto();
-        $mathSexto->user_id = $user_id;
-        $mathSexto->mathPSX1 = $request->input('mathPSX1');
-        $mathSexto->mathPSX2 = $request->input('mathPSX2');
-        $mathSexto->mathPSX3 = $request->input('mathPSX3');
-        $mathSexto->mathPSX4 = $request->input('mathPSX4');
-        $mathSexto->mathPSX5 = $request->input('mathPSX5');
-        $mathSexto->mathPSX6 = $request->input('mathPSX6');
-        $mathSexto->mathPSX7 = $request->input('mathPSX7');
-        $mathSexto->mathPSX8 = $request->input('mathPSX8');
-        $mathSexto->mathPSX9 = $request->input('mathPSX9');
-        $mathSexto->mathPSX10 = $request->input('mathPSX10');
+        if ($existingRecord) {
+            return redirect()->back()->with('error', 'El cuestionario ya ha sido resuelto');
+        }else {
 
-        $mathSexto->save();
+            // Cambiar el modelo a MathSexto
+            $mathSexto = new MathSexto();
+            $mathSexto->user_id = $user_id;
+            $mathSexto->mathPSX1 = $request->input('mathPSX1');
+            $mathSexto->mathPSX2 = $request->input('mathPSX2');
+            $mathSexto->mathPSX3 = $request->input('mathPSX3');
+            $mathSexto->mathPSX4 = $request->input('mathPSX4');
+            $mathSexto->mathPSX5 = $request->input('mathPSX5');
+            $mathSexto->mathPSX6 = $request->input('mathPSX6');
+            $mathSexto->mathPSX7 = $request->input('mathPSX7');
+            $mathSexto->mathPSX8 = $request->input('mathPSX8');
+            $mathSexto->mathPSX9 = $request->input('mathPSX9');
+            $mathSexto->mathPSX10 = $request->input('mathPSX10');
 
-        return redirect()->back()->with('success', 'Datos almacenados correctamente.');
+            $mathSexto->save();
+
+            return redirect()->back()->with('success', 'Datos almacenados correctamente.');
+        }
     }
 
     public function store_math7(Request $request)
     {
         // Validar los datos del formulario
         $request->validate([
-            'mathPS1' => 'required|integer|in:1,5',
-            'mathPS2' => 'required|integer|in:1,5',
-            'mathPS3' => 'required|integer|in:1,5',
-            'mathPS4' => 'required|integer|in:1,5',
-            'mathPS5' => 'required|integer|in:1,5',
-            'mathPS6' => 'required|integer|in:1,5',
-            'mathPS7' => 'required|integer|in:1,5',
-            'mathPS8' => 'required|integer|in:1,5',
-            'mathPS9' => 'required|integer|in:1,5',
-            'mathPS10' => 'required|integer|in:1,5',
+            'mathPS1' => 'required|string',
+            'mathPS2' => 'required|string',
+            'mathPS3' => 'required|string',
+            'mathPS4' => 'required|string',
+            'mathPS5' => 'required|string',
+            'mathPS6' => 'required|string',
+            'mathPS7' => 'required|string',
+            'mathPS8' => 'required|string',
+            'mathPS9' => 'required|string',
+            'mathPS10' => 'required|string',
         ]);
 
         $user_id = Auth::id();
+        $existingRecord = MathSeptimo::where('user_id', $user_id)->first();
 
-        // Cambiar el modelo a MathSexto
-        $mathSeptimo = new MathSeptimo();
-        $mathSeptimo->user_id = $user_id;
-        $mathSeptimo->mathPS1 = $request->input('mathPS1');
-        $mathSeptimo->mathPS2 = $request->input('mathPS2');
-        $mathSeptimo->mathPS3 = $request->input('mathPS3');
-        $mathSeptimo->mathPS4 = $request->input('mathPS4');
-        $mathSeptimo->mathPS5 = $request->input('mathPS5');
-        $mathSeptimo->mathPS6 = $request->input('mathPS6');
-        $mathSeptimo->mathPS7 = $request->input('mathPS7');
-        $mathSeptimo->mathPS8 = $request->input('mathPS8');
-        $mathSeptimo->mathPS9 = $request->input('mathPS9');
-        $mathSeptimo->mathPS10 = $request->input('mathPS10');
+        if ($existingRecord) {
+            return redirect()->back()->with('error', 'El cuestionario ya ha sido resuelto');
+        }else {
 
-        $mathSeptimo->save();
+            // Cambiar el modelo a MathSexto
+            $mathSeptimo = new MathSeptimo();
+            $mathSeptimo->user_id = $user_id;
+            $mathSeptimo->mathPS1 = $request->input('mathPS1');
+            $mathSeptimo->mathPS2 = $request->input('mathPS2');
+            $mathSeptimo->mathPS3 = $request->input('mathPS3');
+            $mathSeptimo->mathPS4 = $request->input('mathPS4');
+            $mathSeptimo->mathPS5 = $request->input('mathPS5');
+            $mathSeptimo->mathPS6 = $request->input('mathPS6');
+            $mathSeptimo->mathPS7 = $request->input('mathPS7');
+            $mathSeptimo->mathPS8 = $request->input('mathPS8');
+            $mathSeptimo->mathPS9 = $request->input('mathPS9');
+            $mathSeptimo->mathPS10 = $request->input('mathPS10');
 
-        return redirect()->back()->with('success', 'Datos almacenados correctamente.');
+            $mathSeptimo->save();
+
+            return redirect()->back()->with('success', 'Datos almacenados correctamente.');
+        }
     }
 
     public function store_math8(Request $request)
     {
         // Validar los datos del formulario
         $request->validate([
-            'mathPO1' => 'required|integer|in:1,5',
-            'mathPO2' => 'required|integer|in:1,5',
-            'mathPO3' => 'required|integer|in:1,5',
-            'mathPO4' => 'required|integer|in:1,5',
-            'mathPO5' => 'required|integer|in:1,5',
-            'mathPO6' => 'required|integer|in:1,5',
-            'mathPO7' => 'required|integer|in:1,5',
-            'mathPO8' => 'required|integer|in:1,5',
-            'mathPO9' => 'required|integer|in:1,5',
-            'mathPO10' => 'required|integer|in:1,5',
+            'mathPO1' => 'required|string',
+            'mathPO2' => 'required|string',
+            'mathPO3' => 'required|string',
+            'mathPO4' => 'required|string',
+            'mathPO5' => 'required|string',
+            'mathPO6' => 'required|string',
+            'mathPO7' => 'required|string',
+            'mathPO8' => 'required|string',
+            'mathPO9' => 'required|string',
+            'mathPO10' => 'required|string',
         ]);
 
         $user_id = Auth::id();
+        $existingRecord = MathOctavo::where('user_id', $user_id)->first();
 
-        // Cambiar el modelo a MathSexto
-        $mathOctavo = new MathOctavo();
-        $mathOctavo->user_id = $user_id;
-        $mathOctavo->mathPO1 = $request->input('mathPO1');
-        $mathOctavo->mathPO2 = $request->input('mathPO2');
-        $mathOctavo->mathPO3 = $request->input('mathPO3');
-        $mathOctavo->mathPO4 = $request->input('mathPO4');
-        $mathOctavo->mathPO5 = $request->input('mathPO5');
-        $mathOctavo->mathPO6 = $request->input('mathPO6');
-        $mathOctavo->mathPO7 = $request->input('mathPO7');
-        $mathOctavo->mathPO8 = $request->input('mathPO8');
-        $mathOctavo->mathPO9 = $request->input('mathPO9');
-        $mathOctavo->mathPO10 = $request->input('mathPO10');
+        if ($existingRecord) {
+            return redirect()->back()->with('error', 'El cuestionario ya ha sido resuelto');
+        }else {
 
-        $mathOctavo->save();
+            // Cambiar el modelo a MathSexto
+            $mathOctavo = new MathOctavo();
+            $mathOctavo->user_id = $user_id;
+            $mathOctavo->mathPO1 = $request->input('mathPO1');
+            $mathOctavo->mathPO2 = $request->input('mathPO2');
+            $mathOctavo->mathPO3 = $request->input('mathPO3');
+            $mathOctavo->mathPO4 = $request->input('mathPO4');
+            $mathOctavo->mathPO5 = $request->input('mathPO5');
+            $mathOctavo->mathPO6 = $request->input('mathPO6');
+            $mathOctavo->mathPO7 = $request->input('mathPO7');
+            $mathOctavo->mathPO8 = $request->input('mathPO8');
+            $mathOctavo->mathPO9 = $request->input('mathPO9');
+            $mathOctavo->mathPO10 = $request->input('mathPO10');
 
-        return redirect()->back()->with('success', 'Datos almacenados correctamente.');
+            $mathOctavo->save();
+
+            return redirect()->back()->with('success', 'Datos almacenados correctamente.');
+        }
     }
 
     public function store_math9(Request $request)
     {
         // Validar los datos del formulario
         $request->validate([
-            'mathPNO1' => 'required|integer|in:1,5',
-            'mathPNO2' => 'required|integer|in:1,5',
-            'mathPNO3' => 'required|integer|in:1,5',
-            'mathPNO4' => 'required|integer|in:1,5',
-            'mathPNO5' => 'required|integer|in:1,5',
-            'mathPNO6' => 'required|integer|in:1,5',
-            'mathPNO7' => 'required|integer|in:1,5',
-            'mathPNO8' => 'required|integer|in:1,5',
-            'mathPNO9' => 'required|integer|in:1,5',
-            'mathPNO10' => 'required|integer|in:1,5',
+            'mathPNO1' => 'required|string',
+            'mathPNO2' => 'required|string',
+            'mathPNO3' => 'required|string',
+            'mathPNO4' => 'required|string',
+            'mathPNO5' => 'required|string',
+            'mathPNO6' => 'required|string',
+            'mathPNO7' => 'required|string',
+            'mathPNO8' => 'required|string',
+            'mathPNO9' => 'required|string',
+            'mathPNO10' => 'required|string',
         ]);
 
         $user_id = Auth::id();
+        $existingRecord = MathNoveno::where('user_id', $user_id)->first();
 
-        // Cambiar el modelo a MathSexto
-        $mathNoveno = new MathNoveno();
-        $mathNoveno->user_id = $user_id;
-        $mathNoveno->mathPNO1 = $request->input('mathPNO1');
-        $mathNoveno->mathPNO2 = $request->input('mathPNO2');
-        $mathNoveno->mathPNO3 = $request->input('mathPNO3');
-        $mathNoveno->mathPNO4 = $request->input('mathPNO4');
-        $mathNoveno->mathPNO5 = $request->input('mathPNO5');
-        $mathNoveno->mathPNO6 = $request->input('mathPNO6');
-        $mathNoveno->mathPNO7 = $request->input('mathPNO7');
-        $mathNoveno->mathPNO8 = $request->input('mathPNO8');
-        $mathNoveno->mathPNO9 = $request->input('mathPNO9');
-        $mathNoveno->mathPNO10 = $request->input('mathPNO10');
+        if ($existingRecord) {
+            return redirect()->back()->with('error', 'El cuestionario ya ha sido resuelto');
+        }else {
 
-        $mathNoveno->save();
+            // Cambiar el modelo a MathSexto
+            $mathNoveno = new MathNoveno();
+            $mathNoveno->user_id = $user_id;
+            $mathNoveno->mathPNO1 = $request->input('mathPNO1');
+            $mathNoveno->mathPNO2 = $request->input('mathPNO2');
+            $mathNoveno->mathPNO3 = $request->input('mathPNO3');
+            $mathNoveno->mathPNO4 = $request->input('mathPNO4');
+            $mathNoveno->mathPNO5 = $request->input('mathPNO5');
+            $mathNoveno->mathPNO6 = $request->input('mathPNO6');
+            $mathNoveno->mathPNO7 = $request->input('mathPNO7');
+            $mathNoveno->mathPNO8 = $request->input('mathPNO8');
+            $mathNoveno->mathPNO9 = $request->input('mathPNO9');
+            $mathNoveno->mathPNO10 = $request->input('mathPNO10');
 
-        return redirect()->back()->with('success', 'Datos almacenados correctamente.');
+            $mathNoveno->save();
+
+            return redirect()->back()->with('success', 'Datos almacenados correctamente.');
+        }
     }
 
     public function store_math10(Request $request)
     {
         // Validar los datos del formulario
         $request->validate([
-            'mathPD1' => 'required|integer|in:1,5',
-            'mathPD2' => 'required|integer|in:1,5',
-            'mathPD3' => 'required|integer|in:1,5',
-            'mathPD4' => 'required|integer|in:1,5',
-            'mathPD5' => 'required|integer|in:1,5',
-            'mathPD6' => 'required|integer|in:1,5',
-            'mathPD7' => 'required|integer|in:1,5',
-            'mathPD8' => 'required|integer|in:1,5',
-            'mathPD9' => 'required|integer|in:1,5',
-            'mathPD10' => 'required|integer|in:1,5',
+            'mathPD1' => 'required|string',
+            'mathPD2' => 'required|string',
+            'mathPD3' => 'required|string',
+            'mathPD4' => 'required|string',
+            'mathPD5' => 'required|string',
+            'mathPD6' => 'required|string',
+            'mathPD7' => 'required|string',
+            'mathPD8' => 'required|string',
+            'mathPD9' => 'required|string',
+            'mathPD10' => 'required|string',
         ]);
 
         $user_id = Auth::id();
+        $existingRecord = MathDecimo::where('user_id', $user_id)->first();
 
-        // Cambiar el modelo a MathSexto
-        $mathDecimo = new MathDecimo();
-        $mathDecimo->user_id = $user_id;
-        $mathDecimo->mathPD1 = $request->input('mathPD1');
-        $mathDecimo->mathPD2 = $request->input('mathPD2');
-        $mathDecimo->mathPD3 = $request->input('mathPD3');
-        $mathDecimo->mathPD4 = $request->input('mathPD4');
-        $mathDecimo->mathPD5 = $request->input('mathPD5');
-        $mathDecimo->mathPD6 = $request->input('mathPD6');
-        $mathDecimo->mathPD7 = $request->input('mathPD7');
-        $mathDecimo->mathPD8 = $request->input('mathPD8');
-        $mathDecimo->mathPD9 = $request->input('mathPD9');
-        $mathDecimo->mathPD10 = $request->input('mathPD10');
+        if ($existingRecord) {
+            return redirect()->back()->with('error', 'El cuestionario ya ha sido resuelto');
+        }else {
 
-        $mathDecimo->save();
+            // Cambiar el modelo a MathSexto
+            $mathDecimo = new MathDecimo();
+            $mathDecimo->user_id = $user_id;
+            $mathDecimo->mathPD1 = $request->input('mathPD1');
+            $mathDecimo->mathPD2 = $request->input('mathPD2');
+            $mathDecimo->mathPD3 = $request->input('mathPD3');
+            $mathDecimo->mathPD4 = $request->input('mathPD4');
+            $mathDecimo->mathPD5 = $request->input('mathPD5');
+            $mathDecimo->mathPD6 = $request->input('mathPD6');
+            $mathDecimo->mathPD7 = $request->input('mathPD7');
+            $mathDecimo->mathPD8 = $request->input('mathPD8');
+            $mathDecimo->mathPD9 = $request->input('mathPD9');
+            $mathDecimo->mathPD10 = $request->input('mathPD10');
 
-        return redirect()->back()->with('success', 'Datos almacenados correctamente.');
+            $mathDecimo->save();
+
+            return redirect()->back()->with('success', 'Datos almacenados correctamente.');
+        }
     }
 
     public function resetearPuntosMath4()
