@@ -170,7 +170,9 @@ class ConceptController extends Controller
             }
 
             if (!empty($request->input('observation'))) { //en esta linea de codigo me aseguro de que el campo no este vacio
-                $newObservation = $existingObservation ? $existingObservation . '\n\n' . '- ' . $request->input('observation') : $request->input('observation'); //aca se crea la nueva observacion haciedo una condicional, si existe una observacion lo que hace es que concatena la observacion existente con la nueva que se añadio separadas por un '-', sino solo se añade la observacion nueva
+                $newObservation = $existingObservation ? $existingObservation . '<br><br>' . '- ' . $request->input('observation') : $request->input('observation'); //aca se crea la nueva observacion haciedo una condicional, si existe una observacion lo que hace es que concatena la observacion existente con la nueva que se añadio separadas por un '-', sino solo se añade la observacion nueva
+
+                $newObservation = preg_replace("/[\r\n]+/", "\n\n", $newObservation);
 
                 $ConceptDocenteSpanish->ObservationDocenteSpanish = $newObservation; //en el campo observationDocenteSpanish de la tabla concepts se esta agregando la nueva observacion
                 $ConceptDocenteSpanish->save(); //se gaurda la observacion en la BD
@@ -243,7 +245,9 @@ class ConceptController extends Controller
             }
 
             if (!empty($request->input('observation'))) {
-                $newObservation = $existingObservation ? $existingObservation . '\n\n' . '- ' . $request->input('observation') : $request->input('observation');
+                $newObservation = $existingObservation ? $existingObservation . '<br><br>' . '- ' . $request->input('observation') : $request->input('observation');
+
+                $newObservation = preg_replace("/[\r\n]+/", "\n\n", $newObservation);
 
                 $ConceptDocenteMath->ObservationDocenteMath = $newObservation;
                 $ConceptDocenteMath->save();
@@ -316,7 +320,9 @@ class ConceptController extends Controller
             }
 
             if (!empty($request->input('observation'))) {
-                $newObservation = $existingObservation ? $existingObservation . '\n\n' . '- ' . $request->input('observation') : $request->input('observation');
+                $newObservation = $existingObservation ? $existingObservation . '<br><br>' . '- ' . $request->input('observation') : $request->input('observation');
+
+                $newObservation = preg_replace("/[\r\n]+/", "\n\n", $newObservation);
 
                 $ConceptDocenteEngish->ObservationDocenteEnglish = $newObservation;
                 $ConceptDocenteEngish->save();
@@ -389,7 +395,9 @@ class ConceptController extends Controller
             }
 
             if (!empty($request->input('observation'))) {
-                $newObservation = $existingObservation ? $existingObservation . '\n\n' . '- ' . $request->input('observation') : $request->input('observation');
+                $newObservation = $existingObservation ? $existingObservation . '<br>' . '- ' . $request->input('observation') : $request->input('observation');
+
+                $newObservation = preg_replace("/[\r\n]+/", "\n\n", $newObservation);
 
                 $ConceptPsicoorientador->ObservationPsicoorientador = $newObservation;
                 $ConceptPsicoorientador->save();
@@ -462,7 +470,9 @@ class ConceptController extends Controller
             }
 
             if (!empty($request->input('observation'))) {
-                $newObservation = $existingObservation ? $existingObservation . '\n\n' . '- ' . $request->input('observation') : $request->input('observation');
+                $newObservation = $existingObservation ? $existingObservation . '<br><br>' . '- ' . $request->input('observation') : $request->input('observation');
+
+                $newObservation = preg_replace("/[\r\n]+/", "\n\n", $newObservation);
 
                 $ConceptRector->ObservationRector = $newObservation;
                 $ConceptRector->save();
@@ -535,7 +545,9 @@ class ConceptController extends Controller
             }
 
             if (!empty($request->input('observation'))) {
-                $newObservation = $existingObservation ? $existingObservation . '\n\n' . '- ' . $request->input('observation') : $request->input('observation');
+                $newObservation = $existingObservation ? $existingObservation . '<br><br>' . '- ' . $request->input('observation') : $request->input('observation');
+
+                $newObservation = preg_replace("/[\r\n]+/", "\n\n", $newObservation);
 
                 $ConceptAcademico->ObservationAcademico = $newObservation;
                 $ConceptAcademico->save();
@@ -609,7 +621,9 @@ class ConceptController extends Controller
             }
 
             if (!empty($request->input('observation'))) {
-                $newObservation = $existingObservation ? $existingObservation . '\n\n' . '- ' . $request->input('observation') : $request->input('observation');
+                $newObservation = $existingObservation ? $existingObservation . '<br><br>' . '- ' . $request->input('observation') : $request->input('observation');
+
+                $newObservation = preg_replace("/[\r\n]+/", "\n\n", $newObservation);
 
                 $ConceptConvivencia->ObservationConvivencia = $newObservation;
                 $ConceptConvivencia->save();

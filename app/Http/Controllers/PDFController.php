@@ -12,6 +12,7 @@ use App\Models\SpanishCuarto;
 use App\Models\SpanishQuinto;
 use App\Models\SpanishSexto;
 use App\Models\Concept;
+use Illuminate\Support\Facades\Log;
 
 class PDFController extends Controller
 {
@@ -271,5 +272,8 @@ class PDFController extends Controller
         $pdf->Output(public_path($filename), "F");
 
         return response()->download(public_path($filename));
+
+        //  Log::info('PDF: ' . json_encode($dataSecondPage));
+        //  return response()->json(['promediosss' => $dataSecondPage]);
     }
 }

@@ -160,16 +160,6 @@
 
 
                                             @else
-                                                @if(auth()->check() && auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'spanish')
-                                                    @can('save.observationsDocenteSpanish')
-                                                    <button
-                                                        onclick="openObservationModalSpanish('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
-                                                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
-                                                        <i class="fas fa-plus text-sm"></i>
-                                                    </button>
-                                                    @endcan
-                                                @endif
-
                                                 @php
                                                     // Array de observaciones
                                                     $observacionSpanish = $user['observacionSpanish'];
@@ -231,16 +221,6 @@
                                                     @endcan
                                                 @endif
                                             @else
-                                                @if(auth()->check() && auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'math')
-                                                    @can('save.observationsDocenteMath')
-                                                    <button
-                                                        onclick="openObservationModalMath('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
-                                                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
-                                                        <i class="fas fa-plus text-sm"></i>
-                                                    </button>
-                                                    @endcan
-                                                @endif
-
                                                 @php
                                                     // Array de observaciones
                                                     $observacionMath = $user['observacionMath'];
@@ -302,17 +282,6 @@
                                                     @endcan
                                                 @endif
                                             @else
-
-                                                @if(auth()->check() && auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'english')
-                                                    @can('save.observationsDocenteEnglish')
-                                                    <button
-                                                        onclick="openObservationModalEnglish('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
-                                                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
-                                                        <i class="fas fa-plus text-sm"></i>
-                                                    </button>
-                                                    @endcan
-                                                @endif
-
                                                 @php
                                                     // Array de observaciones
                                                     $observacionEnglish = $user['observacionEnglish'];
@@ -360,10 +329,6 @@
                                             @endif
                                         @endif
                                     </td>
-                                    
-                                
-
-
 
                                     <td class="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
                                         @if ($user['observacionPsicoorientador'])
@@ -379,16 +344,6 @@
                                                 @endif
 
                                             @else
-                                                @if(auth()->check() && auth()->user()->hasRole('Psicoorientador'))
-                                                    @can('save.observationsPsicoorientador')
-                                                    <button
-                                                        onclick="openObservationModalPsicoorientador('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
-                                                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
-                                                        <i class="fas fa-plus text-sm"></i>
-                                                    </button>
-                                                    @endcan
-                                                @endif
-
                                                 @php
                                                     // Array de observaciones
                                                     $observacionPsicoorientador = $user['observacionPsicoorientador'];
@@ -438,9 +393,6 @@
                                         @endif
                                     </td>
 
-
-
-                                    
                                     <td class="px-8 py-4 whitespace-no-wrap border-b border-gray-200">
                                         @if ($user['observacionAcademico'])
                                             @if ($user['observacionPredeterminadaPresenteAcademico'])
@@ -454,16 +406,6 @@
                                                     
                                                 @endif
                                             @else
-
-                                                @if(auth()->check() && auth()->user()->hasRole('CoordinadorAcademico'))
-                                                        
-                                                    <button
-                                                        onclick="openObservationModalAcademico('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
-                                                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
-                                                        <i class="fas fa-plus text-sm"></i>
-                                                    </button>
-                                                        
-                                                @endif
                                                 @php
                                                     // Array de observaciones
                                                     $observacionAcademico = $user['observacionAcademico'];
@@ -512,8 +454,6 @@
                                         @endif
                                     </td>
 
-
-
                                     <td class="px-8 py-4 whitespace-no-wrap border-b border-gray-200">
                                         @if ($user['observacionConvivencia'])
                                             @if ($user['observacionPredeterminadaPresenteConvivencia'])
@@ -527,16 +467,6 @@
                                                     
                                                 @endif
                                             @else
-
-                                                @if(auth()->check() && auth()->user()->hasRole('CoordinadorConvivencia'))
-                                                        
-                                                    <button
-                                                        onclick="openObservationModalConvivencia('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
-                                                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
-                                                        <i class="fas fa-plus text-sm"></i>
-                                                    </button>
-                                                    
-                                                @endif
                                                 @php
                                                     // Array de observaciones
                                                     $observacionConvivencia = $user['observacionConvivencia'];
@@ -584,9 +514,6 @@
                                         @endif
                                     </td>
 
-                                    
-
-
                                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                         @if ($user['observacionRector'])
                                             @if ($user['observacionPredeterminadaPresenteRector'])
@@ -600,16 +527,6 @@
                                                     @endcan
                                                 @endif
                                             @else
-
-                                                @if(auth()->check() && auth()->user()->hasRole('Rector'))
-                                                    @can('save.observationsRector')
-                                                    <button
-                                                        onclick="openObservationModalRector('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
-                                                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
-                                                        <i class="fas fa-plus text-sm"></i>
-                                                    </button>
-                                                    @endcan
-                                                @endif
                                                 @php
                                                     // Array de observaciones
                                                     $observacionRector = $user['observacionRector'];
