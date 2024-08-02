@@ -4,6 +4,8 @@
 
 @section('sub_title', 'Resultados de Grados 8 - Lengua Castellana')
 
+@section('content_dashboard')
+
 <style>
     .colored-toast.swal2-icon-success {
         background-color: #a5dc86 !important;
@@ -42,8 +44,6 @@
     }
 
 </style>
-
-@section('content_dashboard')
 
     <div class="flex flex-col lg:flex-row items-center justify-between m-2">
         <div class="flex items-center mb-2 lg:mb-0">

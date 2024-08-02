@@ -2,6 +2,8 @@
 
 @section('title', 'Formulario de Español grado 10°')
 
+@section('content_dashboard')
+
 <style>
     .colored-toast.swal2-icon-success {
         background-color: #a5dc86 !important;
@@ -40,8 +42,6 @@
     }
 
 </style>
-
-@section('content_dashboard')
 
     <div class="bg-white rounded-lg  p-7 mx-10">
             <a href="{{route('tables.spanish10')}}" type="submit"
