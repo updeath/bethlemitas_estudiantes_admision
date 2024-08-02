@@ -4,6 +4,45 @@
 
 @section('sub_title', 'Resultados de Grados 9 - Matemáticas')
 
+<style>
+    .colored-toast.swal2-icon-success {
+        background-color: #a5dc86 !important;
+    }
+
+    .colored-toast.swal2-icon-error {
+        background-color: #f27474 !important;
+    }
+
+    .colored-toast.swal2-icon-warning {
+        background-color: #f8bb86 !important;
+    }
+
+    .colored-toast.swal2-icon-info {
+        background-color: #3fc3ee !important;
+    }
+
+    .colored-toast.swal2-icon-question {
+        background-color: #87adbd !important;
+    }
+
+    .colored-toast .swal2-title {
+        color: white;
+    }
+
+    .colored-toast .swal2-close {
+        color: white;
+    }
+
+    .colored-toast .swal2-html-container {
+        color: white;
+    }
+
+    .add{
+        filter: drop-shadow(0 0 10px black )
+    }
+
+</style>
+
 @section('content_dashboard')
 
     <div class="flex flex-col lg:flex-row items-center justify-between m-2">
