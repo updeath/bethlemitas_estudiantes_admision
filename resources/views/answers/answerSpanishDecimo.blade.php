@@ -30,18 +30,51 @@
                 </thead>
                 <tbody>
                     @foreach($spanishDecimos as $spanishDecimo)
+                    @php
+                    $respuestas = [
+                        $spanishDecimo->spanishPD1,
+                        $spanishDecimo->spanishPD2,
+                        $spanishDecimo->spanishPD3,
+                        $spanishDecimo->spanishPD4,
+                        $spanishDecimo->spanishPD5,
+                        $spanishDecimo->spanishPD6,
+                        $spanishDecimo->spanishPD7,
+                        $spanishDecimo->spanishPD8,
+                        $spanishDecimo->spanishPD9,
+                        $spanishDecimo->spanishPD10
+                    ];
+
+                    $respuestasCorrectas = [
+                        'D. supone que una menor TE en el país se traduce en un sistema penal más eficiente.',
+                        'B. refutar la validez de un juicio previo.',
+                        'A. Evidencia/antítesis.',
+                        null,  // respuesta 4 no es una comparación de string
+                        null,  // respuesta 5 no es una comparación de string
+                        null,  // respuesta 6 no es una comparación de string
+                        null,  // respuesta 7 no es una comparación de string
+                        'A. La habilidad de comprender, analizar, evaluar y reflexionar sobre los textos escritos desde una perspectiva crítica.',
+                        'D. Un fragmento de una novela',
+                        'B. Le provoca miedo y repulsión',
+                    ];
+                    @endphp
                         <tr>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishDecimo->spanishPD1 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishDecimo->spanishPD2 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishDecimo->spanishPD3 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishDecimo->spanishPD4 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishDecimo->spanishPD5 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishDecimo->spanishPD6 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishDecimo->spanishPD7 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishDecimo->spanishPD8 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishDecimo->spanishPD9 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishDecimo->spanishPD10 }}</td>
-                            <!-- Agrega más columnas según los preguntas de tu tabla -->
+                            @foreach ($respuestas as $index => $respuesta)
+                                @if ($respuestasCorrectas[$index] !== null)
+                                    @if ($respuesta == $respuestasCorrectas[$index])
+                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100"><i class="fas fa-check text-sm" style="color: green"></i></td>
+                                    @else
+                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100"><i class="fas fa-x text-sm" style="color: red"></i></td>
+                                    @endif
+                                @else
+                                    @if ($respuesta >= 4)
+                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100"><i class="fas fa-check text-sm" style="color: green"></i></td>
+                                    @elseif ($respuesta < 4 && $respuesta >= 3)
+                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100"><i class="fas fa-check text-sm" style="color: #c2bd60"></i></td>
+                                    @elseif ($respuesta < 3)
+                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100"><i class="fas fa-x text-sm" style="color: red"></i></td>
+                                    @endif
+                                @endif
+                            @endforeach
                         </tr>
                     @endforeach
                 </tbody>

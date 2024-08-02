@@ -31,18 +31,43 @@
                 </thead>
                 <tbody>
                     @foreach($mathCuartos as $mathCuarto)
+                    @php
+                    $respuestas = [
+                        $mathCuarto->mathPC1,
+                        $mathCuarto->mathPC2,
+                        $mathCuarto->mathPC3,
+                        $mathCuarto->mathPC4,
+                        $mathCuarto->mathPC5,
+                        $mathCuarto->mathPC6,
+                        $mathCuarto->mathPC7,
+                        $mathCuarto->mathPC8,
+                        $mathCuarto->mathPC9,
+                        $mathCuarto->mathPC10
+                    ];
+
+                    $respuestasCorrectas = [
+                        'D. 90 minutos', //1
+                        'C. 100', //2
+                        'D', //3
+                        'A. 7, 9, 12', //4
+                        'D. 110 cm', // 5
+                        'C', // 6
+                        'C. 11',  // 7
+                        'D. 18',  //8
+                        'D. 100 metros', // 9
+                        'C', // 10
+                    ];
+                    @endphp
                         <tr>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathCuarto->mathPC1 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathCuarto->mathPC2 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathCuarto->mathPC3 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathCuarto->mathPC4 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathCuarto->mathPC5 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathCuarto->mathPC6 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathCuarto->mathPC7 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathCuarto->mathPC8 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathCuarto->mathPC9 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathCuarto->mathPC10 }}</td>
-                            <!-- Agrega más columnas según los preguntas de tu tabla -->
+                            @foreach ($respuestas as $index => $respuesta)
+                                @if ($respuestasCorrectas[$index] !== null)
+                                    @if ($respuesta == $respuestasCorrectas[$index])
+                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100"><i class="fas fa-check text-sm" style="color: green"></i></td>
+                                    @else
+                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100"><i class="fas fa-x text-sm" style="color: red"></i></td>
+                                    @endif
+                                @endif
+                            @endforeach
                         </tr>
                     @endforeach
                 </tbody>

@@ -30,18 +30,51 @@
                 </thead>
                 <tbody>
                     @foreach($spanishCuartos as $spanishCuarto)
+                    @php
+                    $respuestas = [
+                        $spanishCuarto->spanishPC1,
+                        $spanishCuarto->spanishPC2,
+                        $spanishCuarto->spanishPC3,
+                        $spanishCuarto->spanishPC4,
+                        $spanishCuarto->spanishPC5,
+                        $spanishCuarto->spanishPC6,
+                        $spanishCuarto->spanishPC7,
+                        $spanishCuarto->spanishPC8,
+                        $spanishCuarto->spanishPC9,
+                        $spanishCuarto->spanishPC10
+                    ];
+
+                    $respuestasCorrectas = [
+                        'D. Infinitivo',
+                        'C. El pastel no saldría bien porque la mantequilla no se batió.',
+                        'B. Sazonador',
+                        'C. Yerbabuena, agua y un poco de azúcar',
+                        'B. Verbos',
+                        'Opción 3', 
+                        'B. El libro ´Vida sana de las mascotas´, porque trata diversos aspectos sobre la crianza y cuidado de las mascotas',  // 
+                        null,  // respuesta 8 no es una comparación de string
+                        'B. Un cuento, porque narra una historia sobre un árbol',
+                        'C. Pedir el favor y agradecer nos ayuda a conseguir lo que queremos.',
+                    ];
+                    @endphp
                         <tr>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishCuarto->spanishPC1 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishCuarto->spanishPC2 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishCuarto->spanishPC3 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishCuarto->spanishPC4 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishCuarto->spanishPC5 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishCuarto->spanishPC6 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishCuarto->spanishPC7 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishCuarto->spanishPC8 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishCuarto->spanishPC9 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishCuarto->spanishPC10 }}</td>
-                            <!-- Agrega más columnas según los preguntas de tu tabla -->
+                            @foreach ($respuestas as $index => $respuesta)
+                                @if ($respuestasCorrectas[$index] !== null)
+                                    @if ($respuesta == $respuestasCorrectas[$index])
+                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100"><i class="fas fa-check text-sm" style="color: green"></i></td>
+                                    @else
+                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100"><i class="fas fa-x text-sm" style="color: red"></i></td>
+                                    @endif
+                                @else
+                                    @if ($respuesta >= 4)
+                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100"><i class="fas fa-check text-sm" style="color: green"></i></td>
+                                    @elseif ($respuesta < 4 && $respuesta >= 3)
+                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100"><i class="fas fa-check text-sm" style="color: #c2bd60"></i></td>
+                                    @elseif ($respuesta < 3)
+                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100"><i class="fas fa-x text-sm" style="color: red"></i></td>
+                                    @endif
+                                @endif
+                            @endforeach
                         </tr>
                     @endforeach
                 </tbody>

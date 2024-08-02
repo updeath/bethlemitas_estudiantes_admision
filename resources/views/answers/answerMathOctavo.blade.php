@@ -30,18 +30,43 @@
                 </thead>
                 <tbody>
                     @foreach($mathOctavos as $mathOctavo)
+                    @php
+                    $respuestas = [
+                        $mathOctavo->mathPO1,
+                        $mathOctavo->mathPO2,
+                        $mathOctavo->mathPO3,
+                        $mathOctavo->mathPO4,
+                        $mathOctavo->mathPO5,
+                        $mathOctavo->mathPO6,
+                        $mathOctavo->mathPO7,
+                        $mathOctavo->mathPO8,
+                        $mathOctavo->mathPO9,
+                        $mathOctavo->mathPO10
+                    ];
+
+                    $respuestasCorrectas = [
+                        'C. 5/3', //1
+                        'B. 125/8', //2
+                        'C. Cualitativa', //3
+                        'C. 1296', //4
+                        'D. 12', // 5
+                        'C. La longitud', // 6
+                        'B. 6 metros cuadrados',  // 7
+                        'A. Chocolate',  //8
+                        'A. 5x + 8x = 650.000', // 9
+                        'A. $50.000', // 10
+                    ];
+                    @endphp
                         <tr>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathOctavo->mathPO1 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathOctavo->mathPO2 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathOctavo->mathPO3 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathOctavo->mathPO4 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathOctavo->mathPO5 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathOctavo->mathPO6 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathOctavo->mathPO7 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathOctavo->mathPO8 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathOctavo->mathPO9 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathOctavo->mathPO10 }}</td>
-                            <!-- Agrega más columnas según los preguntas de tu tabla -->
+                            @foreach ($respuestas as $index => $respuesta)
+                                @if ($respuestasCorrectas[$index] !== null)
+                                    @if ($respuesta == $respuestasCorrectas[$index])
+                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100"><i class="fas fa-check text-sm" style="color: green"></i></td>
+                                    @else
+                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100"><i class="fas fa-x text-sm" style="color: red"></i></td>
+                                    @endif
+                                @endif
+                            @endforeach
                         </tr>
                     @endforeach
                 </tbody>

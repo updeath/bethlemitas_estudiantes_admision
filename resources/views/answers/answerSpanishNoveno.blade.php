@@ -30,18 +30,51 @@
                 </thead>
                 <tbody>
                     @foreach($spanishNovenos as $spanishNoveno)
+                    @php
+                    $respuestas = [
+                        $spanishNoveno->spanishPNO1,
+                        $spanishNoveno->spanishPNO2,
+                        $spanishNoveno->spanishPNO3,
+                        $spanishNoveno->spanishPNO4,
+                        $spanishNoveno->spanishPNO5,
+                        $spanishNoveno->spanishPNO6,
+                        $spanishNoveno->spanishPNO7,
+                        $spanishNoveno->spanishPNO8,
+                        $spanishNoveno->spanishPNO9,
+                        $spanishNoveno->spanishPNO10
+                    ];
+
+                    $respuestasCorrectas = [
+                        'D. Solicitar',
+                        'A. Breve',
+                        'B. Sintagma verbal',
+                        'B. Conjunción',
+                        'B. De ejemplificación',
+                        'A. Omnisciente',
+                        'B. Una choza grande.',
+                        'C. Añade una información adicional.',
+                        'C. Símil',
+                        'C. La violencia contra los pueblos indígenas y la barbarie de la explotación.',
+                    ];
+                    @endphp
                         <tr>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishNoveno->spanishPNO1 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishNoveno->spanishPNO2 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishNoveno->spanishPNO3 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishNoveno->spanishPNO4 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishNoveno->spanishPNO5 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishNoveno->spanishPNO6 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishNoveno->spanishPNO7 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishNoveno->spanishPNO8 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishNoveno->spanishPNO9 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $spanishNoveno->spanishPNO10 }}</td>
-                            <!-- Agrega más columnas según los preguntas de tu tabla -->
+                            @foreach ($respuestas as $index => $respuesta)
+                                @if ($respuestasCorrectas[$index] !== null)
+                                    @if ($respuesta == $respuestasCorrectas[$index])
+                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100"><i class="fas fa-check text-sm" style="color: green"></i></td>
+                                    @else
+                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100"><i class="fas fa-x text-sm" style="color: red"></i></td>
+                                    @endif
+                                @else
+                                    @if ($respuesta >= 4)
+                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100"><i class="fas fa-check text-sm" style="color: green"></i></td>
+                                    @elseif ($respuesta < 4 && $respuesta >= 3)
+                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100"><i class="fas fa-check text-sm" style="color: #c2bd60"></i></td>
+                                    @elseif ($respuesta < 3)
+                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100"><i class="fas fa-x text-sm" style="color: red"></i></td>
+                                    @endif
+                                @endif
+                            @endforeach
                         </tr>
                     @endforeach
                 </tbody>

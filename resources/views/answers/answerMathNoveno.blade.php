@@ -30,18 +30,43 @@
                 </thead>
                 <tbody>
                     @foreach($mathNovenos as $mathNoveno)
+                    @php
+                    $respuestas = [
+                        $mathNoveno->mathPNO1,
+                        $mathNoveno->mathPNO2,
+                        $mathNoveno->mathPNO3,
+                        $mathNoveno->mathPNO4,
+                        $mathNoveno->mathPNO5,
+                        $mathNoveno->mathPNO6,
+                        $mathNoveno->mathPNO7,
+                        $mathNoveno->mathPNO8,
+                        $mathNoveno->mathPNO9,
+                        $mathNoveno->mathPNO10
+                    ];
+
+                    $respuestasCorrectas = [
+                        'D. 32', //1
+                        'A. x = 3', //2
+                        'Opción 3', //3
+                        'Opción 2', //4
+                        'C. Daniel reprobó matemáticas, pues la suma de sus calificaciones da como resultado 16 y si dividimos entre 5 da como resultado 3,2.', // 5
+                        'Opción 4', // 6
+                        'Opción 2',  // 7
+                        'Opción 4',  //8
+                        'Opción 4', // 9
+                        'B. 5 años', // 10
+                    ];
+                    @endphp
                         <tr>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathNoveno->mathPNO1 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathNoveno->mathPNO2 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathNoveno->mathPNO3 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathNoveno->mathPNO4 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathNoveno->mathPNO5 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathNoveno->mathPNO6 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathNoveno->mathPNO7 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathNoveno->mathPNO8 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathNoveno->mathPNO9 }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100">{{ $mathNoveno->mathPNO10 }}</td>
-                            <!-- Agrega más columnas según los preguntas de tu tabla -->
+                            @foreach ($respuestas as $index => $respuesta)
+                                @if ($respuestasCorrectas[$index] !== null)
+                                    @if ($respuesta == $respuestasCorrectas[$index])
+                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100"><i class="fas fa-check text-sm" style="color: green"></i></td>
+                                    @else
+                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-100"><i class="fas fa-x text-sm" style="color: red"></i></td>
+                                    @endif
+                                @endif
+                            @endforeach
                         </tr>
                     @endforeach
                 </tbody>
