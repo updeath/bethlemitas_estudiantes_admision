@@ -95,7 +95,7 @@
                             <option value="transición" {{ $user->degree == 'transición' ? 'selected' : '' }}>transición
                             </option>  
 
-                            <option value="1°" {{ $user->degree == '1°' ? 'selected' : '' }}>1°A
+                            <option value="1°" {{ $user->degree == '1°' ? 'selected' : '' }}>1°
                             </option>
 
                             <option value="2°" {{ $user->degree == '2°' ? 'selected' : '' }}>2°

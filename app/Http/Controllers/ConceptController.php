@@ -59,8 +59,11 @@ class ConceptController extends Controller
                 });
             }
 
+            if ($auth_user->number_documment == 1112782480) {
+                $usersQuery->whereIn('degree', ['1°', '2°']);
+            }
             //aplicar el filtro de grados para el usuario logueado
-            if (!empty($loadDegrees)) {
+            elseif (!empty($loadDegrees)) {
                 $usersQuery->where(function ($q) use ($loadDegrees) {
                     foreach ($loadDegrees as $degree) {
                         $q->orWhere('degree', 'LIKE', '%' . $degree . '%');
