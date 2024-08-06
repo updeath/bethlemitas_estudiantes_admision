@@ -148,7 +148,7 @@
                                         @if ($user['observacionSpanish'])
                                             @if ($user['observacionPredeterminadaPresenteSpanish'])
 
-                                                @if(auth()->check() && auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'spanish')
+                                                @if(auth()->check() && auth()->user()->hasRole('Docente') && (auth()->user()->asignature == 'spanish' || auth()->user()->asignature == 'spanish/math' || auth()->user()->asignature == 'spanish/english'))
                                                     @can('save.observationsDocenteSpanish')
                                                     <button
                                                         onclick="openObservationModalSpanish('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
@@ -157,7 +157,6 @@
                                                     </button>
                                                     @endcan
                                                 @endif
-
 
                                             @else
                                                 @php
@@ -173,7 +172,7 @@
                                                     $observacionesConcatenadasSpanish = implode('<br> <br>- ', $observacionSpanishLimpia);
                                                 @endphp
                                                 <!-- Aca se esta haciendo una condicion pra que en caso tal de que el rol sea Rector pueda editar las observaciones-->
-                                                @if (Auth::user()->hasRole('Rector') || (Auth::user()->hasRole('Docente') && auth()->user()->asignature == 'spanish') )
+                                                @if (Auth::user()->hasRole('Rector') || (Auth::user()->hasRole('Docente') && (auth()->user()->asignature == 'spanish' || auth()->user()->asignature == 'spanish/math' || auth()->user()->asignature == 'spanish/english')) )
                                                     <button
                                                         onclick="openObservationModalVisualizarSpanish('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasSpanish }}', true)"
                                                         class="bg-gray-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
@@ -186,7 +185,7 @@
                                                         <i class="fas fa-eye text-sm"></i>
                                                     </button>
                                                 @endif
-                                                @if (Auth::user()->hasRole('Docente') && auth()->user()->asignature == 'spanish')
+                                                @if (Auth::user()->hasRole('Docente') && (auth()->user()->asignature == 'spanish' || auth()->user()->asignature == 'spanish/math' || auth()->user()->asignature == 'spanish/english'))
                                                     <button
                                                         onclick="openDigitalAsignatureSpanishDecimo('{{ $user['id'] }}')"
                                                         class="bg-green-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
@@ -195,7 +194,7 @@
                                                 @endif
                                             @endif
                                         @else
-                                                @if(auth()->check() && auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'spanish')
+                                                @if(auth()->check() && auth()->user()->hasRole('Docente') && (auth()->user()->asignature == 'spanish' || auth()->user()->asignature == 'spanish/math' || auth()->user()->asignature == 'spanish/english'))
                                                     @can('save.observationsDocenteSpanish')
                                                     <button
                                                         onclick="openObservationModalSpanish('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
@@ -211,7 +210,7 @@
                                     <td class="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
                                         @if ($user['observacionMath'])
                                             @if ($user['observacionPredeterminadaPresenteMath'])
-                                                @if(auth()->check() && auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'math')
+                                                @if(auth()->check() && auth()->user()->hasRole('Docente') && (auth()->user()->asignature == 'math' || auth()->user()->asignature == 'spanish/math' || auth()->user()->asignature == 'english/math' ))
                                                     @can('save.observationsDocenteMath')
                                                     <button
                                                         onclick="openObservationModalMath('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
@@ -234,7 +233,7 @@
                                                     $observacionesConcatenadasMath = implode('<br> <br>- ', $observacionMathLimpia);
                                                 @endphp
 
-                                                @if (Auth::user()->hasRole('Rector') || (Auth::user()->hasRole('Docente') && auth()->user()->asignature == 'math'))
+                                                @if (Auth::user()->hasRole('Rector') || (Auth::user()->hasRole('Docente') && (auth()->user()->asignature == 'math' || auth()->user()->asignature == 'spanish/math' || auth()->user()->asignature == 'english/math')))
                                                     <button
                                                         onclick="openObservationModalVisualizarMath('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasMath }}', true)"
                                                         class="bg-gray-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
@@ -247,7 +246,7 @@
                                                         <i class="fas fa-eye text-sm"></i>
                                                     </button>
                                                 @endif
-                                                @if (Auth::user()->hasRole('Docente') && auth()->user()->asignature == 'math')
+                                                @if (Auth::user()->hasRole('Docente') && (auth()->user()->asignature == 'math' || auth()->user()->asignature == 'spanish/math' || auth()->user()->asignature == 'english/math'))
                                                     <button
                                                         onclick="openDigitalAsignatureMathDecimo('{{ $user['id'] }}')"
                                                         class="bg-green-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
@@ -256,7 +255,7 @@
                                                 @endif
                                             @endif
                                         @else
-                                            @if(auth()->check() && auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'math')
+                                            @if(auth()->check() && auth()->user()->hasRole('Docente') && (auth()->user()->asignature == 'math' || auth()->user()->asignature == 'spanish/math' || auth()->user()->asignature == 'english/math'))
                                                 @can('save.observationsDocenteMath')
                                                 <button
                                                     onclick="openObservationModalMath('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
@@ -272,7 +271,7 @@
                                     <td class="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
                                         @if ($user['observacionEnglish'])
                                             @if ($user['observacionPredeterminadaPresenteEnglish'])
-                                                @if(auth()->check() && auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'english')
+                                                @if(auth()->check() && auth()->user()->hasRole('Docente') && (auth()->user()->asignature == 'english' || auth()->user()->asignature == 'spanish/english' || auth()->user()->asignature == 'english/math'))
                                                     @can('save.observationsDocenteEnglish')
                                                     <button
                                                         onclick="openObservationModalEnglish('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
@@ -295,7 +294,7 @@
                                                     $observacionesConcatenadasEnglish = implode('<br> <br>- ', $observacionEnglishLimpia);
                                                 @endphp
 
-                                                @if (Auth::user()->hasRole('Rector') || (Auth::user()->hasRole('Docente') && auth()->user()->asignature == 'english'))
+                                                @if (Auth::user()->hasRole('Rector') || (Auth::user()->hasRole('Docente') && (auth()->user()->asignature == 'english' || auth()->user()->asignature == 'spanish/english' || auth()->user()->asignature == 'english/math')))
                                                     <button
                                                         onclick="openObservationModalVisualizarEnglish('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}', '{{ $observacionesConcatenadasEnglish }}', true)"
                                                         class="bg-gray-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
@@ -308,7 +307,7 @@
                                                         <i class="fas fa-eye text-sm"></i>
                                                     </button>
                                                 @endif
-                                                @if (Auth::user()->hasRole('Docente') && auth()->user()->asignature == 'english')
+                                                @if (Auth::user()->hasRole('Docente') && (auth()->user()->asignature == 'english' || auth()->user()->asignature == 'spanish/english' || auth()->user()->asignature == 'english/math'))
                                                     <button
                                                         onclick="openDigitalAsignatureEnglishDecimo('{{ $user['id'] }}')"
                                                         class="bg-green-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded transition duration-300 ml-2">
@@ -318,7 +317,7 @@
                                             @endif
                                         @else
 
-                                            @if(auth()->check() && auth()->user()->hasRole('Docente') && auth()->user()->asignature == 'english')
+                                            @if(auth()->check() && auth()->user()->hasRole('Docente') && (auth()->user()->asignature == 'english' || auth()->user()->asignature == 'spanish/english'|| auth()->user()->asignature == 'english/math'))
                                                 @can('save.observationsDocenteEnglish')
                                                 <button
                                                     onclick="openObservationModalEnglish('{{ $user['name'] }}', {{ $user['id'] }}, '{{ $user['last_name'] }}')"
@@ -526,7 +525,7 @@
                                                     </button>
                                                     @endcan
                                                 @endif
-                                            @else
+                                            @else 
                                                 @php
                                                     // Array de observaciones
                                                     $observacionRector = $user['observacionRector'];
@@ -763,7 +762,7 @@
                     @endif
                     <!-- modal para abrir formulario o div de español segun el rol -->
                     @if (isset($user['name']))
-                        @if (Auth::user()->hasRole('Rector') || (Auth::user()->hasRole('Docente') && auth()->user()->asignature == 'spanish'))
+                        @if (Auth::user()->hasRole('Rector') || (Auth::user()->hasRole('Docente') && (auth()->user()->asignature == 'spanish' || auth()->user()->asignature == 'spanish/math' || auth()->user()->asignature == 'spanish/english')))
                             <form id="observationFormSpanishRector" action="{{ route('update.concepSpanishForRector', ['userId' => ':userId']) }}"
                             method="POST">
                                 @method('PUT')
@@ -863,7 +862,7 @@
                     @endif
                     <!-- modal para abrir formulario o div de matematicas segun el rol -->
                     @if (isset($user['name']))
-                        @if (Auth::user()->hasRole('Rector') || (Auth::user()->hasRole('Docente') && auth()->user()->asignature == 'math'))
+                        @if (Auth::user()->hasRole('Rector') || (Auth::user()->hasRole('Docente') && (auth()->user()->asignature == 'math' || auth()->user()->asignature == 'spanish/math' || auth()->user()->asignature == 'english/math')))
                             <form id="observationFormMathRector" action="{{ route('update.concepMathForRector', ['userId' => ':userId']) }}"
                             method="POST">
                                 @method('PUT')
@@ -970,7 +969,7 @@
                     <!-- modal para abrir formulario o div de Ingles segun el rol -->
 
                     @if (isset($user['name']))
-                        @if (Auth::user()->hasRole('Rector') || (Auth::user()->hasRole('Docente') && auth()->user()->asignature == 'english'))
+                        @if (Auth::user()->hasRole('Rector') || (Auth::user()->hasRole('Docente') && (auth()->user()->asignature == 'english' || auth()->user()->asignature == 'spanish/english' || auth()->user()->asignature == 'english/math')))
                             <form id="observationFormEnglishRector" action="{{ route('update.concepEnglishForRector', ['userId' => ':userId']) }}"
                             method="POST">
                                 @method('PUT')

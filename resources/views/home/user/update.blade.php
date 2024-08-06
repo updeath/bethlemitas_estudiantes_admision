@@ -170,7 +170,7 @@
                     id="location">
                     <option disabled selected> Seleccionar </option>
 
-                    <option value="pre-jardin/jardin" {{ $user->load_degrees == 'pre-jardin/jardin' ? 'selected' : '' }}>pre-jardin/jardin
+                    <option value="pre-jardin/jardin/transición" {{ $user->load_degrees == 'pre-jardin/jardin/transición' ? 'selected' : '' }}>pre-jardin/jardin/transición
                     </option>
 
                     <option value="1°" {{ $user->load_degrees == '1°' ? 'selected' : '' }}>1°

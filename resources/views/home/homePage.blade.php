@@ -104,7 +104,7 @@
 
                             <div x-show="isOpen" class="ml-6">
 
-                                @if(auth()->check() && (auth()->user()->hasRole(['Docente']) || auth()->user()->hasRole(['Admin', 'CoordinadorAcademico', 'CoordinadorConvivencia', 'Rector'])) && (auth()->user()->asignature == 'math' || auth()->user()->hasRole(['Admin', 'CoordinadorAcademico', 'CoordinadorConvivencia', 'Rector']) ))
+                                @if(auth()->check() && (auth()->user()->hasRole('Docente') && (auth()->user()->asignature == 'math' || auth()->user()->asignature == 'spanish/math' || auth()->user()->asignature == 'english/math')))
 
                                     <a @click="subMenu = 'Matematicas'; selectedOption = 'Matematicas'"
                                         class="flex items-center px-6 mt-1 text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100"
@@ -139,7 +139,7 @@
                                     @endif
                                 </div>
 
-                                @if(auth()->check() && (auth()->user()->hasRole(['Docente']) || auth()->user()->hasRole(['Admin', 'CoordinadorAcademico', 'CoordinadorConvivencia', 'Rector'])) && (auth()->user()->asignature == 'spanish' || auth()->user()->hasRole(['Admin', 'CoordinadorAcademico', 'CoordinadorConvivencia', 'Rector']))) 
+                                @if(auth()->check() && (auth()->user()->hasRole('Docente') && (auth()->user()->asignature == 'spanish' || auth()->user()->asignature == 'spanish/math' || auth()->user()->asignature == 'spanish/english'))) 
                                     <a @click="subMenu = 'Español'; selectedOption = 'Español'"
                                         class="flex items-center px-6 mt-1 text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100"
                                         href="#">

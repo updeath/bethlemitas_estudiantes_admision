@@ -189,7 +189,7 @@
                     id="location"  @if (Auth::user()->hasRole('Secretaria')) disabled @endif>
                     <option disabled selected> Seleccionar </option>
                     
-                    <option value="pre-jardin/jardin" {{ old('load_degrees') == 'pre-jardin/jardin°' ? 'selected' : '' }}>pre-jardin/jardin
+                    <option value="pre-jardin/jardin/transición" {{ old('load_degrees') == 'pre-jardin/jardin/transición' ? 'selected' : '' }}>pre-jardin/jardin/transición
                     </option>
 
                     <option value="1°" {{ old('load_degrees') == '1°' ? 'selected' : '' }}>1°
