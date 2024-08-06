@@ -92,6 +92,9 @@
                             <option value="jardin" {{ $user->degree == 'jardin' ? 'selected' : '' }}>jardin
                             </option>
 
+                            <option value="transición" {{ $user->degree == 'transición' ? 'selected' : '' }}>transición
+                            </option>  
+
                             <option value="1°" {{ $user->degree == '1°' ? 'selected' : '' }}>1°A
                             </option>
 
@@ -143,6 +146,12 @@
                         <option value="math" {{ $user->asignature == 'math' ? 'selected' : '' }}>Matemáticas
                         </option>
                         <option value="spanish" {{ $user->asignature == 'spanish' ? 'selected' : '' }}>Español
+                        </option>
+                        <option value="spanish/math" {{ $user->asignature == 'spanish/math' ? 'selected' : '' }}>Español/Matemáticas
+                        </option>
+                        <option value="spanish/english" {{ $user->asignature == 'spanish/english' ? 'selected' : '' }}>Español/Ingles
+                        </option>
+                        <option value="english/math" {{ $user->asignature == 'english/math' ? 'selected' : '' }}>Inglés/Matemáticas
                         </option>
                         
                     </select>

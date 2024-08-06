@@ -103,7 +103,10 @@
                         </option>
 
                         <option value="jardin" {{ old('degree') == 'jardin' ? 'selected' : '' }}>jardin
-                        </option>                       
+                        </option>  
+                        
+                        <option value="transición" {{ old('degree') == 'transición' ? 'selected' : '' }}>transición
+                        </option>  
 
                         <option value="1°" {{ old('degree') == '1°' ? 'selected' : '' }}>1°
                         </option>
@@ -156,6 +159,15 @@
                         </option>
 
                         <option value="spanish" {{ old('asignature') == 'spanish' ? 'selected' : '' }}>Español
+                        </option>
+
+                        <option value="spanish/math" {{ old('asignature') == 'spanish/math' ? 'selected' : '' }}>Español/Matemáticas
+                        </option>
+
+                        <option value="spanish/english" {{ old('asignature') == 'spanish/english' ? 'selected' : '' }}>Español/Ingles
+                        </option>
+
+                        <option value="english/math" {{ old('asignature') == 'english/math' ? 'selected' : '' }}>Inglés/Matemáticas
                         </option>
                     </select>
                 </div>

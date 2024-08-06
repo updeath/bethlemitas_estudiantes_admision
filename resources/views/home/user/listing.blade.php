@@ -155,6 +155,12 @@
                             <b class="font-medium text-gray-700"><br>Inglés</b>
                             @elseif($user->asignature == 'spanish')
                             <b class="font-medium text-gray-700"><br>Español</b>
+                            @elseif($user->asignature == 'spanish/math')
+                            <b class="font-medium text-gray-700"><br>Español/Matemáticas</b>
+                            @elseif($user->asignature == 'spanish/english')
+                            <b class="font-medium text-gray-700"><br>Español/Inglés</b>
+                            @elseif($user->asignature == 'english/math')
+                            <b class="font-medium text-gray-700"><br>Inglés/Matemáticas</b>
                             @endif
                         </td>
 
