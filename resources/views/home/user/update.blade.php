@@ -139,7 +139,7 @@
                 <div>
                     <select name="asignature" id="asignature" value="{{ $user->asignature }}"
                         class="w-full bg-gray-200 border border-gray-200 text-gray-600 text-xs py-2 px-3 pr-8 mb-3 rounded"
-                        id="location">
+                        id="location" @if (!Auth::user()->hasRole(['Admin', 'Rector'])) disabled @endif>
                         <option disabled selected> Seleccionar </option>
                         <option value="english" {{ $user->asignature == 'english' ? 'selected' : '' }}>Inglés
                         </option>
@@ -167,7 +167,7 @@
 
                 <select name="load_degrees" id="load_degrees" value="{{ $user->load_degrees }}"
                     class="w-full bg-gray-200 border border-gray-200 text-gray-600 text-xs py-2 px-3 pr-8 mb-3 rounded"
-                    id="location">
+                    id="location" @if (!Auth::user()->hasRole(['Admin', 'Rector'])) disabled @endif>
                     <option disabled selected> Seleccionar </option>
 
                     <option value="pre-jardin/jardin/transición" {{ $user->load_degrees == 'pre-jardin/jardin/transición' ? 'selected' : '' }}>pre-jardin/jardin/transición
@@ -314,11 +314,26 @@
                         Roles
                     </label>
                     <div class="mt-1 relative rounded-md shadow-sm">
-                        <select name="roles[]" id="roles" class="block w-full px-3 py-2 border border-gray-300 bg-white rounded-md focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 sm:text-sm">
-                            <!-- Lista de roles -->
-                            @foreach($roles as $role)
-                                <option value="{{ $role->id }}" {{ in_array($role->id, $user->roles->pluck('id')->toArray()) ? 'selected' : '' }}>{{ $role->name }}</option>
-                            @endforeach
+                        <select name="roles[]" id="roles"
+                            class="w-full bg-gray-200 border border-gray-200 text-gray-600 text-xs py-2 px-3 pr-8 mb-3 rounded">
+                            <option> Seleccionar </option>
+                            @if (Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Rector'))
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role->id }}" 
+                                        @if ($user->roles->pluck('id')->contains($role->id)) selected @endif>
+                                        {{ $role->name }}
+                                    </option>
+                                @endforeach
+                            @else
+                                @foreach ($roles as $role)
+                                    @if ($role->name == 'Aspirante')
+                                        <option value="{{ $role->id }}" 
+                                            @if ($user->roles->pluck('id')->contains($role->id)) selected @endif>
+                                            {{ $role->name }}
+                                        </option>
+                                    @endif
+                                @endforeach
+                            @endif
                         </select>
                     </div>
                     @error('roles')

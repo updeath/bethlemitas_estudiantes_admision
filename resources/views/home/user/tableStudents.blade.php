@@ -64,6 +64,10 @@
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                 Rol Asignado</th>
 
+                            <th
+                                class="px-12 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                Acciones</th>
+
                         </tr>
                     </thead>
 
@@ -127,6 +131,20 @@
                                     @else
                                         Sin Rol Asignado
                                     @endif
+                                </td>
+
+                                <td
+                                    class="px-4 py-4 text-sm font-medium leading-5 text-right whitespace-no-wrap border-b border-gray-200">
+                                    <a href="{{ route('user.edit', $user->id) }}"
+                                        class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                    <label>|</label>
+                                    <button class="text-red-600 hover:text-red-900 form-delete"
+                                        data-id="{{$user->id}}">Eliminar</button>
+                                    <form id="delete-form-{{$user->id}}" action="{{ route('user.destroy', $user->id) }}"
+                                        method="POST" style="display: none;">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
