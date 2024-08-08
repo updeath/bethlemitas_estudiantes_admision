@@ -156,6 +156,40 @@
             </div>
         </div>
     </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+@if (session('destroy_user') == 'ok_user')
+<script>
+    Swal.fire(
+        'Eliminado correctamente!',
+        'Su Usuario ha sido eliminado.',
+        'success'
+    )
+</script>
+@endif
+
+<script>
+    $('.form-delete').click(function (e) {
+        e.preventDefault();
+
+        var id = $(this).data('id');
+
+        Swal.fire({
+            title: '¿Estás seguro de eliminar el Usuario?',
+            text: '¡No podrás revertir esto!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Sí, eliminarlo',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $('#delete-form-' + id).submit();
+            }
+        });
+    });
+</script>
 
 @endsection
