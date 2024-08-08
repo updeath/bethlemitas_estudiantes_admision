@@ -11,6 +11,7 @@ use Spatie\Permission\Models\Role;
 use App\Exports\AspirantesExport;
 use App\Exports\UserExport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\Concept;
 
 
 class UserController extends Controller
@@ -132,6 +133,19 @@ class UserController extends Controller
         $user->load_degrees = $request->input('load_degrees');
         $user->password = bcrypt($request->input('password'));
         $user->save();
+
+        // Crear conceptos solo si el rol es 'Aspirante'
+        if ($user->hasRole('Aspirante')) {
+            $user->concept()->create([
+                'ObservationDocenteSpanish' => 'Sin Observacion',
+                'ObservationDocenteMath' => 'Sin Observacion',
+                'ObservationDocenteEnglish' => 'Sin Observacion',
+                'ObservationPsicoorientador' => 'Sin Observacion',
+                'ObservationAcademico' => 'Sin Observacion',
+                'ObservationConvivencia' => 'Sin Observacion',
+                'ObservationRector' => 'Sin Observacion',
+            ]);
+        }
 
         return redirect()->back()->with('success', 'Usuario creado correctamente.');
     }
