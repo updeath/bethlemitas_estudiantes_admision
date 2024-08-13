@@ -41,6 +41,10 @@
                             <th
                                 class="px-12 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                 Fecha Inicio</th>
+                            
+                            <th
+                                class="px-12 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                Fecha de prueba</th>
                         
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
@@ -81,6 +85,10 @@
                             <tr>
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                     {{ $user->created_at->setTimezone('America/Bogota')->format('Y-m-d H:i:s') }}
+                                </td>
+
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    {{ $user->test_date }}
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">

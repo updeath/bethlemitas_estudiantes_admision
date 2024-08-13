@@ -247,9 +247,6 @@
 
         <div class="grid md:grid-cols-1 md:gap-6">
 
-
-
-
             <div class="relative z-0 w-full mb-5 group">
                 <input type="password" name="password" id="password" value="{{ old('password') }}"
                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -261,15 +258,21 @@
                 @enderror
             </div>
 
-
-
-
-
+            <div class="relative z-0 w-full mb-5 group">
+                <label class="peer-focus:font-medium  text-sm text-gray-500 dark:text-gray-400" for="location">Fecha de prueba</label>
+                <div>
+                    <input type="date" name="test_date" id="test_date" value="{{ old('test_date') }}"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=" " />
+                </div>
+                @error('password')
+                    <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Incorrecto</span></p>
+                @enderror
+            </div>
 
             <!-- ---------------------------------------------------- -->
             <!-- ---------------------------------------------------- -->
             <!-- ---------------------------------------------------- -->
-
 
             <div class="grid md:grid-cols-2 md:gap-6">
                 <div class="   ">

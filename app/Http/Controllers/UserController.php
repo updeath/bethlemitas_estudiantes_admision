@@ -105,6 +105,7 @@ class UserController extends Controller
             'degree' => 'nullable|in:jardin,pre-jardin,transición,1°,2°,3°,4°,5°,6°,7°,8°,9°,10°',
             'asignature' => 'nullable|in:english,math,spanish,spanish/math,spanish/english,english/math',
             'load_degrees' => 'nullable|in:pre-jardin/jardin/transición,1°,2°,3°-4°,5°-6°-7°,8°-9°,10°',
+            'test_date' => 'required|date',
             'password' => 'required',
             'roles' => 'required|array|min:1',
             'roles.*' => 'exists:roles,id',
@@ -126,6 +127,7 @@ class UserController extends Controller
 
         $user->asignature = $request->input('asignature');
         $user->load_degrees = $request->input('load_degrees');
+        $user->test_date = $request->input('test_date'); 
         $user->password = bcrypt($request->input('password'));
         $user->save();
 
@@ -169,6 +171,7 @@ class UserController extends Controller
             'degree' => 'nullable|in:jardin,pre-jardin,transición,1°,2°,3°,4°,5°,6°,7°,8°,9°,10°',
             'asignature' => 'nullable|in:english,math,spanish,spanish/math,spanish/english,english/math',
             'load_degrees' => 'nullable|in:pre-jardin/jardin/transición,1°,2°,3°-4°,5°-6°-7°,8°-9°,10°',
+            'test_date' => 'required|date',
             'email' => 'required|email|unique:users,email,' . $user->id,
             'number_documment' => 'required|digits_between:1,20|unique:users,number_documment,' . $user->id,
             'typeDocumment' => 'required|in:TI,CC,NUIP',
@@ -185,6 +188,7 @@ class UserController extends Controller
             'degree' => 'degree',
             'asignature' => 'asignature',
             'load_degrees' => 'load_degrees',
+            'test_date' => 'test_date',
             'email' => 'email',
             'number_documment' => 'number_documment',
             'typeDocumment' => 'typeDocumment',
