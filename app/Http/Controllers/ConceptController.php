@@ -55,6 +55,8 @@ class ConceptController extends Controller
                 $usersQuery->where(function ($q) use ($searchTerm) {
                     $q->where('name', 'LIKE', '%' . $searchTerm . '%')
                         ->orWhere('last_name', 'LIKE', '%' . $searchTerm . '%')
+                        ->orWhere('degree', 'LIKE', '%' . $searchTerm . '%')
+                        ->orWhere('number_documment', 'LIKE', '%' . $searchTerm . '%')
                         ->orWhereRaw("CONCAT(name, ' ', last_name) LIKE ?", ['%' . $searchTerm . '%']);
                 });
             }
@@ -78,6 +80,7 @@ class ConceptController extends Controller
                 $promedios['admin_data'][$user->id]['last_name'] = $user->last_name;
                 $promedios['admin_data'][$user->id]['degree'] = $user->degree;
                 $promedios['admin_data'][$user->id]['id'] = $user->id;
+                $promedios['admin_data'][$user->id]['number_documment'] = $user->number_documment;
 
                 // Accede al concepto a través de la relación definida en el modelo User
                 $observaciones = $user->getObservations();

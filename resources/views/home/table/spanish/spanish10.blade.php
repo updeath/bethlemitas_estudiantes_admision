@@ -89,6 +89,10 @@
                         <tr>
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                Número de documento</th>
+
+                            <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                 Nombre Completo</th>
 
                             <th
@@ -135,6 +139,9 @@
                     <tbody class="bg-white">
                         @foreach ($promedioData as $data)
                             <tr>
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    {{ $data['user']->number_documment }}
+                                </td>
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                     {{ $data['user']->name }} {{ $data['user']->last_name }}
                                 </td>

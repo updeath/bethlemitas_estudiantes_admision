@@ -42,15 +42,10 @@ class UserController extends Controller
                     ->orWhere('last_name', 'LIKE', '%' . $searchTerm . '%')
                     ->orWhere('degree', 'LIKE', '%' . $searchTerm . '%')
                     ->orWhere('number_documment', 'LIKE', '%' . $searchTerm . '%')
-                    ->orWhere('email', 'LIKE', '%' . $searchTerm . '%')
                     ->orWhereRaw("CONCAT(name, ' ', last_name) LIKE ?", ['%' . $searchTerm . '%']);
             });
-
-            
-    
         }
         
-
         // Obtener usuarios asociados al rol "Aspirante" con paginación
         $users = $query->paginate(10);
 
@@ -78,7 +73,7 @@ class UserController extends Controller
             $query->where(function ($q) use ($searchTerm) {
                 $q->where('name', 'LIKE', '%' . $searchTerm . '%')
                     ->orWhere('last_name', 'LIKE', '%' . $searchTerm . '%')
-                    ->orWhere('email', 'LIKE', '%' . $searchTerm . '%')
+                    ->orWhere('degree', 'LIKE', '%' . $searchTerm . '%')
                     ->orWhere('number_documment', 'LIKE', '%' . $searchTerm . '%')
                     ->orWhereRaw("CONCAT(name, ' ', last_name) LIKE ?", ['%' . $searchTerm . '%']);
             });

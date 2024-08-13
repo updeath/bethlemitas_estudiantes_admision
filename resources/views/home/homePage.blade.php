@@ -37,49 +37,49 @@
                 <!-- ------------------------------------------------------------------ -->
                 <!-- ------------------------------------------------------------------ -->
                 <!-- ------------------------------------------------------------------ -->
-                @can('create_user')
-                <div x-data="{ isOpen: false }">
-                    <a @click="isOpen = !isOpen"
-                        class="flex items-center px-6 py-1 mt-4 text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100"
-                        href="#">
-                        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                            <circle cx="9" cy="7" r="4" />
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                        </svg>
-                        <span class="mx-2">Usuarios</span>
-                    </a>
+                @if (Auth::user()->can('create_user') || (Auth::user()->hasRole('Docente') && Auth::user()->asignature== 'english' && Auth::user()->number_documment == '1093229599'))
+                    <div x-data="{ isOpen: false }">
+                        <a @click="isOpen = !isOpen"
+                            class="flex items-center px-6 py-1 mt-4 text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100"
+                            href="#">
+                            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                            </svg>
+                            <span class="mx-2">Usuarios</span>
+                        </a>
 
-                    <div x-show="isOpen" class="ml-10">
-                        @if (Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Rector') || Auth::user()->hasRole('Secretaria') )
-                            <a href="{{ route('create_user') }}"
+                        <div x-show="isOpen" class="ml-10">
+                            @if (Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Rector') || Auth::user()->hasRole('Secretaria') )
+                                <a href="{{ route('create_user') }}"
+                                    class="flex items-center px-6 py-2 text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100"
+                                    href="#">
+                                    <!-- Icono si es necesario -->
+                                    <span class="mx-3">• Crear Usuario</span>
+                                </a>
+                                @if (Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Rector'))
+                                    <a href="{{ route('listingUser') }}"
+                                        class="flex items-center px-6 py-2  text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100"
+                                        href="#">
+                                        <!-- Icono si es necesario -->
+                                        <span class="mx-3">• Listar Usuarios</span>
+                                    </a>
+                                @endif
+                            @endif
+
+                            <a href="{{ route('user.tableStudents') }}"
                                 class="flex items-center px-6 py-2 text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100"
                                 href="#">
                                 <!-- Icono si es necesario -->
-                                <span class="mx-3">• Crear Usuario</span>
+                                <span class="mx-3">• Listar Aspirantes</span>
                             </a>
-                            @if (Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Rector'))
-                                <a href="{{ route('listingUser') }}"
-                                    class="flex items-center px-6 py-2  text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100"
-                                    href="#">
-                                    <!-- Icono si es necesario -->
-                                    <span class="mx-3">• Listar Usuarios</span>
-                                </a>
-                            @endif
-                        @endif
-
-                        <a href="{{ route('user.tableStudents') }}"
-                            class="flex items-center px-6 py-2 text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100"
-                            href="#">
-                            <!-- Icono si es necesario -->
-                            <span class="mx-3">• Listar Aspirantes</span>
-                        </a>
-                        <!-- Puedes agregar más sub-enlaces aquí si es necesario -->
+                            <!-- Puedes agregar más sub-enlaces aquí si es necesario -->
+                        </div>
                     </div>
-                </div>
-                @endcan
+                @endif
 
 
                 <!-- ------------------------------------------------------------------ -->

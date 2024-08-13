@@ -120,6 +120,7 @@ class SpanishController extends Controller
             $query->where(function ($q) use ($searchTerm) {
                 $q->where('name', 'LIKE', '%' . $searchTerm . '%')
                     ->orWhere('last_name', 'LIKE', '%' . $searchTerm . '%')
+                    ->orWhere('number_documment', 'LIKE', '%' . $searchTerm . '%')
                     ->orWhereRaw("CONCAT(name, ' ', last_name) LIKE ?", ['%' . $searchTerm . '%']);
             });
         }
@@ -287,6 +288,7 @@ class SpanishController extends Controller
             $query->where(function ($q) use ($searchTerm) {
                 $q->where('name', 'LIKE', '%' . $searchTerm . '%')
                     ->orWhere('last_name', 'LIKE', '%' . $searchTerm . '%')
+                    ->orWhere('number_documment', 'LIKE', '%' . $searchTerm . '%')
                     ->orWhereRaw("CONCAT(name, ' ', last_name) LIKE ?", ['%' . $searchTerm . '%']);
             });
         }
@@ -463,6 +465,7 @@ class SpanishController extends Controller
             $query->where(function ($q) use ($searchTerm) {
                 $q->where('name', 'LIKE', '%' . $searchTerm . '%')
                     ->orWhere('last_name', 'LIKE', '%' . $searchTerm . '%')
+                    ->orWhere('number_documment', 'LIKE', '%' . $searchTerm . '%')
                     ->orWhereRaw("CONCAT(name, ' ', last_name) LIKE ?", ['%' . $searchTerm . '%']);
             });
         }
@@ -642,6 +645,7 @@ class SpanishController extends Controller
             $query->where(function ($q) use ($searchTerm) {
                 $q->where('name', 'LIKE', '%' . $searchTerm . '%')
                     ->orWhere('last_name', 'LIKE', '%' . $searchTerm . '%')
+                    ->orWhere('number_documment', 'LIKE', '%' . $searchTerm . '%')
                     ->orWhereRaw("CONCAT(name, ' ', last_name) LIKE ?", ['%' . $searchTerm . '%']);
             });
         }
@@ -827,6 +831,7 @@ class SpanishController extends Controller
             $query->where(function ($q) use ($searchTerm) {
                 $q->where('name', 'LIKE', '%' . $searchTerm . '%')
                     ->orWhere('last_name', 'LIKE', '%' . $searchTerm . '%')
+                    ->orWhere('number_documment', 'LIKE', '%' . $searchTerm . '%')
                     ->orWhereRaw("CONCAT(name, ' ', last_name) LIKE ?", ['%' . $searchTerm . '%']);
             });
         }
@@ -1006,6 +1011,7 @@ class SpanishController extends Controller
             $query->where(function ($q) use ($searchTerm) {
                 $q->where('name', 'LIKE', '%' . $searchTerm . '%')
                     ->orWhere('last_name', 'LIKE', '%' . $searchTerm . '%')
+                    ->orWhere('number_documment', 'LIKE', '%' . $searchTerm . '%')
                     ->orWhereRaw("CONCAT(name, ' ', last_name) LIKE ?", ['%' . $searchTerm . '%']);
             });
         }
@@ -1094,6 +1100,7 @@ class SpanishController extends Controller
             $query->where(function ($q) use ($searchTerm) {
                 $q->where('name', 'LIKE', '%' . $searchTerm . '%')
                     ->orWhere('last_name', 'LIKE', '%' . $searchTerm . '%')
+                    ->orWhere('number_documment', 'LIKE', '%' . $searchTerm . '%')
                     ->orWhereRaw("CONCAT(name, ' ', last_name) LIKE ?", ['%' . $searchTerm . '%']);
             });
         }

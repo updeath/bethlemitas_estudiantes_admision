@@ -90,6 +90,7 @@
         .signature-image {
             width: 150rem;
             height: 30rem;
+            object-fit: cover;
         }
 
     </style>

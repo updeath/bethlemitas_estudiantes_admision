@@ -32,6 +32,11 @@
                 <table class="min-w-full">
                     <thead>
                         <tr>
+
+                            <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                Número de Documento</th>
+
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                 Nombre Completo</th>
@@ -88,6 +93,12 @@
                         @if (isset($promedios['admin_data']))
                             @foreach ($promedios['admin_data'] as $user)
                                 <tr>
+                                    <!-- Número de documento -->
+                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                        @if (isset($user['name']))
+                                            {{ $user['number_documment'] }}
+                                        @endif
+                                    </td>
                                     <!-- Nombre -->
                                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                         @if (isset($user['name']))
