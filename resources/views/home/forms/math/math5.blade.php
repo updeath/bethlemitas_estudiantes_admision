@@ -59,28 +59,28 @@
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPQ1" name="mathPQ1"
-                        value="A. 90324">
+                        value="A. 90324" {{ old('mathPQ1') == 'A. 90324' ? 'checked' : '' }}>
                         <span class="ml-2">A. 90324</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPQ1" name="mathPQ1"
-                        value="B. 900.324">
+                        value="B. 900.324" {{ old('mathPQ1') == 'B. 900.324' ? 'checked' : '' }}>
                         <span class="ml-2">B. 900.324</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPQ1" name="mathPQ1"
-                        value="C. 9.0324">
+                        value="C. 9.0324" {{ old('mathPQ1') == 'C. 9.0324' ? 'checked' : '' }}>
                         <span class="ml-2">C. 9.0324</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPQ1" name="mathPQ1"
-                        value="D. 90.324">
+                        value="D. 90.324" {{ old('mathPQ1') == 'D. 90.324' ? 'checked' : '' }}>
                         <span class="ml-2">D. 90.324</span>
                     </label>
                 </div>
@@ -101,22 +101,22 @@
 
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ3" name="mathPQ3"
-                    value="A. 823.824.300">
+                    value="A. 823.824.300" {{ old('mathPQ3') == 'A. 823.824.300' ? 'checked' : '' }}>
                     <span class="ml-2">A. 823.824.300</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ3" name="mathPQ3"
-                    value="B. 703.800.300">
+                    value="B. 703.800.300" {{ old('mathPQ3') == 'B. 703.800.300' ? 'checked' : '' }}>
                     <span class="ml-2">B. 703.800.300</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ3" name="mathPQ3"
-                    value="C. 723.804.258">
+                    value="C. 723.804.258" {{ old('mathPQ3') == 'C. 723.804.258' ? 'checked' : '' }}>
                     <span class="ml-2">C. 723.804.258</span>
                 </div>
                 <div class="flex items-center">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ3" name="mathPQ3"
-                    value="D. 723.824.317">
+                    value="D. 723.824.317" {{ old('mathPQ3') == 'D. 723.824.317' ? 'checked' : '' }}>
                     <span class="ml-2">D. 723.824.317</span>
                 </div>
                 @error('mathPQ3')
@@ -135,22 +135,22 @@
 
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ5" name="mathPQ5"
-                    value="A. 3/8">
+                    value="A. 3/8" {{ old('mathPQ5') == 'A. 3/8' ? 'checked' : '' }}>
                     <span class="ml-2">A. 3/8</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ5" name="mathPQ5"
-                    value="B. 5/8">
+                    value="B. 5/8" {{ old('mathPQ5') == 'B. 5/8' ? 'checked' : '' }}>
                     <span class="ml-2">B. 5/8</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ5" name="mathPQ5"
-                    value="C. 3/5">
+                    value="C. 3/5" {{ old('mathPQ5') == 'C. 3/5' ? 'checked' : '' }}>
                     <span class="ml-2">C. 3/5</span>
                 </div>
                 <div class="flex items-center">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ5" name="mathPQ5"
-                    value="D. 5/3">
+                    value="D. 5/3" {{ old('mathPQ5') == 'D. 5/3' ? 'checked' : '' }}>
                     <span class="ml-2">D. 5/3</span>
                 </div>
                 @error('mathPQ5')
@@ -166,22 +166,22 @@
 
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ7" name="mathPQ7"
-                    value="A. Es la suma de la longitud de todos los lados.">
+                    value="A. Es la suma de la longitud de todos los lados." {{ old('mathPQ7') == 'A. Es la suma de la longitud de todos los lados.' ? 'checked' : '' }}>
                     <span class="ml-2">A. Es la suma de la longitud de todos los lados.</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ7" name="mathPQ7"
-                    value="B. Es la suma de todos los lados.">
+                    value="B. Es la suma de todos los lados." {{ old('mathPQ7') == 'B. Es la suma de todos los lados.' ? 'checked' : '' }}>
                     <span class="ml-2">B. Es la suma de todos los lados.</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ7" name="mathPQ7"
-                    value="C. Es la multiplicación de todos los lados.">
+                    value="C. Es la multiplicación de todos los lados." {{ old('mathPQ7') == 'C. Es la multiplicación de todos los lados.' ? 'checked' : '' }}>
                     <span class="ml-2">C. Es la multiplicación de todos los lados.</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ7" name="mathPQ7"
-                    value="D. Es la multiplicación de la base por la altura.">
+                    value="D. Es la multiplicación de la base por la altura." {{ old('mathPQ7') == 'D. Es la multiplicación de la base por la altura.' ? 'checked' : '' }}>
                     <span class="ml-2">D. Es la multiplicación de la base por la altura.</span>
                 </div>
                 @error('mathPQ7')
@@ -196,22 +196,22 @@
 
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ9" name="mathPQ9"
-                    value="A. 17, 18, 19">
+                    value="A. 17, 18, 19" {{ old('mathPQ9') == 'A. 17, 18, 19' ? 'checked' : '' }}>
                     <span class="ml-2">A. 17, 18, 19</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ9" name="mathPQ9"
-                    value="B. 20, 21, 22">
+                    value="B. 20, 21, 22" {{ old('mathPQ9') == 'B. 20, 21, 22' ? 'checked' : '' }}>
                     <span class="ml-2">B. 20, 21, 22</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ9" name="mathPQ9"
-                    value="C. 20, 24, 28">
+                    value="C. 20, 24, 28" {{ old('mathPQ9') == 'C. 20, 24, 28' ? 'checked' : '' }}>
                     <span class="ml-2">C. 20, 24, 28</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ9" name="mathPQ9"
-                    value="D. 20, 24, 25">
+                    value="D. 20, 24, 25" {{ old('mathPQ9') == 'D. 20, 24, 25' ? 'checked' : '' }}>
                     <span class="ml-2">D. 20, 24, 25</span>
                 </div>
                 @error('mathPQ9')
@@ -231,28 +231,28 @@
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPQ2" name="mathPQ2"
-                        value="A. Cuatrocientos sesenta mil ciento cuarenta y cinco">
+                        value="A. Cuatrocientos sesenta mil ciento cuarenta y cinco" {{ old('mathPQ2') == 'A. Cuatrocientos sesenta mil ciento cuarenta y cinco' ? 'checked' : '' }}>
                         <span class="ml-2">A. Cuatrocientos sesenta mil ciento cuarenta y cinco</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPQ2" name="mathPQ2"
-                        value="B. Cuatrocientos cincuenta mil ciento cincuenta">
+                        value="B. Cuatrocientos cincuenta mil ciento cincuenta" {{ old('mathPQ2') == 'B. Cuatrocientos cincuenta mil ciento cincuenta' ? 'checked' : '' }}>
                         <span class="ml-2">B. Cuatrocientos cincuenta mil ciento cincuenta</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPQ2" name="mathPQ2"
-                        value="C. Cuatrocientos cincuenta y siete mil ciento cuarenta y cinco">
+                        value="C. Cuatrocientos cincuenta y siete mil ciento cuarenta y cinco" {{ old('mathPQ2') == 'C. Cuatrocientos cincuenta y siete mil ciento cuarenta y cinco' ? 'checked' : '' }}>
                         <span class="ml-2">C. Cuatrocientos cincuenta y siete mil ciento cuarenta y cinco</span>
                     </label>
                 </div>
                 <div class="mt-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio text-indigo-600" id="mathPQ2" name="mathPQ2"
-                        value="D. Trescientos sesenta y cinco mil novecientos ochenta y siete">
+                        value="D. Trescientos sesenta y cinco mil novecientos ochenta y siete" {{ old('mathPQ2') == 'D. Trescientos sesenta y cinco mil novecientos ochenta y siete' ? 'checked' : '' }}>
                         <span class="ml-2">D. Trescientos sesenta y cinco mil novecientos ochenta y siete</span>
                     </label>
                 </div>
@@ -274,22 +274,22 @@
 
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ4" name="mathPQ4"
-                    value="A. 17550">
+                    value="A. 17550" {{ old('mathPQ4') == 'A. 17550' ? 'checked' : '' }}>
                     <span class="ml-2">A. 17550</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ4" name="mathPQ4"
-                    value="B. 17500">
+                    value="B. 17500" {{ old('mathPQ4') == 'B. 17500' ? 'checked' : '' }}>
                     <span class="ml-2">B. 17500</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ4" name="mathPQ4"
-                    value="C. 15700">
+                    value="C. 15700" {{ old('mathPQ4') == 'C. 15700' ? 'checked' : '' }}>
                     <span class="ml-2">C. 15700</span>
                 </div>
                 <div class="flex items-center">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ4" name="mathPQ4"
-                    value="D. 15750">
+                    value="D. 15750" {{ old('mathPQ4') == 'D. 15750' ? 'checked' : '' }}>
                     <span class="ml-2">D. 15750</span>
                 </div>
                 @error('mathPQ4')
@@ -304,22 +304,22 @@
 
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ6" name="mathPQ6"
-                    value="A. 60 minutos">
+                    value="A. 60 minutos" {{ old('mathPQ6') == 'A. 60 minutos' ? 'checked' : '' }}>
                     <span class="ml-2">A. 60 minutos</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ6" name="mathPQ6"
-                    value="B. 120 minutos">
+                    value="B. 120 minutos" {{ old('mathPQ6') == 'B. 120 minutos' ? 'checked' : '' }}>
                     <span class="ml-2">B. 120 minutos</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ6" name="mathPQ6"
-                    value="C. 350 minutos">
+                    value="C. 350 minutos" {{ old('mathPQ6') == 'C. 350 minutos' ? 'checked' : '' }}>
                     <span class="ml-2">C. 350 minutos</span>
                 </div>
                 <div class="flex items-center">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ6" name="mathPQ6"
-                    value="D. 150 minutos">
+                    value="D. 150 minutos" {{ old('mathPQ6') == 'D. 150 minutos' ? 'checked' : '' }}>
                     <span class="ml-2">D. 150 minutos</span>
                 </div>
                 @error('mathPQ6')
@@ -338,22 +338,22 @@
 
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ8" name="mathPQ8"
-                    value="A. 30">
+                    value="A. 30" {{ old('mathPQ8') == 'A. 30' ? 'checked' : '' }}>
                     <span class="ml-2">A. 30</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ8" name="mathPQ8"
-                    value="B. 5">
+                    value="B. 5" {{ old('mathPQ8') == 'B. 5' ? 'checked' : '' }}>
                     <span class="ml-2">B. 5</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ8" name="mathPQ8"
-                    value="C. 15">
+                    value="C. 15" {{ old('mathPQ8') == 'C. 15' ? 'checked' : '' }}>
                     <span class="ml-2">C. 15</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ8" name="mathPQ8"
-                    value="D. 25">
+                    value="D. 25" {{ old('mathPQ8') == 'D. 25' ? 'checked' : '' }}>
                     <span class="ml-2">D. 25</span>
                 </div>
                 @error('mathPQ8')
@@ -369,22 +369,22 @@
 
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ10" name="mathPQ10"
-                    value="A. 96 frascos">
+                    value="A. 96 frascos" {{ old('mathPQ10') == 'A. 96 frascos' ? 'checked' : '' }}>
                     <span class="ml-2">A. 96 frascos</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ10" name="mathPQ10"
-                    value="B. 80 frascos">
+                    value="B. 80 frascos" {{ old('mathPQ10') == 'B. 80 frascos' ? 'checked' : '' }}>
                     <span class="ml-2">B. 80 frascos</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ10" name="mathPQ10"
-                    value="C. 88 frascos">
+                    value="C. 88 frascos" {{ old('mathPQ10') == 'C. 88 frascos' ? 'checked' : '' }}>
                     <span class="ml-2">C. 88 frascos</span>
                 </div>
                 <div class="flex items-center mb-2">
                     <input type="radio" class="form-radio text-indigo-600" id="mathPQ10" name="mathPQ10"
-                    value="D. 90 frascos">
+                    value="D. 90 frascos" {{ old('mathPQ10') == 'D. 90 frascos' ? 'checked' : '' }}>
                     <span class="ml-2">D. 90 frascos</span>
                 </div>
                 @error('mathPQ10')
