@@ -79,7 +79,9 @@ class MathController extends Controller
         }
 
         // Paginar los resultados con un máximo de 3 elementos por página
-        $users = $query->paginate(10);
+        $users = $query->orderBy('name', 'asc')
+                       ->orderBy('last_name', 'asc')
+                       ->paginate(10);
 
         $promedioData = [];
 
@@ -169,7 +171,9 @@ class MathController extends Controller
         }
 
         // Paginar los resultados con un máximo de 3 elementos por página
-        $users = $query->paginate(10);
+        $users = $query->orderBy('name', 'asc')
+                       ->orderBy('last_name', 'asc')
+                       ->paginate(10);
 
         $promedioData = [];
         foreach ($users as $user) {
@@ -258,7 +262,9 @@ class MathController extends Controller
         }
 
         // Paginar los resultados con un máximo de 3 elementos por página
-        $users = $query->paginate(10);
+        $users = $query->orderBy('name', 'asc')
+                       ->orderBy('last_name', 'asc')
+                       ->paginate(10);
 
         $promedioData = [];
 
@@ -348,7 +354,9 @@ class MathController extends Controller
                     ->orWhereRaw("CONCAT(name, ' ', last_name) LIKE ?", ['%' . $searchTerm . '%']);
             });
         }
-        $users = $query->paginate(10);
+        $users = $query->orderBy('name', 'asc')
+                       ->orderBy('last_name', 'asc')
+                       ->paginate(10);
 
         $promedioData = [];
 
@@ -438,7 +446,9 @@ class MathController extends Controller
                     ->orWhereRaw("CONCAT(name, ' ', last_name) LIKE ?", ['%' . $searchTerm . '%']);
             });
         }
-        $users = $query->paginate(10);
+        $users = $query->orderBy('name', 'asc')
+                       ->orderBy('last_name', 'asc')
+                       ->paginate(10);
 
         $promedioData = [];
 
@@ -529,7 +539,9 @@ class MathController extends Controller
                     ->orWhereRaw("CONCAT(name, ' ', last_name) LIKE ?", ['%' . $searchTerm . '%']);
             });
         }
-        $users = $query->paginate(10);
+        $users = $query->orderBy('name', 'asc')
+                       ->orderBy('last_name', 'asc')
+                       ->paginate(10);
 
         $promedioData = [];
 
@@ -618,7 +630,9 @@ class MathController extends Controller
                     ->orWhereRaw("CONCAT(name, ' ', last_name) LIKE ?", ['%' . $searchTerm . '%']);
             });
         }
-        $users = $query->paginate(10);
+        $users = $query->orderBy('name', 'asc')
+                       ->orderBy('last_name', 'asc')
+                       ->paginate(10);
 
         $promedioData = [];
 

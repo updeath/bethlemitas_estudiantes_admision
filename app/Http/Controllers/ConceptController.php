@@ -69,7 +69,7 @@ class ConceptController extends Controller
                 });
             }
 
-            $users = $usersQuery->get();
+            $users = $usersQuery->orderBy('test_date', 'asc')->paginate(10);
 
             foreach ($users as $user) {
                 $promedios['admin_data'][$user->id]['name'] = $user->name;
@@ -77,6 +77,7 @@ class ConceptController extends Controller
                 $promedios['admin_data'][$user->id]['degree'] = $user->degree;
                 $promedios['admin_data'][$user->id]['id'] = $user->id;
                 $promedios['admin_data'][$user->id]['number_documment'] = $user->number_documment;
+                $promedios['admin_data'][$user->id]['test_date'] = $user->test_date;
 
                 // Accede al concepto a través de la relación definida en el modelo User
                 $observaciones = $user->getObservations();

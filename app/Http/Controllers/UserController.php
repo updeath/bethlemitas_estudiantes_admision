@@ -47,7 +47,7 @@ class UserController extends Controller
         }
         
         // Obtener usuarios asociados al rol "Aspirante" con paginación
-        $users = $query->paginate(10);
+        $users = $query->orderBy('test_date', 'asc')->paginate(10);
 
         // Crear un arreglo asociativo para almacenar los roles de cada usuario
         $userRoles = [];
@@ -79,7 +79,9 @@ class UserController extends Controller
             });
         }
 
-        $users = $query->paginate(10);
+        $users = $query->orderBy('name', 'asc')
+                       ->orderBy('last_name', 'asc')
+                       ->paginate(10);
 
         $userRoles = [];
 

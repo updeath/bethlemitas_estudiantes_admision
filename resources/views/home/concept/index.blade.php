@@ -35,6 +35,10 @@
 
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                Fecha de prueba</th>
+
+                            <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                 Número de Documento</th>
 
                             <th
@@ -93,6 +97,13 @@
                         @if (isset($promedios['admin_data']))
                             @foreach ($promedios['admin_data'] as $user)
                                 <tr>
+
+                                    <!-- Fecha de prensentacion de la prueba -->
+                                    <td class="p-1 py-4 whitespace-no-wrap border-b border-gray-200">
+                                        @if (isset($user['test_date']))
+                                            {{ $user['test_date'] }}
+                                        @endif
+                                    </td>
                                     <!-- Número de documento -->
                                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                         @if (isset($user['name']))
@@ -688,6 +699,10 @@
                         @endif
                     </tbody>
                 </table>
+                <div
+                    class="bg-white dark:bg-gray-800 px-4 py-3 border-t dark:border-gray-700 text-gray-900 dark:text-white">
+                    {{ $users->links() }}
+                </div>
             </div>
         </div>
     </div>
