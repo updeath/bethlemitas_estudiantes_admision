@@ -104,7 +104,8 @@ class UserController extends Controller
             'status' => 'required|in:Activo,Bloqueado',
             'degree' => 'nullable|in:jardin,pre-jardin,transición,1°,2°,3°,4°,5°,6°,7°,8°,9°,10°',
             'asignature' => 'nullable|in:english,math,spanish,spanish/math,spanish/english,english/math',
-            'load_degrees' => 'nullable|in:pre-jardin/jardin/transición,1°,2°,3°-4°,5°-6°-7°,8°-9°,10°',
+            'load_degrees' => 'nullable|array',
+            'load_degrees.*' => 'in:pre-jardin,jardin,transición,1°,2°,3°,4°,5°,6°,7°,8°,9°,10°',
             'test_date' => 'nullable|date',
             'password' => 'required',
             'roles' => 'required|array|min:1',
@@ -126,7 +127,8 @@ class UserController extends Controller
         $user->assignRole($roles);
 
         $user->asignature = $request->input('asignature');
-        $user->load_degrees = $request->input('load_degrees');
+        //convertir el array en una cadena separado por comas y guardarlo
+        $user->load_degrees = $request->has('load_degrees') ? implode(',', $request->input('load_degrees')) : null;
         $user->test_date = $request->input('test_date'); 
         $user->password = bcrypt($request->input('password'));
         $user->save();
@@ -154,7 +156,8 @@ class UserController extends Controller
         $roles = Role::all();
         $userRoles = $user->roles->pluck('id')->toArray();
         $degree = $user->degree; 
-        return view('home.user.update', compact('user', 'roles', 'userRoles' , 'degree'));
+        $selectedDegrees = explode(',', $user->load_degrees); // Esto asume que `load_degrees` está almacenado como una cadena separada por comas
+        return view('home.user.update', compact('user', 'roles', 'userRoles' , 'degree', 'selectedDegrees'));
     }
 
 
@@ -170,7 +173,8 @@ class UserController extends Controller
             'last_name' => 'required',
             'degree' => 'nullable|in:jardin,pre-jardin,transición,1°,2°,3°,4°,5°,6°,7°,8°,9°,10°',
             'asignature' => 'nullable|in:english,math,spanish,spanish/math,spanish/english,english/math',
-            'load_degrees' => 'nullable|in:pre-jardin/jardin/transición,1°,2°,3°-4°,5°-6°-7°,8°-9°,10°',
+            'load_degrees' => 'nullable|array',
+            'load_degrees.*' => 'in:pre-jardin,jardin,transición,1°,2°,3°,4°,5°,6°,7°,8°,9°,10°',
             'test_date' => 'nullable|date',
             'email' => 'required|email|unique:users,email,' . $user->id,
             'number_documment' => 'required|digits_between:1,20|unique:users,number_documment,' . $user->id,
@@ -197,6 +201,14 @@ class UserController extends Controller
         ];
 
         foreach ($fieldsToUpdate as $field => $attribute) {
+            
+            if ($attribute === 'load_degrees') {
+                // Convierte el array en una cadena separada por comas antes de guardar
+                $validatedData['load_degrees'] = isset($validatedData['load_degrees']) 
+                    ? implode(',', $validatedData['load_degrees']) 
+                    : null;
+            }    
+
             // Usa array_key_exists para verificar si la clave está presente
             if ($attribute != 'password' && array_key_exists($field, $validatedData) && $datosActuales[$attribute] != $validatedData[$field]) {
                 $user->$attribute = $validatedData[$field];

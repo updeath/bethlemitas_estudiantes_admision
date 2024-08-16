@@ -85,7 +85,6 @@
                 <!-- ------------------------------------------------------------------ -->
                 <!-- ------------------------------------------------------------------ -->
                 <!-- ------------------------------------------------------------------ -->
-
                 @if(auth()->check() && auth()->user()->hasRole('Docente'))
                     @if(auth()->user()->asignature !== 'english')
 
@@ -102,6 +101,11 @@
                                 </svg>
                             </a>
 
+                            @php
+                                // Convierte los grados a cargo en un array
+                                $degrees = explode(',', auth()->user()->load_degrees);
+                            @endphp
+
                             <div x-show="isOpen" class="ml-6">
 
                                 @if(auth()->check() && (auth()->user()->hasRole('Docente') && (auth()->user()->asignature == 'math' || auth()->user()->asignature == 'spanish/math' || auth()->user()->asignature == 'english/math')))
@@ -114,26 +118,32 @@
                                 @endif
                                 
                                 <div x-show="subMenu" class="ml-6">
-                                    @if (auth()->user()->load_degrees == '3°-4°')
+
+                                    @if (in_array('4°', $degrees))
                                         <a x-show="selectedOption === 'Matematicas'" href="{{ route('table.math4') }}"
                                             class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 4°</a>
                                     @endif
-                                    @if (auth()->user()->load_degrees == '5°-6°-7°')
+                                    @if (in_array('5°', $degrees))
                                         <a x-show="selectedOption === 'Matematicas'" href="{{ route('table.math5') }}"
                                             class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 5°</a>
+                                    @endif
+                                    @if (in_array('6°', $degrees))
                                         <a x-show="selectedOption === 'Matematicas'" href="{{ route('table.math6') }}"
                                             class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 6°</a>
-                                        <a x-show="selectedOption === 'Matematicas'" href="{{ route('table.math7') }}"
-                                            class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">•
-                                            Grado 7°</a>
                                     @endif
-                                    @if (auth()->user()->load_degrees == '8°-9°')
+                                    @if (in_array('7°', $degrees))
+                                        <a x-show="selectedOption === 'Matematicas'" href="{{ route('table.math7') }}"
+                                            class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 7°</a>
+                                    @endif
+                                    @if (in_array('8°', $degrees))
                                         <a x-show="selectedOption === 'Matematicas'" href="{{ route('table.math8') }}"
                                             class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 8°</a>
+                                    @endif
+                                    @if (in_array('9°', $degrees))
                                         <a x-show="selectedOption === 'Matematicas'" href="{{ route('table.math9') }}"
                                             class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 9°</a>
                                     @endif
-                                    @if (auth()->user()->load_degrees == '10°')
+                                    @if (in_array('10°', $degrees))
                                         <a x-show="selectedOption === 'Matematicas'" href="{{ route('table.math10') }}"
                                             class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 10°</a>
                                     @endif
@@ -148,25 +158,31 @@
                                 @endif
 
                                 <div x-show="subMenu" class="ml-6">
-                                    @if (auth()->user()->load_degrees == '3°-4°')
+                                    @if (in_array('4°', $degrees))
                                         <a x-show="selectedOption === 'Español'" href="{{ route('tables.spanish4') }}"
                                             class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 4°</a>
                                     @endif
-                                    @if (auth()->user()->load_degrees == '5°-6°-7°')
+                                    @if (in_array('5°', $degrees))
                                         <a x-show="selectedOption === 'Español'" href="{{ route('tables.spanish5') }}"
                                             class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 5°</a>
+                                    @endif
+                                    @if (in_array('6°', $degrees))
                                         <a x-show="selectedOption === 'Español'" href="{{ route('tables.spanish6') }}"
                                             class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 6°</a>
+                                    @endif
+                                    @if (in_array('7°', $degrees))
                                         <a x-show="selectedOption === 'Español'" href="{{ route('tables.spanish7') }}"
                                             class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 7°</a>
                                     @endif
-                                    @if (auth()->user()->load_degrees == '8°-9°')
+                                    @if (in_array('8°', $degrees))
                                         <a x-show="selectedOption === 'Español'" href="{{ route('tables.spanish8') }}"
                                             class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 8°</a>
+                                    @endif
+                                    @if (in_array('9°', $degrees))
                                         <a x-show="selectedOption === 'Español'" href="{{ route('tables.spanish9') }}"
                                             class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 9°</a>
                                     @endif
-                                    @if (auth()->user()->load_degrees == '10°')
+                                    @if (in_array('10°', $degrees))
                                         <a x-show="selectedOption === 'Español'" href="{{ route('tables.spanish10') }}"
                                             class="px-10 block text-gray-600 hover:bg-[#3A8BC0] hover:text-gray-100">• Grado 10°</a>
                                     @endif

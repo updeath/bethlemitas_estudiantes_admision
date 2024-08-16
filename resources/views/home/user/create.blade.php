@@ -179,38 +179,29 @@
         <!-- ---------------------------------------------------- -->
 
         <div class="relative z-0 w-full mb-5 group">
-            <label class="peer-focus:font-medium  text-sm text-gray-500 dark:text-gray-400" for="location">
-                Grados a cargo
+            <label class="peer-focus:font-medium text-sm text-gray-500 dark:text-gray-400" for="location">
+                Grados a cargo (manten presionada la tecla Ctrl y seleciona los grados):
             </label>
             <div>
-
-                <select name="load_degrees" id="load_degrees" value="{{ old('load_degrees') }}"
+                <select name="load_degrees[]" id="load_degrees"
                     class="w-full bg-gray-200 border border-gray-200 text-gray-600 text-xs py-2 px-3 pr-8 mb-3 rounded"
-                    id="location"  @if (Auth::user()->hasRole('Secretaria')) disabled @endif>
-                    <option disabled selected> Seleccionar </option>
-                    
-                    <option value="pre-jardin/jardin/transición" {{ old('load_degrees') == 'pre-jardin/jardin/transición' ? 'selected' : '' }}>pre-jardin/jardin/transición
-                    </option>
+                    multiple @if (Auth::user()->hasRole('Secretaria')) disabled @endif>
+                    <option disabled>Seleccionar</option>
 
-                    <option value="1°" {{ old('load_degrees') == '1°' ? 'selected' : '' }}>1°
-                    </option>
-
-                    <option value="2°" {{ old('load_degrees') == '2°' ? 'selected' : '' }}>2°
-                    </option>
-
-                    <option value="3°-4°" {{ old('load_degrees') == '3°-4°' ? 'selected' : '' }}>3°-4°
-                    </option>
-
-                    <option value="5°-6°-7°" {{ old('load_degrees') == '5°-6°-7°' ? 'selected' : '' }}>5°-6°-7°
-                    </option>
-
-                    <option value="8°-9°" {{ old('load_degrees') == '8°-9°' ? 'selected' : '' }}>8°-9°
-                    </option>
-
-                    <option value="10°" {{ old('load_degrees') == '10°' ? 'selected' : '' }}>10°
-                    </option>
+                    <option value="pre-jardin" {{ in_array('pre-jardin', old('load_degrees', [])) ? 'selected' : '' }}>pre-jardin</option>
+                    <option value="jardin" {{ in_array('jardin', old('load_degrees', [])) ? 'selected' : '' }}>jardin</option>
+                    <option value="transición" {{ in_array('transición', old('load_degrees', [])) ? 'selected' : '' }}>transición</option>
+                    <option value="1°" {{ in_array('1°', old('load_degrees', [])) ? 'selected' : '' }}>1°</option>
+                    <option value="2°" {{ in_array('2°', old('load_degrees', [])) ? 'selected' : '' }}>2°</option>
+                    <option value="3°" {{ in_array('3°', old('load_degrees', [])) ? 'selected' : '' }}>3°</option>
+                    <option value="4°" {{ in_array('4°', old('load_degrees', [])) ? 'selected' : '' }}>4°</option>
+                    <option value="5°" {{ in_array('5°', old('load_degrees', [])) ? 'selected' : '' }}>5°</option>
+                    <option value="6°" {{ in_array('6°', old('load_degrees', [])) ? 'selected' : '' }}>6°</option>
+                    <option value="7°" {{ in_array('7°', old('load_degrees', [])) ? 'selected' : '' }}>7°</option>
+                    <option value="8°" {{ in_array('8°', old('load_degrees', [])) ? 'selected' : '' }}>8°</option>
+                    <option value="9°" {{ in_array('9°', old('load_degrees', [])) ? 'selected' : '' }}>9°</option>
+                    <option value="10°" {{ in_array('10°', old('load_degrees', [])) ? 'selected' : '' }}>10°</option>
                 </select>
-                    
             </div>
         </div>
 

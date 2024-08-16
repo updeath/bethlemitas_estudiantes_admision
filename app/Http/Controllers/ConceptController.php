@@ -42,7 +42,7 @@ class ConceptController extends Controller
         $promedios = [];
 
         //obtener los grados del usuario logueado
-        $loadDegrees = $auth_user->load_degrees ? explode('-', str_replace('/', '-', $auth_user->load_degrees)) : [];
+        $loadDegrees = $auth_user->load_degrees ? explode(',', $auth_user->load_degrees) : [];
 
         if ($auth_user->hasRole(['Admin', 'Docente','Psicoorientador','CoordinadorAcademico', 'CoordinadorConvivencia', 'Rector','Secretaria'])) {
             $usersQuery = User::whereHas('roles', function ($query) {
@@ -60,12 +60,8 @@ class ConceptController extends Controller
                         ->orWhereRaw("CONCAT(name, ' ', last_name) LIKE ?", ['%' . $searchTerm . '%']);
                 });
             }
-
-            if ($auth_user->number_documment == 1112782480) {
-                $usersQuery->whereIn('degree', ['1°', '2°']);
-            }
             //aplicar el filtro de grados para el usuario logueado
-            elseif (!empty($loadDegrees)) {
+            if (!empty($loadDegrees)) {
                 $usersQuery->where(function ($q) use ($loadDegrees) {
                     foreach ($loadDegrees as $degree) {
                         $q->orWhere('degree', 'LIKE', '%' . $degree . '%');
