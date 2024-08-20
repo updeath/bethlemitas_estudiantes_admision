@@ -27,38 +27,52 @@ class SpanishController extends Controller
 {
     public function index_spanish4()
     {
-        return view("home.forms.spanish.spanish4");
+        $user = Auth::user();
+        $hasRecord = SpanishCuarto::where('user_id', $user->id)->exists();
+        return view("home.forms.spanish.spanish4", compact('hasRecord'));
     }
 
 
     public function index_spanish5()
     {
-        return view("home.forms.spanish.spanish5");
+        $user = Auth::user();
+        $hasRecord = SpanishQuinto::where('user_id', $user->id)->exists();
+        return view("home.forms.spanish.spanish5", compact('hasRecord'));
     }
 
     public function index_spanish6()
     {
-        return view("home.forms.spanish.spanish6");
+        $user = Auth::user();
+        $hasRecord = SpanishSexto::where('user_id', $user->id)->exists();
+        return view("home.forms.spanish.spanish6", compact('hasRecord'));
     }
 
     public function index_spanish7()
     {
-        return view("home.forms.spanish.spanish7");
+        $user = Auth::user();
+        $hasRecord = SpanishSeptimo::where('user_id', $user->id)->exists();
+        return view("home.forms.spanish.spanish7", compact('hasRecord'));
     }
 
     public function index_spanish8()
     {
-        return view("home.forms.spanish.spanish8");
+        $user = Auth::user();
+        $hasRecord = SpanishOctavo::where('user_id', $user->id)->exists();
+        return view("home.forms.spanish.spanish8", compact('hasRecord'));
     }
 
     public function index_spanish9()
     {
-        return view("home.forms.spanish.spanish9");
+        $user = Auth::user();
+        $hasRecord = SpanishNoveno::where('user_id', $user->id)->exists();
+        return view("home.forms.spanish.spanish9", compact('hasRecord'));
     }
 
     public function index_spanish10()
     {
-        return view("home.forms.spanish.spanish10");
+        $user = Auth::user();
+        $hasRecord = SpanishDecimo::where('user_id', $user->id)->exists();
+        return view("home.forms.spanish.spanish10", compact('hasRecord'));
     }
     public function index_spanishFragment($userId)
     {

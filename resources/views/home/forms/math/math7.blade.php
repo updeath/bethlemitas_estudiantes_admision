@@ -39,9 +39,42 @@
         filter: drop-shadow(0 0 10px black )
     }
 
+    .container-success {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 80vh; /* Centra verticalmente */
+        text-align: center; /* Centra horizontalmente el contenido */
+        padding: 20px;
+    }
+
+    .container-success img {
+        width: 250px; /* Ajusta el tamaño del logo según tus necesidades */
+        margin-bottom: 15px;
+    }
+
+    .info-success {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #d4edda; /* Fondo verde claro (aviso de éxito) */
+        color: #155724; /* Texto verde oscuro */
+        border: 1px solid #c3e6cb; /* Borde verde claro */
+        padding: 15px 25px; /* Ajusta el padding interno */
+        border-radius: 5px; /* Bordes redondeados */
+        max-width: 550px; /* Limita el ancho máximo */
+        width: 100%; /* Asegura que el div ocupe todo el ancho disponible */
+        height: 100px;
+        box-shadow: 0 7px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar un efecto elevado */
+        margin-top: 10px; /* Reduce el espacio entre el logo y el mensaje */
+        font-size: 23px;
+    }
+
 </style>
 
 @section('content_dashboard')
+@if (!$hasRecord)
     <div class="bg-white rounded-lg p-7 mx-10">
         <h1 class="text-2xl font-semibold text-center mb-4">Formulario de admisión de Matemáticas <br> para aspirantes a
             grado 7°</h1>
@@ -399,6 +432,14 @@
             </div>
         </form>
     </div>
+@else 
+    <div class="container-success">
+        <img src="{{ asset('img/logo.png') }}" alt="logo">
+        <div class="info-success">
+            <h1><i class="fas fa-check text-sm"></i> El formulario se ha completado exitosamente</h1>
+        </div>
+    </div>
+@endif
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @if (session('success'))

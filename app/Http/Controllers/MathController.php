@@ -26,38 +26,52 @@ class MathController extends Controller
 {
     public function index_math4()
     {
-        return view("home.forms.math.math4");
+        $user = Auth::user();
+        $hasRecord = MathCuarto::where('user_id', $user->id)->exists();
+        return view("home.forms.math.math4", compact('hasRecord'));
     }
 
     public function index_math5()
     {
-        return view("home.forms.math.math5");
+        $user = Auth::user();
+        $hasRecord = MathQuinto::where('user_id', $user->id)->exists();
+        return view("home.forms.math.math5", compact('hasRecord'));
     }
 
     public function index_math6()
     {
-        return view("home.forms.math.math6");
+        $user = Auth::user();
+        $hasRecord = MathSexto::where('user_id', $user->id)->exists();
+        return view("home.forms.math.math6", compact('hasRecord'));
     }
 
     public function index_math7()
     {
-        return view("home.forms.math.math7");
+        $user = Auth::user();
+        $hasRecord = MathSeptimo::where('user_id', $user->id)->exists();
+        return view("home.forms.math.math7", compact('hasRecord'));
     }
 
     public function index_math8()
     {
-        return view("home.forms.math.math8");
+        $user = Auth::user();
+        $hasRecord = MathOctavo::where('user_id', $user->id)->exists();
+        return view("home.forms.math.math8", compact('hasRecord'));
     }
 
     public function index_math9()
     {
-        return view("home.forms.math.math9");
+        $user = Auth::user();
+        $hasRecord = MathNoveno::where('user_id', $user->id)->exists();
+        return view("home.forms.math.math9", compact('hasRecord'));
     }
 
 
     public function index_math10()
     {
-        return view("home.forms.math.math10");
+        $user = Auth::user();
+        $hasRecord = MathDecimo::where('user_id', $user->id)->exists();
+        return view("home.forms.math.math10", compact('hasRecord'));
     }
 
 
@@ -78,7 +92,7 @@ class MathController extends Controller
             });
         }
 
-        // Paginar los resultados con un máximo de 3 elementos por página
+        // Paginar los resultados con un máximo de 10 elementos por página
         $users = $query->orderBy('name', 'asc')
                        ->orderBy('last_name', 'asc')
                        ->paginate(10);
