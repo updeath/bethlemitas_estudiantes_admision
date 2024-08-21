@@ -148,7 +148,7 @@
     <div class="observation">
         <table>
             <tr class="fila1">
-                <td><h2>Concepto - Coordinador(a) Academico:</h2></td>
+                <td><h2>Concepto - Coordinador(a) Académico:</h2></td>
             </tr>
             <tr>
                 <td><p style="white-space: pre-line; ">{!! nl2br(implode("\n", $observation2)) !!}</p></td>

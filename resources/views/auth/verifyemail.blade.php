@@ -70,34 +70,34 @@
                         @endif
                         <div>
                             <div class="text-sm font-bold text-gray-700 tracking-wide">Correo electronico</div>
-                            <input id="email" name="email" value="{{ session('email') }}"
-                                class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-yellow-500"
-                                type="email" placeholder="test@bethlemitaspereira.edu.co">
-                            @if ($errors->has('email'))
-                                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Correo
-                                        incorrecto</span></p>
-                            @endif
+                                <input id="email" name="email" value="{{ session('email') }}"
+                                    class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-yellow-500"
+                                    type="email" placeholder="test@bethlemitaspereira.edu.co">
+                                @if ($errors->has('email'))
+                                    <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Correo
+                                            incorrecto</span></p>
+                                @endif
+                            </div>
+                            <div>
+                                <a href="{{ route('login') }}"
+                                    class="text-xs font-display font-semibold text-yellow-600 hover:text-yellow-800
+                                            cursor-pointer">
+                                    Regresar al Iniciar Sesión
+                                </a>
+                            </div>
                         </div>
-                        <div>
-                            <a href="{{ route('login') }}"
-                                class="text-xs font-display font-semibold text-yellow-600 hover:text-yellow-800
-                                        cursor-pointer">
-                                Regresar al Iniciar Sesión
-                            </a>
-                        </div>
-                </div>
 
-                <div class="mt-10">
-                    <button
-                        class="bg-yellow-500 text-gray-100 p-4 w-full rounded-full tracking-wide
-                                font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-yellow-600
-                                shadow-lg">
-                        Ingresar
-                    </button>
+                        <div class="mt-10">
+                            <button
+                                class="bg-yellow-500 text-gray-100 p-4 w-full rounded-full tracking-wide
+                                        font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-yellow-600
+                                        shadow-lg">
+                                Ingresar
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                </form>
             </div>
-        </div>
 
     <div class="hidden lg:flex items-center justify-center bg-gray-300 flex-1 h-screen">
         <div class="max-w-xs transform">

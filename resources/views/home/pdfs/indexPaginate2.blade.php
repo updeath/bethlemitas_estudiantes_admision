@@ -124,7 +124,7 @@
     <div class="observation">
         <table>
             <tr class="fila1">
-                <td><h2>Observaciones - Docente de Español:</h2></td>
+                <td><h2>Observaciones - Docente de Lengua Castellana:</h2></td>
             </tr>
             <tr>
                 <td><p style="white-space: pre-line; ">{!! nl2br(implode("\n", $observation)) !!}</p></td>
@@ -147,7 +147,7 @@
     <div class="observation">
         <table>
             <tr class="fila1">
-                <td><h2>Observaciones - Docente de Matematica:</h2></td>
+                <td><h2>Observaciones - Docente de Matemáticas:</h2></td>
             </tr>
             <tr>
                 <td><p style="white-space: pre-line; ">{!! nl2br(implode("\n", $observation2)) !!}</p></td>
@@ -170,7 +170,7 @@
     <div class="observation">
         <table>
             <tr class="fila1">
-                <td><h2>Observaciones - Docente de Ingles:</h2></td>
+                <td><h2>Observaciones - Docente de Inglés:</h2></td>
             </tr>
             <tr>
                 <td><p style="white-space: pre-line; ">{!! nl2br(implode("\n", $observation3)) !!}</p></td>

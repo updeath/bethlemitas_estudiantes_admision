@@ -321,7 +321,7 @@
 
             <!-- Pregunta 9 -->
             <div class="mb-3 border-t p-2 border-gray-400">
-                <h1 class="font-bold text-center"> "La sopa de piedras"</h1>
+                <h1 class="font-bold text-center"> "El árbol encantado"</h1>
                 <p>Hace mucho tiempo, un niño paseaba por un prado en cuyo centro encontró un árbol marcado con estas palabras: "Soy un árbol encantado, di las palabras mágicas y verás"</p>
                 <br>
                 <p>El niño trató de acertar el hechizo. Probó con un ¡abracadabra!, ¡tan-ta-tachán!, y muchas otras cosas. Triste porque nada pasaba, dijo: 

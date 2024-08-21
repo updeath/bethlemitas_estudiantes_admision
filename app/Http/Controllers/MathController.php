@@ -11,6 +11,7 @@ use App\Models\MathSeptimo;
 use App\Models\MathOctavo;
 use App\Models\MathNoveno;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use App\Models\User;
 use App\Exports\Math4Export;
 use App\Exports\Math\Math5Export;
@@ -21,6 +22,7 @@ use App\Exports\Math\Math9Export;
 use App\Exports\Math\Math10Export;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Log;
 
 class MathController extends Controller
 {
@@ -758,6 +760,31 @@ class MathController extends Controller
             $mathCuarto->mathPC10 = $request->input('mathPC10');
 
             $mathCuarto->save();
+
+            $emails = User::where('load_degrees', 'LIKE', '%4°%')
+                            ->where('asignature', 'math')
+                            ->get();
+
+            $otherEmails = User::whereHas('roles', function ($query) {
+                $query->where('roles.name', ['CoordinadorAcademico']);
+            })
+            ->get();
+            
+            foreach ($emails as $user) {
+                Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                    $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                        ->to($user->email)
+                        ->subject('Nuevo concepto asignado');
+                });
+            }
+
+            foreach ($otherEmails as $user) {
+                Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                    $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                        ->to($user->email)
+                        ->subject('Nuevo concepto asignado');
+                });
+            }
 
             return redirect()->back()->with('success', 'Datos almacenados correctamente.');
         }
