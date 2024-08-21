@@ -69,7 +69,10 @@ class ConceptController extends Controller
                 });
             }
 
-            $users = $usersQuery->orderBy('test_date', 'asc')->paginate(10);
+            $users = $usersQuery->orderBy('test_date', 'asc')
+                                ->orderBy('name', 'asc')
+                                ->orderBy('last_name', 'asc')
+                                ->paginate(10);
 
             foreach ($users as $user) {
                 $promedios['admin_data'][$user->id]['name'] = $user->name;
