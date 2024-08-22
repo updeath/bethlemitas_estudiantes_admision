@@ -13,6 +13,7 @@ use App\Models\SpanishDecimo;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\Spanish\Spanish4Export;
 use App\Exports\Spanish\spanish5Export;
@@ -1273,6 +1274,31 @@ class SpanishController extends Controller
 
             $spanishCuarto->save();
 
+            $emails = User::where('load_degrees', 'LIKE', '%4°%')
+            ->where('asignature', 'spanish')
+            ->get();
+
+            $otherEmails = User::whereHas('roles', function ($query) {
+            $query->where('roles.name', ['CoordinadorAcademico']);
+            })
+            ->get();
+
+            foreach ($emails as $user) {
+            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                    ->to($user->email)
+                    ->subject('Nuevo concepto asignado');
+            });
+            }
+
+            foreach ($otherEmails as $user) {
+            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                    ->to($user->email)
+                    ->subject('Nuevo concepto asignado');
+            });
+            }
+
             return redirect()->back()->with('success', 'Datos almacenados correctamente.');
         }
     }
@@ -1314,6 +1340,31 @@ class SpanishController extends Controller
 
             $spanishQuinto->save();
 
+            $emails = User::where('load_degrees', 'LIKE', '%5°%')
+            ->where('asignature', 'spanish')
+            ->get();
+
+            $otherEmails = User::whereHas('roles', function ($query) {
+            $query->where('roles.name', ['CoordinadorAcademico']);
+            })
+            ->get();
+
+            foreach ($emails as $user) {
+            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                    ->to($user->email)
+                    ->subject('Nuevo concepto asignado');
+            });
+            }
+
+            foreach ($otherEmails as $user) {
+            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                    ->to($user->email)
+                    ->subject('Nuevo concepto asignado');
+            });
+            }
+
             return redirect()->back()->with('success', 'Datos almacenados correctamente.');
         }
     }
@@ -1354,6 +1405,32 @@ class SpanishController extends Controller
             $spanishSexto->spanishPSX10 = $request->input('spanishPSX10');
 
             $spanishSexto->save();
+
+            $emails = User::where('load_degrees', 'LIKE', '%6°%')
+            ->where('asignature', 'spanish')
+            ->get();
+
+            $otherEmails = User::whereHas('roles', function ($query) {
+            $query->where('roles.name', ['CoordinadorAcademico']);
+            })
+            ->get();
+
+            foreach ($emails as $user) {
+            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                    ->to($user->email)
+                    ->subject('Nuevo concepto asignado');
+            });
+            }
+
+            foreach ($otherEmails as $user) {
+            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                    ->to($user->email)
+                    ->subject('Nuevo concepto asignado');
+            });
+            }
+
 
             return redirect()->back()->with('success', 'Datos almacenados correctamente.');
         }
@@ -1397,6 +1474,32 @@ class SpanishController extends Controller
 
             $spanishSexto->save();
 
+            $emails = User::where('load_degrees', 'LIKE', '%7°%')
+            ->where('asignature', 'spanish')
+            ->get();
+
+            $otherEmails = User::whereHas('roles', function ($query) {
+            $query->where('roles.name', ['CoordinadorAcademico']);
+            })
+            ->get();
+
+            foreach ($emails as $user) {
+            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                    ->to($user->email)
+                    ->subject('Nuevo concepto asignado');
+            });
+            }
+
+            foreach ($otherEmails as $user) {
+            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                    ->to($user->email)
+                    ->subject('Nuevo concepto asignado');
+            });
+            }
+
+
             return redirect()->back()->with('success', 'Datos almacenados correctamente.');
         }
     }
@@ -1439,6 +1542,32 @@ class SpanishController extends Controller
 
             $spanishOctavo->save();
 
+            $emails = User::where('load_degrees', 'LIKE', '%8°%')
+            ->where('asignature', 'spanish')
+            ->get();
+
+            $otherEmails = User::whereHas('roles', function ($query) {
+            $query->where('roles.name', ['CoordinadorAcademico']);
+            })
+            ->get();
+
+            foreach ($emails as $user) {
+            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                    ->to($user->email)
+                    ->subject('Nuevo concepto asignado');
+            });
+            }
+
+            foreach ($otherEmails as $user) {
+            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                    ->to($user->email)
+                    ->subject('Nuevo concepto asignado');
+            });
+            }
+
+
             return redirect()->back()->with('success', 'Datos almacenados correctamente.');
         }
     }
@@ -1479,6 +1608,32 @@ class SpanishController extends Controller
             $spanishNoveno->spanishPNO10 = $request->input('spanishPNO10');
 
             $spanishNoveno->save();
+
+            $emails = User::where('load_degrees', 'LIKE', '%9°%')
+            ->where('asignature', 'spanish')
+            ->get();
+
+            $otherEmails = User::whereHas('roles', function ($query) {
+            $query->where('roles.name', ['CoordinadorAcademico']);
+            })
+            ->get();
+
+            foreach ($emails as $user) {
+            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                    ->to($user->email)
+                    ->subject('Nuevo concepto asignado');
+            });
+            }
+
+            foreach ($otherEmails as $user) {
+            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                    ->to($user->email)
+                    ->subject('Nuevo concepto asignado');
+            });
+            }
+
 
             return redirect()->back()->with('success', 'Datos almacenados correctamente.');
         }
@@ -1528,6 +1683,32 @@ class SpanishController extends Controller
             $spanishDecimo->spanishPD10 = $request->input('spanishPD10');
 
             $spanishDecimo->save();
+
+            $emails = User::where('load_degrees', 'LIKE', '%10°%')
+            ->where('asignature', 'spanish')
+            ->get();
+
+            $otherEmails = User::whereHas('roles', function ($query) {
+            $query->where('roles.name', ['CoordinadorAcademico']);
+            })
+            ->get();
+
+            foreach ($emails as $user) {
+            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                    ->to($user->email)
+                    ->subject('Nuevo concepto asignado');
+            });
+            }
+
+            foreach ($otherEmails as $user) {
+            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                    ->to($user->email)
+                    ->subject('Nuevo concepto asignado');
+            });
+            }
+
 
             return redirect()->back()->with('success', 'Datos almacenados correctamente.');
         }

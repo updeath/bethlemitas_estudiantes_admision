@@ -828,6 +828,37 @@ class MathController extends Controller
 
             $mathQuinto->save();
 
+            $emails = User::where('load_degrees', 'LIKE', '%5°%')
+                            ->where('asignature', 'math')
+                            ->get();
+
+            $otherEmails = User::whereHas('roles', function ($query) {
+                $query->where('roles.name', ['CoordinadorAcademico']);
+            })
+            ->get();
+            
+            foreach ($emails as $user) {
+                Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                    $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                        ->to($user->email)
+                        ->subject('Nuevo concepto asignado');
+                });
+            }
+
+            foreach ($otherEmails as $user) {
+                Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                    $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                        ->to($user->email)
+                        ->subject('Nuevo concepto asignado');
+                });
+            }
+
+            // // Registrar el valor de $userId para depuración
+            // Log::info('Valor de $userId: ' . $userId);
+            // // Puedes realizar más validaciones y procesamiento aquí si es necesario
+            // // Retornar una respuesta JSON con el userId
+            // return response()->json(['userId' => $userId]);
+
             return redirect()->back()->with('success', 'Datos almacenados correctamente.');
         }
     }
@@ -870,6 +901,31 @@ class MathController extends Controller
             $mathSexto->mathPSX10 = $request->input('mathPSX10');
 
             $mathSexto->save();
+
+            $emails = User::where('load_degrees', 'LIKE', '%6°%')
+                            ->where('asignature', 'math')
+                            ->get();
+
+            $otherEmails = User::whereHas('roles', function ($query) {
+                $query->where('roles.name', ['CoordinadorAcademico']);
+            })
+            ->get();
+            
+            foreach ($emails as $user) {
+                Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                    $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                        ->to($user->email)
+                        ->subject('Nuevo concepto asignado');
+                });
+            }
+
+            foreach ($otherEmails as $user) {
+                Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                    $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                        ->to($user->email)
+                        ->subject('Nuevo concepto asignado');
+                });
+            }
 
             return redirect()->back()->with('success', 'Datos almacenados correctamente.');
         }
@@ -914,6 +970,31 @@ class MathController extends Controller
 
             $mathSeptimo->save();
 
+            $emails = User::where('load_degrees', 'LIKE', '%7°%')
+            ->where('asignature', 'math')
+            ->get();
+
+            $otherEmails = User::whereHas('roles', function ($query) {
+            $query->where('roles.name', ['CoordinadorAcademico']);
+            })
+            ->get();
+
+            foreach ($emails as $user) {
+            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                    ->to($user->email)
+                    ->subject('Nuevo concepto asignado');
+            });
+            }
+
+            foreach ($otherEmails as $user) {
+            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                    ->to($user->email)
+                    ->subject('Nuevo concepto asignado');
+            });
+            }
+
             return redirect()->back()->with('success', 'Datos almacenados correctamente.');
         }
     }
@@ -956,6 +1037,31 @@ class MathController extends Controller
             $mathOctavo->mathPO10 = $request->input('mathPO10');
 
             $mathOctavo->save();
+
+            $emails = User::where('load_degrees', 'LIKE', '%8°%')
+            ->where('asignature', 'math')
+            ->get();
+
+            $otherEmails = User::whereHas('roles', function ($query) {
+            $query->where('roles.name', ['CoordinadorAcademico']);
+            })
+            ->get();
+
+            foreach ($emails as $user) {
+            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                    ->to($user->email)
+                    ->subject('Nuevo concepto asignado');
+            });
+            }
+
+            foreach ($otherEmails as $user) {
+            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                    ->to($user->email)
+                    ->subject('Nuevo concepto asignado');
+            });
+            }
 
             return redirect()->back()->with('success', 'Datos almacenados correctamente.');
         }
@@ -1000,6 +1106,31 @@ class MathController extends Controller
 
             $mathNoveno->save();
 
+            $emails = User::where('load_degrees', 'LIKE', '%9°%')
+            ->where('asignature', 'math')
+            ->get();
+
+            $otherEmails = User::whereHas('roles', function ($query) {
+            $query->where('roles.name', ['CoordinadorAcademico']);
+            })
+            ->get();
+
+            foreach ($emails as $user) {
+            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                    ->to($user->email)
+                    ->subject('Nuevo concepto asignado');
+            });
+            }
+
+            foreach ($otherEmails as $user) {
+            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                    ->to($user->email)
+                    ->subject('Nuevo concepto asignado');
+            });
+            }
+
             return redirect()->back()->with('success', 'Datos almacenados correctamente.');
         }
     }
@@ -1042,6 +1173,31 @@ class MathController extends Controller
             $mathDecimo->mathPD10 = $request->input('mathPD10');
 
             $mathDecimo->save();
+
+            $emails = User::where('load_degrees', 'LIKE', '%10°%')
+            ->where('asignature', 'math')
+            ->get();
+
+            $otherEmails = User::whereHas('roles', function ($query) {
+            $query->where('roles.name', ['CoordinadorAcademico']);
+            })
+            ->get();
+
+            foreach ($emails as $user) {
+            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                    ->to($user->email)
+                    ->subject('Nuevo concepto asignado');
+            });
+            }
+
+            foreach ($otherEmails as $user) {
+            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                    ->to($user->email)
+                    ->subject('Nuevo concepto asignado');
+            });
+            }
 
             return redirect()->back()->with('success', 'Datos almacenados correctamente.');
         }
