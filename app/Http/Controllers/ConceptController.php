@@ -29,6 +29,7 @@ use App\Models\SpanishDecimo;
 use App\Models\User;
 use App\Models\Concept;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 class ConceptController extends Controller
 {
@@ -557,6 +558,20 @@ class ConceptController extends Controller
 
                 $ConceptAcademico->ObservationAcademico = $newObservation;
                 $ConceptAcademico->save();
+
+                $emails = User::whereHas('roles', function ($query) {
+                    $query->whereIn('roles.name', ['CoordinadorConvivencia', 'Psicoorientador', 'Rector']);
+                })
+                ->get();
+            
+                foreach ($emails as $user) {
+                    Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                        $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                            ->to($user->email)
+                            ->subject('Nuevo concepto asignado');
+                    });
+                }
+
             } else {
                 return redirect()->back()->with('info', 'La observación no puede estar vacía.');
             }
