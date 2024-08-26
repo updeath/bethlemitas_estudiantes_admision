@@ -50,6 +50,92 @@ class ConceptController extends Controller
                 $query->where('name', 'Aspirante');
             });
 
+            // Filtro para Coordinador Académico
+            if ($auth_user->hasRole('CoordinadorAcademico')) {
+                $usersQuery->whereDoesntHave('concept', function ($query) {
+                    $query->where('signature_image_coordinador_academico', '!=', null);
+                });
+            }
+
+            // Filtro para Coordinador Conveivencia
+            if ($auth_user->hasRole('CoordinadorConvivencia')) {
+                $usersQuery->whereDoesntHave('concept', function ($query) {
+                    $query->where('signature_image_coordinador_convivencia', '!=', null);
+                });
+            }
+
+            // Filtro para Psicoorientador
+            if ($auth_user->hasRole('Psicoorientador')) {
+                $usersQuery->whereDoesntHave('concept', function ($query) {
+                    $query->where('signature_image_psicoorientador', '!=', null);
+                });
+            }
+
+            // Filtro para Rector
+            if ($auth_user->hasRole('Rector')) {
+                $usersQuery->whereDoesntHave('concept', function ($query) {
+                    $query->where('signature_image_rector', '!=', null);
+                });
+            }
+
+            // Filtro para Docente español
+            if ($auth_user->hasRole('Docente') && $auth_user->asignature == 'spanish') {
+                $usersQuery->whereDoesntHave('concept', function ($query) {
+                    $query->where('signature_image_spanish_decimo', '!=', null);
+                });
+            }
+
+            // Filtro para Docente matemáticas
+            if ($auth_user->hasRole('Docente') && $auth_user->asignature == 'math') {
+                $usersQuery->whereDoesntHave('concept', function ($query) {
+                    $query->where('signature_image_math_decimo', '!=', null);
+                });
+            }
+
+            // Filtro para Docente inglés
+            if ($auth_user->hasRole('Docente') && $auth_user->asignature == 'english') {
+                $usersQuery->whereDoesntHave('concept', function ($query) {
+                    $query->where('signature_image_english_decimo', '!=', null);
+                });
+            }
+            
+            // Filtro para Docente español y matematicas
+            if ($auth_user->hasRole('Docente') && $auth_user->asignature == 'spanish/math') {
+                $usersQuery->whereDoesntHave('concept', function ($query) {
+                    $query->where('signature_image_spanish_decimo', '!=', null)
+                          ->where('signature_image_math_decimo', '!=', null);
+                });
+            }
+
+            // Filtro para Docente español e inglés
+            if ($auth_user->hasRole('Docente') && $auth_user->asignature == 'spanish/english') {
+                $usersQuery->whereDoesntHave('concept', function ($query) {
+                    $query->where('signature_image_english_decimo', '!=', null)
+                          ->where('signature_image_spanish_decimo', '!=', null);
+                });
+            }
+
+            // Filtro para Docente español e inglés
+            if ($auth_user->hasRole('Docente') && $auth_user->asignature == 'english/math') {
+                $usersQuery->whereDoesntHave('concept', function ($query) {
+                    $query->where('signature_image_english_decimo', '!=', null)
+                          ->where('signature_image_math_decimo', '!=', null);
+                });
+            }
+
+            // Filtro para secretaria y admin
+            if ($auth_user->hasRole('Secretaria') || $auth_user->hasRole('Admin') ) {
+                $usersQuery->whereDoesntHave('concept', function ($query) {
+                    $query->where('signature_image_english_decimo', '!=', null)
+                          ->where('signature_image_math_decimo', '!=', null)
+                          ->where('signature_image_spanish_decimo', '!=', null)
+                          ->where('signature_image_psicoorientador', '!=', null)
+                          ->where('signature_image_coordinador_academico', '!=', null)
+                          ->where('signature_image_coordinador_convivencia', '!=', null)
+                          ->where('signature_image_rector', '!=', null);
+                });
+            }
+
             //aplicar filtro de busqueda si existe
             if ($request->has('search')) {
                 $searchTerm = $request->input('search');
@@ -156,6 +242,214 @@ class ConceptController extends Controller
         // return response()->json(['promediosss' => $promedios]);
 
         return view("home.concept.index", ['promedios' => $promedios, 'auth_user' => $auth_user, 'users' => $users]);
+    }
+
+    public function index_concept_elaborate(Request $request) {
+
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
+        $auth_user = Auth::user();
+        $promedios = [];
+
+        //obtener los grados del usuario logueado
+        $loadDegrees = $auth_user->load_degrees ? explode(',', $auth_user->load_degrees) : [];
+
+        if ($auth_user->hasRole(['Admin', 'Docente','Psicoorientador','CoordinadorAcademico', 'CoordinadorConvivencia', 'Rector','Secretaria'])) {
+            $usersQuery = User::whereHas('roles', function ($query) {
+                $query->where('name', 'Aspirante');
+            });
+
+            // Filtro para Coordinador Académico
+            if ($auth_user->hasRole('CoordinadorAcademico')) {
+                $usersQuery->whereHas('concept', function ($query) {
+                    $query->where('signature_image_coordinador_academico', '!=', null);
+                });
+            }
+
+            // Filtro para Coordinador Conveivencia
+            if ($auth_user->hasRole('CoordinadorConvivencia')) {
+                $usersQuery->whereHas('concept', function ($query) {
+                    $query->where('signature_image_coordinador_convivencia', '!=', null);
+                });
+            }
+
+            // Filtro para Psicoorientador
+            if ($auth_user->hasRole('Psicoorientador')) {
+                $usersQuery->whereHas('concept', function ($query) {
+                    $query->where('signature_image_psicoorientador', '!=', null);
+                });
+            }
+
+            // Filtro para Rector
+            if ($auth_user->hasRole('Rector')) {
+                $usersQuery->whereHas('concept', function ($query) {
+                    $query->where('signature_image_rector', '!=', null);
+                });
+            }
+
+            // Filtro para Docente español
+            if ($auth_user->hasRole('Docente') && $auth_user->asignature == 'spanish') {
+                $usersQuery->whereHas('concept', function ($query) {
+                    $query->where('signature_image_spanish_decimo', '!=', null);
+                });
+            }
+
+            // Filtro para Docente matemáticas
+            if ($auth_user->hasRole('Docente') && $auth_user->asignature == 'math') {
+                $usersQuery->whereHas('concept', function ($query) {
+                    $query->where('signature_image_math_decimo', '!=', null);
+                });
+            }
+
+            // Filtro para Docente inglés
+            if ($auth_user->hasRole('Docente') && $auth_user->asignature == 'english') {
+                $usersQuery->whereHas('concept', function ($query) {
+                    $query->where('signature_image_english_decimo', '!=', null);
+                });
+            }
+            
+            // Filtro para Docente español y matematicas
+            if ($auth_user->hasRole('Docente') && $auth_user->asignature == 'spanish/math') {
+                $usersQuery->whereHas('concept', function ($query) {
+                    $query->where('signature_image_spanish_decimo', '!=', null)
+                          ->where('signature_image_math_decimo', '!=', null);
+                });
+            }
+
+            // Filtro para Docente español e inglés
+            if ($auth_user->hasRole('Docente') && $auth_user->asignature == 'spanish/english') {
+                $usersQuery->whereHas('concept', function ($query) {
+                    $query->where('signature_image_english_decimo', '!=', null)
+                          ->where('signature_image_spanish_decimo', '!=', null);
+                });
+            }
+
+            // Filtro para Docente español e inglés
+            if ($auth_user->hasRole('Docente') && $auth_user->asignature == 'english/math') {
+                $usersQuery->whereHas('concept', function ($query) {
+                    $query->where('signature_image_english_decimo', '!=', null)
+                          ->where('signature_image_math_decimo', '!=', null);
+                });
+            }
+
+            // Filtro para secretaria y admin
+            if ($auth_user->hasRole('Secretaria') || $auth_user->hasRole('Admin') ) {
+                $usersQuery->whereHas('concept', function ($query) {
+                    $query->where('signature_image_english_decimo', '!=', null)
+                          ->where('signature_image_math_decimo', '!=', null)
+                          ->where('signature_image_spanish_decimo', '!=', null)
+                          ->where('signature_image_psicoorientador', '!=', null)
+                          ->where('signature_image_coordinador_academico', '!=', null)
+                          ->where('signature_image_coordinador_convivencia', '!=', null)
+                          ->where('signature_image_rector', '!=', null);
+                });
+            }
+
+            //aplicar filtro de busqueda si existe
+            if ($request->has('search')) {
+                $searchTerm = $request->input('search');
+                $usersQuery->where(function ($q) use ($searchTerm) {
+                    $q->where('name', 'LIKE', '%' . $searchTerm . '%')
+                        ->orWhere('last_name', 'LIKE', '%' . $searchTerm . '%')
+                        ->orWhere('degree', 'LIKE', '%' . $searchTerm . '%')
+                        ->orWhere('number_documment', 'LIKE', '%' . $searchTerm . '%')
+                        ->orWhereRaw("CONCAT(name, ' ', last_name) LIKE ?", ['%' . $searchTerm . '%']);
+                });
+            }
+            //aplicar el filtro de grados para el usuario logueado
+            if (!empty($loadDegrees)) {
+                $usersQuery->where(function ($q) use ($loadDegrees) {
+                    foreach ($loadDegrees as $degree) {
+                        $q->orWhere('degree', 'LIKE', '%' . $degree . '%');
+                    } 
+                });
+            }
+
+            $users = $usersQuery->orderBy('test_date', 'asc')
+                                ->orderBy('name', 'asc')
+                                ->orderBy('last_name', 'asc')
+                                ->paginate(10);
+
+            foreach ($users as $user) {
+                $promedios['admin_data'][$user->id]['name'] = $user->name;
+                $promedios['admin_data'][$user->id]['last_name'] = $user->last_name;
+                $promedios['admin_data'][$user->id]['degree'] = $user->degree;
+                $promedios['admin_data'][$user->id]['id'] = $user->id;
+                $promedios['admin_data'][$user->id]['number_documment'] = $user->number_documment;
+                $promedios['admin_data'][$user->id]['test_date'] = $user->test_date;
+
+                // Accede al concepto a través de la relación definida en el modelo User
+                $observaciones = $user->getObservations();
+
+                $promedios['admin_data'][$user->id]['observacionSpanish'] = $observaciones['spanish'];
+                $promedios['admin_data'][$user->id]['observacionPredeterminadaPresenteSpanish'] = $observaciones['spanish'] === null;
+
+                $promedios['admin_data'][$user->id]['observacionMath'] = $observaciones['math'];
+                $promedios['admin_data'][$user->id]['observacionPredeterminadaPresenteMath'] = $observaciones['math'] === null;
+
+                $promedios['admin_data'][$user->id]['observacionEnglish'] = $observaciones['english'];
+                $promedios['admin_data'][$user->id]['observacionPredeterminadaPresenteEnglish'] = $observaciones['english'] === null;
+
+                $promedios['admin_data'][$user->id]['observacionPsicoorientador'] = $observaciones['psicoorientador'];
+                $promedios['admin_data'][$user->id]['observacionPredeterminadaPresentePsicoorientador'] = $observaciones['psicoorientador'] === null;
+
+                $promedios['admin_data'][$user->id]['observacionRector'] = $observaciones['rector'];
+                $promedios['admin_data'][$user->id]['observacionPredeterminadaPresenteRector'] = $observaciones['rector'] === null;
+
+                $promedios['admin_data'][$user->id]['observacionAcademico'] = $observaciones['academico'];
+                $promedios['admin_data'][$user->id]['observacionPredeterminadaPresenteAcademico'] = $observaciones['academico'] === null;
+
+                $promedios['admin_data'][$user->id]['observacionConvivencia'] = $observaciones['convivencia'];
+                $promedios['admin_data'][$user->id]['observacionPredeterminadaPresenteConvivencia'] = $observaciones['convivencia'] === null;
+
+                if ($user->degree == '4°') {
+                    $promedios['admin_data'][$user->id]['mathCuarto'] = MathCuarto::where('user_id', $user->id)->pluck('average')->first();
+                    $promedios['admin_data'][$user->id]['spanishCuarto'] = SpanishCuarto::where('user_id', $user->id)->pluck('averageSpanishPC')->first();
+                    $promedios['admin_data'][$user->id]['englishCuarto'] = EnglishCuartoQuinto::where('user_id', $user->id)->pluck('average')->first();
+                    $promedios['admin_data'][$user->id]['englishCuartoPart2'] = EnglishCQpart2::where('user_id', $user->id)->pluck('average')->first();
+                } elseif ($user->degree == '3°') {
+                    $promedios['admin_data'][$user->id]['englishTercero'] = EnglishCuartoQuinto::where('user_id', $user->id)->pluck('average')->first();
+                    $promedios['admin_data'][$user->id]['englishTerceroPart2'] = EnglishCQpart2::where('user_id', $user->id)->pluck('average')->first();
+                } elseif ($user->degree == '5°') {
+                    $promedios['admin_data'][$user->id]['mathQuinto'] = MathQuinto::where('user_id', $user->id)->pluck('averagePQ')->first();
+                    $promedios['admin_data'][$user->id]['spanishQuinto'] = SpanishQuinto::where('user_id', $user->id)->pluck('averageSpanishPQ')->first();
+                    $promedios['admin_data'][$user->id]['englishQuinto'] = EnglishQuintoSexto::where('user_id', $user->id)->pluck('average')->first();
+                    $promedios['admin_data'][$user->id]['englishQuintoPart2'] = EnglishQuintoSextoPart2::where('user_id', $user->id)->pluck('average')->first();
+                } elseif ($user->degree == '6°') {
+                    $promedios['admin_data'][$user->id]['mathSexto'] = MathSexto::where('user_id', $user->id)->pluck('averagePSX')->first();
+                    $promedios['admin_data'][$user->id]['spanishSexto'] = SpanishSexto::where('user_id', $user->id)->pluck('averageSpanishPSX')->first();
+                    $promedios['admin_data'][$user->id]['englishSexto'] = EnglishQuintoSexto::where('user_id', $user->id)->pluck('average')->first();
+                    $promedios['admin_data'][$user->id]['englishSextoPart2'] = EnglishQuintoSextoPart2::where('user_id', $user->id)->pluck('average')->first();
+                } elseif ($user->degree == '7°') {
+                    $promedios['admin_data'][$user->id]['mathSeptimo'] = MathSeptimo::where('user_id', $user->id)->pluck('averagePS')->first();
+                    $promedios['admin_data'][$user->id]['spanishSeptimo'] = SpanishSeptimo::where('user_id', $user->id)->pluck('averageSpanishPS')->first();
+                    $promedios['admin_data'][$user->id]['englishSeptimo'] = EnglishSeptimoOctavo::where('user_id', $user->id)->pluck('average')->first();
+                    $promedios['admin_data'][$user->id]['englishSeptimoPart2'] = EnglishSeptimoOctavoParte2::where('user_id', $user->id)->pluck('average')->first();
+                } elseif ($user->degree == '8°') {
+                    $promedios['admin_data'][$user->id]['mathOctavo'] = MathOctavo::where('user_id', $user->id)->pluck('averagePO')->first();
+                    $promedios['admin_data'][$user->id]['spanishOctavo'] = SpanishOctavo::where('user_id', $user->id)->pluck('averageSpanishPO')->first();
+                    $promedios['admin_data'][$user->id]['englishOctavo'] = EnglishSeptimoOctavo::where('user_id', $user->id)->pluck('average')->first();
+                    $promedios['admin_data'][$user->id]['englishOctavoPart2'] = EnglishSeptimoOctavoParte2::where('user_id', $user->id)->pluck('average')->first();
+                } elseif ($user->degree == '9°') {
+                    $promedios['admin_data'][$user->id]['mathNoveno'] = MathNoveno::where('user_id', $user->id)->pluck('averagePNO')->first();
+                    $promedios['admin_data'][$user->id]['spanishNoveno'] = SpanishNoveno::where('user_id', $user->id)->pluck('averageSpanishPNO')->first();
+                    $promedios['admin_data'][$user->id]['englishNoveno'] = English9_10_11::where('user_id', $user->id)->pluck('average')->first();
+                    $promedios['admin_data'][$user->id]['englishNoveno2'] = English9_10_11Part2::where('user_id', $user->id)->pluck('average')->first();
+                    $promedios['admin_data'][$user->id]['englishNoveno3'] = English9_10_11_Part3::where('user_id', $user->id)->pluck('average')->first();
+                } elseif ($user->degree == '10°') {
+                    $promedios['admin_data'][$user->id]['mathDecimo'] = MathDecimo::where('user_id', $user->id)->pluck('averagePD')->first();
+                    $promedios['admin_data'][$user->id]['spanishDecimo'] = SpanishDecimo::where('user_id', $user->id)->pluck('averageSpanishPD')->first();
+                    $promedios['admin_data'][$user->id]['englishDecimo'] = English9_10_11::where('user_id', $user->id)->pluck('average')->first();
+                    $promedios['admin_data'][$user->id]['englishDecimo2'] = English9_10_11Part2::where('user_id', $user->id)->pluck('average')->first();
+                    $promedios['admin_data'][$user->id]['englishDecimo3'] = English9_10_11_Part3::where('user_id', $user->id)->pluck('average')->first();
+                }
+
+            }
+        }
+
+        return view('home.concept.indexConceptsElaborated',  ['promedios' => $promedios, 'auth_user' => $auth_user, 'users' => $users]);
     }
 
     public function saveObservationDocenteSpanish(Request $request, $userId)

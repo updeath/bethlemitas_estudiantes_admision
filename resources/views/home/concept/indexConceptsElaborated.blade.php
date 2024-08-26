@@ -1,10 +1,10 @@
 @extends('home.conceptPage')
 
-@section('sub_title', 'Conceptos y observaciones pendientes')
+@section('sub_title', 'Conceptos y observaciones elaboradas')
 
 @section('search')
     <div class="relative">
-        <form action="{{ route('mostrar_conceptos') }}" method="GET" class="flex items-center">
+        <form action="{{ route('mostrar_conceptos_elaborados') }}" method="GET" class="flex items-center">
             <input type="search" name="search" class="bg-purple-white shadow rounded-l border-0 p-2" placeholder="Buscar">
             <button type="submit"
                 class="bg-purple-white hover:bg-purple-200 text-purple-lighter font-bold py-2 px-4 rounded-r">

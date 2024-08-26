@@ -235,6 +235,7 @@ Route::middleware(['web', 'setLanguage', 'auth'])->group(function () {
 
     // ------------------- Conceto ------------------
     Route::get('/board_concept', [ConceptController::class, 'index_concept'])->name('mostrar_conceptos');
+    Route::get('/board_concept_elaraborate', [ConceptController::class, 'index_concept_elaborate'])->name('mostrar_conceptos_elaborados');
     Route::post('/save-observationDocenteSpanish/{userId}', [ConceptController::class, 'saveObservationDocenteSpanish'])->name('save.observationsDocenteSpanish');
     Route::post('/save-observationDocenteMath/{userId}', [ConceptController::class, 'saveObservationDocenteMath'])->name('save.observationsDocenteMath');
     Route::post('/save-observationDocenteEnglish/{userId}', [ConceptController::class, 'saveObservationDocenteEnglish'])->name('save.observationsDocenteEnglish');
