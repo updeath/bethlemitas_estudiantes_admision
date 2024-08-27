@@ -73,10 +73,11 @@
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                 Rol Asignado</th>
 
+                            
                             <th
-                                class="px-12 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                class="px-12 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50" @if (Auth::user()->hasRole(['Docente', 'CoordinadorConvivencia', 'Aspirante', 'Psicoorientador'])) style="display: none" @endif>
                                 Acciones</th>
-
+                            
                         </tr>
                     </thead>
 
@@ -153,7 +154,8 @@
                                 </td>
 
                                 <td
-                                    class="px-4 py-4 text-sm font-medium leading-5 text-right whitespace-no-wrap border-b border-gray-200">
+                                    class="px-4 py-4 text-sm font-medium leading-5 text-right whitespace-no-wrap border-b border-gray-200"
+                                    @if (Auth::user()->hasRole(['Docente', 'CoordinadorConvivencia', 'Aspirante', 'Psicoorientador'])) style="display: none" @endif>
                                     <a href="{{ route('user.edit', $user->id) }}"
                                         class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                     <label>|</label>
