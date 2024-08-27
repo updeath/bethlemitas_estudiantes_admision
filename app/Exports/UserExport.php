@@ -22,12 +22,14 @@ class UserExport implements FromCollection, WithHeadings
             $roles = $user->roles->pluck('name')->implode(', ');
 
             return [
+                'Tipo de documento' =>$user->typeDocumment,
                 'Documento' => $user->number_documment,
                 'Nombre' => $user->name,
                 'Apellido' => $user->last_name,
                 'Correo electronico' => $user->email,
                 'Celular' => $user->iphone,
                 'Grado' => $user->degree,
+                'Grado a cargo' => $user->load_degrees,
                 'Estado' => $user->status,
                 'Rol' => $roles,
             ];
@@ -39,12 +41,14 @@ class UserExport implements FromCollection, WithHeadings
     public function headings(): array
     {
         return [
+            'Tipo de documento',
             'Documento',
             'Nombre',
             'Apellido',
             'Correo electronico',
             'Celular',
             'Grado',
+            'Grado a cargo',
             'Estado',
             'Rol'
         ];

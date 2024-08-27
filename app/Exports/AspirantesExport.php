@@ -19,6 +19,8 @@ class AspirantesExport implements FromCollection, WithHeadings
 
         return $aspirantes->map(function ($user) {
             return [
+                'Fecha de prueba' => $user->test_date,
+                'Tipo de documento' =>$user->typeDocumment,
                 'Documento' => $user->number_documment,
                 'Nombre' => $user->name,
                 'Apellido' => $user->last_name,
@@ -33,6 +35,8 @@ class AspirantesExport implements FromCollection, WithHeadings
     public function headings(): array
     {
         return [
+            'Fecha de prueba',
+            'Tipo de documento',
             'Documento',
             'Nombre',
             'Apellido',
