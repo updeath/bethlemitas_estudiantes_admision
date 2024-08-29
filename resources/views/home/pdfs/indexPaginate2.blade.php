@@ -95,6 +95,13 @@
 
     </style>
 </head>
+
+@php
+    use Carbon\Carbon;
+    $birthdate = new Carbon($user->birthdate);
+    $age = $birthdate->age;
+@endphp
+
 <body>
     <table>
         <tr>
@@ -117,7 +124,7 @@
     <div class="container-user-info">
         <p><strong>Nombre del Aspirante:</strong><span class="user-info" > {{ $user->name }} {{ $user->last_name }}</span></p>
         <p><strong>Grado al que aspira:</strong><span class="user-info" > {{ $user->degree }} </span></p>
-        <span>Fecha de nacimiento: _____________________</span> <span>Edad: _________________</span>
+        <span>Fecha de nacimiento: {{ $user->birthdate }}</span>  <span> Edad: {{ $age }}</span>
     </div>
 
     @if ($observation)

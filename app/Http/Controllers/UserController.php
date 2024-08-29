@@ -102,6 +102,7 @@ class UserController extends Controller
             'email' => 'required|email|unique:users',
             'number_documment' => 'required|digits_between:1,20|unique:users',
             'typeDocumment' => 'required|in:TI,CC,NUIP',
+            'birthdate' => 'nullable|date',
             'iphone' => 'required|numeric',
             'status' => 'required|in:Activo,Bloqueado',
             'degree' => 'nullable|in:jardin,pre-jardin,transición,1°,2°,3°,4°,5°,6°,7°,8°,9°,10°',
@@ -120,6 +121,7 @@ class UserController extends Controller
         $user->email = $request->input('email');
         $user->number_documment = $request->input('number_documment');
         $user->typeDocumment = $request->input('typeDocumment');
+        $user->birthdate = $request->input('birthdate');
         $user->iphone = $request->input('iphone');
         $user->status = $request->input('status');
         $user->degree = $request->input('degree');
@@ -181,6 +183,7 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email,' . $user->id,
             'number_documment' => 'required|digits_between:1,20|unique:users,number_documment,' . $user->id,
             'typeDocumment' => 'required|in:TI,CC,NUIP',
+            'birthdate' => 'nullable|date',
             'iphone' => 'required|numeric',
             'status' => 'required|in:Activo,Bloqueado',
             'password' => 'required|min:6',
@@ -198,6 +201,7 @@ class UserController extends Controller
             'email' => 'email',
             'number_documment' => 'number_documment',
             'typeDocumment' => 'typeDocumment',
+            'birthdate' => 'birthdate',
             'iphone' => 'iphone',
             'status' => 'status',
         ];

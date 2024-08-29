@@ -47,6 +47,33 @@
 <div class="grid md:grid-cols-2 gap-6 py-5 px-8">
     <form class=" max-w-md mx-auto bg-white py-3 px-8 rounded-lg" action="{{ route('user.store') }}" method="POST">
         @csrf
+        <div class="   ">
+            <label class="peer-focus:font-medium text-sm text-gray-500 dark:text-gray-400" for="location">
+                Roles
+            </label>
+            <div>
+                <select name="roles[]" id="roles"
+                        class="w-full bg-gray-200 border border-gray-200 text-gray-600 text-xs py-2 px-3 pr-8 mb-3 rounded"
+                        id="location">
+                    <option> Seleccionar </option>
+                    @if (Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Rector'))
+                        @foreach ($roles as $role)
+                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                        @endforeach
+                    @else
+                        @foreach ($roles as $role)
+                            @if ($role->name == 'Aspirante')
+                                <option value="{{ $role->id }} ">{{ $role->name }}</option>
+                            @endif
+                        @endforeach
+                    @endif
+                </select>
+            </div>
+            @error('roles')
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Incorrecto</span></p>
+            @enderror
+        </div>
+        
         <div class="grid md:grid-cols-2 md:gap-6">
             <div class="relative z-0 w-full mb-5 group">
                 <input type="text" name="name" id="name" value="{{ old('name') }}"
@@ -83,13 +110,13 @@
                 class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Correo
                 electronico</label>
             @error('email')
-                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Incorrecto</span></p>
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">El correo ya se encuentra registrado</span></p>
             @enderror
         </div>
 
         <div class="grid md:grid-cols-2 md:gap-6">
             <div class="relative z-0 w-full mb-5 group">
-            <div class="   ">
+            <div class="" id="conditionalDiv1">
                 <label class="peer-focus:font-medium  text-sm text-gray-500 dark:text-gray-400" for="location">
                     Grado
                 </label>
@@ -143,14 +170,14 @@
             </div>
             </div>
 
-            <div class="   ">
+            <div class="" id="conditionalDiv2" @if (Auth::user()->hasRole('Secretaria')) style="display: none" @endif>
                 <label class="peer-focus:font-medium  text-sm text-gray-500 dark:text-gray-400" for="location">
                     Asignatura (Docente)
                 </label>
                 <div>
                     <select name="asignature" id="asignature" value="{{ old('asignature') }}"
                         class="w-full bg-gray-200 border border-gray-200 text-gray-600 text-xs py-2 px-3 pr-8 mb-3 rounded"
-                        id="location" @if (Auth::user()->hasRole('Secretaria')) disabled @endif>
+                        id="location" >
                         <option disabled selected> Seleccionar </option>
                         <option value="english" {{ old('asignature') == 'english' ? 'selected' : '' }}>Inglés
                         </option>
@@ -178,14 +205,15 @@
         <!-- ---------------------------------------------------- -->
         <!-- ---------------------------------------------------- -->
 
-        <div class="relative z-0 w-full mb-5 group">
+        <div class="relative z-0 w-full mb-5 group" id="conditionalDiv3"
+            @if (Auth::user()->hasRole('Secretaria')) style="display: none" @endif>
             <label class="peer-focus:font-medium text-sm text-gray-500 dark:text-gray-400" for="location">
                 Grados a cargo (manten presionada la tecla Ctrl y seleciona los grados):
             </label>
             <div>
                 <select name="load_degrees[]" id="load_degrees"
                     class="w-full bg-gray-200 border border-gray-200 text-gray-600 text-xs py-2 px-3 pr-8 mb-3 rounded"
-                    multiple @if (Auth::user()->hasRole('Secretaria')) disabled @endif>
+                    multiple >
                     <option disabled>Seleccionar</option>
 
                     <option value="pre-jardin" {{ in_array('pre-jardin', old('load_degrees', [])) ? 'selected' : '' }}>pre-jardin</option>
@@ -205,6 +233,18 @@
             </div>
         </div>
 
+        <div class="relative z-0 w-full mb-5 group" id="conditionalDiv4">
+            <label class="peer-focus:font-medium  text-sm text-gray-500 dark:text-gray-400" for="location">Fecha de nacimiento</label>
+            <div>
+                <input type="date" name="birthdate" id="birthdate" value="{{ old('birthdate') }}"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" " />
+            </div>
+            @error('birthdate')
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Incorrecto</span></p>
+            @enderror
+        </div>
+
         <!-- ---------------------------------------------------- -->
         <!-- ---------------------------------------------------- -->
         <!-- ---------------------------------------------------- -->
@@ -218,7 +258,7 @@
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Numero
                     de documento</label>
                 @error('number_documment')
-                    <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Incorrecto</span></p>
+                    <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">El número de documento ya se encuntra registrado</span></p>
                 @enderror
             </div>
 
@@ -249,7 +289,7 @@
                 @enderror
             </div>
 
-            <div class="relative z-0 w-full mb-5 group">
+            <div class="relative z-0 w-full mb-5 group" id="conditionalDiv5">
                 <label class="peer-focus:font-medium  text-sm text-gray-500 dark:text-gray-400" for="location">Fecha de prueba</label>
                 <div>
                     <input type="date" name="test_date" id="test_date" value="{{ old('test_date') }}"
@@ -308,33 +348,6 @@
                 </div>
             </div>
 
-            <div class="   ">
-                <label class="peer-focus:font-medium text-sm text-gray-500 dark:text-gray-400" for="location">
-                    Roles
-                </label>
-                <div>
-                    <select name="roles[]" id="roles"
-                            class="w-full bg-gray-200 border border-gray-200 text-gray-600 text-xs py-2 px-3 pr-8 mb-3 rounded"
-                            id="location">
-                        <option> Seleccionar </option>
-                        @if (Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Rector'))
-                            @foreach ($roles as $role)
-                                <option value="{{ $role->id }}">{{ $role->name }}</option>
-                            @endforeach
-                        @else
-                            @foreach ($roles as $role)
-                                @if ($role->name == 'Aspirante')
-                                    <option value="{{ $role->id }} ">{{ $role->name }}</option>
-                                @endif
-                            @endforeach
-                        @endif
-                    </select>
-                </div>
-                @error('roles')
-                    <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Incorrecto</span></p>
-                @enderror
-            </div>
-
             <!-- ---------------------------------------------------- -->
             <!-- ---------------------------------------------------- -->
             <!-- ---------------------------------------------------- -->
@@ -349,9 +362,9 @@
     <img src="{{ asset('img/user_add.svg') }}" class="py-[7vh]" alt="">
 </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    @if (session('success'))
+@if (session('success'))
     <script>
         const Toast = Swal.mixin({
             toast: true,
@@ -371,5 +384,33 @@
     </script>
 @endif
 
+<script>
+    document.getElementById('roles').addEventListener('change', function() {
+        let selectedRole = this.options[this.selectedIndex].text.trim(); //obtiene el texto del rol seleccionado
+        let conditionalDiv1 = document.getElementById('conditionalDiv1');
+        let conditionalDiv2 = document.getElementById('conditionalDiv2');
+        let conditionalDiv3 = document.getElementById('conditionalDiv3');
+        let conditionalDiv4 = document.getElementById('conditionalDiv4');
+        let conditionalDiv5 = document.getElementById('conditionalDiv5');
+
+        //Condicion para ocultar el div dependiendo el rol que escoja
+        if (selectedRole !== 'Aspirante') {
+            conditionalDiv1.style.display = 'none'; // Oculta el div
+            conditionalDiv4.style.display = 'none'; // Oculta el div
+            conditionalDiv5.style.display = 'none'; // Oculta el div
+        } else {
+            conditionalDiv1.style.display = 'block'; // Muestra el div
+            conditionalDiv4.style.display = 'block'; // Muestra el div
+            conditionalDiv5.style.display = 'block'; // Muestra el div
+        }
+        if (selectedRole !== 'Docente') {
+            conditionalDiv2.style.display = 'none'; // Oculta el div
+            conditionalDiv3.style.display = 'none'; // Oculta el div
+        } else {
+            conditionalDiv2.style.display = 'block'; // Muestra el div
+            conditionalDiv3.style.display = 'block'; // Muestra el div
+        }
+    });
+</script>
 
 @endsection

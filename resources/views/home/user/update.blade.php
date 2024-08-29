@@ -50,6 +50,39 @@
     <form class=" max-w-md mx-auto bg-white py-3 px-8 rounded-lg" action="{{route('user.update', $user->id) }}" method="POST">
         @csrf
         @method('PUT')
+
+        <div class="w-full">
+            <label for="roles" class="block text-sm font-medium text-gray-600 dark:text-gray-400">
+                Roles
+            </label>
+            <div class="mt-1 relative rounded-md shadow-sm">
+                <select name="roles[]" id="roles"
+                    class="w-full bg-gray-200 border border-gray-200 text-gray-600 text-xs py-2 px-3 pr-8 mb-3 rounded">
+                    <option> Seleccionar </option>
+                    @if (Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Rector'))
+                        @foreach ($roles as $role)
+                            <option value="{{ $role->id }}" 
+                                @if ($user->roles->pluck('id')->contains($role->id)) selected @endif>
+                                {{ $role->name }}
+                            </option>
+                        @endforeach
+                    @else
+                        @foreach ($roles as $role)
+                            @if ($role->name == 'Aspirante')
+                                <option value="{{ $role->id }}" 
+                                    @if ($user->roles->pluck('id')->contains($role->id)) selected @endif>
+                                    {{ $role->name }}
+                                </option>
+                            @endif
+                        @endforeach
+                    @endif
+                </select>
+            </div>
+            @error('roles')
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Incorrecto</span></p>
+            @enderror
+        </div>
+
         <div class="grid md:grid-cols-2 md:gap-6">
             <div class="relative z-0 w-full mb-5 group">
                 <input type="text" name="name" id="name" value="{{ $user->name }}"
@@ -75,7 +108,9 @@
         </div>
 
         <div class="grid md:grid-cols-2 md:gap-6">
-            <div class="relative z-0 w-full mb-5 group">
+            <div class="relative z-0 w-full mb-5 group" id="conditionalDiv1"
+            style="display: {{ $user->roles->pluck('name')->contains('Aspirante') ? 'block' : 'none'}};" 
+            >
                 <div class="   ">
                     <label class="peer-focus:font-medium  text-sm text-gray-500 dark:text-gray-400" for="location">
                         Grado
@@ -132,14 +167,30 @@
                 @enderror
             </div>
 
-            <div class="   ">
+            <div class="relative z-0 w-full mb-5 group" id="conditionalDiv2"
+            style="display: {{ $user->roles->pluck('name')->contains('Aspirante') ? 'block' : 'none'}};" 
+            >
+                <label class="peer-focus:font-medium  text-sm text-gray-500 dark:text-gray-400" for="location">Fecha de nacimiento</label>
+                <div>
+                    <input type="date" name="birthdate" id="birthdate" value="{{ $user->birthdate }}"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=" " />
+                </div>
+                @error('birthdate')
+                    <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Incorrecto</span></p>
+                @enderror
+            </div>
+
+            <div class="" id="conditionalDiv3" @if (Auth::user()->hasRole('Secretaria')) style="display: none" @endif
+            style="display: {{ $user->roles->pluck('name')->contains('Docente') ? 'block' : 'none'}};" 
+            >
                 <label class="peer-focus:font-medium  text-sm text-gray-500 dark:text-gray-400" for="location">
                     Asignatura (Docente)
                 </label>
                 <div>
                     <select name="asignature" id="asignature" value="{{ $user->asignature }}"
                         class="w-full bg-gray-200 border border-gray-200 text-gray-600 text-xs py-2 px-3 pr-8 mb-3 rounded"
-                        id="location" @if (!Auth::user()->hasRole(['Admin', 'Rector'])) disabled @endif>
+                        id="location" >
                         <option disabled selected> Seleccionar </option>
                         <option value="english" {{ $user->asignature == 'english' ? 'selected' : '' }}>Inglés
                         </option>
@@ -159,7 +210,10 @@
             </div>
         </div>
 
-        <div class="relative z-0 w-full mb-5 group">
+        <div class="relative z-0 w-full mb-5 group" id="conditionalDiv4"
+            @if (Auth::user()->hasRole('Secretaria')) style="display: none" @endif
+            style="display: {{ $user->roles->pluck('name')->contains('Docente') ? 'block' : 'none'}};" 
+        >
             <label class="peer-focus:font-medium text-sm text-gray-500 dark:text-gray-400" for="location">
                 Grados a cargo (manten presionada la tecla Ctrl y seleciona los grados):
             </label>
@@ -249,7 +303,9 @@
                 @enderror
             </div>
 
-            <div class="relative z-0 w-full mb-5 group">
+            <div class="relative z-0 w-full mb-5 group" id="conditionalDiv5" 
+            style="display: {{ $user->roles->pluck('name')->contains('Aspirante') ? 'block' : 'none'}};" 
+            >
                 <label class="peer-focus:font-medium  text-sm text-gray-500 dark:text-gray-400" for="location">Fecha de prueba</label>
                 <div>
                     <input type="date" name="test_date" id="test_date" value="{{ $user->test_date }}"
@@ -307,37 +363,6 @@
                         <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Incorrecto</span></p>
                     @enderror
                 </div>
-                <div class="w-full">
-                    <label for="roles" class="block text-sm font-medium text-gray-600 dark:text-gray-400">
-                        Roles
-                    </label>
-                    <div class="mt-1 relative rounded-md shadow-sm">
-                        <select name="roles[]" id="roles"
-                            class="w-full bg-gray-200 border border-gray-200 text-gray-600 text-xs py-2 px-3 pr-8 mb-3 rounded">
-                            <option> Seleccionar </option>
-                            @if (Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Rector'))
-                                @foreach ($roles as $role)
-                                    <option value="{{ $role->id }}" 
-                                        @if ($user->roles->pluck('id')->contains($role->id)) selected @endif>
-                                        {{ $role->name }}
-                                    </option>
-                                @endforeach
-                            @else
-                                @foreach ($roles as $role)
-                                    @if ($role->name == 'Aspirante')
-                                        <option value="{{ $role->id }}" 
-                                            @if ($user->roles->pluck('id')->contains($role->id)) selected @endif>
-                                            {{ $role->name }}
-                                        </option>
-                                    @endif
-                                @endforeach
-                            @endif
-                        </select>
-                    </div>
-                    @error('roles')
-                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Incorrecto</span></p>
-                    @enderror
-                </div>
             </div>
 
             <!-- ---------------------------------------------------- -->
@@ -354,9 +379,9 @@
     <img src="{{ asset('img/user_edit.svg') }}" class="py-[7vh]" alt="">
 </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    @if (session('success'))
+@if (session('success'))
     <script>
         const Toast = Swal.mixin({
             toast: true,
@@ -377,24 +402,52 @@
 @endif
 
 @if (session('info'))
-<script>
-    const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        iconColor: 'white',
-        customClass: {
-            popup: 'colored-toast',
-        },
-        showConfirmButton: false,
-        timer: 2500,
-        timerProgressBar: true,
-    });
-    Toast.fire({
-        icon: 'info',
-        title: '{{ session('info') }}',
-    });
-</script>
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            iconColor: 'white',
+            customClass: {
+                popup: 'colored-toast',
+            },
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true,
+        });
+        Toast.fire({
+            icon: 'info',
+            title: '{{ session('info') }}',
+        });
+    </script>
 @endif
 
+<script>
+    document.getElementById('roles').addEventListener('change', function() {
+        let selectedRole = this.options[this.selectedIndex].text.trim(); //obtiene el texto del rol seleccionado
+        let conditionalDiv1 = document.getElementById('conditionalDiv1');
+        let conditionalDiv2 = document.getElementById('conditionalDiv2');
+        let conditionalDiv3 = document.getElementById('conditionalDiv3');
+        let conditionalDiv4 = document.getElementById('conditionalDiv4');
+        let conditionalDiv5 = document.getElementById('conditionalDiv5');
+
+        //Condicion para ocultar el div dependiendo el rol que escoja
+        if (selectedRole !== 'Aspirante') {
+            conditionalDiv1.style.display = 'none'; // Oculta el div
+            conditionalDiv2.style.display = 'none'; // Oculta el div
+            conditionalDiv5.style.display = 'none'; // Oculta el div
+        } else {
+            conditionalDiv1.style.display = 'block'; // Muestra el div
+            conditionalDiv2.style.display = 'block'; // Muestra el div
+            conditionalDiv5.style.display = 'block'; // Muestra el div
+        }
+        if (selectedRole !== 'Docente') {
+            conditionalDiv3.style.display = 'none'; // Oculta el div
+            conditionalDiv4.style.display = 'none'; // Oculta el div
+        } else {
+            conditionalDiv3.style.display = 'block'; // Muestra el div
+            conditionalDiv4.style.display = 'block'; // Muestra el div
+        }
+    });
+</script>
 
 @endsection
