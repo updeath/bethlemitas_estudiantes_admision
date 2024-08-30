@@ -25,11 +25,13 @@ class User extends Authenticatable
         'email',
         'number_documment',
         'typeDocumment',
+        'birthdate',
         'iphone',
         'status',
         'degree',
         'asignature',
         'load_degrees',
+        'test_date',
         'password',
     ];
 

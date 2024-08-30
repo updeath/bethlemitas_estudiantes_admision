@@ -105,7 +105,7 @@
 <body>
     <table>
         <tr>
-            <td class="colOne"><img src="https://www.vivepalmira.com/wp-content/uploads/2019/01/cropped-Logo-actualizado-1.jpg" alt="Logo-Colegio"></td>
+            <td class="colOne"><img src="{{ public_path('img/logo-pdf.png') }}" alt="Logo-Colegio"></td>
             <td class="colTwo">
                 <br><br><br>
                 PROMOCIÓN DEL SERVICIO, ADMISIONES Y MATRÍCULAS <br><br>
