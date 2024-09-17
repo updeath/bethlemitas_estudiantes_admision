@@ -343,7 +343,7 @@ class SpanishController extends Controller
                     'C. El nombre de la escuela',
                     'B. Guión de diálogo',
                     'C. Una casa humilde en el bosque',
-                    'A. Estados Unidos',
+                    'C. Alemania',
                     'B. Cuentos y diccionarios',
                     null,  // respuesta 6 no es una comparación de string
                     null,  // respuesta 7 no es una comparación de string
