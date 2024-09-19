@@ -341,6 +341,7 @@
                 <div class="mb-[200px] border-t p-2 border-gray-400">
                     <label class="block text-sm font-medium text-gray-600 mb-2">6. Liliana ve que durante esta semana el
                         clima de su barrio será el siguiente:</label>
+                    <label class="block text-sm font-medium text-gray-600 mb-2">Si los únicos resultados posibles para el clima de su barrio son estos, ¿cuál de los siguientes climas será posible durante esta semana?</label>
 
                     <div class="mb-4">
                         <img src="{{ asset('img/math/four/clima.jpg') }}" alt="Climas de la semana">
