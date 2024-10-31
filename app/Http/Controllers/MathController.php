@@ -29,42 +29,54 @@ class MathController extends Controller
     public function index_math4()
     {
         $user = Auth::user();
-        $hasRecord = MathCuarto::where('user_id', $user->id)->exists();
+        $hasRecord = MathCuarto::where('user_id', $user->id)
+                       ->where('state', 'activo')
+                       ->exists();
         return view("home.forms.math.math4", compact('hasRecord'));
     }
 
     public function index_math5()
     {
         $user = Auth::user();
-        $hasRecord = MathQuinto::where('user_id', $user->id)->exists();
+        $hasRecord = MathQuinto::where('user_id', $user->id)
+                        ->where('state', 'activo')
+                        ->exists();
         return view("home.forms.math.math5", compact('hasRecord'));
     }
 
     public function index_math6()
     {
         $user = Auth::user();
-        $hasRecord = MathSexto::where('user_id', $user->id)->exists();
+        $hasRecord = MathSexto::where('user_id', $user->id)
+                        ->where('state', 'activo')
+                        ->exists();
         return view("home.forms.math.math6", compact('hasRecord'));
     }
 
     public function index_math7()
     {
         $user = Auth::user();
-        $hasRecord = MathSeptimo::where('user_id', $user->id)->exists();
+        $hasRecord = MathSeptimo::where('user_id', $user->id)
+                            ->where('state', 'activo')
+                            ->exists();
         return view("home.forms.math.math7", compact('hasRecord'));
     }
 
     public function index_math8()
     {
         $user = Auth::user();
-        $hasRecord = MathOctavo::where('user_id', $user->id)->exists();
+        $hasRecord = MathOctavo::where('user_id', $user->id)
+                            ->where('state', 'activo')
+                            ->exists();
         return view("home.forms.math.math8", compact('hasRecord'));
     }
 
     public function index_math9()
     {
         $user = Auth::user();
-        $hasRecord = MathNoveno::where('user_id', $user->id)->exists();
+        $hasRecord = MathNoveno::where('user_id', $user->id)
+                            ->where('state', 'activo')
+                            ->exists();
         return view("home.forms.math.math9", compact('hasRecord'));
     }
 
@@ -72,7 +84,9 @@ class MathController extends Controller
     public function index_math10()
     {
         $user = Auth::user();
-        $hasRecord = MathDecimo::where('user_id', $user->id)->exists();
+        $hasRecord = MathDecimo::where('user_id', $user->id)
+                            ->where('state', 'activo')
+                            ->exists();
         return view("home.forms.math.math10", compact('hasRecord'));
     }
 
@@ -103,7 +117,8 @@ class MathController extends Controller
 
         foreach ($users as $user) {
 
-            $mathCuarto = MathCuarto::where('user_id', $user->id)->first();
+            $mathCuarto = MathCuarto::where('user_id', $user->id)
+                                    ->where('state', 'activo')->first();
             // Obtener todas las respuestas de las columnas mathPC1, mathPC2, ..., mathPC10
 
             if ($mathCuarto !== null) {
@@ -194,7 +209,9 @@ class MathController extends Controller
         $promedioData = [];
         foreach ($users as $user) {
 
-            $mathQuinto = MathQuinto::where('user_id', $user->id)->first();
+            $mathQuinto = MathQuinto::where('user_id', $user->id)
+                                    ->where('state', 'activo')
+                                    ->first();
 
             if ($mathQuinto !== null) {
 
@@ -286,7 +303,9 @@ class MathController extends Controller
 
         foreach ($users as $user) {
 
-            $mathSexto = MathSexto::where('user_id', $user->id)->first();
+            $mathSexto = MathSexto::where('user_id', $user->id)
+                                    ->where('state', 'activo')
+                                    ->first();
             // Obtener todas las respuestas de las columnas mathPC1, mathPC2, ..., mathPC10
 
             if ($mathSexto !== null) {
@@ -378,7 +397,9 @@ class MathController extends Controller
 
         foreach ($users as $user) {
 
-            $mathSeptimo = mathSeptimo::where('user_id', $user->id)->first();
+            $mathSeptimo = mathSeptimo::where('user_id', $user->id)
+                                        ->where('state', 'activo')
+                                        ->first();
             // Obtener todas las respuestas de las columnas mathPC1, mathPC2, ..., mathPC10
 
             if ($mathSeptimo !== null) {
@@ -470,7 +491,9 @@ class MathController extends Controller
 
         foreach ($users as $user) {
 
-            $mathOctavo = MathOctavo::where('user_id', $user->id)->first();
+            $mathOctavo = MathOctavo::where('user_id', $user->id)
+                                    ->where('state', 'activo')
+                                    ->first();
             // Obtener todas las respuestas de las columnas mathPC1, mathPC2, ..., mathPC10
 
             if ($mathOctavo !== null) {
@@ -562,7 +585,9 @@ class MathController extends Controller
         $promedioData = [];
 
         foreach ($users as $user) {
-            $mathNoveno = MathNoveno::where('user_id', $user->id)->first();
+            $mathNoveno = MathNoveno::where('user_id', $user->id)
+                                    ->where('state', 'activo')
+                                    ->first();
             // Obtener todas las respuestas de las columnas mathPC1, mathPC2, ..., mathPC10
 
             if ($mathNoveno !== null) {
@@ -654,7 +679,9 @@ class MathController extends Controller
 
         foreach ($users as $user) {
 
-            $mathDecimo = MathDecimo::where('user_id', $user->id)->first();
+            $mathDecimo = MathDecimo::where('user_id', $user->id)
+                                    ->where('state', 'activo')
+                                    ->first();
             // Obtener todas las respuestas de las columnas mathPC1, mathPC2, ..., mathPC10
 
             if ($mathDecimo !== null) {
@@ -740,7 +767,9 @@ class MathController extends Controller
         ]);
 
         $user_id = Auth::id();
-        $existingRecord = MathCuarto::where('user_id', $user_id)->first();
+        $existingRecord = MathCuarto::where('user_id', $user_id)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($existingRecord) {
             return redirect()->back()->with('error', 'El cuestionario ya ha sido resuelto');
@@ -758,6 +787,7 @@ class MathController extends Controller
             $mathCuarto->mathPC8 = $request->input('mathPC8');
             $mathCuarto->mathPC9 = $request->input('mathPC9');
             $mathCuarto->mathPC10 = $request->input('mathPC10');
+            $mathCuarto->state = 'activo';
 
             $mathCuarto->save();
 
@@ -807,7 +837,9 @@ class MathController extends Controller
         ]);
 
         $user_id = Auth::id();
-        $existingRecord = MathQuinto::where('user_id', $user_id)->first();
+        $existingRecord = MathQuinto::where('user_id', $user_id)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($existingRecord) {
             return redirect()->back()->with('error', 'El cuestionario ya ha sido resuelto');
@@ -825,6 +857,7 @@ class MathController extends Controller
             $mathQuinto->mathPQ8 = $request->input('mathPQ8');
             $mathQuinto->mathPQ9 = $request->input('mathPQ9');
             $mathQuinto->mathPQ10 = $request->input('mathPQ10');
+            $mathQuinto->state = 'activo';
 
             $mathQuinto->save();
 
@@ -880,7 +913,9 @@ class MathController extends Controller
         ]);
 
         $user_id = Auth::id();
-        $existingRecord = MathSexto::where('user_id', $user_id)->first();
+        $existingRecord = MathSexto::where('user_id', $user_id)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($existingRecord) {
             return redirect()->back()->with('error', 'El cuestionario ya ha sido resuelto');
@@ -899,6 +934,7 @@ class MathController extends Controller
             $mathSexto->mathPSX8 = $request->input('mathPSX8');
             $mathSexto->mathPSX9 = $request->input('mathPSX9');
             $mathSexto->mathPSX10 = $request->input('mathPSX10');
+            $mathSexto->state = 'activo';
 
             $mathSexto->save();
 
@@ -948,7 +984,9 @@ class MathController extends Controller
         ]);
 
         $user_id = Auth::id();
-        $existingRecord = MathSeptimo::where('user_id', $user_id)->first();
+        $existingRecord = MathSeptimo::where('user_id', $user_id)
+                                     ->where('state', 'activo')
+                                     ->first();
 
         if ($existingRecord) {
             return redirect()->back()->with('error', 'El cuestionario ya ha sido resuelto');
@@ -967,6 +1005,7 @@ class MathController extends Controller
             $mathSeptimo->mathPS8 = $request->input('mathPS8');
             $mathSeptimo->mathPS9 = $request->input('mathPS9');
             $mathSeptimo->mathPS10 = $request->input('mathPS10');
+            $mathSeptimo->state = 'activo';
 
             $mathSeptimo->save();
 
@@ -1016,7 +1055,9 @@ class MathController extends Controller
         ]);
 
         $user_id = Auth::id();
-        $existingRecord = MathOctavo::where('user_id', $user_id)->first();
+        $existingRecord = MathOctavo::where('user_id', $user_id)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($existingRecord) {
             return redirect()->back()->with('error', 'El cuestionario ya ha sido resuelto');
@@ -1035,6 +1076,7 @@ class MathController extends Controller
             $mathOctavo->mathPO8 = $request->input('mathPO8');
             $mathOctavo->mathPO9 = $request->input('mathPO9');
             $mathOctavo->mathPO10 = $request->input('mathPO10');
+            $mathOctavo->state = 'activo';
 
             $mathOctavo->save();
 
@@ -1084,7 +1126,9 @@ class MathController extends Controller
         ]);
 
         $user_id = Auth::id();
-        $existingRecord = MathNoveno::where('user_id', $user_id)->first();
+        $existingRecord = MathNoveno::where('user_id', $user_id)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($existingRecord) {
             return redirect()->back()->with('error', 'El cuestionario ya ha sido resuelto');
@@ -1103,6 +1147,7 @@ class MathController extends Controller
             $mathNoveno->mathPNO8 = $request->input('mathPNO8');
             $mathNoveno->mathPNO9 = $request->input('mathPNO9');
             $mathNoveno->mathPNO10 = $request->input('mathPNO10');
+            $mathNoveno->state = 'activo';
 
             $mathNoveno->save();
 
@@ -1152,7 +1197,9 @@ class MathController extends Controller
         ]);
 
         $user_id = Auth::id();
-        $existingRecord = MathDecimo::where('user_id', $user_id)->first();
+        $existingRecord = MathDecimo::where('user_id', $user_id)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($existingRecord) {
             return redirect()->back()->with('error', 'El cuestionario ya ha sido resuelto');
@@ -1171,6 +1218,7 @@ class MathController extends Controller
             $mathDecimo->mathPD8 = $request->input('mathPD8');
             $mathDecimo->mathPD9 = $request->input('mathPD9');
             $mathDecimo->mathPD10 = $request->input('mathPD10');
+            $mathDecimo->state = 'activo';
 
             $mathDecimo->save();
 
@@ -1202,7 +1250,7 @@ class MathController extends Controller
             return redirect()->back()->with('success', 'Datos almacenados correctamente.');
         }
     }
-
+    // *******************************************************************************************************
     public function resetearPuntosMath4()
     {
         MathCuarto::query()->delete();
@@ -1248,6 +1296,8 @@ class MathController extends Controller
 
         return redirect()->back()->with('success', 'Reseteado la tabla exitosamente');
     }
+    //*********************************************************************************************** */
+    
     //Observaciones de las tablas de cada usuario
     public function saveObservation(Request $request, $userId)
     {
@@ -2111,5 +2161,5 @@ class MathController extends Controller
         Excel::store(new Math10Export, $fileName);
 
         return response()->download(storage_path('app/' . $fileName));
-    }
+    }  
 }

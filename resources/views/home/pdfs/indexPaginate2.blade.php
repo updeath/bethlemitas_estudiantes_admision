@@ -88,9 +88,11 @@
         }
 
         .signature-image {
-            width: 150rem;
-            height: 30rem;
-            object-fit: cover;
+            width: auto; /* El ancho se ajusta automáticamente */
+            height: 40px; /* Altura fija para mantener consistencia */
+            max-width: 200px; /* Máximo ancho permitido */
+            min-width: 150px; /* Mínimo ancho permitido */
+            object-fit: contain; /* Contiene la imagen dentro del espacio disponible sin distorsionarla */
         }
 
     </style>

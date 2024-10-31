@@ -59,30 +59,35 @@ class User extends Authenticatable
 
     public function spanishCuarto()
     {
-        return $this->hasOne(SpanishCuarto::class);
+        return $this->hasOne(SpanishCuarto::class)->where('state', 'activo');
     }
 
     public function spanishQuinto()
     {
-        return $this->hasOne(SpanishQuinto::class);
+        return $this->hasOne(SpanishQuinto::class)->where('state', 'activo');
+    }
+
+    public function spanishSexto()
+    {
+        return $this->hasOne(SpanishSexto::class)->where('state', 'activo');
     }
 
     public function SpanishSeptimo()
     {
-        return $this->hasOne(SpanishSeptimo::class);
+        return $this->hasOne(SpanishSeptimo::class)->where('state', 'activo');
     }
     public function SpanishOctavo()
     {
-        return $this->hasOne(SpanishOctavo::class);
+        return $this->hasOne(SpanishOctavo::class)->where('state', 'activo');
     }
     public function SpanishNoveno()
     {
-        return $this->hasOne(SpanishNoveno::class);
+        return $this->hasOne(SpanishNoveno::class)->where('state', 'activo');
     }
 
     public function SpanishDecimo()
     {
-        return $this->hasOne(SpanishDecimo::class);
+        return $this->hasOne(SpanishDecimo::class)->where('state', 'activo');
     }
     public function mathCuarto()
     {
@@ -113,10 +118,6 @@ class User extends Authenticatable
     public function mathDecimo()
     {
         return $this->hasMany(MathDecimo::class, 'user_id');
-    }
-    public function spanishSexto()
-    {
-        return $this->hasOne(SpanishSexto::class, 'user_id');
     }
 
     public function EnglishCuartoQuinto()

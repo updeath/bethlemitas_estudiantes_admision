@@ -6,6 +6,45 @@
 
 @section('content_dashboard')
 
+<style>
+    .colored-toast.swal2-icon-success {
+        background-color: #a5dc86 !important;
+    }
+
+    .colored-toast.swal2-icon-error {
+        background-color: #f27474 !important;
+    }
+
+    .colored-toast.swal2-icon-warning {
+        background-color: #f8bb86 !important;
+    }
+
+    .colored-toast.swal2-icon-info {
+        background-color: #3fc3ee !important;
+    }
+
+    .colored-toast.swal2-icon-question {
+        background-color: #87adbd !important;
+    }
+
+    .colored-toast .swal2-title {
+        color: white;
+    }
+
+    .colored-toast .swal2-close {
+        color: white;
+    }
+
+    .colored-toast .swal2-html-container {
+        color: white;
+    }
+
+    .add{
+        filter: drop-shadow(0 0 10px black )
+    }
+
+</style>
+
 <div class="flex flex-col lg:flex-row items-center justify-between m-2">
         <div class="flex items-center mb-2 lg:mb-0">
             <div class="m-2">
@@ -77,6 +116,10 @@
                             <th
                                 class="px-12 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50" @if (Auth::user()->hasRole(['Docente', 'CoordinadorConvivencia', 'Aspirante', 'Psicoorientador'])) style="display: none" @endif>
                                 Acciones</th>
+
+                            <th
+                                class="px-12 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50" @if (Auth::user()->hasRole(['Docente', 'CoordinadorConvivencia', 'Aspirante', 'Psicoorientador'])) style="display: none" @endif>
+                                Restablecer prueba</th>
                             
                         </tr>
                     </thead>
@@ -167,6 +210,18 @@
                                         @method('DELETE')
                                     </form>
                                 </td>
+
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200" @if (Auth::user()->hasRole
+                                (['Docente', 'CoordinadorConvivencia', 'Aspirante', 'Psicoorientador'])) style="display: none" @endif>
+                                    <form action="{{ route('reset.prueba', $user->id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" onclick="return confirm('¿Estás seguro de que deseas restablecer las pruebas del aspirante?')">
+                                            <span
+                                            class="inline-flex px-2 text-xs font-semibold leading-5 text-blue-800 bg-red-100 rounded-full">Restablecer</span>
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -179,6 +234,45 @@
     </div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+@if (session('info'))
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            iconColor: 'white',
+            customClass: {
+                popup: 'colored-toast',
+            },
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true,
+        });
+        Toast.fire({
+            icon: 'info',
+            title: '{{ session('info') }}',
+        });
+    </script>
+@endif
+@if (session('success'))
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            iconColor: 'white',
+            customClass: {
+                popup: 'colored-toast',
+            },
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true,
+        });
+        Toast.fire({
+            icon: 'success',
+            title: '{{ session('success') }}',
+        });
+    </script>
+@endif
 
 @if (session('destroy_user') == 'ok_user')
 <script>

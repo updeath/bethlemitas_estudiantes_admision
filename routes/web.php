@@ -12,6 +12,7 @@ use App\Http\Controllers\EnglishController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ConceptController;
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\HistoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -281,4 +282,24 @@ Route::middleware(['web', 'setLanguage', 'auth'])->group(function () {
 
     // pdf conceptos
     Route::get('/generate-pdf-observations/{userId}', [PDFController::class, 'generatePDFObservations'])->name('generate.pdf.observations');
+
+    //Ruta para el cambio de estado de de las pruebas, para que el aspirante la pueda volver a repetir.
+    Route::put('/reset/forms/{id}', [UserController::class, 'reset'])->name('reset.prueba');
+
+    // ******************* Rutas historial matematicas *************************** //
+    //Ruta para ver el historial de las pruebas del estudiante grado 4
+    Route::get('/history4/user/{id}', [HistoryController::class, 'historyMathCuarto'])->name('history4.user');
+    //Ruta para ver las respuestas de las pruebas del historial seleccionado de grado cuarto (Matematicas)
+    Route::get('/history4/asnwers/{userId}', [HistoryController::class, 'answerHistoryMathCuarto'])->name('history.answers4');
+    //Ruta para ver el historial de las pruebas del estudiante grado 5
+    Route::get('/history5/user/{id}', [HistoryController::class, 'historyMathQuinto'])->name('history5.user');
+    //Ruta para ver las respuestas de las pruebas del historial seleccionado de grado 5 (Matematicas)
+    Route::get('/history5/asnwers/{userId}', [HistoryController::class, 'answerHistoryMathQuinto'])->name('history.answers5');
+
+    // ********************* Rutas historial de español *************************** //
+    //Ruta para ver el historial de las pruebas del estudiante grado 4
+    Route::get('/historySpanish/user/{id}', [HistoryController::class, 'historySpanishCuarto'])->name('historySpanis4.user');
+    //Ruta para ver las respuestas de las pruebas del historial seleccionado de grado cuarto (Español)
+    Route::get('/history/asnwers/spanish/{userId}', [HistoryController::class, 'answerHistorySpanishCuarto'])->name('history.answers.spanish4');
+
 });

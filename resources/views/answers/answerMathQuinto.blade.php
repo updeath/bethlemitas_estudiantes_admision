@@ -6,7 +6,6 @@
 
 @section('content_dashboard')
 <div class="container_table_answers">
-    <h1 style="margin-bottom: 1rem">Respuestas del Usuario: {{ $user->name }} {{ $user->last_name}}</h1>
 
     @if($mathQuintos->isEmpty())
         <p>No hay respuestas disponibles para este usuario.</p>

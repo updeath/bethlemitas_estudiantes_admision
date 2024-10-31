@@ -425,7 +425,7 @@
                 <div class="modal-footer bg-[#3A8BC0] py-4 px-6 rounded-b-lg flex justify-end" id="modalFooter">
                     <button type="button"
                         class="btn bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full px-4 py-2 ml-2"
-                        onclick="hideModal6()">Cerrar</button>
+                        onclick="hideModal1()">Cerrar</button>
                 </div>
             </div>
         </div>
@@ -552,7 +552,7 @@
             document.getElementById('bookModal').style.display = 'flex';
         }
 
-        function hideModal6() {
+        function hideModal1() {
             document.getElementById('bookModal').style.display = 'none';
         }
     </script>

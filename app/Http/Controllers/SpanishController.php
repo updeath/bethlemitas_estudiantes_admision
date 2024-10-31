@@ -29,7 +29,9 @@ class SpanishController extends Controller
     public function index_spanish4()
     {
         $user = Auth::user();
-        $hasRecord = SpanishCuarto::where('user_id', $user->id)->exists();
+        $hasRecord = SpanishCuarto::where('user_id', $user->id)
+                                    ->where('state', 'activo')
+                                    ->exists();
         return view("home.forms.spanish.spanish4", compact('hasRecord'));
     }
 
@@ -37,42 +39,54 @@ class SpanishController extends Controller
     public function index_spanish5()
     {
         $user = Auth::user();
-        $hasRecord = SpanishQuinto::where('user_id', $user->id)->exists();
+        $hasRecord = SpanishQuinto::where('user_id', $user->id)
+                                    ->where('state', 'activo')
+                                    ->exists();
         return view("home.forms.spanish.spanish5", compact('hasRecord'));
     }
 
     public function index_spanish6()
     {
         $user = Auth::user();
-        $hasRecord = SpanishSexto::where('user_id', $user->id)->exists();
+        $hasRecord = SpanishSexto::where('user_id', $user->id)
+                                    ->where('state', 'activo') 
+                                    ->exists();
         return view("home.forms.spanish.spanish6", compact('hasRecord'));
     }
 
     public function index_spanish7()
     {
         $user = Auth::user();
-        $hasRecord = SpanishSeptimo::where('user_id', $user->id)->exists();
+        $hasRecord = SpanishSeptimo::where('user_id', $user->id)
+                                    ->where('state', 'activo')
+                                    ->exists();
         return view("home.forms.spanish.spanish7", compact('hasRecord'));
     }
 
     public function index_spanish8()
     {
         $user = Auth::user();
-        $hasRecord = SpanishOctavo::where('user_id', $user->id)->exists();
+        $hasRecord = SpanishOctavo::where('user_id', $user->id)
+                                    ->where('state', 'activo')
+                                    ->exists();
         return view("home.forms.spanish.spanish8", compact('hasRecord'));
     }
 
     public function index_spanish9()
     {
         $user = Auth::user();
-        $hasRecord = SpanishNoveno::where('user_id', $user->id)->exists();
+        $hasRecord = SpanishNoveno::where('user_id', $user->id)
+                                    ->where('state', 'activo')
+                                    ->exists();
         return view("home.forms.spanish.spanish9", compact('hasRecord'));
     }
 
     public function index_spanish10()
     {
         $user = Auth::user();
-        $hasRecord = SpanishDecimo::where('user_id', $user->id)->exists();
+        $hasRecord = SpanishDecimo::where('user_id', $user->id)
+                                    ->where('state', 'activo')
+                                    ->exists();
         return view("home.forms.spanish.spanish10", compact('hasRecord'));
     }
     public function index_spanishFragment($userId)
@@ -87,26 +101,32 @@ class SpanishController extends Controller
         $promedioData = [];
         
             // Check if a record exists for the user
-            $userSpanishCuarto = SpanishDecimo::where('user_id', $user->id)->first();
+            $userSpanishCuarto = SpanishDecimo::where('user_id', $user->id)
+                                              ->where('state', 'activo')
+                                              ->first();
 
             if ($userSpanishCuarto) {
                 $sumaPuntos = SpanishDecimo::where('user_id', $user->id)
+                    ->where('state', 'activo')
                     ->sum('fragment_numberPD1')
                     + SpanishDecimo::where('user_id', $user->id)
+                        ->where('state', 'activo')
                         ->sum('fragment_numberPD2')
                     + SpanishDecimo::where('user_id', $user->id)
+                        ->where('state', 'activo')
                         ->sum('fragment_numberPD3')
                     + SpanishDecimo::where('user_id', $user->id)
+                        ->where('state', 'activo')
                         ->sum('fragment_numberPD4');
 
                 // Update the 'spanishPD4' field in the 'spanish_cuarto' table
                 $userSpanishCuarto->spanishPD4 = $sumaPuntos;
                 $userSpanishCuarto->save();
 
-                $comment4_1 = SpanishDecimo::where('user_id', $user->id)->value('comment_fragmentPD4_1');
-                $comment4_2 = SpanishDecimo::where('user_id', $user->id)->value('comment_fragmentPD4_2');
-                $comment4_3 = SpanishDecimo::where('user_id', $user->id)->value('comment_fragmentPD4_3');
-                $comment4_4 = SpanishDecimo::where('user_id', $user->id)->value('comment_fragmentPD4_4');
+                $comment4_1 = SpanishDecimo::where('user_id', $user->id)->where('state', 'activo')->value('comment_fragmentPD4_1');
+                $comment4_2 = SpanishDecimo::where('user_id', $user->id)->where('state', 'activo')->value('comment_fragmentPD4_2');
+                $comment4_3 = SpanishDecimo::where('user_id', $user->id)->where('state', 'activo')->value('comment_fragmentPD4_3');
+                $comment4_4 = SpanishDecimo::where('user_id', $user->id)->where('state', 'activo')->value('comment_fragmentPD4_4');
 
                 $promedioData[] = [
                     'user' => $user,
@@ -147,7 +167,9 @@ class SpanishController extends Controller
 
         $promedioData = [];
         foreach ($users as $user) {
-            $SpanishCuarto = SpanishCuarto::where('user_id', $user->id)->first();
+            $SpanishCuarto = SpanishCuarto::where('user_id', $user->id)
+                                          ->where('state', 'activo')
+                                          ->first();
             if ($SpanishCuarto !== null) {
 
                 $sumaPromedio = 0;
@@ -216,7 +238,9 @@ class SpanishController extends Controller
                     'regularSpanishPC' => $cantidadRespuestasRegulares,
                 ]);
     
-                $comment8 = SpanishCuarto::where('user_id', $user->id)->value('commentPC8');
+                $comment8 = SpanishCuarto::where('user_id', $user->id)
+                                          ->where('state', 'activo')
+                                          ->value('commentPC8');
     
                 $promedioData[] = [
                     'id' => $user->id,
@@ -318,7 +342,9 @@ class SpanishController extends Controller
         $promedioData = [];
         foreach ($users as $user) {
 
-            $SpanishQuinto = SpanishQuinto::where('user_id', $user->id)->first();
+            $SpanishQuinto = SpanishQuinto::where('user_id', $user->id)
+                                            ->where('state', 'activo')
+                                            ->first();
             if ($SpanishQuinto !== null) {
 
                 $sumaPromedio = 0;
@@ -387,9 +413,9 @@ class SpanishController extends Controller
                     'regularSpanishPQ' => $cantidadRespuestasRegulares,
                 ]);
     
-                $comment6 = SpanishQuinto::where('user_id', $user->id)->value('commentPQ6');
-                $comment7 = SpanishQuinto::where('user_id', $user->id)->value('commentPQ7');
-                $comment10 = SpanishQuinto::where('user_id', $user->id)->value('commentPQ10');
+                $comment6 = SpanishQuinto::where('user_id', $user->id)->where('state', 'activo')->value('commentPQ6');
+                $comment7 = SpanishQuinto::where('user_id', $user->id)->where('state', 'activo')->value('commentPQ7');
+                $comment10 = SpanishQuinto::where('user_id', $user->id)->where('state', 'activo')->value('commentPQ10');
     
                 $promedioData[] = [
                     'id' => $user->id,
@@ -497,7 +523,9 @@ class SpanishController extends Controller
         $promedioData = [];
         foreach ($users as $user) {
 
-            $SpanishSexto = SpanishSexto::where('user_id', $user->id)->first();
+            $SpanishSexto = SpanishSexto::where('user_id', $user->id)
+                                        ->where('state', 'activo')
+                                        ->first();
             if ($SpanishSexto !== null) {
 
                 $sumaPromedio = 0;
@@ -566,12 +594,12 @@ class SpanishController extends Controller
                     'regularSpanishPSX' => $cantidadRespuestasRegulares,
                 ]);
     
-                $comment1 = SpanishSexto::where('user_id', $user->id)->value('commentPSX1');
-                $comment2 = SpanishSexto::where('user_id', $user->id)->value('commentPSX2');
-                $comment3 = SpanishSexto::where('user_id', $user->id)->value('commentPSX3');
-                $comment4 = SpanishSexto::where('user_id', $user->id)->value('commentPSX4');
-                $comment5 = SpanishSexto::where('user_id', $user->id)->value('commentPSX5');
-                $comment6 = SpanishSexto::where('user_id', $user->id)->value('commentPSX6');
+                $comment1 = SpanishSexto::where('user_id', $user->id)->where('state', 'activo')->value('commentPSX1');
+                $comment2 = SpanishSexto::where('user_id', $user->id)->where('state', 'activo')->value('commentPSX2');
+                $comment3 = SpanishSexto::where('user_id', $user->id)->where('state', 'activo')->value('commentPSX3');
+                $comment4 = SpanishSexto::where('user_id', $user->id)->where('state', 'activo')->value('commentPSX4');
+                $comment5 = SpanishSexto::where('user_id', $user->id)->where('state', 'activo')->value('commentPSX5');
+                $comment6 = SpanishSexto::where('user_id', $user->id)->where('state', 'activo')->value('commentPSX6');
     
                 $promedioData[] = [
                     'id' => $user->id,
@@ -679,7 +707,9 @@ class SpanishController extends Controller
         $promedioData = [];
         foreach ($users as $user) {
 
-            $SpanishSeptimo = SpanishSeptimo::where('user_id', $user->id)->first();
+            $SpanishSeptimo = SpanishSeptimo::where('user_id', $user->id)
+                                            ->where('state', 'activo')
+                                            ->first();
             if ($SpanishSeptimo !== null) {
 
                 $sumaPromedio = 0;
@@ -748,13 +778,13 @@ class SpanishController extends Controller
                     'regularSpanishPS' => $cantidadRespuestasRegulares,
                 ]);
     
-                $comment1 = SpanishSeptimo::where('user_id', $user->id)->value('commentPS1');
-                $comment2 = SpanishSeptimo::where('user_id', $user->id)->value('commentPS2');
-                $comment3 = SpanishSeptimo::where('user_id', $user->id)->value('commentPS3');
-                $comment4 = SpanishSeptimo::where('user_id', $user->id)->value('commentPS4');
-                $comment5 = SpanishSeptimo::where('user_id', $user->id)->value('commentPS5');
-                $comment6 = SpanishSeptimo::where('user_id', $user->id)->value('commentPS6');
-                $comment7 = SpanishSeptimo::where('user_id', $user->id)->value('commentPS7');
+                $comment1 = SpanishSeptimo::where('user_id', $user->id)->where('state', 'activo')->value('commentPS1');
+                $comment2 = SpanishSeptimo::where('user_id', $user->id)->where('state', 'activo')->value('commentPS2');
+                $comment3 = SpanishSeptimo::where('user_id', $user->id)->where('state', 'activo')->value('commentPS3');
+                $comment4 = SpanishSeptimo::where('user_id', $user->id)->where('state', 'activo')->value('commentPS4');
+                $comment5 = SpanishSeptimo::where('user_id', $user->id)->where('state', 'activo')->value('commentPS5');
+                $comment6 = SpanishSeptimo::where('user_id', $user->id)->where('state', 'activo')->value('commentPS6');
+                $comment7 = SpanishSeptimo::where('user_id', $user->id)->where('state', 'activo')->value('commentPS7');
     
                 $promedioData[] = [
                     'id' => $user->id,
@@ -866,7 +896,9 @@ class SpanishController extends Controller
 
         $promedioData = [];
         foreach ($users as $user) {
-            $SpanishOctavo = SpanishOctavo::where('user_id', $user->id)->first();
+            $SpanishOctavo = SpanishOctavo::where('user_id', $user->id)
+                                            ->where('state', 'activo')
+                                            ->first();
             if ($SpanishOctavo !== null) {
 
                 $sumaPromedio = 0;
@@ -935,12 +967,12 @@ class SpanishController extends Controller
                     'regularSpanishPO' => $cantidadRespuestasRegulares,
                 ]);
     
-                $comment1 = SpanishOctavo::where('user_id', $user->id)->value('commentPO1');
-                $comment2 = SpanishOctavo::where('user_id', $user->id)->value('commentPO2');
-                $comment3 = SpanishOctavo::where('user_id', $user->id)->value('commentPO3');
-                $comment4 = SpanishOctavo::where('user_id', $user->id)->value('commentPO4');
-                $comment5 = SpanishOctavo::where('user_id', $user->id)->value('commentPO5');
-                $comment8 = SpanishOctavo::where('user_id', $user->id)->value('commentPO8');
+                $comment1 = SpanishOctavo::where('user_id', $user->id)->where('state', 'activo')->value('commentPO1');
+                $comment2 = SpanishOctavo::where('user_id', $user->id)->where('state', 'activo')->value('commentPO2');
+                $comment3 = SpanishOctavo::where('user_id', $user->id)->where('state', 'activo')->value('commentPO3');
+                $comment4 = SpanishOctavo::where('user_id', $user->id)->where('state', 'activo')->value('commentPO4');
+                $comment5 = SpanishOctavo::where('user_id', $user->id)->where('state', 'activo')->value('commentPO5');
+                $comment8 = SpanishOctavo::where('user_id', $user->id)->where('state', 'activo')->value('commentPO8');
     
                 $promedioData[] = [
                     'id' => $user->id,
@@ -1046,7 +1078,9 @@ class SpanishController extends Controller
 
         $promedioData = [];
         foreach ($users as $user) {
-            $SpanishNoveno = SpanishNoveno::where('user_id', $user->id)->first();
+            $SpanishNoveno = SpanishNoveno::where('user_id', $user->id)
+                                            ->where('state', 'activo')
+                                            ->first();
 
             if ($SpanishNoveno !== null) {
 
@@ -1137,7 +1171,9 @@ class SpanishController extends Controller
 
         $promedioData = [];
         foreach ($users as $user) {
-            $spanishDecimo = SpanishDecimo::where('user_id', $user->id)->first();
+            $spanishDecimo = SpanishDecimo::where('user_id', $user->id)
+                                            ->where('state', 'activo')
+                                            ->first();
             if ($spanishDecimo !== null) {
 
                 $sumaPromedio = 0;
@@ -1206,14 +1242,14 @@ class SpanishController extends Controller
                     'regularSpanishPD' => $cantidadRespuestasRegulares,
                 ]);
 
-                $comment4_1 = SpanishDecimo::where('user_id', $user->id)->value('comment_fragmentPD4_1');
-                $comment4_2 = SpanishDecimo::where('user_id', $user->id)->value('comment_fragmentPD4_2');
-                $comment4_3 = SpanishDecimo::where('user_id', $user->id)->value('comment_fragmentPD4_3');
-                $comment4_4 = SpanishDecimo::where('user_id', $user->id)->value('comment_fragmentPD4_4');
+                $comment4_1 = SpanishDecimo::where('user_id', $user->id)->where('state', 'activo')->value('comment_fragmentPD4_1');
+                $comment4_2 = SpanishDecimo::where('user_id', $user->id)->where('state', 'activo')->value('comment_fragmentPD4_2');
+                $comment4_3 = SpanishDecimo::where('user_id', $user->id)->where('state', 'activo')->value('comment_fragmentPD4_3');
+                $comment4_4 = SpanishDecimo::where('user_id', $user->id)->where('state', 'activo')->value('comment_fragmentPD4_4');
 
-                $comment5 = SpanishDecimo::where('user_id', $user->id)->value('commentPD5');
-                $comment6 = SpanishDecimo::where('user_id', $user->id)->value('commentPD6');
-                $comment7 = SpanishDecimo::where('user_id', $user->id)->value('commentPD7');
+                $comment5 = SpanishDecimo::where('user_id', $user->id)->where('state', 'activo')->value('commentPD5');
+                $comment6 = SpanishDecimo::where('user_id', $user->id)->where('state', 'activo')->value('commentPD6');
+                $comment7 = SpanishDecimo::where('user_id', $user->id)->where('state', 'activo')->value('commentPD7');
 
                 $promedioData[] = [
                     'id' => $user->id,
@@ -1254,7 +1290,9 @@ class SpanishController extends Controller
         ]);
 
         $user_id = Auth::id(); //extraigo el id del usuario logueado
-        $existingRecord = SpanishCuarto::where('user_id', $user_id)->first(); //hago una consulta en la tabla para guardar el registro en la variable
+        $existingRecord = SpanishCuarto::where('user_id', $user_id)
+                                        ->where('state', 'activo')
+                                        ->first(); //hago una consulta en la tabla para guardar el registro en la variable
 
         if ($existingRecord) { //hago la condicion, si existe un registro me sale el error y no me deja enviar nuevamente un formulario
             return redirect()->back()->with('error', 'El custionario ya ha sido resuelto');
@@ -1271,6 +1309,7 @@ class SpanishController extends Controller
             $spanishCuarto->commentPC8 = $request->input('commentPC8');
             $spanishCuarto->spanishPC9 = $request->input('spanishPC9');
             $spanishCuarto->spanishPC10 = $request->input('spanishPC10');
+            $spanishCuarto->state = 'activo';
 
             $spanishCuarto->save();
 
@@ -1320,7 +1359,9 @@ class SpanishController extends Controller
         ]);
 
         $user_id = Auth::id();
-        $existingRecord = SpanishQuinto::where('user_id', $user_id)->first();
+        $existingRecord = SpanishQuinto::where('user_id', $user_id)
+                                        ->where('state', 'activo')
+                                        ->first();
 
         if ($existingRecord) {
             return redirect()->back()->with('error', 'El custionario ya ha sido resuelto');
@@ -1337,6 +1378,7 @@ class SpanishController extends Controller
             $spanishQuinto->spanishPQ8 = $request->input('spanishPQ8');
             $spanishQuinto->spanishPQ9 = $request->input('spanishPQ9');
             $spanishQuinto->commentPQ10 = $request->input('commentPQ10');
+            $spanishQuinto->state = 'activo';
 
             $spanishQuinto->save();
 
@@ -1385,7 +1427,9 @@ class SpanishController extends Controller
         ]);
 
         $user_id = Auth::id();
-        $existingRecord = SpanishSexto::where('user_id', $user_id)->first();
+        $existingRecord = SpanishSexto::where('user_id', $user_id)
+                                        ->where('state', 'activo')
+                                        ->first();
 
         if ($existingRecord) {
             return redirect()->back()->with('error', 'El custionario ya ha sido resuelto');
@@ -1403,6 +1447,7 @@ class SpanishController extends Controller
             $spanishSexto->spanishPSX8 = $request->input('spanishPSX8');
             $spanishSexto->spanishPSX9 = $request->input('spanishPSX9');
             $spanishSexto->spanishPSX10 = $request->input('spanishPSX10');
+            $spanishSexto->state = 'activo';
 
             $spanishSexto->save();
 
@@ -1453,7 +1498,9 @@ class SpanishController extends Controller
         ]);
 
         $user_id = Auth::id();
-        $existingRecord = SpanishSeptimo::where('user_id', $user_id)->first();
+        $existingRecord = SpanishSeptimo::where('user_id', $user_id)
+                                            ->where('state', 'activo')
+                                            ->first();
 
         if ($existingRecord) {
             return redirect()->back()->with('error', 'El custionario ya ha sido resuelto');
@@ -1471,6 +1518,7 @@ class SpanishController extends Controller
             $spanishSexto->spanishPS8 = $request->input('spanishPS8');
             $spanishSexto->spanishPS9 = $request->input('spanishPS9');
             $spanishSexto->spanishPS10 = $request->input('spanishPS10');
+            $spanishSexto->state = 'activo';
 
             $spanishSexto->save();
 
@@ -1521,7 +1569,9 @@ class SpanishController extends Controller
         ]);
 
         $user_id = Auth::id();
-        $existingRecord = SpanishOctavo::where('user_id', $user_id)->first();
+        $existingRecord = SpanishOctavo::where('user_id', $user_id)
+                                        ->where('state', 'activo')
+                                        ->first();
 
         if ($existingRecord) {
             return redirect()->back()->with('error', 'El custionario ya ha sido resuelto');
@@ -1539,6 +1589,7 @@ class SpanishController extends Controller
             $spanishOctavo->commentPO8 = $request->input('commentPO8');
             $spanishOctavo->spanishPO9 = $request->input('spanishPO9');
             $spanishOctavo->spanishPO10 = $request->input('spanishPO10');
+            $spanishOctavo->state = 'activo';
 
             $spanishOctavo->save();
 
@@ -1588,7 +1639,9 @@ class SpanishController extends Controller
         ]);
 
         $user_id = Auth::id();
-        $existingRecord = SpanishNoveno::where('user_id', $user_id)->first();
+        $existingRecord = SpanishNoveno::where('user_id', $user_id)
+                                        ->where('state', 'activo')
+                                        ->first();
 
         if ($existingRecord) {
             return redirect()->back()->with('error', 'El cuestionario ya ha sido resuelto');
@@ -1606,6 +1659,7 @@ class SpanishController extends Controller
             $spanishNoveno->spanishPNO8 = $request->input('spanishPNO8');
             $spanishNoveno->spanishPNO9 = $request->input('spanishPNO9');
             $spanishNoveno->spanishPNO10 = $request->input('spanishPNO10');
+            $spanishNoveno->state = 'activo';
 
             $spanishNoveno->save();
 
@@ -1659,7 +1713,9 @@ class SpanishController extends Controller
         ]);
 
         $user_id = Auth::id();
-        $existingRecord = SpanishDecimo::where('user_id', $user_id)->first();
+        $existingRecord = SpanishDecimo::where('user_id', $user_id)
+                                        ->where('state', 'activo')
+                                        ->first();
 
         if ($existingRecord) {
             //Usuario ya tiene un registro
@@ -1681,6 +1737,7 @@ class SpanishController extends Controller
             $spanishDecimo->spanishPD8 = $request->input('spanishPD8');
             $spanishDecimo->spanishPD9 = $request->input('spanishPD9');
             $spanishDecimo->spanishPD10 = $request->input('spanishPD10');
+            $spanishDecimo->state = 'activo';
 
             $spanishDecimo->save();
 
@@ -1764,7 +1821,9 @@ class SpanishController extends Controller
 
     public function calificarspanishPC8(Request $request, $userId)
     {
-        $pregunta = SpanishCuarto::where('user_id', $userId)->first();
+        $pregunta = SpanishCuarto::where('user_id', $userId)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->spanishPC8;
@@ -1793,7 +1852,9 @@ class SpanishController extends Controller
     // Grado 5 pregunta 6
     public function calificarspanishPQ6(Request $request, $userId)
     {
-        $pregunta = SpanishQuinto::where('user_id', $userId)->first();
+        $pregunta = SpanishQuinto::where('user_id', $userId)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->spanishPQ6;
@@ -1821,7 +1882,9 @@ class SpanishController extends Controller
 
     public function calificarspanishPQ7(Request $request, $userId)
     {
-        $pregunta = SpanishQuinto::where('user_id', $userId)->first();
+        $pregunta = SpanishQuinto::where('user_id', $userId)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->spanishPQ7;
@@ -1850,7 +1913,9 @@ class SpanishController extends Controller
 
     public function calificarspanishPQ10(Request $request, $userId)
     {
-        $pregunta = SpanishQuinto::where('user_id', $userId)->first();
+        $pregunta = SpanishQuinto::where('user_id', $userId)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->spanishPQ10;
@@ -1880,7 +1945,9 @@ class SpanishController extends Controller
     // pregunta 1 grado 6
     public function calificarspanishPSX1(Request $request, $userId)
     {
-        $pregunta = SpanishSexto::where('user_id', $userId)->first();
+        $pregunta = SpanishSexto::where('user_id', $userId)
+                                ->where('state', 'activo')
+                                ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->spanishPSX1;
@@ -1909,7 +1976,9 @@ class SpanishController extends Controller
 
     public function calificarspanishPSX2(Request $request, $userId)
     {
-        $pregunta = SpanishSexto::where('user_id', $userId)->first();
+        $pregunta = SpanishSexto::where('user_id', $userId)
+                                ->where('state', 'activo')
+                                ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->spanishPSX2;
@@ -1936,7 +2005,9 @@ class SpanishController extends Controller
     //pregunta 3 grado 6
     public function calificarspanishPSX3(Request $request, $userId)
     {
-        $pregunta = SpanishSexto::where('user_id', $userId)->first();
+        $pregunta = SpanishSexto::where('user_id', $userId)
+                                ->where('state', 'activo')
+                                ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->spanishPSX3;
@@ -1965,7 +2036,9 @@ class SpanishController extends Controller
 
     public function calificarspanishPSX4(Request $request, $userId)
     {
-        $pregunta = SpanishSexto::where('user_id', $userId)->first();
+        $pregunta = SpanishSexto::where('user_id', $userId)
+                                ->where('state', 'activo')
+                                ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->spanishPSX4;
@@ -1994,7 +2067,9 @@ class SpanishController extends Controller
 
     public function calificarspanishPSX5(Request $request, $userId)
     {
-        $pregunta = SpanishSexto::where('user_id', $userId)->first();
+        $pregunta = SpanishSexto::where('user_id', $userId)
+                                ->where('state', 'activo')
+                                ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->spanishPSX5;
@@ -2023,7 +2098,9 @@ class SpanishController extends Controller
 
     public function calificarspanishPSX6(Request $request, $userId)
     {
-        $pregunta = SpanishSexto::where('user_id', $userId)->first();
+        $pregunta = SpanishSexto::where('user_id', $userId)
+                                ->where('state', 'activo')
+                                ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->spanishPSX6;
@@ -2051,7 +2128,9 @@ class SpanishController extends Controller
     //------------------------------------ Calificaciones de grado 7 ------------------------------------------//
     public function calificarspanishPS1(Request $request, $userId)
     {
-        $pregunta = SpanishSeptimo::where('user_id', $userId)->first();
+        $pregunta = SpanishSeptimo::where('user_id', $userId)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->spanishPS1;
@@ -2079,7 +2158,9 @@ class SpanishController extends Controller
 
     public function calificarspanishPS2(Request $request, $userId)
     {
-        $pregunta = SpanishSeptimo::where('user_id', $userId)->first();
+        $pregunta = SpanishSeptimo::where('user_id', $userId)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->spanishPS2;
@@ -2108,7 +2189,9 @@ class SpanishController extends Controller
 
     public function calificarspanishPS3(Request $request, $userId)
     {
-        $pregunta = SpanishSeptimo::where('user_id', $userId)->first();
+        $pregunta = SpanishSeptimo::where('user_id', $userId)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->spanishPS3;
@@ -2136,7 +2219,9 @@ class SpanishController extends Controller
 
     public function calificarspanishPS4(Request $request, $userId)
     {
-        $pregunta = SpanishSeptimo::where('user_id', $userId)->first();
+        $pregunta = SpanishSeptimo::where('user_id', $userId)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->spanishPS4;
@@ -2164,7 +2249,9 @@ class SpanishController extends Controller
 
     public function calificarspanishPS5(Request $request, $userId)
     {
-        $pregunta = SpanishSeptimo::where('user_id', $userId)->first();
+        $pregunta = SpanishSeptimo::where('user_id', $userId)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->spanishPS5;
@@ -2193,7 +2280,9 @@ class SpanishController extends Controller
 
     public function calificarspanishPS6(Request $request, $userId)
     {
-        $pregunta = SpanishSeptimo::where('user_id', $userId)->first();
+        $pregunta = SpanishSeptimo::where('user_id', $userId)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->spanishPS6;
@@ -2221,7 +2310,9 @@ class SpanishController extends Controller
 
     public function calificarspanishPS7(Request $request, $userId)
     {
-        $pregunta = SpanishSeptimo::where('user_id', $userId)->first();
+        $pregunta = SpanishSeptimo::where('user_id', $userId)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->spanishPS7;
@@ -2252,7 +2343,9 @@ class SpanishController extends Controller
 
     public function calificarspanishPO1(Request $request, $userId)
     {
-        $pregunta = SpanishOctavo::where('user_id', $userId)->first();
+        $pregunta = SpanishOctavo::where('user_id', $userId)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->spanishPO1;
@@ -2279,7 +2372,9 @@ class SpanishController extends Controller
     // pregunta 2 grado 8
     public function calificarspanishPO2(Request $request, $userId)
     {
-        $pregunta = SpanishOctavo::where('user_id', $userId)->first();
+        $pregunta = SpanishOctavo::where('user_id', $userId)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->spanishPO2;
@@ -2306,7 +2401,9 @@ class SpanishController extends Controller
     // pregunta 3 grado 8
     public function calificarspanishPO3(Request $request, $userId)
     {
-        $pregunta = SpanishOctavo::where('user_id', $userId)->first();
+        $pregunta = SpanishOctavo::where('user_id', $userId)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->spanishPO3;
@@ -2333,7 +2430,9 @@ class SpanishController extends Controller
     // pregunta 4 grado 8
     public function calificarspanishPO4(Request $request, $userId)
     {
-        $pregunta = SpanishOctavo::where('user_id', $userId)->first();
+        $pregunta = SpanishOctavo::where('user_id', $userId)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->spanishPO4;
@@ -2360,7 +2459,9 @@ class SpanishController extends Controller
     // pregunta 5 grado 8
     public function calificarspanishPO5(Request $request, $userId)
     {
-        $pregunta = SpanishOctavo::where('user_id', $userId)->first();
+        $pregunta = SpanishOctavo::where('user_id', $userId)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->spanishPO5;
@@ -2388,7 +2489,9 @@ class SpanishController extends Controller
 
     public function calificarspanishPO8(Request $request, $userId)
     {
-        $pregunta = SpanishOctavo::where('user_id', $userId)->first();
+        $pregunta = SpanishOctavo::where('user_id', $userId)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->spanishPO8;
@@ -2417,7 +2520,9 @@ class SpanishController extends Controller
 
     public function calificarspanishPD5(Request $request, $userId)
     {
-        $pregunta = SpanishDecimo::where('user_id', $userId)->first();
+        $pregunta = SpanishDecimo::where('user_id', $userId)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->spanishPD5;
@@ -2444,7 +2549,9 @@ class SpanishController extends Controller
 
     public function calificarspanishPD6(Request $request, $userId)
     {
-        $pregunta = SpanishDecimo::where('user_id', $userId)->first();
+        $pregunta = SpanishDecimo::where('user_id', $userId)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->spanishPD6;
@@ -2471,7 +2578,9 @@ class SpanishController extends Controller
 
     public function calificarspanishPD7(Request $request, $userId)
     {
-        $pregunta = SpanishDecimo::where('user_id', $userId)->first();
+        $pregunta = SpanishDecimo::where('user_id', $userId)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->spanishPD7;
@@ -2498,7 +2607,9 @@ class SpanishController extends Controller
 
     public function calificarspanishPD4_1(Request $request, $userId)
     {
-        $pregunta = SpanishDecimo::where('user_id', $userId)->first();
+        $pregunta = SpanishDecimo::where('user_id', $userId)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->fragment_numberPD1;
@@ -2525,7 +2636,9 @@ class SpanishController extends Controller
 
     public function calificarspanishPD4_2(Request $request, $userId)
     {
-        $pregunta = SpanishDecimo::where('user_id', $userId)->first();
+        $pregunta = SpanishDecimo::where('user_id', $userId)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->fragment_numberPD2;
@@ -2552,7 +2665,9 @@ class SpanishController extends Controller
 
     public function calificarspanishPD4_3(Request $request, $userId)
     {
-        $pregunta = SpanishDecimo::where('user_id', $userId)->first();
+        $pregunta = SpanishDecimo::where('user_id', $userId)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->fragment_numberPD3;
@@ -2579,7 +2694,9 @@ class SpanishController extends Controller
 
     public function calificarspanishPD4_4(Request $request, $userId)
     {
-        $pregunta = SpanishDecimo::where('user_id', $userId)->first();
+        $pregunta = SpanishDecimo::where('user_id', $userId)
+                                    ->where('state', 'activo')
+                                    ->first();
 
         if ($pregunta) {
             $estadoPregunta = $pregunta->fragment_numberPD4;

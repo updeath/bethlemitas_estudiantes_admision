@@ -31,11 +31,11 @@ class AnswerController extends Controller
         // return response()->json(['userId' => $userId]);
         
         //consultar todos los datos de la tabla math_decimos
-        $mathCuartos = MathCuarto::where('user_id', $userId)->get();
-        $user = User::find($userId);
+        $mathCuartos = MathCuarto::where('user_id', $userId)
+                                 ->where('state', 'activo')->get();
 
         //pasamos los datos a la vista
-        return view("answers.answerMathCuarto", compact('mathCuartos', 'user'));
+        return view("answers.answerMathCuarto", compact('mathCuartos'));
     }
 
     public function answerMathQuinto($userId) {
@@ -46,11 +46,12 @@ class AnswerController extends Controller
         // return response()->json(['userId' => $userId]);
         
         //consultar todos los datos de la tabla math_decimos
-        $mathQuintos = MathQuinto::where('user_id', $userId)->get();
-        $user = User::find($userId);
+        $mathQuintos = MathQuinto::where('user_id', $userId)
+                                 ->where('state', 'activo')
+                                 ->get();
 
         //pasamos los datos a la vista
-        return view("answers.answerMathQuinto", compact('mathQuintos', 'user'));
+        return view("answers.answerMathQuinto", compact('mathQuintos'));
     }
 
     public function answerMathSexto($userId) {
@@ -61,7 +62,9 @@ class AnswerController extends Controller
         // return response()->json(['userId' => $userId]);
         
         //consultar todos los datos de la tabla math_decimos
-        $mathSextos = MathSexto::where('user_id', $userId)->get();
+        $mathSextos = MathSexto::where('user_id', $userId)
+                                ->where('state', 'activo')
+                                ->get();
         $user = User::find($userId);
 
         //pasamos los datos a la vista
@@ -76,7 +79,9 @@ class AnswerController extends Controller
         // return response()->json(['userId' => $userId]);
         
         //consultar todos los datos de la tabla math_decimos
-        $mathSeptimos = MathSeptimo::where('user_id', $userId)->get();
+        $mathSeptimos = MathSeptimo::where('user_id', $userId)
+                                    ->where('state', 'activo')
+                                    ->get();
         $user = User::find($userId);
 
         //pasamos los datos a la vista
@@ -91,7 +96,9 @@ class AnswerController extends Controller
         // return response()->json(['userId' => $userId]);
         
         //consultar todos los datos de la tabla math_decimos
-        $mathOctavos = MathOctavo::where('user_id', $userId)->get();
+        $mathOctavos = MathOctavo::where('user_id', $userId)
+                                 ->where('state', 'activo')
+                                 ->get();
         $user = User::find($userId);
 
         //pasamos los datos a la vista
@@ -106,7 +113,9 @@ class AnswerController extends Controller
         // return response()->json(['userId' => $userId]);
         
         //consultar todos los datos de la tabla math_decimos
-        $mathNovenos = MathNoveno::where('user_id', $userId)->get();
+        $mathNovenos = MathNoveno::where('user_id', $userId)
+                                 ->where('state', 'activo')
+                                 ->get();
         $user = User::find($userId);
 
         //pasamos los datos a la vista
@@ -121,7 +130,9 @@ class AnswerController extends Controller
         // return response()->json(['userId' => $userId]);
         
         //consultar todos los datos de la tabla math_decimos
-        $mathDecimos = MathDecimo::where('user_id', $userId)->get();
+        $mathDecimos = MathDecimo::where('user_id', $userId)
+                                 ->where('state', 'activo')
+                                 ->get();
         $user = User::find($userId);
 
         //pasamos los datos a la vista
@@ -137,11 +148,12 @@ class AnswerController extends Controller
         // return response()->json(['userId' => $userId]);
         
         //consultar todos los datos de la tabla math_decimos
-        $spanishCuartos = SpanishCuarto::where('user_id', $userId)->get();
-        $user = User::find($userId);
+        $spanishCuartos = SpanishCuarto::where('user_id', $userId)
+                                        ->where('state', 'activo')
+                                        ->get();
 
         //pasamos los datos a la vista
-        return view("answers.answerSpanishCuarto", compact('spanishCuartos', 'user'));
+        return view("answers.answerSpanishCuarto", compact('spanishCuartos'));
     }
 
     public function answerSpanishQuinto($userId) {
@@ -152,7 +164,9 @@ class AnswerController extends Controller
         // return response()->json(['userId' => $userId]);
         
         //consultar todos los datos de la tabla math_decimos
-        $spanishQuintos = SpanishQuinto::where('user_id', $userId)->get();
+        $spanishQuintos = SpanishQuinto::where('user_id', $userId)
+                                        ->where('state', 'activo')
+                                        ->get();
         $user = User::find($userId);
 
         //pasamos los datos a la vista
@@ -167,7 +181,9 @@ class AnswerController extends Controller
         // return response()->json(['userId' => $userId]);
         
         //consultar todos los datos de la tabla math_decimos
-        $spanishSextos = SpanishSexto::where('user_id', $userId)->get();
+        $spanishSextos = SpanishSexto::where('user_id', $userId)
+                                     ->where('state', 'activo')
+                                     ->get();
         $user = User::find($userId);
 
         //pasamos los datos a la vista
@@ -182,7 +198,9 @@ class AnswerController extends Controller
         // return response()->json(['userId' => $userId]);
         
         //consultar todos los datos de la tabla math_decimos
-        $spanishSeptimos = SpanishSeptimo::where('user_id', $userId)->get();
+        $spanishSeptimos = SpanishSeptimo::where('user_id', $userId)
+                                         ->where('state', 'activo')
+                                         ->get();
         $user = User::find($userId);
 
         //pasamos los datos a la vista
@@ -197,7 +215,9 @@ class AnswerController extends Controller
         // return response()->json(['userId' => $userId]);
         
         //consultar todos los datos de la tabla math_decimos
-        $spanishOctavos = SpanishOctavo::where('user_id', $userId)->get();
+        $spanishOctavos = SpanishOctavo::where('user_id', $userId)
+                                        ->where('state', 'activo')
+                                        ->get();
         $user = User::find($userId);
 
         //pasamos los datos a la vista
@@ -212,7 +232,9 @@ class AnswerController extends Controller
         // return response()->json(['userId' => $userId]);
         
         //consultar todos los datos de la tabla math_decimos
-        $spanishNovenos = SpanishNoveno::where('user_id', $userId)->get();
+        $spanishNovenos = SpanishNoveno::where('user_id', $userId)
+                                        ->where('state', 'activo')
+                                        ->get();
         $user = User::find($userId);
 
         //pasamos los datos a la vista
@@ -227,7 +249,9 @@ class AnswerController extends Controller
         // return response()->json(['userId' => $userId]);
         
         //consultar todos los datos de la tabla math_decimos
-        $spanishDecimos = SpanishDecimo::where('user_id', $userId)->get();
+        $spanishDecimos = SpanishDecimo::where('user_id', $userId)
+                                        ->where('state', 'activo')
+                                        ->get();
         $user = User::find($userId);
 
         //pasamos los datos a la vista

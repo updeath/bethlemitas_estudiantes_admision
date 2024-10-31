@@ -13,6 +13,22 @@ use App\Exports\UserExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Concept;
 
+// Modelos de las pruebas.
+use App\Models\MathCuarto;
+use App\Models\MathQuinto;
+use App\Models\MathSexto;
+use App\Models\MathSeptimo;
+use App\Models\MathOctavo;
+use App\Models\MathNoveno;
+use App\Models\MathDecimo;
+use App\Models\SpanishCuarto;
+use App\Models\SpanishQuinto;
+use App\Models\SpanishSexto;
+use App\Models\SpanishSeptimo;
+use App\Models\SpanishOctavo;
+use App\Models\SpanishNoveno;
+use App\Models\SpanishDecimo;
+
 
 class UserController extends Controller
 {
@@ -332,4 +348,300 @@ class UserController extends Controller
 
         return response()->download(storage_path('app/' . $fileName));
     }
+
+    //Cambiar estado de formulario a bloqueado para que el aspirante pueda presentar nuevamente la prueba.
+    public function reset(string $id) {
+        $user = User::find($id);
+        $degree = $user->degree;
+
+        switch ($degree) {
+            case '4°':
+                $pruebaM = MathCuarto::where('user_id', $id)->where('state', 'activo')->first();
+                $pruebaS = SpanishCuarto::where('user_id', $id)->where('state', 'activo')->first();
+            
+                if ($pruebaM || $pruebaS) {
+                    if ($pruebaM) {
+                        $pruebaM->state = 'bloqueado';
+                        $pruebaM->save();
+                    }
+            
+                    if ($pruebaS) {
+                        $pruebaS->state = 'bloqueado';
+                        $pruebaS->save();
+                    }
+            
+                    $concept = Concept::where('user_id', $id)->first();
+                    
+                    if ($concept) {
+                        $signatures = [
+                            'signature_image_spanish_decimo',
+                            'signature_image_math_decimo',
+                            'signature_image_english_decimo',
+                            'signature_image_psicoorientador',
+                            'signature_image_coordinador_academico',
+                            'signature_image_coordinador_convivencia',
+                            'signature_image_rector'
+                        ];
+            
+                        foreach ($signatures as $signature) {
+                            if ($concept->$signature !== null) {
+                                $concept->$signature = null;
+                            }
+                        }
+            
+                        $concept->save();
+                    }
+                    return redirect()->back()->with('success', 'Pruebas restablecidas exitosamente.');
+                } else {
+                    return redirect()->back()->with('info', 'No hay formulario para restablecer.');
+                }
+
+            case '5°':
+                $pruebaM = MathQuinto::where('user_id', $id)->where('state', 'activo')->first();
+                $pruebaS = SpanishQuinto::where('user_id', $id)->where('state', 'activo')->first();
+            
+                if ($pruebaM || $pruebaS) {
+                    if ($pruebaM) {
+                        $pruebaM->state = 'bloqueado';
+                        $pruebaM->save();
+                    }
+            
+                    if ($pruebaS) {
+                        $pruebaS->state = 'bloqueado';
+                        $pruebaS->save();
+                    }
+            
+                    $concept = Concept::where('user_id', $id)->first();
+                    
+                    if ($concept) {
+                        $signatures = [
+                            'signature_image_spanish_decimo',
+                            'signature_image_math_decimo',
+                            'signature_image_english_decimo',
+                            'signature_image_psicoorientador',
+                            'signature_image_coordinador_academico',
+                            'signature_image_coordinador_convivencia',
+                            'signature_image_rector'
+                        ];
+            
+                        foreach ($signatures as $signature) {
+                            if ($concept->$signature !== null) {
+                                $concept->$signature = null;
+                            }
+                        }
+            
+                        $concept->save();
+                    }
+                    return redirect()->back()->with('success', 'Pruebas restablecidas exitosamente.');
+                } else {
+                    return redirect()->back()->with('info', 'No hay formulario para restablecer.');
+                }
+            
+            case '6°':
+                $pruebaM = MathSexto::where('user_id', $id)->where('state', 'activo')->first();
+                $pruebaS = SpanishSexto::where('user_id', $id)->where('state', 'activo')->first();
+            
+                if ($pruebaM || $pruebaS) {
+                    if ($pruebaM) {
+                        $pruebaM->state = 'bloqueado';
+                        $pruebaM->save();
+                    }
+            
+                    if ($pruebaS) {
+                        $pruebaS->state = 'bloqueado';
+                        $pruebaS->save();
+                    }
+            
+                    $concept = Concept::where('user_id', $id)->first();
+                    
+                    if ($concept) {
+                        $signatures = [
+                            'signature_image_spanish_decimo',
+                            'signature_image_math_decimo',
+                            'signature_image_english_decimo',
+                            'signature_image_psicoorientador',
+                            'signature_image_coordinador_academico',
+                            'signature_image_coordinador_convivencia',
+                            'signature_image_rector'
+                        ];
+            
+                        foreach ($signatures as $signature) {
+                            if ($concept->$signature !== null) {
+                                $concept->$signature = null;
+                            }
+                        }
+            
+                        $concept->save();
+                    }
+                    return redirect()->back()->with('success', 'Pruebas restablecidas exitosamente.');
+                } else {
+                    return redirect()->back()->with('info', 'No hay formulario para restablecer.');
+                }
+
+            case '7°':
+                $pruebaM = MathSeptimo::where('user_id', $id)->where('state', 'activo')->first();
+                $pruebaS = SpanishSeptimo::where('user_id', $id)->where('state', 'activo')->first();
+            
+                if ($pruebaM || $pruebaS) {
+                    if ($pruebaM) {
+                        $pruebaM->state = 'bloqueado';
+                        $pruebaM->save();
+                    }
+            
+                    if ($pruebaS) {
+                        $pruebaS->state = 'bloqueado';
+                        $pruebaS->save();
+                    }
+            
+                    $concept = Concept::where('user_id', $id)->first();
+                    
+                    if ($concept) {
+                        $signatures = [
+                            'signature_image_spanish_decimo',
+                            'signature_image_math_decimo',
+                            'signature_image_english_decimo',
+                            'signature_image_psicoorientador',
+                            'signature_image_coordinador_academico',
+                            'signature_image_coordinador_convivencia',
+                            'signature_image_rector'
+                        ];
+            
+                        foreach ($signatures as $signature) {
+                            if ($concept->$signature !== null) {
+                                $concept->$signature = null;
+                            }
+                        }
+            
+                        $concept->save();
+                    }
+                    return redirect()->back()->with('success', 'Pruebas restablecidas exitosamente.');
+                } else {
+                    return redirect()->back()->with('info', 'No hay formulario para restablecer.');
+                }
+            
+            case '8°':
+                $pruebaM = MathOctavo::where('user_id', $id)->where('state', 'activo')->first();
+                $pruebaS = SpanishOctavo::where('user_id', $id)->where('state', 'activo')->first();
+            
+                if ($pruebaM || $pruebaS) {
+                    if ($pruebaM) {
+                        $pruebaM->state = 'bloqueado';
+                        $pruebaM->save();
+                    }
+            
+                    if ($pruebaS) {
+                        $pruebaS->state = 'bloqueado';
+                        $pruebaS->save();
+                    }
+            
+                    $concept = Concept::where('user_id', $id)->first();
+                    
+                    if ($concept) {
+                        $signatures = [
+                            'signature_image_spanish_decimo',
+                            'signature_image_math_decimo',
+                            'signature_image_english_decimo',
+                            'signature_image_psicoorientador',
+                            'signature_image_coordinador_academico',
+                            'signature_image_coordinador_convivencia',
+                            'signature_image_rector'
+                        ];
+            
+                        foreach ($signatures as $signature) {
+                            if ($concept->$signature !== null) {
+                                $concept->$signature = null;
+                            }
+                        }
+            
+                        $concept->save();
+                    }
+                    return redirect()->back()->with('success', 'Pruebas restablecidas exitosamente.');
+                } else {
+                    return redirect()->back()->with('info', 'No hay formulario para restablecer.');
+                }
+
+            case '9°':
+                $pruebaM = MathNoveno::where('user_id', $id)->where('state', 'activo')->first();
+                $pruebaS = SpanishNoveno::where('user_id', $id)->where('state', 'activo')->first();
+            
+                if ($pruebaM || $pruebaS) {
+                    if ($pruebaM) {
+                        $pruebaM->state = 'bloqueado';
+                        $pruebaM->save();
+                    }
+            
+                    if ($pruebaS) {
+                        $pruebaS->state = 'bloqueado';
+                        $pruebaS->save();
+                    }
+            
+                    $concept = Concept::where('user_id', $id)->first();
+                    
+                    if ($concept) {
+                        $signatures = [
+                            'signature_image_spanish_decimo',
+                            'signature_image_math_decimo',
+                            'signature_image_english_decimo',
+                            'signature_image_psicoorientador',
+                            'signature_image_coordinador_academico',
+                            'signature_image_coordinador_convivencia',
+                            'signature_image_rector'
+                        ];
+            
+                        foreach ($signatures as $signature) {
+                            if ($concept->$signature !== null) {
+                                $concept->$signature = null;
+                            }
+                        }
+            
+                        $concept->save();
+                    }
+                    return redirect()->back()->with('success', 'Pruebas restablecidas exitosamente.');
+                } else {
+                    return redirect()->back()->with('info', 'No hay formulario para restablecer.');
+                }
+            
+            case '10°':
+                $pruebaM = MathDecimo::where('user_id', $id)->where('state', 'activo')->first();
+                $pruebaS = SpanishDecimo::where('user_id', $id)->where('state', 'activo')->first();
+            
+                if ($pruebaM || $pruebaS) {
+                    if ($pruebaM) {
+                        $pruebaM->state = 'bloqueado';
+                        $pruebaM->save();
+                    }
+            
+                    if ($pruebaS) {
+                        $pruebaS->state = 'bloqueado';
+                        $pruebaS->save();
+                    }
+            
+                    $concept = Concept::where('user_id', $id)->first();
+                    
+                    if ($concept) {
+                        $signatures = [
+                            'signature_image_spanish_decimo',
+                            'signature_image_math_decimo',
+                            'signature_image_english_decimo',
+                            'signature_image_psicoorientador',
+                            'signature_image_coordinador_academico',
+                            'signature_image_coordinador_convivencia',
+                            'signature_image_rector'
+                        ];
+            
+                        foreach ($signatures as $signature) {
+                            if ($concept->$signature !== null) {
+                                $concept->$signature = null;
+                            }
+                        }
+            
+                        $concept->save();
+                    }
+                    return redirect()->back()->with('success', 'Pruebas restablecidas exitosamente.');
+                } else {
+                    return redirect()->back()->with('info', 'No hay formulario para restablecer.');
+                }
+        } 
+    }
+
 }

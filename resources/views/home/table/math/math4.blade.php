@@ -47,12 +47,6 @@
 
     <div class="flex flex-col lg:flex-row items-center justify-between m-2">
         <div class="flex items-center mb-2 lg:mb-0">
-            <form id="resetearForm" action="{{ route('reset.math4') }}" method="POST">
-                @csrf
-                <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg">
-                    Resetear Tabla
-                </button>
-            </form>
 
             <div class="m-2">
                 <a href="{{ route('exportar.excel.math4') }}"
@@ -114,6 +108,10 @@
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b    border-gray-200 bg-gray-50">
                                 Ver Respuestas</th>
+                            
+                            <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b    border-gray-200 bg-gray-50">
+                                Historial</th>
                         </tr>
                     </thead>
 
@@ -145,6 +143,11 @@
                                         <i class="fas fa-file text-sm"></i>
                                     </button>
                                 </td>
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    <a href="{{ route('history4.user', $data['user']->id ) }}" class="text-blue-500 hover:underline">
+                                        Ver historial
+                                    </a>
+                                </td>
                         @endforeach
                     </tbody>
                 </table>
@@ -156,7 +159,6 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @if (session('info'))
