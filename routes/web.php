@@ -319,8 +319,28 @@ Route::middleware(['web', 'setLanguage', 'auth'])->group(function () {
 
     // ********************* Rutas historial de español *************************** //
     //Ruta para ver el historial de las pruebas del estudiante grado 4
-    Route::get('/historySpanish/user/{id}', [HistoryController::class, 'historySpanishCuarto'])->name('historySpanis4.user');
+    Route::get('/historySpanish4/user/{id}', [HistoryController::class, 'historySpanishCuarto'])->name('historySpanish4.user');
     //Ruta para ver las respuestas de las pruebas del historial seleccionado de grado cuarto (Español)
-    Route::get('/history/asnwers/spanish/{userId}', [HistoryController::class, 'answerHistorySpanishCuarto'])->name('history.answers.spanish4');
+    Route::get('/history/asnwers/spanish4/{userId}', [HistoryController::class, 'answerHistorySpanishCuarto'])->name('history.answers.spanish4');
+    //Ruta para ver el historial de las pruebas del estudiante grado 5
+    Route::get('/historySpanish5/user/{id}', [HistoryController::class, 'historySpanishQuinto'])->name('historySpanish5.user');
+    //Ruta para ver las respuestas de las pruebas del historial seleccionado de grado cuarto (Español)
+    Route::get('/history/asnwers/spanish5/{userId}', [HistoryController::class, 'answerHistorySpanishQuinto'])->name('history.answers.spanish5');
+    //Ruta para ver el historial de las pruebas del estudiante grado 6
+    Route::get('/historySpanish6/user/{id}', [HistoryController::class, 'historySpanishSexto'])->name('historySpanish6.user');
+    //Ruta para ver las respuestas de las pruebas del historial seleccionado de grado cuarto (Español)
+    Route::get('/history/asnwers/spanish6/{userId}', [HistoryController::class, 'answerHistorySpanishSexto'])->name('history.answers.spanish6');
+    //Ruta para ver el historial de las pruebas del estudiante grado 7
+    Route::get('/historySpanish7/user/{id}', [HistoryController::class, 'historySpanishSeptimo'])->name('historySpanish7.user');
+    //Ruta para ver las respuestas de las pruebas del historial seleccionado de grado cuarto (Español)
+    Route::get('/history/asnwers/spanish7/{userId}', [HistoryController::class, 'answerHistorySpanishSeptimo'])->name('history.answers.spanish7');
+    //Ruta para ver el historial de las pruebas del estudiante grado 8
+    Route::get('/historySpanish8/user/{id}', [HistoryController::class, 'historySpanishOctavo'])->name('historySpanish8.user');
+    //Ruta para ver las respuestas de las pruebas del historial seleccionado de grado cuarto (Español)
+    Route::get('/history/asnwers/spanish8/{userId}', [HistoryController::class, 'answerHistorySpanishOctavo'])->name('history.answers.spanish8');
+    //Ruta para ver el historial de las pruebas del estudiante grado 9
+    Route::get('/historySpanish9/user/{id}', [HistoryController::class, 'historySpanishNoveno'])->name('historySpanish9.user');
+     //Ruta para ver las respuestas de las pruebas del historial seleccionado de grado cuarto (Español)
+     Route::get('/history/asnwers/spanish9/{userId}', [HistoryController::class, 'answerHistorySpanishNoveno'])->name('history.answers.spanish9');
 
 });

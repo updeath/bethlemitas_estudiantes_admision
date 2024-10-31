@@ -6,7 +6,6 @@
 
 @section('content_dashboard')
 <div class="container_table_answers">
-    <h1 style="margin-bottom: 1rem">Respuestas del Usuario: {{ $user->name }} {{ $user->last_name}}</h1>
 
     @if($spanishOctavos->isEmpty())
         <p>No hay respuestas disponibles para este usuario.</p>
@@ -112,7 +111,7 @@
         <div class="mb-10 border-t p-2 border-gray-400">
             <label class="block text-sm font-medium text-gray-600 mb-5">4. ¿Qué es un género literario? ¿Qué tipos de géneros literarios existen y qué rasgos los definen?
             <div class="form-textarea p-2 mt-1 block w-full rounded-md shadow-sm ">
-                R/= {{ $spanishOctavo->commentPO14}}</div>
+                R/= {{ $spanishOctavo->commentPO4}}</div>
         </div>
 
         <!-- Pregunta 5 -->

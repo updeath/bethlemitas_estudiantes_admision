@@ -162,10 +162,9 @@ class AnswerController extends Controller
         $spanishQuintos = SpanishQuinto::where('user_id', $userId)
                                         ->where('state', 'activo')
                                         ->get();
-        $user = User::find($userId);
 
         //pasamos los datos a la vista
-        return view("answers.answerSpanishQuinto", compact('spanishQuintos', 'user'));
+        return view("answers.answerSpanishQuinto", compact('spanishQuintos'));
     }
 
     public function answerSpanishSexto($userId) {
@@ -179,10 +178,9 @@ class AnswerController extends Controller
         $spanishSextos = SpanishSexto::where('user_id', $userId)
                                      ->where('state', 'activo')
                                      ->get();
-        $user = User::find($userId);
 
         //pasamos los datos a la vista
-        return view("answers.answerSpanishSexto", compact('spanishSextos', 'user'));
+        return view("answers.answerSpanishSexto", compact('spanishSextos'));
     }
 
     public function answerSpanishSeptimo($userId) {
@@ -196,10 +194,9 @@ class AnswerController extends Controller
         $spanishSeptimos = SpanishSeptimo::where('user_id', $userId)
                                          ->where('state', 'activo')
                                          ->get();
-        $user = User::find($userId);
 
         //pasamos los datos a la vista
-        return view("answers.answerSpanishSeptimo", compact('spanishSeptimos', 'user'));
+        return view("answers.answerSpanishSeptimo", compact('spanishSeptimos'));
     }
 
     public function answerSpanishOctavo($userId) {
@@ -213,10 +210,9 @@ class AnswerController extends Controller
         $spanishOctavos = SpanishOctavo::where('user_id', $userId)
                                         ->where('state', 'activo')
                                         ->get();
-        $user = User::find($userId);
 
         //pasamos los datos a la vista
-        return view("answers.answerSpanishOctavo", compact('spanishOctavos', 'user'));
+        return view("answers.answerSpanishOctavo", compact('spanishOctavos'));
     }
 
     public function answerSpanishNoveno($userId) {
@@ -230,10 +226,9 @@ class AnswerController extends Controller
         $spanishNovenos = SpanishNoveno::where('user_id', $userId)
                                         ->where('state', 'activo')
                                         ->get();
-        $user = User::find($userId);
 
         //pasamos los datos a la vista
-        return view("answers.answerSpanishNoveno", compact('spanishNovenos', 'user'));
+        return view("answers.answerSpanishNoveno", compact('spanishNovenos'));
     }
 
     public function answerSpanishDecimo($userId) {
