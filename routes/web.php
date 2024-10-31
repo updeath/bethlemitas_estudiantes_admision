@@ -295,6 +295,27 @@ Route::middleware(['web', 'setLanguage', 'auth'])->group(function () {
     Route::get('/history5/user/{id}', [HistoryController::class, 'historyMathQuinto'])->name('history5.user');
     //Ruta para ver las respuestas de las pruebas del historial seleccionado de grado 5 (Matematicas)
     Route::get('/history5/asnwers/{userId}', [HistoryController::class, 'answerHistoryMathQuinto'])->name('history.answers5');
+    //Ruta para ver el historial de las pruebas del estudiante grado 6
+    Route::get('/history6/user/{id}', [HistoryController::class, 'historyMathSexto'])->name('history6.user');
+    //Ruta para ver las respuestas de las pruebas del historial seleccionado de grado 5 (Matematicas)
+    Route::get('/history6/asnwers/{userId}', [HistoryController::class, 'answerHistoryMathSexto'])->name('history.answers6');
+    //Ruta para ver el historial de las pruebas del estudiante grado 7
+    Route::get('/history7/user/{id}', [HistoryController::class, 'historyMathSeptimo'])->name('history7.user');
+    //Ruta para ver las respuestas de las pruebas del historial seleccionado de grado 7 (Matematicas)
+    Route::get('/history7/asnwers/{userId}', [HistoryController::class, 'answerHistoryMathSeptimo'])->name('history.answers7');
+    //Ruta para ver el historial de las pruebas del estudiante grado 8
+    Route::get('/history8/user/{id}', [HistoryController::class, 'historyMathOctavo'])->name('history8.user');
+    //Ruta para ver las respuestas de las pruebas del historial seleccionado de grado 8 (Matematicas)
+    Route::get('/history8/asnwers/{userId}', [HistoryController::class, 'answerHistoryMathOctavo'])->name('history.answers8');
+    //Ruta para ver el historial de las pruebas del estudiante grado 9
+    Route::get('/history9/user/{id}', [HistoryController::class, 'historyMathNoveno'])->name('history9.user');
+    //Ruta para ver las respuestas de las pruebas del historial seleccionado de grado 9 (Matematicas)
+    Route::get('/history9/asnwers/{userId}', [HistoryController::class, 'answerHistoryMathNoveno'])->name('history.answers9');
+    //Ruta para ver el historial de las pruebas del estudiante grado 10
+    Route::get('/history10/user/{id}', [HistoryController::class, 'historyMathDecimo'])->name('history10.user');
+    //Ruta para ver las respuestas de las pruebas del historial seleccionado de grado 10 (Matematicas)
+    Route::get('/history10/asnwers/{userId}', [HistoryController::class, 'answerHistoryMathDecimo'])->name('history.answers10');
+
 
     // ********************* Rutas historial de español *************************** //
     //Ruta para ver el historial de las pruebas del estudiante grado 4

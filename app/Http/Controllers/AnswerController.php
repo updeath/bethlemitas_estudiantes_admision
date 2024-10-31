@@ -65,10 +65,9 @@ class AnswerController extends Controller
         $mathSextos = MathSexto::where('user_id', $userId)
                                 ->where('state', 'activo')
                                 ->get();
-        $user = User::find($userId);
 
         //pasamos los datos a la vista
-        return view("answers.answerMathSexto", compact('mathSextos', 'user'));
+        return view("answers.answerMathSexto", compact('mathSextos'));
     }
 
     public function answerMathSeptimo($userId) {
@@ -82,10 +81,9 @@ class AnswerController extends Controller
         $mathSeptimos = MathSeptimo::where('user_id', $userId)
                                     ->where('state', 'activo')
                                     ->get();
-        $user = User::find($userId);
 
         //pasamos los datos a la vista
-        return view("answers.answerMathSeptimo", compact('mathSeptimos', 'user'));
+        return view("answers.answerMathSeptimo", compact('mathSeptimos'));
     }
 
     public function answerMathOctavo($userId) {
@@ -99,10 +97,9 @@ class AnswerController extends Controller
         $mathOctavos = MathOctavo::where('user_id', $userId)
                                  ->where('state', 'activo')
                                  ->get();
-        $user = User::find($userId);
 
         //pasamos los datos a la vista
-        return view("answers.answerMathOctavo", compact('mathOctavos', 'user'));
+        return view("answers.answerMathOctavo", compact('mathOctavos'));
     }
 
     public function answerMathNoveno($userId) {
@@ -116,10 +113,9 @@ class AnswerController extends Controller
         $mathNovenos = MathNoveno::where('user_id', $userId)
                                  ->where('state', 'activo')
                                  ->get();
-        $user = User::find($userId);
 
         //pasamos los datos a la vista
-        return view("answers.answerMathNoveno", compact('mathNovenos', 'user'));
+        return view("answers.answerMathNoveno", compact('mathNovenos'));
     }
 
     public function answerMathDecimo($userId) {
@@ -133,10 +129,9 @@ class AnswerController extends Controller
         $mathDecimos = MathDecimo::where('user_id', $userId)
                                  ->where('state', 'activo')
                                  ->get();
-        $user = User::find($userId);
 
         //pasamos los datos a la vista
-        return view("answers.answerMathDecimo", compact('mathDecimos', 'user'));
+        return view("answers.answerMathDecimo", compact('mathDecimos'));
     }
 
     // Controller respuesta español

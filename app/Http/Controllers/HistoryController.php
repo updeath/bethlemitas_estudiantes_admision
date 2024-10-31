@@ -5,7 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\MathCuarto;
 use App\Models\MathQuinto;
+use App\Models\MathSexto;
+use App\Models\MathSeptimo;
+use App\Models\MathOctavo;
+use App\Models\MathNoveno;
+use App\Models\MathDecimo;
 use App\Models\SpanishCuarto;
+
 use App\Models\User;
 
 class HistoryController extends Controller
@@ -62,6 +68,136 @@ class HistoryController extends Controller
         //pasamos los datos a la vista
         return view("answers.answerMathQuinto", compact('mathQuintos'));
     }
+
+    //6°
+    // Mostrar historial de las pruebas de grado 6 segun el aspirante seleccionado.
+    public function historyMathSexto(string $id) {
+        $pruebas = MathSexto::where('user_id', $id)
+                ->orderBy('created_at', 'desc')
+                ->get();
+        $user = User::find($id);
+
+        return view('history.math.history6', compact('pruebas', 'user'));
+    }
+
+    // Mostrar la pruba de matematicas del historial selecionado
+    public function answerHistoryMathSexto($userId) { // 
+
+        // // Registrar el valor de $userId para depuración
+        // Log::info('Valor de $userId: ' . $userId);
+        // // Mostrar temporalmente el valor de $userId en la interfaz de usuario
+        // return response()->json(['userId' => $userId]);
+        
+        //consultar todos los datos de la tabla math_decimos
+        $mathSextos = MathSexto::where('id', $userId)->get();
+
+        //pasamos los datos a la vista
+        return view("answers.answerMathSexto", compact('mathSextos'));
+    }
+
+    //7°
+    // Mostrar historial de las pruebas de grado 7 segun el aspirante seleccionado.
+    public function historyMathSeptimo(string $id) {
+        $pruebas = MathSeptimo::where('user_id', $id)
+                ->orderBy('created_at', 'desc')
+                ->get();
+        $user = User::find($id);
+
+        return view('history.math.history7', compact('pruebas', 'user'));
+    }
+
+    // Mostrar la pruba de matematicas del historial selecionado
+    public function answerHistoryMathSeptimo($userId) { // 
+
+        // // Registrar el valor de $userId para depuración
+        // Log::info('Valor de $userId: ' . $userId);
+        // // Mostrar temporalmente el valor de $userId en la interfaz de usuario
+        // return response()->json(['userId' => $userId]);
+        
+        //consultar todos los datos de la tabla math_decimos
+        $mathSeptimos = MathSeptimo::where('id', $userId)->get();
+
+        //pasamos los datos a la vista
+        return view("answers.answerMathSeptimo", compact('mathSeptimos'));
+    }
+
+    //8°
+    // Mostrar historial de las pruebas de grado 8 segun el aspirante seleccionado.
+    public function historyMathOctavo(string $id) {
+        $pruebas = MathOctavo::where('user_id', $id)
+                ->orderBy('created_at', 'desc')
+                ->get();
+        $user = User::find($id);
+
+        return view('history.math.history8', compact('pruebas', 'user'));
+    }
+
+    // Mostrar la pruba de matematicas del historial selecionado
+    public function answerHistoryMathOctavo($userId) { // 
+
+        // // Registrar el valor de $userId para depuración
+        // Log::info('Valor de $userId: ' . $userId);
+        // // Mostrar temporalmente el valor de $userId en la interfaz de usuario
+        // return response()->json(['userId' => $userId]);
+        
+        //consultar todos los datos de la tabla math_decimos
+        $mathOctavos = MathOctavo::where('id', $userId)->get();
+
+        //pasamos los datos a la vista
+        return view("answers.answerMathOctavo", compact('mathOctavos'));
+    }  
+    
+    //9°
+    // Mostrar historial de las pruebas de grado 9 segun el aspirante seleccionado.
+    public function historyMathNoveno(string $id) {
+        $pruebas = MathNoveno::where('user_id', $id)
+                ->orderBy('created_at', 'desc')
+                ->get();
+        $user = User::find($id);
+
+        return view('history.math.history9', compact('pruebas', 'user'));
+    }
+
+    // Mostrar la pruba de matematicas del historial selecionado
+    public function answerHistoryMathNoveno($userId) { // 
+
+        // // Registrar el valor de $userId para depuración
+        // Log::info('Valor de $userId: ' . $userId);
+        // // Mostrar temporalmente el valor de $userId en la interfaz de usuario
+        // return response()->json(['userId' => $userId]);
+        
+        //consultar todos los datos de la tabla math_decimos
+        $mathNovenos = MathNoveno::where('id', $userId)->get();
+
+        //pasamos los datos a la vista
+        return view("answers.answerMathNoveno", compact('mathNovenos'));
+    }
+
+    //10°
+    // Mostrar historial de las pruebas de grado 10 segun el aspirante seleccionado.
+    public function historyMathDecimo(string $id) {
+        $pruebas = MathDecimo::where('user_id', $id)
+                ->orderBy('created_at', 'desc')
+                ->get();
+        $user = User::find($id);
+
+        return view('history.math.history10', compact('pruebas', 'user'));
+    }
+    // Mostrar la pruba de matematicas del historial selecionado
+    public function answerHistoryMathDecimo($userId) { // 
+
+        // // Registrar el valor de $userId para depuración
+        // Log::info('Valor de $userId: ' . $userId);
+        // // Mostrar temporalmente el valor de $userId en la interfaz de usuario
+        // return response()->json(['userId' => $userId]);
+        
+        //consultar todos los datos de la tabla math_decimos
+        $mathDecimos = MathDecimo::where('id', $userId)->get();
+
+        //pasamos los datos a la vista
+        return view("answers.answerMathDecimo", compact('mathDecimos'));
+    }
+
 
 
     // ************************** Funciones del historial de español ************************ //

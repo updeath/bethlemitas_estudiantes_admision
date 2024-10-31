@@ -111,6 +111,10 @@
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                 Ver Respuestas</th>
+
+                            <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                Historial</th>
                         </tr>
                     </thead>
 
@@ -142,6 +146,11 @@
                                         <i class="fas fa-file text-sm"></i>
                                     </button>
                                 </td>
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    <a href="{{ route('history7.user', $data['user']->id ) }}" class="text-blue-500 hover:underline">
+                                        Ver historial
+                                    </a>
+                                </td>
                                 
                             </tr>
                         @endforeach
@@ -154,8 +163,6 @@
             </div>
         </div>
     </div>
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
