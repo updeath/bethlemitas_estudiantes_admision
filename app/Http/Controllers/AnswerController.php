@@ -242,9 +242,8 @@ class AnswerController extends Controller
         $spanishDecimos = SpanishDecimo::where('user_id', $userId)
                                         ->where('state', 'activo')
                                         ->get();
-        $user = User::find($userId);
 
         //pasamos los datos a la vista
-        return view("answers.answerSpanishDecimo", compact('spanishDecimos', 'user'));
+        return view("answers.answerSpanishDecimo", compact('spanishDecimos'));
     }
 }

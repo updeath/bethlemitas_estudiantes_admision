@@ -332,4 +332,25 @@ class HistoryController extends Controller
         //pasamos los datos a la vista
         return view("answers.answerSpanishNoveno", compact('spanishNovenos'));
     }
+
+    //10°
+    // Mostrar historial de las pruebas de grado 7 segun el aspirante seleccionado.
+    public function historySpanishDecimo(string $id) {
+        $pruebas = SpanishDecimo::where('user_id', $id)
+                                    ->orderBy('created_at', 'desc')
+                                    ->get();
+        $user = User::find($id);
+
+        return view('history.spanish.historySpanish10', compact('pruebas', 'user'));
+    }
+
+    // Mostrar la pruba de español del historial selecionado
+    public function answerHistorySpanishDecimo($userId) {
+
+        //consultar todos los datos de la tabla math_decimos
+        $spanishDecimos = SpanishDecimo::where('id', $userId)->get();
+
+        //pasamos los datos a la vista
+        return view("answers.answerSpanishDecimo", compact('spanishDecimos'));
+    }
 }

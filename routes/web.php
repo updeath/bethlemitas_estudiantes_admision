@@ -340,7 +340,11 @@ Route::middleware(['web', 'setLanguage', 'auth'])->group(function () {
     Route::get('/history/asnwers/spanish8/{userId}', [HistoryController::class, 'answerHistorySpanishOctavo'])->name('history.answers.spanish8');
     //Ruta para ver el historial de las pruebas del estudiante grado 9
     Route::get('/historySpanish9/user/{id}', [HistoryController::class, 'historySpanishNoveno'])->name('historySpanish9.user');
-     //Ruta para ver las respuestas de las pruebas del historial seleccionado de grado cuarto (Español)
-     Route::get('/history/asnwers/spanish9/{userId}', [HistoryController::class, 'answerHistorySpanishNoveno'])->name('history.answers.spanish9');
+    //Ruta para ver las respuestas de las pruebas del historial seleccionado de grado cuarto (Español)
+    Route::get('/history/asnwers/spanish9/{userId}', [HistoryController::class, 'answerHistorySpanishNoveno'])->name('history.answers.spanish9');
+    //Ruta para ver el historial de las pruebas del estudiante grado 10
+    Route::get('/historySpanish10/user/{id}', [HistoryController::class, 'historySpanishDecimo'])->name('historySpanish10.user');
+    //Ruta para ver las respuestas de las pruebas del historial seleccionado de grado cuarto (Español)
+    Route::get('/history/asnwers/spanish10/{userId}', [HistoryController::class, 'answerHistorySpanishDecimo'])->name('history.answers.spanish10');
 
 });
