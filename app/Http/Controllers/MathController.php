@@ -767,14 +767,15 @@ class MathController extends Controller
         ]);
 
         $user_id = Auth::id();
+        $aspirante = User::find($user_id);
+
         $existingRecord = MathCuarto::where('user_id', $user_id)
                                     ->where('state', 'activo')
                                     ->first();
 
         if ($existingRecord) {
             return redirect()->back()->with('error', 'El cuestionario ya ha sido resuelto');
-        }else {
-
+        } else {
             $mathCuarto = new MathCuarto();
             $mathCuarto->user_id = $user_id;
             $mathCuarto->mathPC1 = $request->input('mathPC1');
@@ -796,20 +797,21 @@ class MathController extends Controller
                             ->get();
 
             $otherEmails = User::whereHas('roles', function ($query) {
-                $query->where('roles.name', ['CoordinadorAcademico']);
-            })
-            ->get();
-            
+                $query->where('roles.name', 'CoordinadorAcademico');
+            })->get();
+
+            // Enviar el correo a los docentes de matemáticas
             foreach ($emails as $user) {
-                Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                Mail::send('auth.notificationEmails', ['aspirante' => $aspirante], function ($message) use ($user) {
                     $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
                         ->to($user->email)
                         ->subject('Nuevo concepto asignado');
                 });
             }
 
+            // Enviar el correo a la coordinadora académica
             foreach ($otherEmails as $user) {
-                Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                Mail::send('auth.notificationEmails', ['aspirante' => $aspirante], function ($message) use ($user) {
                     $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
                         ->to($user->email)
                         ->subject('Nuevo concepto asignado');
@@ -837,6 +839,7 @@ class MathController extends Controller
         ]);
 
         $user_id = Auth::id();
+        $aspirante = User::find($user_id);
         $existingRecord = MathQuinto::where('user_id', $user_id)
                                     ->where('state', 'activo')
                                     ->first();
@@ -870,16 +873,18 @@ class MathController extends Controller
             })
             ->get();
             
+            // Enviar el correo a los docentes de matemáticas
             foreach ($emails as $user) {
-                Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                Mail::send('auth.notificationEmails', ['aspirante' => $aspirante], function ($message) use ($user) {
                     $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
                         ->to($user->email)
                         ->subject('Nuevo concepto asignado');
                 });
             }
 
+            // Enviar el correo a la coordinadora académica
             foreach ($otherEmails as $user) {
-                Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                Mail::send('auth.notificationEmails', ['aspirante' => $aspirante], function ($message) use ($user) {
                     $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
                         ->to($user->email)
                         ->subject('Nuevo concepto asignado');
@@ -913,6 +918,7 @@ class MathController extends Controller
         ]);
 
         $user_id = Auth::id();
+        $aspirante = User::find($user_id);
         $existingRecord = MathSexto::where('user_id', $user_id)
                                     ->where('state', 'activo')
                                     ->first();
@@ -947,16 +953,18 @@ class MathController extends Controller
             })
             ->get();
             
+            // Enviar el correo a los docentes de matemáticas
             foreach ($emails as $user) {
-                Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                Mail::send('auth.notificationEmails', ['aspirante' => $aspirante], function ($message) use ($user) {
                     $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
                         ->to($user->email)
                         ->subject('Nuevo concepto asignado');
                 });
             }
 
+            // Enviar el correo a la coordinadora académica
             foreach ($otherEmails as $user) {
-                Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
+                Mail::send('auth.notificationEmails', ['aspirante' => $aspirante], function ($message) use ($user) {
                     $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
                         ->to($user->email)
                         ->subject('Nuevo concepto asignado');
@@ -984,6 +992,7 @@ class MathController extends Controller
         ]);
 
         $user_id = Auth::id();
+        $aspirante = User::find($user_id);
         $existingRecord = MathSeptimo::where('user_id', $user_id)
                                      ->where('state', 'activo')
                                      ->first();
@@ -1018,20 +1027,22 @@ class MathController extends Controller
             })
             ->get();
 
+            // Enviar el correo a los docentes de matemáticas
             foreach ($emails as $user) {
-            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
-                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
-                    ->to($user->email)
-                    ->subject('Nuevo concepto asignado');
-            });
+                Mail::send('auth.notificationEmails', ['aspirante' => $aspirante], function ($message) use ($user) {
+                    $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                        ->to($user->email)
+                        ->subject('Nuevo concepto asignado');
+                });
             }
 
+            // Enviar el correo a la coordinadora académica
             foreach ($otherEmails as $user) {
-            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
-                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
-                    ->to($user->email)
-                    ->subject('Nuevo concepto asignado');
-            });
+                Mail::send('auth.notificationEmails', ['aspirante' => $aspirante], function ($message) use ($user) {
+                    $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                        ->to($user->email)
+                        ->subject('Nuevo concepto asignado');
+                });
             }
 
             return redirect()->back()->with('success', 'Datos almacenados correctamente.');
@@ -1055,6 +1066,7 @@ class MathController extends Controller
         ]);
 
         $user_id = Auth::id();
+        $aspirante = User::find($user_id);
         $existingRecord = MathOctavo::where('user_id', $user_id)
                                     ->where('state', 'activo')
                                     ->first();
@@ -1089,20 +1101,22 @@ class MathController extends Controller
             })
             ->get();
 
+           // Enviar el correo a los docentes de matemáticas
             foreach ($emails as $user) {
-            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
-                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
-                    ->to($user->email)
-                    ->subject('Nuevo concepto asignado');
-            });
+                Mail::send('auth.notificationEmails', ['aspirante' => $aspirante], function ($message) use ($user) {
+                    $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                        ->to($user->email)
+                        ->subject('Nuevo concepto asignado');
+                });
             }
 
+            // Enviar el correo a la coordinadora académica
             foreach ($otherEmails as $user) {
-            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
-                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
-                    ->to($user->email)
-                    ->subject('Nuevo concepto asignado');
-            });
+                Mail::send('auth.notificationEmails', ['aspirante' => $aspirante], function ($message) use ($user) {
+                    $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                        ->to($user->email)
+                        ->subject('Nuevo concepto asignado');
+                });
             }
 
             return redirect()->back()->with('success', 'Datos almacenados correctamente.');
@@ -1126,6 +1140,7 @@ class MathController extends Controller
         ]);
 
         $user_id = Auth::id();
+        $aspirante = User::find($user_id);
         $existingRecord = MathNoveno::where('user_id', $user_id)
                                     ->where('state', 'activo')
                                     ->first();
@@ -1160,20 +1175,22 @@ class MathController extends Controller
             })
             ->get();
 
+            // Enviar el correo a los docentes de matemáticas
             foreach ($emails as $user) {
-            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
-                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
-                    ->to($user->email)
-                    ->subject('Nuevo concepto asignado');
-            });
+                Mail::send('auth.notificationEmails', ['aspirante' => $aspirante], function ($message) use ($user) {
+                    $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                        ->to($user->email)
+                        ->subject('Nuevo concepto asignado');
+                });
             }
 
+            // Enviar el correo a la coordinadora académica
             foreach ($otherEmails as $user) {
-            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
-                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
-                    ->to($user->email)
-                    ->subject('Nuevo concepto asignado');
-            });
+                Mail::send('auth.notificationEmails', ['aspirante' => $aspirante], function ($message) use ($user) {
+                    $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                        ->to($user->email)
+                        ->subject('Nuevo concepto asignado');
+                });
             }
 
             return redirect()->back()->with('success', 'Datos almacenados correctamente.');
@@ -1197,6 +1214,7 @@ class MathController extends Controller
         ]);
 
         $user_id = Auth::id();
+        $aspirante = User::find($user_id);
         $existingRecord = MathDecimo::where('user_id', $user_id)
                                     ->where('state', 'activo')
                                     ->first();
@@ -1231,20 +1249,22 @@ class MathController extends Controller
             })
             ->get();
 
+            // Enviar el correo a los docentes de matemáticas
             foreach ($emails as $user) {
-            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
-                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
-                    ->to($user->email)
-                    ->subject('Nuevo concepto asignado');
-            });
+                Mail::send('auth.notificationEmails', ['aspirante' => $aspirante], function ($message) use ($user) {
+                    $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                        ->to($user->email)
+                        ->subject('Nuevo concepto asignado');
+                });
             }
 
+            // Enviar el correo a la coordinadora académica
             foreach ($otherEmails as $user) {
-            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
-                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
-                    ->to($user->email)
-                    ->subject('Nuevo concepto asignado');
-            });
+                Mail::send('auth.notificationEmails', ['aspirante' => $aspirante], function ($message) use ($user) {
+                    $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                        ->to($user->email)
+                        ->subject('Nuevo concepto asignado');
+                });
             }
 
             return redirect()->back()->with('success', 'Datos almacenados correctamente.');

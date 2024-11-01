@@ -1290,6 +1290,7 @@ class SpanishController extends Controller
         ]);
 
         $user_id = Auth::id(); //extraigo el id del usuario logueado
+        $aspirante = User::find($user_id);
         $existingRecord = SpanishCuarto::where('user_id', $user_id)
                                         ->where('state', 'activo')
                                         ->first(); //hago una consulta en la tabla para guardar el registro en la variable
@@ -1322,20 +1323,22 @@ class SpanishController extends Controller
             })
             ->get();
 
+            // Enviar el correo a los docentes de matemáticas
             foreach ($emails as $user) {
-            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
-                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
-                    ->to($user->email)
-                    ->subject('Nuevo concepto asignado');
-            });
+                Mail::send('auth.notificationEmails', ['aspirante' => $aspirante], function ($message) use ($user) {
+                    $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                        ->to($user->email)
+                        ->subject('Nuevo concepto asignado');
+                });
             }
 
+            // Enviar el correo a la coordinadora académica
             foreach ($otherEmails as $user) {
-            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
-                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
-                    ->to($user->email)
-                    ->subject('Nuevo concepto asignado');
-            });
+                Mail::send('auth.notificationEmails', ['aspirante' => $aspirante], function ($message) use ($user) {
+                    $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                        ->to($user->email)
+                        ->subject('Nuevo concepto asignado');
+                });
             }
 
             return redirect()->back()->with('success', 'Datos almacenados correctamente.');
@@ -1359,6 +1362,7 @@ class SpanishController extends Controller
         ]);
 
         $user_id = Auth::id();
+        $aspirante = User::find($user_id);
         $existingRecord = SpanishQuinto::where('user_id', $user_id)
                                         ->where('state', 'activo')
                                         ->first();
@@ -1391,20 +1395,22 @@ class SpanishController extends Controller
             })
             ->get();
 
+            // Enviar el correo a los docentes de matemáticas
             foreach ($emails as $user) {
-            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
-                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
-                    ->to($user->email)
-                    ->subject('Nuevo concepto asignado');
-            });
+                Mail::send('auth.notificationEmails', ['aspirante' => $aspirante], function ($message) use ($user) {
+                    $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                        ->to($user->email)
+                        ->subject('Nuevo concepto asignado');
+                });
             }
 
+            // Enviar el correo a la coordinadora académica
             foreach ($otherEmails as $user) {
-            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
-                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
-                    ->to($user->email)
-                    ->subject('Nuevo concepto asignado');
-            });
+                Mail::send('auth.notificationEmails', ['aspirante' => $aspirante], function ($message) use ($user) {
+                    $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                        ->to($user->email)
+                        ->subject('Nuevo concepto asignado');
+                });
             }
 
             return redirect()->back()->with('success', 'Datos almacenados correctamente.');
@@ -1427,6 +1433,7 @@ class SpanishController extends Controller
         ]);
 
         $user_id = Auth::id();
+        $aspirante = User::find($user_id);
         $existingRecord = SpanishSexto::where('user_id', $user_id)
                                         ->where('state', 'activo')
                                         ->first();
@@ -1460,20 +1467,22 @@ class SpanishController extends Controller
             })
             ->get();
 
+            // Enviar el correo a los docentes de matemáticas
             foreach ($emails as $user) {
-            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
-                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
-                    ->to($user->email)
-                    ->subject('Nuevo concepto asignado');
-            });
+                Mail::send('auth.notificationEmails', ['aspirante' => $aspirante], function ($message) use ($user) {
+                    $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                        ->to($user->email)
+                        ->subject('Nuevo concepto asignado');
+                });
             }
 
+            // Enviar el correo a la coordinadora académica
             foreach ($otherEmails as $user) {
-            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
-                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
-                    ->to($user->email)
-                    ->subject('Nuevo concepto asignado');
-            });
+                Mail::send('auth.notificationEmails', ['aspirante' => $aspirante], function ($message) use ($user) {
+                    $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                        ->to($user->email)
+                        ->subject('Nuevo concepto asignado');
+                });
             }
 
 
@@ -1498,6 +1507,7 @@ class SpanishController extends Controller
         ]);
 
         $user_id = Auth::id();
+        $aspirante = User::find($user_id);
         $existingRecord = SpanishSeptimo::where('user_id', $user_id)
                                             ->where('state', 'activo')
                                             ->first();
@@ -1531,20 +1541,22 @@ class SpanishController extends Controller
             })
             ->get();
 
+            // Enviar el correo a los docentes de matemáticas
             foreach ($emails as $user) {
-            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
-                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
-                    ->to($user->email)
-                    ->subject('Nuevo concepto asignado');
-            });
+                Mail::send('auth.notificationEmails', ['aspirante' => $aspirante], function ($message) use ($user) {
+                    $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                        ->to($user->email)
+                        ->subject('Nuevo concepto asignado');
+                });
             }
 
+            // Enviar el correo a la coordinadora académica
             foreach ($otherEmails as $user) {
-            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
-                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
-                    ->to($user->email)
-                    ->subject('Nuevo concepto asignado');
-            });
+                Mail::send('auth.notificationEmails', ['aspirante' => $aspirante], function ($message) use ($user) {
+                    $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                        ->to($user->email)
+                        ->subject('Nuevo concepto asignado');
+                });
             }
 
 
@@ -1569,6 +1581,7 @@ class SpanishController extends Controller
         ]);
 
         $user_id = Auth::id();
+        $aspirante = User::find($user_id);
         $existingRecord = SpanishOctavo::where('user_id', $user_id)
                                         ->where('state', 'activo')
                                         ->first();
@@ -1602,20 +1615,22 @@ class SpanishController extends Controller
             })
             ->get();
 
+            // Enviar el correo a los docentes de matemáticas
             foreach ($emails as $user) {
-            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
-                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
-                    ->to($user->email)
-                    ->subject('Nuevo concepto asignado');
-            });
+                Mail::send('auth.notificationEmails', ['aspirante' => $aspirante], function ($message) use ($user) {
+                    $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                        ->to($user->email)
+                        ->subject('Nuevo concepto asignado');
+                });
             }
 
+            // Enviar el correo a la coordinadora académica
             foreach ($otherEmails as $user) {
-            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
-                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
-                    ->to($user->email)
-                    ->subject('Nuevo concepto asignado');
-            });
+                Mail::send('auth.notificationEmails', ['aspirante' => $aspirante], function ($message) use ($user) {
+                    $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                        ->to($user->email)
+                        ->subject('Nuevo concepto asignado');
+                });
             }
 
 
@@ -1639,6 +1654,7 @@ class SpanishController extends Controller
         ]);
 
         $user_id = Auth::id();
+        $aspirante = User::find($user_id);
         $existingRecord = SpanishNoveno::where('user_id', $user_id)
                                         ->where('state', 'activo')
                                         ->first();
@@ -1672,20 +1688,22 @@ class SpanishController extends Controller
             })
             ->get();
 
+            // Enviar el correo a los docentes de matemáticas
             foreach ($emails as $user) {
-            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
-                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
-                    ->to($user->email)
-                    ->subject('Nuevo concepto asignado');
-            });
+                Mail::send('auth.notificationEmails', ['aspirante' => $aspirante], function ($message) use ($user) {
+                    $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                        ->to($user->email)
+                        ->subject('Nuevo concepto asignado');
+                });
             }
 
+            // Enviar el correo a la coordinadora académica
             foreach ($otherEmails as $user) {
-            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
-                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
-                    ->to($user->email)
-                    ->subject('Nuevo concepto asignado');
-            });
+                Mail::send('auth.notificationEmails', ['aspirante' => $aspirante], function ($message) use ($user) {
+                    $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                        ->to($user->email)
+                        ->subject('Nuevo concepto asignado');
+                });
             }
 
 
@@ -1713,6 +1731,7 @@ class SpanishController extends Controller
         ]);
 
         $user_id = Auth::id();
+        $aspirante = User::find($user_id);
         $existingRecord = SpanishDecimo::where('user_id', $user_id)
                                         ->where('state', 'activo')
                                         ->first();
@@ -1750,20 +1769,22 @@ class SpanishController extends Controller
             })
             ->get();
 
+            // Enviar el correo a los docentes de matemáticas
             foreach ($emails as $user) {
-            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
-                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
-                    ->to($user->email)
-                    ->subject('Nuevo concepto asignado');
-            });
+                Mail::send('auth.notificationEmails', ['aspirante' => $aspirante], function ($message) use ($user) {
+                    $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                        ->to($user->email)
+                        ->subject('Nuevo concepto asignado');
+                });
             }
 
+            // Enviar el correo a la coordinadora académica
             foreach ($otherEmails as $user) {
-            Mail::send('auth.notificationEmails', [], function ($message) use ($user) {
-                $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
-                    ->to($user->email)
-                    ->subject('Nuevo concepto asignado');
-            });
+                Mail::send('auth.notificationEmails', ['aspirante' => $aspirante], function ($message) use ($user) {
+                    $message->from('soporte.tecnico@bethlemitaspereira.edu.co', 'Bethlemitas')
+                        ->to($user->email)
+                        ->subject('Nuevo concepto asignado');
+                });
             }
 
 
